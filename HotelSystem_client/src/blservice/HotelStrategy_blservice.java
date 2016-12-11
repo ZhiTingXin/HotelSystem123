@@ -9,7 +9,7 @@ public interface HotelStrategy_blservice {
 
 	public boolean modifyHotelStrategy(HotelStrategyVO hotelstrategy);
 
-	public boolean deleteHotelStrategy(HotelStrategyVO strategyVO);
+	public boolean deleteHotelStrategy(String hotelStrategyId);
 
 	public HotelStrategyVO getHotelStrategy(String HotelStrategyId);
 	

@@ -1,22 +1,20 @@
 package blservice.impl;
 
-import java.awt.image.DataBufferFloat;
-import java.lang.reflect.Array;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.List;
 
+import PO.HotelPO;
 import PO.OrderPO;
-import PO.PrivilegePO;
 import RMI.RemoteHelper;
 import VO.OrderVO;
 import blservice.Order_blservice;
+import data.service.HotelDataService;
 import data.service.OrderDataService;
 import other.OrderState;
-import other.RoomType;
 
 public class Order_bl implements Order_blservice{
 	OrderDataService dataService = RemoteHelper.getInstance().getOrderDataService();
+	HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
 	
 	public OrderState getState(String orderID) {
 		try {
@@ -91,24 +89,6 @@ public class Order_bl implements Order_blservice{
 		return abnomalVoList;
 	}
 
-//	public ArrayList<OrderVO> getHotelOrders(String userID, String hotelID) {
-//		ArrayList<OrderPO> aList = new ArrayList<OrderPO>();
-//		OrderPO tempPO = new OrderPO();
-//		aList.add(tempPO);
-//		return aList;
-//	}
-
-//	public boolean checkRoomType(String hotelID, RoomType type) {
-//		return false;
-//	}
-
-//	public ArrayList<PrivilegePO> getRecommendations(String userID, String hotelID) {
-//		ArrayList<PrivilegePO> aList = new ArrayList<PrivilegePO>();
-//		PrivilegePO tempPO = new PrivilegePO();
-//		aList.add(tempPO);
-//		return aList;
-//	}
-
 	//不明确   change 什么没传
 	public boolean changeCredit(String userID, String orderID) {
 		
@@ -132,6 +112,120 @@ public class Order_bl implements Order_blservice{
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public ArrayList<OrderVO> getOrderFromInput(String text) {
+		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		try {
+			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			for(OrderPO po : orderPOs){
+				String hotelID = po.getHotelId();
+				HotelPO hotelPO = hotelDataService.find(hotelID);
+				String hotelName = hotelPO.getHotelName();
+				
+				if(hotelName.equals(text)){
+					orderVOs.add(new OrderVO(po));
+				}
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return orderVOs;
+	}
+
+	@Override
+	public String getOrderOriginalPrice(OrderVO order) {
+		String hotelID = order.getHotelID();
+		HotelPO hotelPO;
+		try {
+			hotelPO = hotelDataService.find(hotelID);
+			String price = hotelPO.getPrice();
+			return price;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	//简单实现
+	public String getOrderPrice(OrderVO order, String id) {
+		String hotelID = order.getHotelID();
+		HotelPO hotelPO;
+		try {
+			hotelPO = hotelDataService.find(hotelID);
+			String price = hotelPO.getPrice();
+			return price;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	//今天的时间
+	public ArrayList<OrderVO> getOrderOfToday(String hotelId) {
+		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		try {
+			ArrayList<OrderPO> allOrders = dataService.getAllOrders();
+			for(OrderPO po : allOrders){
+				if(po.getHotelId().equals(hotelId)&&po.getEntryTime().equals("")){
+					orderVOs.add(new OrderVO(po));
+				}
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return orderVOs;
+	}
+
+	@Override
+	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID) {
+		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		try {
+			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			for (OrderPO po : orderPOs){
+				if(po.getStatus().equals(OrderState.UNFINISHED))
+					orderVOs.add(new OrderVO(po));
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return orderVOs;
+	}
+
+	@Override
+	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID) {
+		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		try {
+			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			for (OrderPO po : orderPOs){
+				if(po.getStatus().equals(OrderState.ABNOMAL))
+					orderVOs.add(new OrderVO(po));
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return orderVOs;
+	}
+
+	@Override
+	public ArrayList<OrderVO> getHotelDoneOrderList(String hotelID) {
+		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		try {
+			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			for (OrderPO po : orderPOs){
+				if(po.getStatus().equals(OrderState.FINISHED))
+					orderVOs.add(new OrderVO(po));
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return orderVOs;
 	}
 
 

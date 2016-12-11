@@ -8,16 +8,20 @@ import PO.HotelPO;
 import PO.HotelRoomInfoPO;
 import PO.HotelStaffPO;
 import PO.Label;
+import PO.OrderPO;
 import PO.Rank;
 import RMI.RemoteHelper;
 import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import blservice.Hotel_blservice;
 import data.service.HotelDataService;
+import data.service.OrderDataService;
+import other.OrderState;
 
 public class Hotel_bl implements Hotel_blservice {
 
 	HotelDataService dataService = RemoteHelper.getInstance().getHotelDataService();
+	OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
 	
 	public HotelInfoVO getHotelInfo(String hotelId) {
 		try {
@@ -83,45 +87,72 @@ public class Hotel_bl implements Hotel_blservice {
 		}
 	}
 
-//	public boolean addAssessment(String hotelID, String assessment) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public boolean addLabelAssessment(String hotelID, ArrayList<Label> labelList) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public boolean addRankAssessment(String hotelID, Rank rank) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public boolean roomModify(String hotelId, HotelRoomInfoPO currentInfo) {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
+	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId) {
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
+		try {
+			ArrayList<OrderPO> orderPOList = orderDataService.findOrders(userId, "userId");
+			//遍历完成的订单
+			for(OrderPO po : orderPOList){
+				if(po.getStatus().equals(OrderState.FINISHED)){
+					HotelPO hotelPO = dataService.find(po.getHotelId());
+					hotelInfoVOs.add(new HotelInfoVO(hotelPO));
+				}
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		} 
+		return hotelInfoVOs;
+	}
 
 	
-	///////need  to be added in database
-	public HotelRoomInfoPO getHotelRoomInfo(String hotelId) {
+	@Override
+	public ArrayList<HotelInfoVO> getAllHotel() {
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
+		try {
+			ArrayList<HotelPO> hotelPOs = dataService.getAllHotels();
+			for(HotelPO po : hotelPOs){
+				hotelInfoVOs.add(new HotelInfoVO(po));
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return hotelInfoVOs;
+	}
+
+
+	@Override
+	public String getHotelGradeAssessment(String hotelID) {
+		try {
+			HotelPO hotelPO = dataService.find(hotelID);
+			return hotelPO.getGrade();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public String[] getHotelTagAssessment(String hotelID) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-//	public ArrayList<Label> getLabelAssessment(String hotelId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	public boolean deleteLabelAssessment(String hotelId, Label label) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	@Override
+	public ArrayList<HotelInfoVO> getHotelFromName(String text) {
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
+		try {
+			ArrayList<HotelPO> hotelPOs = dataService.getAllHotels();
+			for(HotelPO po : hotelPOs){
+				if(po.getHotelName().equals(text))
+					hotelInfoVOs.add(new HotelInfoVO(po));
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return hotelInfoVOs;
 	}
 
 }

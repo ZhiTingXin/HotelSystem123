@@ -19,24 +19,7 @@ public interface Hotel_blservice {
 
 	public boolean addHotelStaff(HotelStaffVO hotelStaff);
 
-	// public boolean addAssessment(String hotelID, String assessment);
-
-	// public boolean addLabelAssessment(String hotelID,
-	// ArrayList<Label> labelList);
-	//
-	// public boolean addRankAssessment(String hotelID, Rank rank);
-	//
-	// public boolean roomModify(String hotelId,HotelRoomInfoPO currentInfo);
-	//
-	public HotelRoomInfoPO getHotelRoomInfo(String hotelId);
-
-	// public ArrayList<PO.Label> getLabelAssessment(String hotelId);
-	//
-	// public boolean deleteLabelAssessment(String hotelId,Label label);
-
 	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId);
-
-	public String getHotelStrategy(String hotelID);
 
 	public String getHotelGradeAssessment(String hotelID);
 

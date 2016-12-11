@@ -11,5 +11,4 @@ public interface Login_blservice {
 //	public boolean modifyPassword(String user_id, String user_password);
 
 	public UserType assertUserType(String userIdInField);
-	
 }

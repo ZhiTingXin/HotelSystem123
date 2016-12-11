@@ -20,13 +20,7 @@ public interface Order_blservice {
 
 	public ArrayList<OrderVO> getAbnomalOrders(String userID);
 
-	// public ArrayList<OrderVO> getHotelOrders(String userID,String hotelID);
-	// public boolean checkRoomType(String hotelID, RoomType type);
-	// public ArrayList<PrivilegePO> getRecommendations(String userID, String
-	// hotelID);
 	public boolean generateOrder(OrderVO Order);
-
-	public boolean changeState(String orderID);
 
 	public boolean changeCredit(String userID, String orderID);
 
@@ -38,4 +32,9 @@ public interface Order_blservice {
 
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId);
 
+	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID);
+	
+	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID);
+	
+	public ArrayList<OrderVO> getHotelDoneOrderList(String hotelID);
 }
