@@ -104,6 +104,10 @@ public class HotelInfoVO {
 		this.hotelDiscription = Discription;
 	}
 
+	public HotelInfoVO(String name,String district){
+		this.hotelName = name;
+		this.hotelDistrict = district;
+	}
 	// 构造方法
 	
 	//*********used

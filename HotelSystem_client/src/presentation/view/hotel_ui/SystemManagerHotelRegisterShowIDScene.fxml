@@ -62,7 +62,7 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="back" layoutX="163.0" layoutY="229.0" mnemonicParsing="false" text="确认并返回" />
+      <Button fx:id="back" layoutX="163.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleOK" text="确认并返回" />
       <Label layoutX="137.0" layoutY="39.0" text="成功过注册新酒店！">
          <font>
             <Font size="14.0" />

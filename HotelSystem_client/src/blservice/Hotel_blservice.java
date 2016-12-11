@@ -14,6 +14,9 @@ public interface Hotel_blservice {
 	public ArrayList<HotelInfoVO> getListOfHotel(String strict, String type);
 
 	public ArrayList<HotelInfoVO> getAllHotel();
+	// NEW 
+	public String genarateHotelID();
+	public String genarateHotelStaffID();
 
 	public boolean addHotel(HotelInfoVO hotel);
 
