@@ -66,7 +66,7 @@ public class SystemStaffOrderViewController {
 		//ÓÒ±ßÀ¸
 		orderIdLabel.setText(orderVO.getOrderID());
 		IdLabel.setText(orderVO.getUserID());//¿Í»§id
-		nameLabel.setText(orderVO.getCustomerName());
+		nameLabel.setText(orderVO.getUserName());
 		nameOfHotel.setText(orderVO.getHotelID());
 		typeOfRoom.setText(String.valueOf(orderVO.getRoomType()));
 		numberOfRoom.setText(String.valueOf(orderVO.getRoomNum()));
