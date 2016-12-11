@@ -11,11 +11,13 @@ import blservice.impl.UserInfo_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
 
@@ -116,10 +118,18 @@ public class SystemStaffOrderManagementController {
 			}
 			//该订单不存在
 			else {
-				//TODO 提示框 “不存在该订单”
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("抱歉");
+				alert.setHeaderText("查找失败");
+				alert.setContentText("非常遗憾，未能查询该订单信息！");
+				alert.showAndWait();
 			}
 		} else {
-			//TODO 提示框 “请输入信息”
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("抱歉");
+			alert.setHeaderText("查找失败");
+			alert.setContentText("请输入订单ID！");
+			alert.showAndWait();
 		}
 		
 	}
