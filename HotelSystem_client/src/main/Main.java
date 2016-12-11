@@ -1373,7 +1373,7 @@ public class Main extends Application {
 	 * 
 	 * @param
 	 */
-	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO) {
+	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
@@ -1384,7 +1384,7 @@ public class Main extends Application {
 			// get Controller
 			SystemManagerHotelRegisterShowIDController SystemManagerHotelRegisterShowIDController = loader
 					.getController();
-			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this);
+			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this,systemManagerVO,hotelInfoVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
