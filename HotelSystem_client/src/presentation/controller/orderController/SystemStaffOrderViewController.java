@@ -25,47 +25,49 @@ public class SystemStaffOrderViewController {
 	@FXML
 	private Button back;
 	@FXML
-	private Label orderIdLabel;//订单id
+	private Label orderIdLabel;// 订单id
 	@FXML
-	private Label IdLabel;//客户id
+	private Label IdLabel;// 客户id
 	@FXML
-	private Label nameLabel;//客户姓名
+	private Label nameLabel;// 客户姓名
 	@FXML
-	private Label nameOfHotel;//酒店名称
+	private Label nameOfHotel;// 酒店名称
 	@FXML
-	private Label typeOfRoom;//房间类型
+	private Label typeOfRoom;// 房间类型
 	@FXML
 	private Label numberOfRoom;
 	@FXML
-	private Label durationOfOrder;//订单时长
+	private Label durationOfOrder;// 订单时长
 	@FXML
-	private Label timeOfArrive;//到达时间
+	private Label timeOfArrive;// 到达时间
 	@FXML
-	private Label actualPayment;//实际付款
+	private Label actualPayment;// 实际付款
 	@FXML
-	private Label stateOfOrder;//订单状态
-	
+	private Label stateOfOrder;// 订单状态
+
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private OrderVO orderVO;
 	private Order_blservice order_blservice;
+
 	public SystemStaffOrderViewController() {
 		order_blservice = new Order_bl();
 	}
 
-	public void initialize(Main mainScene, SystemStaffVO systemStaffVO,OrderVO orderVO) {
+	public void initialize(Main mainScene, SystemStaffVO systemStaffVO, OrderVO orderVO) {
 		this.mainScene = mainScene;
-		this.systemStaffVO =systemStaffVO;
-		this.orderVO =orderVO;
+		this.systemStaffVO = systemStaffVO;
+		this.orderVO = orderVO;
 		SystemStaffOrderViewShow(this.mainScene);
 	}
+
 	public void SystemStaffOrderViewShow(Main mainScene) {
-		//左边栏
+		// 左边栏
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
-		//右边栏
+		// 右边栏
 		orderIdLabel.setText(orderVO.getOrderID());
-		IdLabel.setText(orderVO.getUserID());//客户id
+		IdLabel.setText(orderVO.getUserID());// 客户id
 		nameLabel.setText(orderVO.getUserName());
 		nameOfHotel.setText(orderVO.getHotelID());
 		typeOfRoom.setText(String.valueOf(orderVO.getRoomType()));
@@ -75,20 +77,21 @@ public class SystemStaffOrderViewController {
 		actualPayment.setText(String.valueOf(orderVO.getPrice()));
 		stateOfOrder.setText(String.valueOf(orderVO.getOrderState()));
 	}
-	
-	@FXML//撤销订单
-	private void handleRevocationException(){
-		if (order_blservice.changeState(orderVO.getOrderID())) {
-			stateOfOrder.setText(String.valueOf(orderVO.getOrderState()));//修改订单状态为已撤销状态
-			order_blservice.changeCredit(orderVO.getUserID(), orderVO.getOrderID());//恢复信用值
-			//设置弹窗提示修改成功 恢复信用值成功 以及记录撤销时间
-			//TODO MY DIALOG 
-		}else {
-			//TODO 修改失败
+
+	@FXML // 撤销订单
+	private void handleRevocationException() {
+		if (order_blservice.changeState(orderVO)) {
+			stateOfOrder.setText(String.valueOf(orderVO.getOrderState()));// 修改订单状态为已撤销状态
+			order_blservice.changeCredit(orderVO.getUserID(), orderVO.getOrderID());// 恢复信用值
+			// 设置弹窗提示修改成功 恢复信用值成功 以及记录撤销时间
+			// TODO MY DIALOG
+		} else {
+			// TODO 修改失败
 		}
 	}
+
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainScene.showSystemStaffOrderManagementScene(systemStaffVO);
 	}
 }

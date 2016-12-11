@@ -1,5 +1,6 @@
 package presentation.controller.userManagementController;
 
+import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.UserInfo_blservice;
 import blservice.impl.UserInfo_bl;
@@ -8,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
-import other.ResultMessage;
 
 public class SystemManagerSystemStaffInfoViewController {
 
@@ -43,6 +43,11 @@ public class SystemManagerSystemStaffInfoViewController {
 	
 	public void SystemManagerSystemStaffInfoViewShow(Main mainScene) {
 		this.mainScene = mainScene;
+		
+	}
+
+	public void initialize(Main main, SystemManagerVO systemManagerVO, SystemStaffVO systemStaffVO) {
+		// TODO Auto-generated method stub
 		
 	}
 }

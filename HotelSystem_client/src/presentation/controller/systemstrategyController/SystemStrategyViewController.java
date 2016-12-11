@@ -1,11 +1,6 @@
 package presentation.controller.systemstrategyController;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.print.attribute.standard.MediaSize.Other;
-
-import org.controlsfx.dialog.Dialogs;
 
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
@@ -15,11 +10,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.SystemStrategyType;

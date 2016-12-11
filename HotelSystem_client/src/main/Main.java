@@ -10,11 +10,14 @@ import VO.HotelStrategyVO;
 import VO.OrderVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
+import VO.SystemStrategyVO;
+import VO.VipVO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import presentation.controller.adviceFeedBackController.CustomerAdviceInfoController;
 import presentation.controller.adviceFeedBackController.CustomerAdviceViewController;
@@ -24,6 +27,8 @@ import presentation.controller.hotelController.HotelInfoController;
 import presentation.controller.hotelController.HotelStaffHotelInfoModifyController;
 import presentation.controller.hotelController.HotelStaffHotelInfoViewController;
 import presentation.controller.hotelController.HotelViewController;
+import presentation.controller.hotelController.SystemManagerHotelRegisterController;
+import presentation.controller.hotelController.SystemManagerHotelRegisterShowIDController;
 import presentation.controller.hotelStrategyController.HotelStrategyModifyController;
 import presentation.controller.hotelStrategyController.HotelStrategyNewController;
 import presentation.controller.hotelStrategyController.HotelStrategyViewController;
@@ -36,8 +41,16 @@ import presentation.controller.orderController.HotelStaffOrderViewController;
 import presentation.controller.orderController.SystemStaffOrderManagementController;
 import presentation.controller.orderController.SystemStaffOrderViewController;
 import presentation.controller.registerController.RegisterController;
+import presentation.controller.systemstrategyController.AddSystemHolidayStrategyController;
+import presentation.controller.systemstrategyController.AddSystemMemberStrategyController;
+import presentation.controller.systemstrategyController.AddSystemOtherStrategyController;
+import presentation.controller.systemstrategyController.AddSystemVIPStrategyController;
+import presentation.controller.systemstrategyController.MemberEditDialogController;
 import presentation.controller.systemstrategyController.SystemHolidayStrategyModifyController;
+import presentation.controller.systemstrategyController.SystemMemberStrategyModifyController;
+import presentation.controller.systemstrategyController.SystemOtherStrategyModifyController;
 import presentation.controller.systemstrategyController.SystemStrategyViewController;
+import presentation.controller.systemstrategyController.SystemVIPStrategyModifyController;
 import presentation.controller.userInfoController.CustomerInfoController;
 import presentation.controller.userInfoController.CustomerInfoModifyController;
 import presentation.controller.userInfoController.CustomerMemberModifyController;
@@ -51,7 +64,15 @@ import presentation.controller.userInfoController.SystemManagerPasswordModifyCon
 import presentation.controller.userInfoController.SystemStaffInfoController;
 import presentation.controller.userInfoController.SystemStaffInfoModifyController;
 import presentation.controller.userInfoController.SystemStaffPasswordModifyController;
+import presentation.controller.userManagementController.CustomerManagementController;
+import presentation.controller.userManagementController.HotelStaffManagementController;
+import presentation.controller.userManagementController.SystemManagerCustomerInfoModifyController;
+import presentation.controller.userManagementController.SystemManagerCustomerInfoViewController;
+import presentation.controller.userManagementController.SystemManagerHotelStaffInfoModifyController;
+import presentation.controller.userManagementController.SystemManagerHotelStaffInfoViewController;
+import presentation.controller.userManagementController.SystemManagerSystemStaffInfoViewController;
 import presentation.controller.userManagementController.SystemStaffCreditManagementController;
+import presentation.controller.userManagementController.SystemStaffManagementController;
 
 public class Main extends Application {
 
@@ -63,14 +84,14 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("HotelSystem");
-		this.showCustomerInfoScene(new CustomerVO());
+		// this.showCustomerInfoScene(new CustomerVO());
 		// this.showHotelStaffInfoScene(new HotelStaffVO());
 		// this.showSystemStaffInfoScene(new SystemStaffVO());
 		// this.showSystemManagerInfoScene(new SystemManagerVO());
 		// this.showCustomerBookHotelScene(new CustomerVO(), new HotelInfoVO());
 		// this.showCustomerHotelViewScene(new CustomerVO());
 		// this.showCustomerMainScene(new CustomerVO());
-		// this.showLoginScene();
+		this.showLoginScene();
 		// this.showHotelStaffMainScene(new HotelStaffVO());
 		// this.showHotelStaffHotelInfoViewScene(new HotelStaffVO(), new
 		// HotelInfoVO());
@@ -837,7 +858,7 @@ public class Main extends Application {
 
 			// get Controller
 			SystemHolidayStrategyModifyController SystemHolidayStrategyModifyController = loader.getController();
-			SystemHolidayStrategyModifyController.initilize(this);
+			SystemHolidayStrategyModifyController.initilize(this, systemStaffVO, null);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1054,7 +1075,6 @@ public class Main extends Application {
 		}
 	}
 
-
 	/**
 	 * show 显示网站营销人员维护个人信息界面
 	 * 
@@ -1124,6 +1144,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * show 网站管理人员 mainScene
 	 * 
@@ -1241,18 +1262,18 @@ public class Main extends Application {
 	 * 
 	 * @param
 	 */
-	public void showSystemManagerCustomerInfoModifyScene(SystemManagerVO systemManagerVO,CustomerVO customerVO) {
+	public void showSystemManagerCustomerInfoModifyScene(SystemManagerVO systemManagerVO, CustomerVO customerVO) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(
-					Main.class.getResource("/presentation/view/userManagement_ui/SystemManagerCustomerInfoModifyScene.fxml"));
+			loader.setLocation(Main.class
+					.getResource("/presentation/view/userManagement_ui/SystemManagerCustomerInfoModifyScene.fxml"));
 			AnchorPane SystemManagerCustomerInfoModifyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemManagerCustomerInfoModifyScene);
 
 			// get Controller
 			SystemManagerCustomerInfoModifyController systemManagerCustomerInfoModifyController = loader
 					.getController();
-			systemManagerCustomerInfoModifyController.initialize(this,systemManagerVO,customerVO);
+			systemManagerCustomerInfoModifyController.initialize(this, systemManagerVO, customerVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1279,12 +1300,13 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * show 网站管理人员 修改hotel staff信息
 	 * 
 	 * @param
 	 */
-	public void showSystemManagerHotelStaffInfoModifyScene() {
+	public void showSystemManagerHotelStaffInfoModifyScene(SystemManagerVO systemManagerVO, HotelStaffVO hotelStaffVO) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
@@ -1300,6 +1322,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * show 网站管理人员 查看system staff信息
 	 * 

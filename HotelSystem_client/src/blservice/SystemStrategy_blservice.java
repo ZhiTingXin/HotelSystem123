@@ -2,12 +2,10 @@ package blservice;
 
 import java.util.ArrayList;
 
-import VO.PrivilegeVO;
 import VO.SystemStrategyVO;
 import VO.VipStrategyVO;
 import VO.VipVO;
 import other.SystemStrategyType;
-import other.memberState;
 
 public interface SystemStrategy_blservice {
 	 
