@@ -8,6 +8,7 @@ public class HotelPO {
      * hotelStaffId 酒店工作人员的id
      * hotelStrict 酒店的商圈地址
      */
+	private String grade;
 	private String hotelId;
 	private String hotelStaffId;
 	private String hotelStrict;
@@ -55,5 +56,12 @@ public class HotelPO {
 	}
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String gra){
+		this.grade = gra;
 	}
 }

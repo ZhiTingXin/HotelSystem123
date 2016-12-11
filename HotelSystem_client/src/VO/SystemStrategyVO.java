@@ -2,6 +2,7 @@ package VO;
 
 import java.time.LocalDate;
 
+import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.StrategyState;
@@ -27,16 +28,18 @@ public class SystemStrategyVO {
 	private LocalDate end_date;
 	// 会员优惠
 	private memberState memberState;
-
-	// public SystemStrategyVO(SystemStrategyPO systemstrategypo){
-	// super();
-	// this.systemStrategy_name = systemstrategypo.getSystemStrategy_name();
-	// this.discount = systemstrategypo.getDiscount();
-	// this.begin_date = systemstrategypo.getBegin_date();
-	// this.end_date = systemstrategypo.getEnd_date();
-	// this.systemStaffID = systemstrategypo.getSystemStaffId();
-	// }
-	//
+    //PO到Vo的构造方法
+	public SystemStrategyVO(SystemStrategyPO strategypo){
+		super();
+		this.systemStaffID = strategypo.getSystemStaffId();
+		this.systemStrategyName = strategypo.getSystemStrategy_name();
+		this.systemStrategyType = strategypo.getStrategyType();
+		this.begin_date = strategypo.getBegin_date();
+		this.systemStrategyDescription = strategypo.getSystemStrategyDescription();
+		this.strategyState = strategypo.getState();
+		this.discount = strategypo.getDiscount();
+		this.end_date =strategypo.getEnd_date();
+	}
 
 	// 节日优惠的VO的构造函数
 	public SystemStrategyVO(String strategyName, String strategyDsciption, LocalDate startDate, LocalDate endDate,

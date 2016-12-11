@@ -2,7 +2,6 @@ package blservice.impl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
 import PO.HotelPO;
 import PO.OrderPO;
 import RMI.RemoteHelper;
@@ -49,18 +48,15 @@ public class Order_bl implements Order_blservice{
 			
 			return voList;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		
-		return null;
 	}
 
 	public boolean changeState(OrderPO order_info) {
 		try {
 			return dataService.update(order_info);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -190,7 +186,6 @@ public class Order_bl implements Order_blservice{
 					orderVOs.add(new OrderVO(po));
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return orderVOs;
@@ -206,7 +201,6 @@ public class Order_bl implements Order_blservice{
 					orderVOs.add(new OrderVO(po));
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return orderVOs;
@@ -222,10 +216,15 @@ public class Order_bl implements Order_blservice{
 					orderVOs.add(new OrderVO(po));
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return orderVOs;
+	}
+
+	@Override
+	public boolean changeState(String orderID) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

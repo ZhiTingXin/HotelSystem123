@@ -1,8 +1,6 @@
 package blservice;
 
 import java.util.ArrayList;
-
-import PO.HotelRoomInfoPO;
 import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 

@@ -127,7 +127,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
-	public ArrayList<CustomerVO> getAllCustomers() {
+	public ArrayList<CustomerVO> getAllCustomer() {
 		try {
 			ArrayList<CustomerPO> list = RemoteHelper.getInstance().getCustomerDataService().getAllCustomers();
 			ArrayList<CustomerVO> arrayList = new ArrayList<CustomerVO>();
@@ -140,6 +140,53 @@ public class UserManagement_bl implements UserManagement_blservice {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	@Override
+	public ArrayList<HotelStaffVO> getAllHotelStaff() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<SystemStaffVO> getAllSystemStaff() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getCotemerNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getHotelNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getHotelStaffNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSystemStaffNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getTodayOrderNumberNum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getOrderNumber() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
