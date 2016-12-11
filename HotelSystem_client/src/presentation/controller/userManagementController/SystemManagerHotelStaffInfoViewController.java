@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
-import other.ResultMessage;
 
 public class SystemManagerHotelStaffInfoViewController {
 
@@ -19,8 +18,6 @@ public class SystemManagerHotelStaffInfoViewController {
 	private Label leftNameLabel;
 	@FXML
 	private Button modifyInfo;
-	@FXML
-	private Button changeState;
 	@FXML
 	private Button back;
 	@FXML
@@ -39,18 +36,37 @@ public class SystemManagerHotelStaffInfoViewController {
 	private SystemManagerVO systemManagerVO;
 	private HotelStaffVO hotelStaffVO;
 	
-	public void initialize(Main mainScene ,SystemManagerVO systemManagerVO,HotelStaffVO hotelStaffVO) {
-		this.mainScene = mainScene;
-		this.systemManagerVO = systemManagerVO;
-		this.hotelStaffVO = hotelStaffVO;
-		SystemManagerHotelStaffInfoViewShow(this.mainScene);
-	}
 	public SystemManagerHotelStaffInfoViewController() {
 		blservice = new UserInfo_bl();
 	}
 	
-	public void SystemManagerHotelStaffInfoViewShow(Main mainScene) {
+	public void initialize(Main mainScene ,SystemManagerVO systemManagerVO,HotelStaffVO hotelStaffVO) {
+		//left
 		this.mainScene = mainScene;
+		this.systemManagerVO = systemManagerVO;
+		this.hotelStaffVO = hotelStaffVO;
+		
+		leftIdLabel.setText(this.systemManagerVO.getId());
+		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		
+		SystemManagerHotelStaffInfoViewShow(this.mainScene);
 	}
 	
+	public void SystemManagerHotelStaffInfoViewShow(Main mainScene) {
+		//显示
+		idLabel.setText(hotelStaffVO.getId());
+		nameLabel.setText(hotelStaffVO.getUsername());
+		hotelId.setText(hotelStaffVO.getHotelId());
+		hotelName.setText(hotelStaffVO.getHotelName());
+	}
+	
+	@FXML//修改信息
+	private void handleModify() {
+		mainScene.showSystemManagerHotelStaffInfoModifyScene(systemManagerVO, hotelStaffVO);
+	}
+	
+	@FXML//返回
+	private void handleBack(){
+		mainScene.showHotelStaffManagementScene(systemManagerVO);
+	}
 }
