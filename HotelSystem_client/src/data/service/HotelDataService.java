@@ -15,4 +15,5 @@ public interface HotelDataService extends Remote{
 	public ArrayList<HotelPO> getHotels(String strict,String type) throws RemoteException;
 	public ArrayList<HotelPO> getAllHotels()throws RemoteException;
 //	public HotelRoomInfoPO getHotelRoominfo();
+
 }

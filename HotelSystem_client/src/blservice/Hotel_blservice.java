@@ -29,5 +29,7 @@ public interface Hotel_blservice {
 	public String[] getHotelTagAssessment(String hotelID);
 
 	public ArrayList<HotelInfoVO> getHotelFromName(String text);
+	
+	public String getHotelRoomPrice(String hotelID);
 
 }

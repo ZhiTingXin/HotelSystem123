@@ -155,4 +155,16 @@ public class Hotel_bl implements Hotel_blservice {
 		return hotelInfoVOs;
 	}
 
+	@Override
+	public String getHotelRoomPrice(String hotelID) {
+		String price = null;
+		try {
+			price =  dataService.find(hotelID).getPrice();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return price;
+	}
+
 }
