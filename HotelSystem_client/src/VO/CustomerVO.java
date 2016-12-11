@@ -55,6 +55,15 @@ public class CustomerVO {
 
 	}
 
+	public CustomerVO(String id, String name, int memberGrade, LocalDate date, String companyName, int credit){
+		this.id = id;
+		this.userName = name;
+		this.memberGrade = memberGrade;
+		this.birthday = date;
+		this.companyName= companyName;
+		this.credit = credit;
+	}
+	
 	public String getId() {
 		return id;
 	}

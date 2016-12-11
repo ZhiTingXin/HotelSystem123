@@ -22,6 +22,8 @@ public interface Order_blservice {
 
 	public boolean generateOrder(OrderVO Order);
 
+	public boolean changeState(String orderID);
+	
 	public boolean changeCredit(String userID, String orderID);
 
 	public ArrayList<OrderVO> getOrderFromInput(String text);
@@ -36,5 +38,5 @@ public interface Order_blservice {
 	
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID);
 	
-	public ArrayList<OrderVO> getHotelDoneOrderList(String hotelID);
+	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID);
 }

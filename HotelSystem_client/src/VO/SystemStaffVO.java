@@ -26,6 +26,12 @@ public class SystemStaffVO {
 		this.businessDistrict = userPO.getBusinessDistrict();
 	}
 
+	public SystemStaffVO(String id,String name, String district){
+		this.id = id;
+		this.username = name;
+		this.businessDistrict = district;
+	}
+	
 	public String getId() {
 		return id;
 	}

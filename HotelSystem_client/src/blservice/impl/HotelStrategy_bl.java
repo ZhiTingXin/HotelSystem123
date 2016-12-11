@@ -1,5 +1,6 @@
 package blservice.impl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.HotelStrategyPO;
@@ -7,33 +8,62 @@ import RMI.RemoteHelper;
 import VO.HotelStrategyVO;
 import blservice.HotelStrategy_blservice;
 import data.service.HotelDataService;
+import data.service.HotelStrategyDataService;
 
 public class HotelStrategy_bl implements HotelStrategy_blservice {
-	HotelDataService dataService = RemoteHelper.getInstance().getHotelDataService();
+	HotelStrategyDataService dataService = RemoteHelper.getInstance().getHotelStrategyDataService();
 	
 	HotelDataService hoteldataservice;
 	public boolean makeHotelStrategy(HotelStrategyVO hotelstrategy) {
-		HotelStrategyPO strategyPO = new HotelStrategyPO(hotelstrategy);
+		try {
+			return dataService.add(new HotelStrategyPO(hotelstrategy));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean modifyHotelStrategy(HotelStrategyVO hotelstrategy) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			return dataService.modify(new HotelStrategyPO(hotelstrategy));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	public boolean deleteHotelStrategy(String hotelStrategyId) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			HotelStrategyPO hPo = dataService.get(hotelStrategyId);
+			return dataService.delete(hPo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
-	public HotelStrategyVO getHotelStrategy(String HotelStrategyId) {
-		// TODO Auto-generated method stub
+	public HotelStrategyVO getHotelStrategy(String hotelStrategyId) {
+		try {
+			HotelStrategyPO hPo = dataService.get(hotelStrategyId);
+			HotelStrategyVO hVo = new HotelStrategyVO(hPo);
+			return hVo;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	public ArrayList<HotelStrategyVO> getListOfHotelStrategys(String hotel_id) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<HotelStrategyVO> voList = new ArrayList<>();
+		try {
+			ArrayList<HotelStrategyPO> poList = dataService.getAll(hotel_id);
+			for(HotelStrategyPO po : poList){
+				voList.add(new HotelStrategyVO(po));
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return voList;
 	}
 	
 

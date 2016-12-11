@@ -1,5 +1,6 @@
 package VO;
 
+import PO.VipPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.StrategyState;

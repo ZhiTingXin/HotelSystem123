@@ -51,7 +51,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="189.0" layoutY="140.0" text="酒店管理人员">
+                  <Label layoutX="189.0" layoutY="140.0" text="酒店工作人员">
                      <font>
                         <Font size="16.0" />
                      </font>

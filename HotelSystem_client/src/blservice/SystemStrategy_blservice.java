@@ -2,7 +2,6 @@ package blservice;
 
 import java.util.ArrayList;
 
-import VO.PrivilegeVO;
 import VO.SystemStrategyVO;
 import VO.VipStrategyVO;
 import VO.VipVO;
