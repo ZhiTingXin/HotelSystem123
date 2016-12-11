@@ -213,7 +213,7 @@ public class Order_bl implements Order_blservice{
 	}
 
 	@Override
-	public ArrayList<OrderVO> getHotelDoneOrderList(String hotelID) {
+	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
 			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
