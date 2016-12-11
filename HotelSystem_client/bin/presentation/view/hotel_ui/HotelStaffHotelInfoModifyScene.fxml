@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.hotelController.HotelStaffHotelInfoModifyController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="酒店工作人员" />
+                  <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="保存" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="191.0" layoutY="27.0" text="修改酒店信息">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <ImageView fx:id="hotelPicture1" fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hotelPicture2" fitHeight="150.0" fitWidth="200.0" layoutX="263.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="changePicture1" layoutX="115.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleChangePicture1" text="修改图片1" />
+                  <Button fx:id="Button" layoutX="327.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleChangePicture2" text="修改图片2" />
+                  <Label layoutX="42.0" layoutY="290.0" text="酒店名称">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="42.0" layoutY="320.0" text="酒店地址">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="42.0" layoutY="351.0" text="酒店描述">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="42.0" layoutY="440.0" text="酒店客房信息">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <MenuButton fx:id="roomTypeButton" layoutX="151.0" layoutY="440.0" mnemonicParsing="false" text="房间类型">
+                    <items>
+                      <MenuItem fx:id="doubleRoomButton" mnemonicParsing="false" onAction="#handleMenuDoubleRoom" text="双人间" />
+                      <MenuItem fx:id="bigRoomButton" mnemonicParsing="false" onAction="#handleMenuBigRoom" text="大床房" />
+                        <MenuItem fx:id="singleRoomButton" mnemonicParsing="false" onAction="#handleMenuSingleRoom" text="单人间" />
+                        <MenuItem fx:id="multiRoomButton" mnemonicParsing="false" onAction="#handleMenuMultiRoom" text="多人间" />
+                    </items>
+                  </MenuButton>
+                  <TextField fx:id="roomPriceField" layoutX="259.0" layoutY="498.0" prefHeight="23.0" prefWidth="129.0" />
+                  <Label layoutX="177.0" layoutY="500.0" text="单价">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="156.0" layoutY="470.0" text="房间总数量">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="plus" layoutX="259.0" layoutY="468.0" mnemonicParsing="false" onAction="#handlePlus" text="+" />
+                  <Button fx:id="minus" layoutX="363.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleMinus" text="-" />
+                  <Label layoutX="399.0" layoutY="501.0" text="元">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="hotelName" layoutX="126.0" layoutY="288.0" prefHeight="23.0" prefWidth="349.0" />
+                  <TextField fx:id="address" layoutX="126.0" layoutY="318.0" prefHeight="23.0" prefWidth="349.0" />
+                  <TextArea fx:id="description" layoutX="126.0" layoutY="351.0" prefHeight="80.0" prefWidth="349.0" wrapText="true" />
+                  <Label fx:id="roomNum" layoutX="319.0" layoutY="470.0" text="0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

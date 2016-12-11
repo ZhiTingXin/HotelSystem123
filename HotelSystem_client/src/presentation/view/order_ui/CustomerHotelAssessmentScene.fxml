@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.orderController.CustomerHotelAssessmentController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="客户" />
+                  <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="确定" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="213.0" layoutY="26.0" text="订单评价">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <Label layoutX="26.0" layoutY="240.0" text="添加文字评价">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="assessmentTextArea" layoutX="24.0" layoutY="269.0" prefHeight="283.0" prefWidth="478.0" promptText="写下你对该酒店的评价吧" wrapText="true" />
+                  <Label layoutX="26.0" layoutY="120.0" text="添加星级评价">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <MenuButton fx:id="starRateReviews" layoutX="137.0" layoutY="117.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="144.0" text="选择星级">
+                    <items>
+                      <MenuItem fx:id="oneStar" mnemonicParsing="false" onAction="#handleOneStar" text="1星" />
+                      <MenuItem fx:id="twoStar" mnemonicParsing="false" onAction="#handleTwoStar" text="2星" />
+                        <MenuItem fx:id="threeStar" mnemonicParsing="false" onAction="#handleThreeStar" text="3星" />
+                        <MenuItem fx:id="fourStar" mnemonicParsing="false" onAction="#handleFourStar" text="4星" />
+                        <MenuItem fx:id="fiveStar" mnemonicParsing="false" onAction="#handleFiveStar" text="5星" />
+                    </items>
+                  </MenuButton>
+                  <Label layoutX="26.0" layoutY="160.0" text="添加标签评价">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <MenuButton fx:id="tagReviews" layoutX="137.0" layoutY="158.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="144.0" text="选择标签">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                      <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                  </MenuButton>
+                  <Label layoutX="26.0" layoutY="200.0" text="已添加的标签">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Tag1" layoutX="144.0" layoutY="200.0" text="Label" visible="false" AnchorPane.leftAnchor="144.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Tag2" layoutX="261.0" layoutY="191.0" text="Label" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="Tag3" layoutX="398.0" layoutY="200.0" text="Label" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="309.0" layoutY="160.0" text="*最多只能添加三个标签">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="309.0" layoutY="119.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="74.0" text="酒店名称">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="nameOfHotel" layoutX="137.0" layoutY="74.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

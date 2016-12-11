@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SystemStaffMainController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
+                  <Button fx:id="ExceptionOrderManagement" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSystemStaffOrderManagement" prefHeight="39.0" prefWidth="200.0" text="异常订单处理" />
+                  <Button fx:id="creditManagement" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleSystemStaffCreditManagement" prefHeight="39.0" prefWidth="200.0" text="信用值管理" />
+                  <Button fx:id="exit" layoutX="11.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleSystemStaffExit" prefHeight="39.0" prefWidth="200.0" text="注销" />
+                  <Button fx:id="makeSystemStrategy" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleSystemStaffMakeStrategy" prefHeight="39.0" prefWidth="200.0" text="制定网站促销策略" />
+                  <Button fx:id="adcviceManagement" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleSystemStaffAdviceFeedBack" prefHeight="39.0" prefWidth="200.0" text="评价和反馈处理" />
+                  <Button fx:id="maintainPersonalInfo" layoutX="10.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleSystemStaffInfo" prefHeight="39.0" prefWidth="200.0" text="维护个人信息" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="75.0" layoutY="33.0" text="欢迎来到网上酒店客房预定系统">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <Label layoutX="44.0" layoutY="80.0" text="您当前分管的商圈是">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="districtName" layoutX="243.0" layoutY="80.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="44.0" layoutY="110.0" text="最新待处理异常订单（更多请见异常订单处理）">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="orderTable" layoutX="44.0" layoutY="140.0" prefHeight="390.0" prefWidth="454.0">
+                     <columns>
+                        <TableColumn fx:id="customerId" prefWidth="75.0" text="客户ID" />
+                        <TableColumn fx:id="hotelId" prefWidth="87.0" text="酒店ID" />
+                        <TableColumn fx:id="orderId" text="订单ID" />
+                        <TableColumn fx:id="arriveTime" prefWidth="112.0" text="到达时间" />
+                        <TableColumn fx:id="orderDuration" prefWidth="99.0" text="订单时长" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.userInfoController.CustomerInfoModifyController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="客户" />
+                  <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="保存" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="189.0" layoutY="24.0" text="修改个人信息">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="80.0" text="ID">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="110.0" text="姓名">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="140.0" text="身份">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="170.0" text="会员状况">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="200.0" text="生日">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="230.0" text="公司名称">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="75.0" layoutY="260.0" text="当前信用值">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="idLabel" layoutX="189.0" layoutY="80.0" text="Label">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="189.0" layoutY="140.0" text="客户">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="memberLabel" layoutX="189.0" layoutY="170.0" text="Label">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="creditLabel" layoutX="189.0" layoutY="260.0" text="Label">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="63.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <TextField fx:id="nameTextField" layoutX="189.0" layoutY="109.0" prefHeight="23.0" prefWidth="163.0" />
+                  <TextField fx:id="companyTextField" layoutX="189.0" layoutY="229.0" prefHeight="23.0" prefWidth="163.0" />
+                  <Button layoutX="123.0" layoutY="480.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="80.0" text="上传头像" />
+                  <DatePicker fx:id="datePicker" layoutX="189.0" layoutY="199.0" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SystemManagerMainController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="网站管理人员" />
+                  <Button fx:id="userManagment" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleUserManagement" prefHeight="39.0" prefWidth="200.0" text="用户账户管理" />
+                  <Button fx:id="newHotel" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleRegisteNewHotel" prefHeight="39.0" prefWidth="200.0" text="新酒店注册" />
+                  <Button fx:id="exit" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="39.0" prefWidth="200.0" text="注销" />
+                  <Button fx:id="maintainPersonalInfo" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleMaintainMyInfo" prefHeight="39.0" prefWidth="200.0" text="维护个人信息" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="75.0" layoutY="33.0" text="欢迎来到网上酒店客房预定系统">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <GridPane layoutX="75.0" layoutY="121.0" prefHeight="314.0" prefWidth="391.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.0" minWidth="10.0" prefWidth="212.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="179.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="注册客户数量" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="userAmount" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="注册酒店数量" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="onlineUser" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="酒店工作人员数量" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="hotelAmount" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="总订单数量" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="orderDone" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="网站营销人员数量" GridPane.rowIndex="4" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label text="当前日期" />
+                        <Label text="Label" GridPane.columnIndex="1" />
+                        <Label text="今日订单数量" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

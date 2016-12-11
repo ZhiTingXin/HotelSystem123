@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>  
+<session-factory>  
+    <!-- 数据库连接信息 -->  
+    <property name="show_sql">true</property>  
+    <property name="connection.url">jdbc:mysql://localhost:3306/hotelsystem</property>  
+    <property name="connection.username">root</property>  
+    <property name="connection.password">0828</property>  
+    <property name="connection.driver_class">com.mysql.jdbc.Driver</property>  
+    <property name="dialect">org.hibernate.dialect.MySQLDialect</property>  
+    <property name="hbm2ddl.auto">update</property>  
+      
+    <mapping resource="PO/login.hbm.xml" />  
+    <mapping class="PO.OrderPO" />
+    <mapping class="PO.HotelPO"/>
+    <mapping class="PO.RoomPO"/>
+    <mapping class="PO.AdviceFeedBackPO"/>
+    <mapping class="PO.AssessmentPO"/>
+    <mapping class="PO.CustomerPO"/>
+    <mapping class="PO.HotelStaffPO"/>
+    <mapping class="PO.HotelStrategyPO"/>
+    <mapping class="PO.SystemManagerPO"/>
+    <mapping class="PO.SystemStaffPO"/>
+    <mapping class="PO.SystemStrategyPO"/>
+    <mapping class="PO.VipStrategyPO"/>
+</session-factory>  
+</hibernate-configuration> 

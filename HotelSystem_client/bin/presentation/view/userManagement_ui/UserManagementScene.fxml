@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.userManagementController.UserManagementController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="网站管理人员" />
+                  <Button fx:id="viewUserInfo" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看用户详细信息" />
+                  <Button fx:id="viewCustomerList" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看客户列表" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="返回" />
+                  <Button fx:id="viewHotelStaffList" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看酒店工作人员列表" />
+                  <Button fx:id="viewSystemStaffList" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看网站营销人员列表" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="idLabel" layoutX="98.0" layoutY="33.0" text="Label（随左侧的点击而改变）">
+                     <font>
+                        <Font name="System Font" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <TableView fx:id="userTable" layoutX="32.0" layoutY="103.0" prefHeight="445.0" prefWidth="462.0">
+                    <columns>
+                      <TableColumn fx:id="idColumn" prefWidth="133.81341552734375" text="用户ID" />
+                      <TableColumn fx:id="nameColumn" prefWidth="135.18658447265625" text="用户姓名" />
+                        <TableColumn fx:id="identityColumn" minWidth="3.7308349609375" prefWidth="95.73583984375" text="用户身份" />
+                        <TableColumn fx:id="stateColumn" minWidth="0.0" prefWidth="96.83935546875" text="在线情况" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="inputSearchText" layoutX="32.0" layoutY="71.0" prefHeight="23.0" prefWidth="403.0" promptText="输入要搜索的用户的ID" />
+                  <Button fx:id="searchButton" layoutX="454.0" layoutY="71.0" mnemonicParsing="false" text="搜索" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

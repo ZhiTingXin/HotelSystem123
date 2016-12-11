@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.systemstrategyController.SystemOtherStrategyModifyController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
+                  <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="保存策略" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="542.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
+                  <Button fx:id="delete" layoutX="10.0" layoutY="344.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="删除策略" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="strategyType" layoutX="205.0" layoutY="30.0" text="修改其他优惠">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect>
+                  </Label>
+                  <Label layoutX="3.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏">
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect></Label>
+                  <Label layoutX="54.0" layoutY="82.0" text="优惠策略类型">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect>
+                  </Label>
+                  <Label layoutX="54.0" layoutY="112.0" text="优惠策略名称">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect>
+                  </Label>
+                  <TextField fx:id="nameOfStrategy" layoutX="181.0" layoutY="108.0" prefHeight="27.0" prefWidth="210.0" promptText="请输入优惠策略的名称">
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect></TextField>
+                  <Label layoutX="54.0" layoutY="263.0" text="客户优惠额度">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect>
+                  </Label>
+                  <TextField fx:id="discountForCustomer" layoutX="181.0" layoutY="259.0" prefHeight="23.0" prefWidth="42.0" />
+                  <Label layoutX="226.0" layoutY="263.0" text="\%">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect>
+                  </Label>
+                  <Label layoutX="54.0" layoutY="141.0" text="优惠策略描述">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Blend mode="RED" opacity="0.43" />
+                     </effect>
+                  </Label>
+                  <TextArea fx:id="descriptionOfStrategy" layoutX="181.0" layoutY="141.0" prefHeight="80.0" prefWidth="292.0" promptText="请输入优惠策略的详细信息" wrapText="true" />
+                  <RadioButton fx:id="open" layoutX="179.0" layoutY="300.0" mnemonicParsing="false" selected="true" text="启用">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="策略状态" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="close" layoutX="268.0" layoutY="299.0" mnemonicParsing="false" text="关闭" toggleGroup="$策略状态" />
+                  <Label layoutX="66.0" layoutY="299.0" text="策略状态">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Label>
+                  <Label layoutX="182.0" layoutY="83.0" text="其他优惠" />
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

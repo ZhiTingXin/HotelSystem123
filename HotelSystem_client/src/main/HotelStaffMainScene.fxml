@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.HotelStaffMainController">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
+               <children>
+                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
+                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
+                  <Label layoutX="95.0" layoutY="240.0" text="酒店工作人员" />
+                  <Button fx:id="viewOrder" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleViewOrder" prefHeight="39.0" prefWidth="200.0" text="当前酒店订单" />
+                  <Button fx:id="maintainHotelInfo" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleMaintainHotelInfo" prefHeight="39.0" prefWidth="200.0" text="维护酒店信息" />
+                  <Button fx:id="exit" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="39.0" prefWidth="200.0" text="注销" />
+                  <Button fx:id="makeStrategy" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleMakeStrategy" prefHeight="39.0" prefWidth="200.0" text="制定酒店促销策略" />
+                  <Button fx:id="maintainPersonalInfo" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleMaintainPersonalInfo" prefHeight="39.0" prefWidth="200.0" text="维护个人信息" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="75.0" layoutY="33.0" text="欢迎来到网上酒店客房预定系统">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <Label layoutX="44.0" layoutY="80.0" text="您当前所属的酒店是">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="hotelName" layoutX="243.0" layoutY="80.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="44.0" layoutY="110.0" text="最新待执行订单（更多订单信息请见当前酒店订单）">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="orderTable" layoutX="44.0" layoutY="140.0" prefHeight="390.0" prefWidth="454.0">
+                     <columns>
+                        <TableColumn fx:id="customerId" prefWidth="66.0" text="客户ID" />
+                        <TableColumn fx:id="roomInfo" prefWidth="210.0" text="订单类型（房间类型/数量）" />
+                        <TableColumn fx:id="arriveTime" prefWidth="92.0" text="到达时间" />
+                        <TableColumn fx:id="orderDuration" prefWidth="85.0" text="订单时长" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
