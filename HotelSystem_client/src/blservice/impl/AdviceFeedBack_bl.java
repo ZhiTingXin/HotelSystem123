@@ -9,7 +9,6 @@ import VO.AdviceFeedBackVO;
 import blservice.AdviceFeedBack_blservice;
 import data.service.AdviceFeedBackDataService;
 import other.AdviceFeedBackState;
-import other.OrderState;
 
 public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 	AdviceFeedBackDataService adviceFeedBackDataService =	RemoteHelper.getInstance().getAdviceFeedBackDataService();

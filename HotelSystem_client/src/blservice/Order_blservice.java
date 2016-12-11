@@ -1,11 +1,8 @@
 package blservice;
 
 import java.util.ArrayList;
-
-import PO.PrivilegePO;
 import VO.OrderVO;
 import other.OrderState;
-import other.RoomType;
 
 public interface Order_blservice {
 	public OrderState getState(String orderID);

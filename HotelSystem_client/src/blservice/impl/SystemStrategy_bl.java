@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import PO.SystemStrategyPO;
 import RMI.RemoteHelper;
 import VO.SystemStrategyVO;
+import VO.VipStrategyVO;
+import VO.VipVO;
 import blservice.SystemStrategy_blservice;
 import other.SystemStrategyType;
 
@@ -70,18 +72,47 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 	}
 
 	public ArrayList<SystemStrategyVO> getSystemStrategys(SystemStrategyType systemStrategyType) {
+		ArrayList<SystemStrategyVO> strategyVOs = new ArrayList<SystemStrategyVO>();
 	    try{
-	    	ArrayList<SystemStrategyVO> strategyVOs = new ArrayList<SystemStrategyVO>();
 	    	ArrayList<SystemStrategyPO> strategyPOs = RemoteHelper.getInstance().getSystemStrategyDataService().getSystemStrategys(systemStrategyType);
-	    	for (int i = 0; i < strategyPOs.size(); i++) {
+	    	for (int i = 0; i < strategyPOs.size(); ++i) {
 				SystemStrategyVO strategyVO = new  SystemStrategyVO(strategyPOs.get(i));
 				strategyVOs.add(strategyVO);
-				return strategyVOs;
 			}
 	    }catch (Exception e) {
 		    e.printStackTrace();
-		    return null;
 		}
+	    return strategyVOs;
+	}
+
+	@Override
+	public ArrayList<SystemStrategyVO> getSystemStrategy(SystemStrategyType systemStrategyType) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<VipVO> getVipStrategyVOList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modifyVipStrategyVOList(VipStrategyVO vipStrategyVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean makeVipStrategyVOList(VipStrategyVO vipStrategyVO) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<VipVO> getVipMemberVOList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

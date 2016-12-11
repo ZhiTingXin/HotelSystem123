@@ -12,4 +12,5 @@ public interface OrderDataService extends Remote {
 	public boolean dalete(OrderPO order)throws RemoteException;
 	public OrderPO findorder(String orderId)throws RemoteException;
 	public ArrayList<OrderPO> findOrders(String userId,String type)throws RemoteException;
+	public ArrayList<OrderPO> getAllOrders()throws RemoteException;
 }
