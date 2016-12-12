@@ -2,13 +2,10 @@ package data.service.impl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-
-import PO.SystemManagerPO;
 import PO.SystemStaffPO;
 import data.dao.DataFactory;
 import data.dao.SystemStaffDao;
 import data.dao.impl.DataFactoryImpl;
-import data.service.SystemManagerDataService;
 import data.service.SystemStaffDataService;
 
 public class SystemStaffDataServiceImpl implements SystemStaffDataService{

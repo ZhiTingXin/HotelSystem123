@@ -21,6 +21,7 @@ import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.HotelStaffDataService;
 import data.service.HotelStrategyDataService;
+import data.service.IdGernerateService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.SystemManagerDataService;
@@ -32,6 +33,7 @@ import data.service.impl.CustomerDataServiceImpl;
 import data.service.impl.HotelDataServiceImpl;
 import data.service.impl.HotelStaffDataServiceImpl;
 import data.service.impl.HotelStrategyDataServiceImpl;
+import data.service.impl.IdGernerateServiceImpl;
 import data.service.impl.LoginDataServiceImpl;
 import data.service.impl.OrderDataServiceImpl;
 import data.service.impl.SystemManagerDataServiceImpl;
@@ -42,7 +44,7 @@ import other.SystemStrategyType;
 
 public class DataRemoteObject extends UnicastRemoteObject implements LoginDataService
 ,OrderDataService,HotelStrategyDataService,SystemStrategyDataService,HotelDataService,AdviceFeedBackDataService
-,HotelStaffDataService,SystemStaffDataService,SystemManagerDataService,CustomerDataService,VipDataService{
+,HotelStaffDataService,SystemStaffDataService,SystemManagerDataService,CustomerDataService,VipDataService,IdGernerateService{
 	
 	/**
 	 * 
@@ -59,8 +61,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	private CustomerDataService customerDataService;
 	private HotelStaffDataService hotelStaffDataService;
 	private VipDataService vipDataService;
+	private IdGernerateService idGernerateService;
 	protected DataRemoteObject() throws RemoteException {
 		vipDataService = new VipDataServiceImpl();
+		idGernerateService = new IdGernerateServiceImpl();
 		customerDataService = new CustomerDataServiceImpl();
 		hotelStaffDataService = new HotelStaffDataServiceImpl();
 		systemManagerDataService = new SystemManagerDataServiceImpl();
@@ -232,6 +236,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	}
 	public ArrayList<SystemStrategyPO> getSystemStrategys(SystemStrategyType strategyType) throws RemoteException {
 		return systemstrategy.getSystemStrategys(strategyType);
+	}
+	public String gernerateId() throws RemoteException {
+		return idGernerateService.gernerateId();
 	}
 
 }
