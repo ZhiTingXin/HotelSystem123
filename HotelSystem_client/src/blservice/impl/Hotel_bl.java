@@ -41,7 +41,6 @@ public class Hotel_bl implements Hotel_blservice {
 			boolean processResult = dataService.update(hotelPO);
 			return processResult;
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -52,7 +51,6 @@ public class Hotel_bl implements Hotel_blservice {
 		try {
 			poList = dataService.getHotels(strict, type);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -70,7 +68,6 @@ public class Hotel_bl implements Hotel_blservice {
 		try {
 			return dataService.add(hotelPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -81,7 +78,6 @@ public class Hotel_bl implements Hotel_blservice {
 		try {
 			return RemoteHelper.getInstance().getHotelStaffDataService().addStaff(hotelStaffPO);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -114,7 +110,6 @@ public class Hotel_bl implements Hotel_blservice {
 				hotelInfoVOs.add(new HotelInfoVO(po));
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return hotelInfoVOs;
@@ -148,7 +143,6 @@ public class Hotel_bl implements Hotel_blservice {
 					hotelInfoVOs.add(new HotelInfoVO(po));
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -161,10 +155,21 @@ public class Hotel_bl implements Hotel_blservice {
 		try {
 			price =  dataService.find(hotelID).getPrice();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return price;
+	}
+
+	@Override
+	public String genarateHotelID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String genarateHotelStaffID() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

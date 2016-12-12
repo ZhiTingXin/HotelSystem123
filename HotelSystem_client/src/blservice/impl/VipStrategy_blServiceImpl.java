@@ -51,7 +51,9 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 				VipVO vipVO = new VipVO(vips.get(i));
 				vipVOs.add(vipVO);
 			}
-			return new VipStrategyVO(vipVOs);
+			VipStrategyVO vipStrategyVO = new VipStrategyVO();
+			vipStrategyVO.setVipStrategyVOList(vipVOs);
+			return vipStrategyVO;
 		} catch (Exception e) {
 			return null;
 		}

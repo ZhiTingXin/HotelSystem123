@@ -5,18 +5,8 @@ import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 
-//import VO.CustomerVO;
-//import VO.SystemManagerVO;
-
 public interface UserInfo_blservice {
 
-	// public SystemManagerVO getSystemManagerInfo(String SystemManager_name);
-	//
-	// public boolean modifySystemManagerInfo(SystemManagerVO systemManager);
-	//
-	// public boolean CustomerinfoModify(CustomerVO Customer);
-	//
-	// public boolean CustomerinfoShow(CustomerVO Customer);
 	// 用户对于个人信息的修改
 	public boolean modifyCustomer(CustomerVO customerVO);
 
