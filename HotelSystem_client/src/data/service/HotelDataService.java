@@ -5,7 +5,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.HotelPO;
-import PO.HotelRoomInfoPO;
 
 public interface HotelDataService extends Remote{
 	public boolean add(HotelPO hotel)throws RemoteException;

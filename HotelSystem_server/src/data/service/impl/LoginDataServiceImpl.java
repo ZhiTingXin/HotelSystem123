@@ -6,7 +6,6 @@ import PO.LoginPO;
 import data.dao.DataFactory;
 import data.dao.LoginDao;
 import data.dao.impl.DataFactoryImpl;
-import data.dao.impl.LoginDaoImpl;
 import data.service.LoginDataService;
 
 

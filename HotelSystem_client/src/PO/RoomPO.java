@@ -1,14 +1,7 @@
 package PO;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import VO.HotelRoomInfoVO;
 import other.RoomType;
-
-
-@Entity
-@Table(name="room")
 public class RoomPO {
 
 	/*
@@ -19,19 +12,27 @@ public class RoomPO {
 	 * id 存储时用作主键
 	 */
 	private int price;
-	private int remain;
 	private RoomType type;
 	private String hotelId;
 	private int number;
+	private int remainNum;
 	private String id;
 	
 	//room 的构造方法
 	public RoomPO(){}
+	public RoomPO(HotelRoomInfoVO hotel,String hotelId){
+		this.price = hotel.getRoomPrice();
+		this.hotelId = hotelId;
+		this.type = hotel.getRoomType();
+		this.number = hotel.getRoomNum();
+		this.remainNum = hotel.getRoomRemain();
+		this.id = hotelId+hotel.getRoomType();
+	}
 	public RoomPO(int pric,RoomType type,String hotelid,int number,int remain){
 		super();
+		this.remainNum = remain;
 		this.price = pric;
 		this.hotelId = hotelid;
-		this.remain = remain;
 		this.type = type;
 		this.number = number;
 		this.id = hotelid+type;
@@ -55,8 +56,6 @@ public class RoomPO {
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	
-	@Id
 	public String getId() {
 		return id;
 	}
@@ -69,11 +68,11 @@ public class RoomPO {
 	public void setType(RoomType type) {
 		this.type = type;
 	}
-	public int getRemain() {
-		return remain;
+	public int getRemainNum() {
+		return remainNum;
 	}
-	public void setRemain(int remain) {
-		this.remain = remain;
+	public void setRemainNum(int remainNum) {
+		this.remainNum = remainNum;
 	}
 	
 }
