@@ -70,10 +70,7 @@ import presentation.controller.userManagementController.SystemManagerCustomerInf
 import presentation.controller.userManagementController.SystemManagerCustomerInfoViewController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoModifyController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoViewController;
-<<<<<<< HEAD
 import presentation.controller.userManagementController.SystemManagerSystemStaffInfoModifyController;
-=======
->>>>>>> refs/remotes/origin/å¶æ™“æ³¢
 import presentation.controller.userManagementController.SystemManagerSystemStaffInfoViewController;
 import presentation.controller.userManagementController.SystemStaffCreditManagementController;
 import presentation.controller.userManagementController.SystemStaffManagementController;
@@ -403,7 +400,6 @@ public class Main extends Application {
 	 * show ÏÔÊ¾¿Í»§ÓÃ»§²é¿´¾ÆµêÁĞ±í½çÃæ
 	 * 
 	 * @param customer
-	 * @param hotel
 	 */
 	public void showCustomerHotelViewScene(CustomerVO customer) {
 		try {
@@ -751,8 +747,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ±mainScene
 	 * 
-	 * @param hotelStaff,
-	 *            orderVO
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemStaffMainScene(SystemStaffVO systemStaffVO) {
@@ -797,7 +792,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ±²é¿´Òì³£¶©µ¥ÏêÇé
 	 * 
-	 * @param systemStaffVO
+	 * @param systemStaffVO,orderVO
 	 */
 	public void showSystemStaffOrderViewScene(SystemStaffVO systemStaffVO, OrderVO orderVO) {
 		try {
@@ -818,7 +813,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ¹ÜÀíĞÅÓÃÖµ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemStaffCreditManagementScene(SystemStaffVO systemStaffVO) {
@@ -841,7 +836,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ²é¿´ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemStrategyViewScene(SystemStaffVO systemStaffVO) {
@@ -866,7 +861,7 @@ public class Main extends Application {
 =======
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ²é¿´ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemHolidayStrategyModifyScene(SystemStaffVO systemStaffVO) {
@@ -887,10 +882,10 @@ public class Main extends Application {
 	}
 
 	/**
->>>>>>> refs/remotes/origin/å¶æ™“æ³¢
+>>>>>>> refs/remotes/origin/å¶æ™“æ³?
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸Ä½ÚÈÕÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
 	public void showSystemHolidayStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
@@ -912,7 +907,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔö½ÚÈÕÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemHolidayStrategyScene(SystemStaffVO systemStaffVO) {
@@ -934,7 +929,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔö»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemMemberStrategyScene(SystemStaffVO systemStaffVO) {
@@ -956,7 +951,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸Ä»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
 	public void showSystemMemberStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
@@ -978,7 +973,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸Ä»áÔ±ĞÅÏ¢
 	 * 
-	 * @param hotelStaff
+	 * @param vipVO
 	 * 
 	 */
 	public boolean showPersonEditDialog(VipVO vipVO) {
@@ -1013,7 +1008,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔöVIP»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemVIPStrategyScene(SystemStaffVO systemStaffVO) {
@@ -1035,7 +1030,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸ÄVIP»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
 	public void showSystemVIPStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
@@ -1057,8 +1052,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸ÄÆäËûÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
-	 * 
+	 * @param systemStaffVO,systemStrategyVO
 	 */
 	public void showSystemOtherStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
@@ -1079,7 +1073,7 @@ public class Main extends Application {
 	/**
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔöÆäËûÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemOtherStrategyScene(SystemStaffVO systemStaffVO) {

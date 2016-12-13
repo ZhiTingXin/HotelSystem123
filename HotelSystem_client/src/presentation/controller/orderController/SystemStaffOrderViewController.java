@@ -43,7 +43,6 @@ public class SystemStaffOrderViewController {
 	private Label numberOfRoom;
 	@FXML
 	private Label durationOfOrder;// ¶©µ¥Ê±³¤
-<<<<<<< HEAD
 	@FXML
 	private Label timeOfArrive;// µ½´ïÊ±¼ä
 	@FXML
@@ -52,14 +51,6 @@ public class SystemStaffOrderViewController {
 	private Label stateOfOrder;// ¶©µ¥×´Ì¬
 	@FXML
 	private Label revacationTime;// ³·ÏúÊ±¼ä
-=======
-	@FXML
-	private Label timeOfArrive;// µ½´ïÊ±¼ä
-	@FXML
-	private Label actualPayment;// Êµ¼Ê¸¶¿î
-	@FXML
-	private Label stateOfOrder;// ¶©µ¥×´Ì¬
->>>>>>> refs/remotes/origin/å¶æ™“æ³¢
 
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
@@ -95,7 +86,6 @@ public class SystemStaffOrderViewController {
 		revacationTime.setText("ÎŞ");
 	}
 
-<<<<<<< HEAD
 	@FXML//³·Ïú¶©µ¥
 	private void handleRevocationException(){
 		boolean isOK = 	order_blservice.changeState(orderVO.getOrderID());
@@ -119,17 +109,6 @@ public class SystemStaffOrderViewController {
 			alert.setHeaderText("³·ÏúÊ§°Ü");
 			alert.setContentText("ÄúÎ´ÄÜ³É¹¦³·ÏúÒ»ÌõÒì³£¶©µ¥£¡");
 			alert.showAndWait();	
-=======
-	@FXML // ³·Ïú¶©µ¥
-	private void handleRevocationException() {
-		if (order_blservice.changeState(orderVO)) {
-			stateOfOrder.setText(String.valueOf(orderVO.getOrderState()));// ĞŞ¸Ä¶©µ¥×´Ì¬ÎªÒÑ³·Ïú×´Ì¬
-			order_blservice.changeCredit(orderVO.getUserID(), orderVO.getOrderID());// »Ö¸´ĞÅÓÃÖµ
-			// ÉèÖÃµ¯´°ÌáÊ¾ĞŞ¸Ä³É¹¦ »Ö¸´ĞÅÓÃÖµ³É¹¦ ÒÔ¼°¼ÇÂ¼³·ÏúÊ±¼ä
-			// TODO MY DIALOG
-		} else {
-			// TODO ĞŞ¸ÄÊ§°Ü
->>>>>>> refs/remotes/origin/å¶æ™“æ³¢
 		}
 	}
 
