@@ -85,30 +85,14 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("HotelSystem");
-<<<<<<< HEAD
-		//this.showCustomerInfoScene(new CustomerVO());
-=======
 		// this.showCustomerInfoScene(new CustomerVO());
-<<<<<<< Updated upstream
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> master
->>>>>>> Stashed changes
 		// this.showHotelStaffInfoScene(new HotelStaffVO());
 		// this.showSystemStaffInfoScene(new SystemStaffVO());
 		// this.showSystemManagerInfoScene(new SystemManagerVO());
 		// this.showCustomerBookHotelScene(new CustomerVO(), new HotelInfoVO());
 		// this.showCustomerHotelViewScene(new CustomerVO());
 		// this.showCustomerMainScene(new CustomerVO());
-<<<<<<< HEAD
-		 this.showLoginScene();
-=======
 		this.showLoginScene();
-<<<<<<< Updated upstream
->>>>>>> refs/remotes/origin/master
-=======
->>>>>>> master
->>>>>>> Stashed changes
 		// this.showHotelStaffMainScene(new HotelStaffVO());
 		// this.showHotelStaffHotelInfoViewScene(new HotelStaffVO(), new
 		// HotelInfoVO());
@@ -886,8 +870,8 @@ public class Main extends Application {
 >>>>>>> refs/remotes/origin/鍙舵檽娉�
 	 * show 网站营销人员 修改节日系统促销策略界面
 =======
->>>>>>> refs/remotes/origin/叶晓�?
-	 * show ��վӪ����Ա �޸Ľ���ϵͳ�������Խ���
+>>>>>>> refs/remotes/origin/叶晓�?
+	 * show ��վӪ����Ա �޸Ľ���ϵͳ�������Խ���
 >>>>>>> refs/remotes/origin/master
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
