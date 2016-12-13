@@ -92,7 +92,11 @@ public class Main extends Application {
 		//this.showCustomerInfoScene(new CustomerVO());
 =======
 		// this.showCustomerInfoScene(new CustomerVO());
+<<<<<<< Updated upstream
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> master
+>>>>>>> Stashed changes
 		// this.showHotelStaffInfoScene(new HotelStaffVO());
 		// this.showSystemStaffInfoScene(new SystemStaffVO());
 		// this.showSystemManagerInfoScene(new SystemManagerVO());
@@ -103,7 +107,11 @@ public class Main extends Application {
 		 this.showLoginScene();
 =======
 		this.showLoginScene();
+<<<<<<< Updated upstream
 >>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> master
+>>>>>>> Stashed changes
 		// this.showHotelStaffMainScene(new HotelStaffVO());
 		// this.showHotelStaffHotelInfoViewScene(new HotelStaffVO(), new
 		// HotelInfoVO());
