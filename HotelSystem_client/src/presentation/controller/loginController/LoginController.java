@@ -44,24 +44,24 @@ public class LoginController {
 		String userIdInField = this.userId.getText();
 		String userPasswordInField = this.userPassword.getText();
 		boolean isComfirm = this.loginService.comfirm(userIdInField, userPasswordInField);
-		if (isComfirm) {
-			
-			//待修改方法
-			UserType loginType = this.loginService.assertUserType(userIdInField);
-			if (loginType.equals(UserType.CUSTOMER)) {
-				this.mainScene.showCustomerMainScene(new CustomerVO());
-			}
-			if (loginType.equals(UserType.HOTELSTAFF)) {
-				this.mainScene.showHotelStaffMainScene(new HotelStaffVO());
-			}
-			if (loginType.equals(UserType.SYSTEMSTAFF)) {
-				// this.mainScene.showCustomerMainScene(new CustomerVO());
-			}
-			if (loginType.equals(UserType.SYSTEMMANAGER)) {
-				// this.mainScene.showCustomerMainScene(new CustomerVO());
-			}
-
-		}
+		// if (isComfirm) {
+		//
+		// // 待修改方法
+		// UserType loginType = this.loginService.assertUserType(userIdInField);
+		// if (loginType.equals(UserType.CUSTOMER)) {
+		// this.mainScene.showCustomerMainScene(this.loginService.getCustomerVO(userIdInField));
+		// }
+		// if (loginType.equals(UserType.HOTELSTAFF)) {
+		// this.mainScene.showHotelStaffMainScene(this.loginService.getHotelStaffVO(userIdInField));
+		// }
+		// if (loginType.equals(UserType.SYSTEMSTAFF)) {
+		// this.mainScene.showSystemStaffMainScene(this.loginService.getSystemStaffVO(userIdInField));
+		// }
+		// if (loginType.equals(UserType.SYSTEMMANAGER)) {
+		// this.mainScene.showSystemManagerMainScene(this.loginService.getSystemManagerVO(userIdInField));
+		// }
+		//
+		// }
 	}
 
 	public void handleRegister() {
