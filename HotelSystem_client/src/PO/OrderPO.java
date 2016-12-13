@@ -5,10 +5,15 @@ import java.time.LocalDate;
 
 import VO.OrderVO;
 import other.OrderState;
+import other.RoomType;
 
 public class OrderPO implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String hotelId;
 	private String userId;
@@ -76,7 +81,7 @@ public class OrderPO implements Serializable{
 		return roomType;
 	}
 	
-	public void setRoomType(String roomType) {
+	public void setRoomType(RoomType roomType) {
 		this.roomType = roomType;
 	}
 	
@@ -135,3 +140,4 @@ public class OrderPO implements Serializable{
 		this.price = price;
 	}
 
+}
