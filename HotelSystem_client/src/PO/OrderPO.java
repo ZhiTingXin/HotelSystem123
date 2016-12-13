@@ -1,13 +1,17 @@
 package PO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 import VO.OrderVO;
 import other.OrderState;
 
-public class OrderPO {
+public class OrderPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String hotelId;
 	private String userId;
@@ -17,11 +21,6 @@ public class OrderPO {
 	private String orderInfo;
 	private double price;
 
-<<<<<<< HEAD
-	// 鹿鹿脭矛路陆路篓
-=======
-	// 构造方法
->>>>>>> refs/remotes/origin/master
 	public OrderPO() {
 	}
 

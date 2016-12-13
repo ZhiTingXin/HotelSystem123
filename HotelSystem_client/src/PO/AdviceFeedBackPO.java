@@ -1,9 +1,15 @@
 package PO;
 
+import java.io.Serializable;
+
 import other.AdviceFeedBackState;
 
-public class AdviceFeedBackPO {
-       private AdviceFeedBackState state;
+public class AdviceFeedBackPO implements Serializable{
+       /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private AdviceFeedBackState state;
        private String AdviceFeedBack_content;
        private String AdviceId;
      //  private String userId;

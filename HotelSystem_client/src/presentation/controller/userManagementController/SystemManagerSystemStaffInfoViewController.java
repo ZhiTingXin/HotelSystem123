@@ -19,8 +19,6 @@ public class SystemManagerSystemStaffInfoViewController {
 	@FXML
 	private Button modifyInfo;
 	@FXML
-	private Button changeState;
-	@FXML
 	private Button back;
 	@FXML
 	private Label idLabel;
@@ -34,16 +32,39 @@ public class SystemManagerSystemStaffInfoViewController {
 	private ImageView image;
 	
 	private Main mainScene;
-	private SystemStaffVO systemStaff;
+	private SystemManagerVO systemManagerVO;
+	private SystemStaffVO systemStaffVO;
 	private UserInfo_blservice systemStaffInfoService;
 	
 	public SystemManagerSystemStaffInfoViewController(){
 		systemStaffInfoService = new UserInfo_bl();
 	}
 	
-	public void SystemManagerSystemStaffInfoViewShow(Main mainScene) {
+	public void initialize(Main mainScene,SystemManagerVO systemManagerVO,SystemStaffVO systemStaffVO) {
 		this.mainScene = mainScene;
+		this.systemManagerVO = systemManagerVO;
+		this.systemStaffVO = systemStaffVO;
+		//left
+		leftIdLabel.setText(this.systemManagerVO.getId());
+		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		SystemManagerSystemStaffInfoViewShow(mainScene);
+	}
+	
+	public void SystemManagerSystemStaffInfoViewShow(Main mainScene) {
 		
+		idLabel.setText(systemStaffVO.getId());
+		nameLabel.setText(systemStaffVO.getUsername());
+		districtName.setText(systemStaffVO.getBusinessDistrict());
+		
+	}
+	
+	@FXML//modify
+	private void handleModify(){
+		mainScene.showSystemManagerSystemStaffInfoModfyScene(systemManagerVO, systemStaffVO);
+	}
+	@FXML
+	private void handleBack(){
+		mainScene.showSystemStaffManagementScene(systemManagerVO);
 	}
 
 	public void initialize(Main main, SystemManagerVO systemManagerVO, SystemStaffVO systemStaffVO) {

@@ -1,10 +1,16 @@
 package PO;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDate;
 
 import VO.CustomerVO;
 
-public class CustomerPO {
+public class CustomerPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String id;
 	
 	private String userName;
@@ -14,7 +20,7 @@ public class CustomerPO {
 
 	private int memberGrade;
 	
-	private Date birthday;
+	private LocalDate birthday;
 	
 	public CustomerPO() {
 	}
@@ -27,7 +33,7 @@ public class CustomerPO {
 		this.credit = customerVO.getCredit();
 		this.memberGrade = customerVO.getMemberGrade();
 	}
-	public CustomerPO(String id, String username, String phone, int credit, int memberGrade,Date birthday) {
+	public CustomerPO(String id, String username, String phone, int credit, int memberGrade,LocalDate birthday) {
 		super();
 		this.id = id;
 		this.userName = username;
@@ -77,11 +83,11 @@ public class CustomerPO {
 		this.memberGrade = memberGrade;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 	

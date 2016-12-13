@@ -64,10 +64,9 @@ public class SystemManagerCustomerInfoViewController {
 		idLabel.setText(customerVO.getId());
 		nameLabel.setText(customerVO.getUsername());
 		memberLabel.setText(String.valueOf(customerVO.getMemberGrade()));
-//		birthdayLabel.setText(util.DateUtil.format(customerVO.getBirthday()));//TODO
+		birthdayLabel.setText(util.DateUtil.format(customerVO.getBirthday()));//TODO
 		companyLabel.setText(customerVO.getCompanyName());
 		creditLabel.setText(String.valueOf(customerVO.getCredit()));
-//		stateLabel.setText();
 		image.setImage(null);
 	}
 	

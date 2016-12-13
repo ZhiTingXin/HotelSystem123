@@ -11,7 +11,6 @@ import RMI.RemoteHelper;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
-	private Main main;
 	
 	public ClientRunner() {
 		linkToServer();

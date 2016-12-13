@@ -1,12 +1,17 @@
 package presentation.controller.orderController;
 
-import VO.HotelInfoVO;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 import VO.OrderVO;
 import VO.SystemStaffVO;
 import blservice.Order_blservice;
 import blservice.impl.Order_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
@@ -38,12 +43,23 @@ public class SystemStaffOrderViewController {
 	private Label numberOfRoom;
 	@FXML
 	private Label durationOfOrder;// ∂©µ• ±≥§
+<<<<<<< HEAD
 	@FXML
 	private Label timeOfArrive;// µΩ¥Ô ±º‰
 	@FXML
 	private Label actualPayment;//  µº ∏∂øÓ
 	@FXML
 	private Label stateOfOrder;// ∂©µ•◊¥Ã¨
+	@FXML
+	private Label revacationTime;// ≥∑œ˙ ±º‰
+=======
+	@FXML
+	private Label timeOfArrive;// µΩ¥Ô ±º‰
+	@FXML
+	private Label actualPayment;//  µº ∏∂øÓ
+	@FXML
+	private Label stateOfOrder;// ∂©µ•◊¥Ã¨
+>>>>>>> refs/remotes/origin/Âè∂ÊôìÊ≥¢
 
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
@@ -76,8 +92,34 @@ public class SystemStaffOrderViewController {
 		timeOfArrive.setText(DateUtil.format(orderVO.getEntryTime()));
 		actualPayment.setText(String.valueOf(orderVO.getPrice()));
 		stateOfOrder.setText(String.valueOf(orderVO.getOrderState()));
+		revacationTime.setText("Œﬁ");
 	}
 
+<<<<<<< HEAD
+	@FXML//≥∑œ˙∂©µ•
+	private void handleRevocationException(){
+		boolean isOK = 	order_blservice.changeState(orderVO.getOrderID());
+		boolean isChange = order_blservice.changeCredit(orderVO.getUserID(), orderVO.getOrderID());//ª÷∏¥–≈”√÷µ
+		if (isOK&& isChange) {
+		
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("πßœ≤");
+			alert.setHeaderText("≥∑œ˙≥…π¶");
+			alert.setContentText("ƒ˙“—æ≠≥…π¶≥∑œ˙“ªÃı“Ï≥£∂©µ•£°");
+			Optional<ButtonType> result = alert.showAndWait();
+			if(result.get() == ButtonType.OK){
+				stateOfOrder.setText(String.valueOf(orderVO.getOrderState()));//–ﬁ∏ƒ∂©µ•◊¥Ã¨Œ™“—≥∑œ˙◊¥Ã¨
+				revacationTime.setText(util.DateUtil.format(LocalDateTime.now()));
+			}
+			
+		}else {
+			
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("±ß«∏");
+			alert.setHeaderText("≥∑œ˙ ß∞‹");
+			alert.setContentText("ƒ˙Œ¥ƒ‹≥…π¶≥∑œ˙“ªÃı“Ï≥£∂©µ•£°");
+			alert.showAndWait();	
+=======
 	@FXML // ≥∑œ˙∂©µ•
 	private void handleRevocationException() {
 		if (order_blservice.changeState(orderVO)) {
@@ -87,6 +129,7 @@ public class SystemStaffOrderViewController {
 			// TODO MY DIALOG
 		} else {
 			// TODO –ﬁ∏ƒ ß∞‹
+>>>>>>> refs/remotes/origin/Âè∂ÊôìÊ≥¢
 		}
 	}
 

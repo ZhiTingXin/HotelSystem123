@@ -70,6 +70,10 @@ import presentation.controller.userManagementController.SystemManagerCustomerInf
 import presentation.controller.userManagementController.SystemManagerCustomerInfoViewController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoModifyController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoViewController;
+<<<<<<< HEAD
+import presentation.controller.userManagementController.SystemManagerSystemStaffInfoModifyController;
+=======
+>>>>>>> refs/remotes/origin/Âè∂ÊôìÊ≥¢
 import presentation.controller.userManagementController.SystemManagerSystemStaffInfoViewController;
 import presentation.controller.userManagementController.SystemStaffCreditManagementController;
 import presentation.controller.userManagementController.SystemStaffManagementController;
@@ -842,6 +846,8 @@ public class Main extends Application {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
 	 * show Õ¯’æ”™œ˙»À‘± ≤Èø¥œµÕ≥¥Ÿœ˙≤ﬂ¬‘ΩÁ√Ê
 	 * 
 	 * @param hotelStaff
@@ -865,6 +871,7 @@ public class Main extends Application {
 	}
 
 	/**
+>>>>>>> refs/remotes/origin/Âè∂ÊôìÊ≥¢
 	 * show Õ¯’æ”™œ˙»À‘± –ﬁ∏ƒΩ⁄»’œµÕ≥¥Ÿœ˙≤ﬂ¬‘ΩÁ√Ê
 	 * 
 	 * @param hotelStaff
@@ -1347,6 +1354,29 @@ public class Main extends Application {
 	}
 
 	/**
+	 * show Õ¯’æπ‹¿Ì»À‘± ≤Èø¥system staff–≈œ¢
+	 * 
+	 * @param
+	 */
+	public void showSystemManagerSystemStaffInfoModfyScene(SystemManagerVO systemManagerVO,
+			SystemStaffVO systemStaffVO) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class
+					.getResource("/presentation/view/userManagement_ui/SystemManagerSystemStaffInfoModifyScene.fxml"));
+			AnchorPane SystemManagerCustomerInfoViewScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemManagerCustomerInfoViewScene);
+
+			// get Controller
+			SystemManagerSystemStaffInfoModifyController systemManagerSystemStaffInfoViewController = loader
+					.getController();
+			systemManagerSystemStaffInfoViewController.initialize(this, systemManagerVO, systemStaffVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * show Õ¯’æπ‹¿Ì»À‘± ◊¢≤·æ∆µÍ
 	 * 
 	 * @param
@@ -1355,13 +1385,13 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
-					Main.class.getResource("/presentation/view/userInfo_ui/SystemManagerHotelRegisterScene.fxml"));
+					Main.class.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterScene.fxml"));
 			AnchorPane SystemManagerHotelRegisterScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemManagerHotelRegisterScene);
 
 			// get Controller
 			SystemManagerHotelRegisterController SystemManagerHotelRegisterController = loader.getController();
-			SystemManagerHotelRegisterController.SystemManagerHotelRegisterShow(this);
+			SystemManagerHotelRegisterController.initialize(this,systemManagerVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1372,18 +1402,18 @@ public class Main extends Application {
 	 * 
 	 * @param
 	 */
-	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO) {
+	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
-					.getResource("/presentation/view/userInfo_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
+					.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
 			AnchorPane SystemManagerHotelRegisterShowIDScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemManagerHotelRegisterShowIDScene);
 
 			// get Controller
 			SystemManagerHotelRegisterShowIDController SystemManagerHotelRegisterShowIDController = loader
 					.getController();
-			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this);
+			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this,systemManagerVO,hotelInfoVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1504,6 +1534,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		ClientRunner clientRunner = new ClientRunner();
 		launch(args);
 	}
 

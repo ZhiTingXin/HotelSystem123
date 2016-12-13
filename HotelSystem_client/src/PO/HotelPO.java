@@ -1,13 +1,20 @@
 package PO;
 
+import java.io.Serializable;
+
 import VO.HotelInfoVO;
 
-public class HotelPO {
-    /*
+public class HotelPO implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/*
      * hotelId酒店的id
      * hotelStaffId 酒店工作人员的id
      * hotelStrict 酒店的商圈地址
      */
+	private String grade;
 	private String hotelId;
 	private String hotelStaffId;
 	private String hotelStrict;
@@ -55,5 +62,12 @@ public class HotelPO {
 	}
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String gra){
+		this.grade = gra;
 	}
 }

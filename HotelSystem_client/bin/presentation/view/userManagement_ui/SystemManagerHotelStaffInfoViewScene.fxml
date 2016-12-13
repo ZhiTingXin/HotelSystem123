@@ -20,9 +20,8 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站管理人员" />
-                  <Button fx:id="modifyInfo" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="修改用户信息" />
-                  <Button fx:id="changeState" layoutX="11.0" layoutY="340.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="冻结/解冻用户" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="返回" />
+                  <Button fx:id="modifyInfo" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleModify" prefHeight="39.0" prefWidth="200.0" text="修改用户信息" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -57,7 +56,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="239.0" layoutY="150.0" text="酒店管理人员">
+                  <Label layoutX="239.0" layoutY="150.0" text="酒店工作人员">
                      <font>
                         <Font size="16.0" />
                      </font>

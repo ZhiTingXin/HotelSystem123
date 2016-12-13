@@ -1,11 +1,8 @@
 package blservice;
 
 import java.util.ArrayList;
-
-import PO.PrivilegePO;
 import VO.OrderVO;
 import other.OrderState;
-import other.RoomType;
 
 public interface Order_blservice {
 	public OrderState getState(String orderID);
@@ -22,6 +19,8 @@ public interface Order_blservice {
 
 	public boolean generateOrder(OrderVO Order);
 
+	public boolean changeState(String orderID);
+	
 	public boolean changeCredit(String userID, String orderID);
 
 	public ArrayList<OrderVO> getOrderFromInput(String text);

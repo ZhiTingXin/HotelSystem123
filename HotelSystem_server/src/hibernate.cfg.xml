@@ -26,6 +26,7 @@
     <mapping class="PO.SystemManagerPO"/>
     <mapping class="PO.SystemStaffPO"/>
     <mapping class="PO.SystemStrategyPO"/>
-    <mapping class="PO.VipStrategyPO"/>
+    <mapping class="PO.VipPO"/>
+    <mapping class="PO.ClassToGreId"/>
 </session-factory>  
 </hibernate-configuration> 
