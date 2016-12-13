@@ -384,7 +384,6 @@ public class Main extends Application {
 	 * show 显示客户用户查看酒店列表界面
 	 * 
 	 * @param customer
-	 * @param hotel
 	 */
 	public void showCustomerHotelViewScene(CustomerVO customer) {
 		try {
@@ -732,8 +731,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员mainScene
 	 * 
-	 * @param hotelStaff,
-	 *            orderVO
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemStaffMainScene(SystemStaffVO systemStaffVO) {
@@ -778,7 +776,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员查看异常订单详情
 	 * 
-	 * @param systemStaffVO
+	 * @param systemStaffVO,orderVO
 	 */
 	public void showSystemStaffOrderViewScene(SystemStaffVO systemStaffVO, OrderVO orderVO) {
 		try {
@@ -799,7 +797,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 管理信用值界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemStaffCreditManagementScene(SystemStaffVO systemStaffVO) {
@@ -822,7 +820,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 查看系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemStrategyViewScene(SystemStaffVO systemStaffVO) {
@@ -847,7 +845,7 @@ public class Main extends Application {
 =======
 	 * show 网站营销人员 查看系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showSystemHolidayStrategyModifyScene(SystemStaffVO systemStaffVO) {
@@ -868,10 +866,15 @@ public class Main extends Application {
 	}
 
 	/**
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/鍙舵檽娉�
 	 * show 网站营销人员 修改节日系统促销策略界面
+=======
+>>>>>>> refs/remotes/origin/叶晓�?
+	 * show ��վӪ����Ա �޸Ľ���ϵͳ�������Խ���
+>>>>>>> refs/remotes/origin/master
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
 	public void showSystemHolidayStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
@@ -893,7 +896,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 新增节日系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemHolidayStrategyScene(SystemStaffVO systemStaffVO) {
@@ -915,7 +918,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 新增会员系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemMemberStrategyScene(SystemStaffVO systemStaffVO) {
@@ -937,7 +940,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 修改会员系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
 	public void showSystemMemberStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
@@ -959,7 +962,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 修改会员信息
 	 * 
-	 * @param hotelStaff
+	 * @param vipVO
 	 * 
 	 */
 	public boolean showPersonEditDialog(VipVO vipVO) {
@@ -994,7 +997,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 新增VIP会员系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemVIPStrategyScene(SystemStaffVO systemStaffVO) {
@@ -1016,7 +1019,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 修改VIP会员系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
 	public void showSystemVIPStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
@@ -1038,8 +1041,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 修改其他系统促销策略界面
 	 * 
-	 * @param hotelStaff
-	 * 
+	 * @param systemStaffVO,systemStrategyVO
 	 */
 	public void showSystemOtherStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
@@ -1060,7 +1062,7 @@ public class Main extends Application {
 	/**
 	 * show 网站营销人员 新增其他系统促销策略界面
 	 * 
-	 * @param hotelStaff
+	 * @param systemStaffVO
 	 * 
 	 */
 	public void showAddSystemOtherStrategyScene(SystemStaffVO systemStaffVO) {

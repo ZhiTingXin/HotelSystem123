@@ -40,18 +40,13 @@ public class SystemManagerHotelStaffInfoModifyController {
 
 	private Main mainScene;
 	private UserInfo_blservice blservice;
-<<<<<<< HEAD
 	private SystemManagerVO systemManagerVO;
 	private HotelStaffVO hotelStaffVO;
-=======
-	private HotelStaffVO hotelStaff;
->>>>>>> refs/remotes/origin/å¶æ™“æ³¢
 
 	public SystemManagerHotelStaffInfoModifyController() {
 		blservice = new UserInfo_bl();
 	}
 
-<<<<<<< HEAD
 	public void initialize(Main mainScene, SystemManagerVO systemManagerVO, HotelStaffVO hotelStaffVO) {
 		this.mainScene = mainScene;
 		this.systemManagerVO = systemManagerVO;
@@ -106,18 +101,5 @@ public class SystemManagerHotelStaffInfoModifyController {
 	@FXML//·µ»Ø
 	private void handleBack(){
 		mainScene.showSystemManagerHotelStaffInfoViewScene(systemManagerVO, hotelStaffVO);
-=======
-	private void getHotelStaffInfo(String id) {
-	}
-
-	public void SystemManagerHotelStaffInfoModifyShow(Main mainScene) {
-		this.mainScene = mainScene;
-
-	}
-
-	public void initialize(Main main, SystemManagerVO systemManagerVO, HotelStaffVO hotelStaffVO) {
-		// TODO Auto-generated method stub
-
->>>>>>> refs/remotes/origin/å¶æ™“æ³¢
 	}
 }
