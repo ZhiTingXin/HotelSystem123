@@ -10,6 +10,7 @@ import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
+import data.service.RoomDataService;
 import data.service.SystemManagerDataService;
 import data.service.SystemStaffDataService;
 import data.service.SystemStrategyDataService;
@@ -67,5 +68,8 @@ public class RemoteHelper {
     }
     public IdGernerateService getIdGernerateService(){
     	return (IdGernerateService)remote;
+    }
+    public RoomDataService getRoomDataService(){
+    	return (RoomDataService) remote;
     }
 }
