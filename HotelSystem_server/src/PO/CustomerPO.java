@@ -1,5 +1,6 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,7 +9,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class CustomerPO {
+public class CustomerPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String id;
 
 	private String userName;

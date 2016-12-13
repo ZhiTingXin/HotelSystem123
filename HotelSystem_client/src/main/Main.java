@@ -1505,6 +1505,7 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
+		ClientRunner clientRunner = new ClientRunner();
 		launch(args);
 	}
 

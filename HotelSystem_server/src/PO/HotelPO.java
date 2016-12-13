@@ -1,5 +1,7 @@
 package PO;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -8,8 +10,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="hotel")
-public class HotelPO {
-    /*
+public class HotelPO implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/*
      * hotelId酒店的id
      * hotelStaffId 酒店工作人员的id
      * hotelStrict 酒店的商圈地址
