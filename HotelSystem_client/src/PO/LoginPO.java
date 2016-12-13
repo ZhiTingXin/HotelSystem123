@@ -1,7 +1,13 @@
 package PO;
 
-public class LoginPO {
+import java.io.Serializable;
 
+public class LoginPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String userPassword;
 	

@@ -1,10 +1,16 @@
 package PO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import VO.CustomerVO;
 
-public class CustomerPO {
+public class CustomerPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String id;
 	
 	private String userName;

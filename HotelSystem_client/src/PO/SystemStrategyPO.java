@@ -1,12 +1,17 @@
 package PO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import VO.SystemStrategyVO;
 import other.StrategyState;
 import other.SystemStrategyType;
 
-public class SystemStrategyPO {
+public class SystemStrategyPO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String systemStrategy_name;
 	private String systemStaffId;
     private double discount;

@@ -1,8 +1,15 @@
 package PO;
 
+import java.io.Serializable;
+
 import VO.SystemStaffVO;
 
-public class SystemStaffPO {
+public class SystemStaffPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String id;
 
 	private String staffName;

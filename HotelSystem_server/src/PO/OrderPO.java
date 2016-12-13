@@ -1,5 +1,6 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -10,8 +11,12 @@ import other.OrderState;
 
 @Entity
 @Table(name="orderpo")
-public class OrderPO {
+public class OrderPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String hotelId;
 	private String userId;

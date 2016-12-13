@@ -1,5 +1,6 @@
 package PO;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,8 +12,12 @@ import other.SystemStrategyType;
 
 @Entity
 @Table(name = "systemstrategy")
-public class SystemStrategyPO {
+public class SystemStrategyPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String systemStrategy_name;
     private double discount;
     private Date begin_date;

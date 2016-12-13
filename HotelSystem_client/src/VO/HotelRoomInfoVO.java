@@ -1,14 +1,22 @@
 package VO;
 
-import PO.HotelRoomInfoPO;
+import PO.RoomPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.RoomType;
 
 public class HotelRoomInfoVO {
-
-	public HotelRoomInfoVO(HotelRoomInfoPO hotelRoomInfo) {
-		// TODO Auto-generated constructor stub
+	RoomType roomType;
+	int roomNum;
+	int roomRemain;
+	int roomPrice;
+	public HotelRoomInfoVO(){}
+	public HotelRoomInfoVO(RoomPO hotelRoomInfo) {
+		super();
+		this.roomNum = hotelRoomInfo.getNumber();
+		this.roomPrice = hotelRoomInfo.getPrice();
+		this.roomRemain = hotelRoomInfo.getRemainNum();
+		this.roomType = hotelRoomInfo.getType();
 	}
 
 	public HotelRoomInfoVO(RoomType roomType, int roomNum, int roomRemain, int roomPrice) {
@@ -17,12 +25,14 @@ public class HotelRoomInfoVO {
 		this.roomPrice = roomPrice;
 		this.roomRemain = roomRemain;
 	}
+	
+	public RoomType getRoomType() {
+		return roomType;
+	}
 
-	RoomType roomType;
-	int roomNum;
-	int roomRemain;
-	int roomPrice;
-
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
+	}
 	public int getRoomNum() {
 		return roomNum;
 	}

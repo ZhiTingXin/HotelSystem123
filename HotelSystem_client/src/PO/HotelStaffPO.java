@@ -1,8 +1,15 @@
 package PO;
 
+import java.io.Serializable;
+
 import VO.HotelStaffVO;
 
-public class HotelStaffPO {
+public class HotelStaffPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String id;
 
 	private String username;

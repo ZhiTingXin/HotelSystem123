@@ -28,7 +28,6 @@ public class AdviceFeedBackDataServiceImpl implements AdviceFeedBackDataService 
 	}
 
 	public ArrayList<AdviceFeedBackPO> getAdvices(String userId,String type) throws RemoteException {
-		// TODO Auto-generated method stub
 		return adviceFeedbackDao.getAdvices(userId, type);
 	}
 

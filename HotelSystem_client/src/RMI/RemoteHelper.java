@@ -7,12 +7,14 @@ import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.HotelStaffDataService;
 import data.service.HotelStrategyDataService;
+import data.service.IdGernerateService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.SystemManagerDataService;
 import data.service.SystemStaffDataService;
 import data.service.SystemStrategyDataService;
 import data.service.VipDataService;
+
 
 public class RemoteHelper {
 	private Remote remote;
@@ -62,5 +64,8 @@ public class RemoteHelper {
 	}
     public VipDataService getVipDataService(){
     	return (VipDataService)remote;
+    }
+    public IdGernerateService getIdGernerateService(){
+    	return (IdGernerateService)remote;
     }
 }
