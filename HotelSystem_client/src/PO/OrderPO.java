@@ -1,12 +1,17 @@
 package PO;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import VO.OrderVO;
 import other.OrderState;
 
-public class OrderPO {
+public class OrderPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String hotelId;
 	private String userId;
