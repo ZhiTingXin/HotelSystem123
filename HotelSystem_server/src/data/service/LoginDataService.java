@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 import PO.LoginPO;
+import other.UserType;
 
 public interface LoginDataService extends Remote {
 
@@ -14,4 +15,8 @@ public interface LoginDataService extends Remote {
 	public boolean delete(LoginPO login)throws RemoteException;
 	
 	public boolean update(LoginPO login)throws RemoteException;
+	
+	public LoginPO findByID(String userID)throws RemoteException;
+	
+	public UserType test()throws RemoteException;
 }

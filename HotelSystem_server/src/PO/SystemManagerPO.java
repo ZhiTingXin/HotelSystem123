@@ -22,14 +22,6 @@ public class SystemManagerPO implements Serializable{
 		this.managerName = managerName;
 	}
 	
-	@Id
-	public String getId() {
-		return managerID;
-	}
-
-	public void setId(String managerID) {
-		this.managerID = managerID;
-	}
 
 	public String getManagerName() {
 		return managerName;
@@ -37,6 +29,13 @@ public class SystemManagerPO implements Serializable{
 
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
+	}
+	@Id
+	public String getManagerID() {
+		return managerID;
+	}
+	public void setManagerID(String managerID) {
+		this.managerID = managerID;
 	}
 
 	

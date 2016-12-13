@@ -22,22 +22,19 @@ public class SystemManagerVO {
 	}
 
 	public SystemManagerVO(SystemManagerPO systemManagerPO) {
-		this.systemmanager_Id = systemManagerPO.getId();
+		this.systemmanager_Id = systemManagerPO.getManagerId();
 		this.systemmanager_Name = systemManagerPO.getManagerName();
 	}
 
 	public void setUsername(String name) {
-		// TODO Auto-generated method stub
 		this.systemmanager_Name = name;
 	}
 
 	public String getPassword() {
-		// TODO Auto-generated method stub
 		return this.password;
 	}
 
 	public void setPassword(String newPasswordInField) {
-		// TODO Auto-generated method stub
 		this.password = newPasswordInField;
 	}
 

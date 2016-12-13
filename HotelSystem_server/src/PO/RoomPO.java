@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import other.RoomType;
 
 
@@ -25,19 +24,20 @@ public class RoomPO implements Serializable{
 	 * id 存储时用作主键
 	 */
 	private int price;
-	private int remain;
 	private RoomType type;
 	private String hotelId;
 	private int number;
+	private int remainNum;
+	@Id
 	private String id;
 	
 	//room 的构造方法
 	public RoomPO(){}
 	public RoomPO(int pric,RoomType type,String hotelid,int number,int remain){
 		super();
+		this.remainNum = remain;
 		this.price = pric;
 		this.hotelId = hotelid;
-		this.remain = remain;
 		this.type = type;
 		this.number = number;
 		this.id = hotelid+type;
@@ -61,8 +61,6 @@ public class RoomPO implements Serializable{
 	public void setNumber(int number) {
 		this.number = number;
 	}
-	
-	@Id
 	public String getId() {
 		return id;
 	}
@@ -75,11 +73,11 @@ public class RoomPO implements Serializable{
 	public void setType(RoomType type) {
 		this.type = type;
 	}
-	public int getRemain() {
-		return remain;
+	public int getRemainNum() {
+		return remainNum;
 	}
-	public void setRemain(int remain) {
-		this.remain = remain;
+	public void setRemainNum(int remainNum) {
+		this.remainNum = remainNum;
 	}
 	
 }

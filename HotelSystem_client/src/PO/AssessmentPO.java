@@ -14,7 +14,7 @@ public class AssessmentPO implements Serializable{
 	 * property 评价的属性
 	 * hotelId 对于所在酒店的id
 	 */
-	private String id;
+	private String Orderid;
 	private String userId;
 	String content;
 	String type;
@@ -43,11 +43,11 @@ public class AssessmentPO implements Serializable{
 	public void setHotelId(String hotelId) {
 		this.hotelId = hotelId;
 	}
-	public String getId() {
-		return id;
+	public String getOrderId() {
+		return Orderid;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setOrderId(String id) {
+		this.Orderid = id;
 	}
 	
 }
