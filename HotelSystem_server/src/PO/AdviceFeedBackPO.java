@@ -15,15 +15,16 @@ public class AdviceFeedBackPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private AdviceFeedBackState state;
+	   private AdviceFeedBackState state;
        private String AdviceFeedBack_content;
        private String AdviceId;
        private String userId;
        
        public AdviceFeedBackPO(){}
        
-       public AdviceFeedBackPO(AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
+       public AdviceFeedBackPO(String Adviceid,AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
     	   super();
+    	   this.AdviceId = Adviceid;
     	   this.AdviceFeedBack_content = adviceFeedBack_content;
     	   this.state = state1;
     	   this.userId = userid;
@@ -53,7 +54,7 @@ public class AdviceFeedBackPO implements Serializable{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
+    
 	public AdviceFeedBackState getState() {
 		return state;
 	}

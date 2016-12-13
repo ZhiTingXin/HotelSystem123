@@ -1,7 +1,6 @@
 package VO;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import PO.CustomerPO;
 import other.memberState;
@@ -25,18 +24,18 @@ public class CustomerVO {
 	public void setMemberState(memberState memberState) {
 		this.memberState = memberState;
 	}
+	public CustomerVO(){}
 
-	@SuppressWarnings("deprecation")
-	public CustomerVO() {
-		this.id = "123456";
-		this.birthday = LocalDate.of(1995, 11, 19);
-		this.companyName = "NJU";
-		this.credit = 100;
-		this.userName = "William";
-		this.password = "William123456";
-		this.memberGrade = 1;
-		this.memberState = memberState.NORMAL_MEMBER;
-	}
+//	public CustomerVO() {
+//		this.id = "123456";
+//		this.birthday = LocalDate.of(1995, 11, 19);
+//		this.companyName = "NJU";
+//		this.credit = 100;
+//		this.userName = "William";
+//		this.password = "William123456";
+//		this.memberGrade = 1;
+//		this.memberState = memberState.NORMAL_MEMBER;
+//	}
 
 	public CustomerVO(CustomerPO customerPO) {
 		super();
