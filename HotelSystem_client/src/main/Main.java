@@ -70,7 +70,10 @@ import presentation.controller.userManagementController.SystemManagerCustomerInf
 import presentation.controller.userManagementController.SystemManagerCustomerInfoViewController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoModifyController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoViewController;
+<<<<<<< HEAD
 import presentation.controller.userManagementController.SystemManagerSystemStaffInfoModifyController;
+=======
+>>>>>>> refs/remotes/origin/å¶æ™“æ³¢
 import presentation.controller.userManagementController.SystemManagerSystemStaffInfoViewController;
 import presentation.controller.userManagementController.SystemStaffCreditManagementController;
 import presentation.controller.userManagementController.SystemStaffManagementController;
@@ -85,14 +88,22 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("HotelSystem");
+<<<<<<< HEAD
 		//this.showCustomerInfoScene(new CustomerVO());
+=======
+		// this.showCustomerInfoScene(new CustomerVO());
+>>>>>>> refs/remotes/origin/master
 		// this.showHotelStaffInfoScene(new HotelStaffVO());
 		// this.showSystemStaffInfoScene(new SystemStaffVO());
 		// this.showSystemManagerInfoScene(new SystemManagerVO());
 		// this.showCustomerBookHotelScene(new CustomerVO(), new HotelInfoVO());
 		// this.showCustomerHotelViewScene(new CustomerVO());
 		// this.showCustomerMainScene(new CustomerVO());
+<<<<<<< HEAD
 		 this.showLoginScene();
+=======
+		this.showLoginScene();
+>>>>>>> refs/remotes/origin/master
 		// this.showHotelStaffMainScene(new HotelStaffVO());
 		// this.showHotelStaffHotelInfoViewScene(new HotelStaffVO(), new
 		// HotelInfoVO());
@@ -843,6 +854,32 @@ public class Main extends Application {
 	}
 
 	/**
+<<<<<<< HEAD
+=======
+	 * show ÍøÕ¾ÓªÏúÈËÔ± ²é¿´ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * 
+	 * @param hotelStaff
+	 * 
+	 */
+	public void showSystemHolidayStrategyModifyScene(SystemStaffVO systemStaffVO) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class
+					.getResource("/presentation/view/systemStrategy_ui/SystemHolidayStrategyModifyScene.fxml"));
+			AnchorPane SystemHolidayStrategyModifyScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemHolidayStrategyModifyScene);
+
+			// get Controller
+			SystemHolidayStrategyModifyController SystemHolidayStrategyModifyController = loader.getController();
+			SystemHolidayStrategyModifyController.initilize(this, systemStaffVO, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+>>>>>>> refs/remotes/origin/å¶æ™“æ³¢
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸Ä½ÚÈÕÏµÍ³´ÙÏú²ßÂÔ½çÃæ
 	 * 
 	 * @param hotelStaff
