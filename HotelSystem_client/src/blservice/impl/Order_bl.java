@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import PO.HotelPO;
 import PO.OrderPO;
+import PO.RoomPO;
 import RMI.RemoteHelper;
 import VO.OrderVO;
 import blservice.Order_blservice;
@@ -132,31 +133,33 @@ public class Order_bl implements Order_blservice{
 
 	@Override
 	public String getOrderOriginalPrice(OrderVO order) {
-		String hotelID = order.getHotelID();
-		HotelPO hotelPO;
+		String roomID = order.getHotelID()+order.getRoomType();
+		String price = null;
 		try {
-			hotelPO = hotelDataService.find(hotelID);
-			String price = hotelPO.getPrice();
-			return price;
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
+			double dprice = roomPO.getNumber()*roomPO.getPrice();
+			price = String.valueOf(dprice);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		
+		return price;
 	}
 
 	@Override
 	//ºÚµ• µœ÷
 	public String getOrderPrice(OrderVO order, String id) {
-		String hotelID = order.getHotelID();
-		HotelPO hotelPO;
+		String roomID = order.getHotelID()+order.getRoomType();
+		String price = null;
 		try {
-			hotelPO = hotelDataService.find(hotelID);
-			String price = hotelPO.getPrice();
-			return price;
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
+			double dprice = roomPO.getNumber()*roomPO.getPrice();
+			price = String.valueOf(dprice);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		
+		return price;
 	}
 
 	@Override
