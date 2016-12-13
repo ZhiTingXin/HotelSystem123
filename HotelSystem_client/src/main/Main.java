@@ -106,7 +106,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * ÏÔÊ¾µÇÂ¼½çÃæ
+	 * æ˜¾ç¤ºç™»å½•ç•Œé¢
 	 */
 	public void showLoginScene() {
 		try {
@@ -126,7 +126,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * ÏÔÊ¾×¢²á½çÃæ
+	 * æ˜¾ç¤ºæ³¨å†Œç•Œé¢
 	 */
 	public void showRegisterScene() {
 		try {
@@ -146,10 +146,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§µÄÎ¬»¤¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·çš„ç»´æŠ¤ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param customer
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«¹ıÀ´µÄCustomerVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ è¿‡æ¥çš„CustomerVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showCustomerInfoScene(CustomerVO customer) {
 		// TODO Auto-generated method stub
@@ -170,10 +170,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§µÄĞŞ¸Ä¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·çš„ä¿®æ”¹ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param customer
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«¹ıÀ´µÄCustomerVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ è¿‡æ¥çš„CustomerVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showCustomerModifyScene(CustomerVO customer) {
 		try {
@@ -193,10 +193,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§µÄĞŞ¸ÄÃÜÂë½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·çš„ä¿®æ”¹å¯†ç ç•Œé¢
 	 * 
 	 * @param customer
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«¹ıÀ´µÄCustomerVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ è¿‡æ¥çš„CustomerVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showCustomerPasswordModifyScene(CustomerVO customer) {
 		try {
@@ -217,10 +217,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§µÄ×¢²á»áÔ±½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·çš„æ³¨å†Œä¼šå‘˜ç•Œé¢
 	 * 
 	 * @param customer
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«¹ıÀ´µÄCustomerVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ è¿‡æ¥çš„CustomerVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showCustomerMemberModifyScene(CustomerVO customer) {
 		try {
@@ -240,10 +240,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±µÄÎ¬»¤¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜çš„ç»´æŠ¤ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param hotelStaff
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«¹ıÀ´µÄHotelStaffVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ è¿‡æ¥çš„HotelStaffVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showHotelStaffInfoScene(HotelStaffVO hotelStaff) {
 		try {
@@ -264,10 +264,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±ĞŞ¸Ä¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜ä¿®æ”¹ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param hotelStaff
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄHotalStaffVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„HotalStaffVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showHotelStaffInfoModifyScene(HotelStaffVO hotelStaff) {
 		try {
@@ -287,10 +287,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±ĞŞ¸ÄÃÜÂë½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜ä¿®æ”¹å¯†ç ç•Œé¢
 	 * 
 	 * @param hotelStaff
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄHotalStaffVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„HotalStaffVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showHotelStaffPasswordModifyScene(HotelStaffVO hotelStaff) {
 		try {
@@ -311,7 +311,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§Ö÷½çÃæ£¬½ÓÊÜÀ´×ÔÆäËû½çÃæµÄcustomerVO¶ÔÏó
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·ä¸»ç•Œé¢ï¼Œæ¥å—æ¥è‡ªå…¶ä»–ç•Œé¢çš„customerVOå¯¹è±¡
 	 * 
 	 * @param customer
 	 */
@@ -333,12 +333,12 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§Ô¤¶¨¾Æµê¿Í·¿½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·é¢„å®šé…’åº—å®¢æˆ¿ç•Œé¢
 	 * 
 	 * @param customer
-	 *            À´×ÔÆäËû½çÃæµÄcustomerVO¶ÔÏó
+	 *            æ¥è‡ªå…¶ä»–ç•Œé¢çš„customerVOå¯¹è±¡
 	 * @param hotel
-	 *            À´×ÔÆäËû½çÃæµÄhotelVO¶ÔÏó
+	 *            æ¥è‡ªå…¶ä»–ç•Œé¢çš„hotelVOå¯¹è±¡
 	 */
 	public void showCustomerBookHotelScene(CustomerVO customer, HotelInfoVO hotel) {
 		try {
@@ -358,7 +358,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§²é¿´¾ÆµêÏêÇé½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·æŸ¥çœ‹é…’åº—è¯¦æƒ…ç•Œé¢
 	 * 
 	 * @param customer
 	 * @param hotel
@@ -381,7 +381,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§²é¿´¾ÆµêÁĞ±í½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·æŸ¥çœ‹é…’åº—åˆ—è¡¨ç•Œé¢
 	 * 
 	 * @param customer
 	 */
@@ -403,7 +403,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§²é¿´¶©µ¥ÁĞ±í½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·æŸ¥çœ‹è®¢å•åˆ—è¡¨ç•Œé¢
 	 * 
 	 * @param customer
 	 */
@@ -425,7 +425,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§²é¿´¶©µ¥ÏêÇé½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·æŸ¥çœ‹è®¢å•è¯¦æƒ…ç•Œé¢
 	 * 
 	 * @param customer
 	 * @param orderVO
@@ -449,7 +449,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§ÆÀ¼Û¶©µ¥½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·è¯„ä»·è®¢å•ç•Œé¢
 	 * 
 	 * @param customer
 	 * @param hotel
@@ -474,7 +474,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§Òâ¼û·´À¡ÁĞ±í½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·æ„è§åé¦ˆåˆ—è¡¨ç•Œé¢
 	 * 
 	 * @param customer
 	 */
@@ -498,7 +498,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§Òâ¼û·´À¡ÄÚÈİÁĞ±í½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·æ„è§åé¦ˆå†…å®¹åˆ—è¡¨ç•Œé¢
 	 * 
 	 * @param customer
 	 */
@@ -522,7 +522,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¿Í»§ÓÃ»§ĞÂ½¨Òâ¼û·´À¡ÁĞ±í½çÃæ
+	 * show æ˜¾ç¤ºå®¢æˆ·ç”¨æˆ·æ–°å»ºæ„è§åé¦ˆåˆ—è¡¨ç•Œé¢
 	 * 
 	 * @param customer
 	 */
@@ -546,7 +546,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±Ö÷½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜ä¸»ç•Œé¢
 	 * 
 	 * @param hotelStaff
 	 */
@@ -568,7 +568,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±¾Æµê¶©µ¥ÏÔÊ¾½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜é…’åº—è®¢å•æ˜¾ç¤ºç•Œé¢
 	 * 
 	 * @param hotelStaff
 	 */
@@ -590,7 +590,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±¹ÜÀí¾Æµê¶©µ¥½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜ç®¡ç†é…’åº—è®¢å•ç•Œé¢
 	 * 
 	 * @param hotelStaff
 	 * @param order
@@ -614,7 +614,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±Î¬»¤¾ÆµêĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜ç»´æŠ¤é…’åº—ä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param hotel
 	 */
@@ -636,7 +636,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±ĞŞ¸Ä¾ÆµêĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜ä¿®æ”¹é…’åº—ä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param hotel
 	 */
@@ -659,7 +659,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±ÖÆ¶¨¾ÆµêÓªÏú²ßÂÔ½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜åˆ¶å®šé…’åº—è¥é”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param hotel
 	 */
@@ -682,7 +682,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±ĞŞ¸Ä¾ÆµêÓªÏú²ßÂÔ½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜ä¿®æ”¹é…’åº—è¥é”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param hotel
 	 */
@@ -706,7 +706,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾¾Æµê¹¤×÷ÈËÔ±ĞÂÔö¾ÆµêÓªÏú²ßÂÔ½çÃæ
+	 * show æ˜¾ç¤ºé…’åº—å·¥ä½œäººå‘˜æ–°å¢é…’åº—è¥é”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param hotel
 	 */
@@ -729,7 +729,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ±mainScene
+	 * show ç½‘ç«™è¥é”€äººå‘˜mainScene
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -752,7 +752,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ±¹ÜÀíÒì³£¶©µ¥½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ç®¡ç†å¼‚å¸¸è®¢å•ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 */
@@ -774,7 +774,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ±²é¿´Òì³£¶©µ¥ÏêÇé
+	 * show ç½‘ç«™è¥é”€äººå‘˜æŸ¥çœ‹å¼‚å¸¸è®¢å•è¯¦æƒ…
 	 * 
 	 * @param systemStaffVO,orderVO
 	 */
@@ -795,7 +795,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ¹ÜÀíĞÅÓÃÖµ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ ç®¡ç†ä¿¡ç”¨å€¼ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -818,7 +818,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ²é¿´ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ æŸ¥çœ‹ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -843,7 +843,7 @@ public class Main extends Application {
 	/**
 <<<<<<< HEAD
 =======
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ²é¿´ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ æŸ¥çœ‹ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -866,8 +866,13 @@ public class Main extends Application {
 	}
 
 	/**
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/é™èˆµæª½å¨‰ï¿½
+	 * show ç½‘ç«™è¥é”€äººå‘˜ ä¿®æ”¹èŠ‚æ—¥ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
+=======
 >>>>>>> refs/remotes/origin/å¶æ™“æ³?
 	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸Ä½ÚÈÕÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+>>>>>>> refs/remotes/origin/master
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
 	 * 
@@ -889,7 +894,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔö½ÚÈÕÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ æ–°å¢èŠ‚æ—¥ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -911,7 +916,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔö»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ æ–°å¢ä¼šå‘˜ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -933,7 +938,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸Ä»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ ä¿®æ”¹ä¼šå‘˜ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
 	 * 
@@ -955,7 +960,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸Ä»áÔ±ĞÅÏ¢
+	 * show ç½‘ç«™è¥é”€äººå‘˜ ä¿®æ”¹ä¼šå‘˜ä¿¡æ¯
 	 * 
 	 * @param vipVO
 	 * 
@@ -968,7 +973,7 @@ public class Main extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 			// Create the dialog Stage.
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("±à¼­»áÔ±ĞÅÏ¢");
+			dialogStage.setTitle("ç¼–è¾‘ä¼šå‘˜ä¿¡æ¯");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
@@ -990,7 +995,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔöVIP»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ æ–°å¢VIPä¼šå‘˜ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -1012,7 +1017,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸ÄVIP»áÔ±ÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ ä¿®æ”¹VIPä¼šå‘˜ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
 	 * 
@@ -1034,7 +1039,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞŞ¸ÄÆäËûÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ ä¿®æ”¹å…¶ä»–ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
 	 */
@@ -1055,7 +1060,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ĞÂÔöÆäËûÏµÍ³´ÙÏú²ßÂÔ½çÃæ
+	 * show ç½‘ç«™è¥é”€äººå‘˜ æ–°å¢å…¶ä»–ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -1077,10 +1082,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾ÍøÕ¾ÓªÏúÈËÔ±Î¬»¤¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºç½‘ç«™è¥é”€äººå‘˜ç»´æŠ¤ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param systemStaff
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄSystemStaffVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„SystemStaffVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showSystemStaffInfoScene(SystemStaffVO systemStaff) {
 		try {
@@ -1100,10 +1105,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾ÍøÕ¾ÓªÏúÈËÔ±ĞŞ¸Ä¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºç½‘ç«™è¥é”€äººå‘˜ä¿®æ”¹ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param systemStaff
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄSystemStaffVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„SystemStaffVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showSystemStaffInfoModifyScene(SystemStaffVO systemStaff) {
 		try {
@@ -1123,10 +1128,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾ÍøÕ¾ÓªÏúÈËÔ±ĞŞ¸ÄÃÜÂë½çÃæ
+	 * show æ˜¾ç¤ºç½‘ç«™è¥é”€äººå‘˜ä¿®æ”¹å¯†ç ç•Œé¢
 	 * 
 	 * @param systemStaff
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄSystemStaffVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„SystemStaffVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showSystemStaffPasswordModifyScene(SystemStaffVO systemStaff) {
 		try {
@@ -1147,7 +1152,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± mainScene
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ mainScene
 	 * 
 	 * @param
 	 */
@@ -1169,7 +1174,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ÓÃ»§²é¿´ĞÅÏ¢½çÃæ
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ ç”¨æˆ·æŸ¥çœ‹ä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param
 	 */
@@ -1192,7 +1197,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ¾Æµê¹¤×÷ÈËÔ±²é¿´ĞÅÏ¢½çÃæ
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ é…’åº—å·¥ä½œäººå‘˜æŸ¥çœ‹ä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param
 	 */
@@ -1215,7 +1220,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ÍøÕ¾ÓªÏúÈËÔ±²é¿´ĞÅÏ¢½çÃæ
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ ç½‘ç«™è¥é”€äººå‘˜æŸ¥çœ‹ä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param
 	 */
@@ -1238,7 +1243,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ²é¿´ÓÃ»§ĞÅÏ¢
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ æŸ¥çœ‹ç”¨æˆ·ä¿¡æ¯
 	 * 
 	 * @param
 	 */
@@ -1259,7 +1264,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ĞŞ¸ÄÓÃ»§ĞÅÏ¢
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯
 	 * 
 	 * @param
 	 */
@@ -1281,7 +1286,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ²é¿´hotel staffĞÅÏ¢
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ æŸ¥çœ‹hotel staffä¿¡æ¯
 	 * 
 	 * @param
 	 */
@@ -1303,7 +1308,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ĞŞ¸Ähotel staffĞÅÏ¢
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ ä¿®æ”¹hotel staffä¿¡æ¯
 	 * 
 	 * @param
 	 */
@@ -1325,7 +1330,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ²é¿´system staffĞÅÏ¢
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ æŸ¥çœ‹system staffä¿¡æ¯
 	 * 
 	 * @param
 	 */
@@ -1348,7 +1353,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ²é¿´system staffĞÅÏ¢
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ æŸ¥çœ‹system staffä¿¡æ¯
 	 * 
 	 * @param
 	 */
@@ -1371,7 +1376,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ×¢²á¾Æµê
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ æ³¨å†Œé…’åº—
 	 * 
 	 * @param
 	 */
@@ -1392,7 +1397,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÍøÕ¾¹ÜÀíÈËÔ± ¾Æµê×¢²á³É¹¦
+	 * show ç½‘ç«™ç®¡ç†äººå‘˜ é…’åº—æ³¨å†ŒæˆåŠŸ
 	 * 
 	 * @param
 	 */
@@ -1414,10 +1419,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾ÍøÕ¾ÓªÏúÈËÔ±Î¬»¤¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºç½‘ç«™è¥é”€äººå‘˜ç»´æŠ¤ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param systemManager
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄSystemManagerVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„SystemManagerVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showSystemManagerInfoScene(SystemManagerVO systemManager) {
 		try {
@@ -1437,10 +1442,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾ÍøÕ¾ÓªÏúÈËÔ±ĞŞ¸Ä¸öÈËĞÅÏ¢½çÃæ
+	 * show æ˜¾ç¤ºç½‘ç«™è¥é”€äººå‘˜ä¿®æ”¹ä¸ªäººä¿¡æ¯ç•Œé¢
 	 * 
 	 * @param systemManager
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄSystemManagerVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„SystemManagerVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showSystemManagerInfoModifyScene(SystemManagerVO systemManager) {
 		try {
@@ -1461,10 +1466,10 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show ÏÔÊ¾ÍøÕ¾ÓªÏúÈËÔ±ĞŞ¸ÄÃÜÂë½çÃæ
+	 * show æ˜¾ç¤ºç½‘ç«™è¥é”€äººå‘˜ä¿®æ”¹å¯†ç ç•Œé¢
 	 * 
 	 * @param systemManager
-	 *            ½ÓÊÜ´ÓÆäËû½çÃæ´«À´µÄSystemManagerVO ¶ÔÏó×÷Îª²ÎÊı
+	 *            æ¥å—ä»å…¶ä»–ç•Œé¢ä¼ æ¥çš„SystemManagerVO å¯¹è±¡ä½œä¸ºå‚æ•°
 	 */
 	public void showSystemManagerPasswordModifyScene(SystemManagerVO systemManager) {
 		try {
