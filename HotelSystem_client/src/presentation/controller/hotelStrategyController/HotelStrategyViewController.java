@@ -94,6 +94,6 @@ public class HotelStrategyViewController {
 	@FXML
 	private void handleDelete() {
 		int foucus = this.strategyTable.getSelectionModel().getFocusedIndex();
-		this.service.deleteHotelStrategy(this.hotelStrategyList.get(foucus));
+		this.service.deleteHotelStrategy(this.hotelStrategyList.get(foucus).getId());
 	}
 }
