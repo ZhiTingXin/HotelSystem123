@@ -66,4 +66,9 @@ public class SystemManagerSystemStaffInfoViewController {
 	private void handleBack(){
 		mainScene.showSystemStaffManagementScene(systemManagerVO);
 	}
+
+	public void initialize(Main main, SystemManagerVO systemManagerVO, SystemStaffVO systemStaffVO) {
+		// TODO Auto-generated method stub
+		
+	}
 }

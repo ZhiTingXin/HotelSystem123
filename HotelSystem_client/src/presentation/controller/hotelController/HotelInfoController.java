@@ -92,7 +92,7 @@ public class HotelInfoController {
 		this.description.setText(this.hotel.getHotelDiscription());
 		this.roomInfoTabel.setItems(roomData);
 
-		this.strategy.setText(this.service.getHotelStrategy(this.hotel.getHotelID()));
+		//this.strategy.setText(this.service.getHotelStrategy(this.hotel.getHotelID()));
 		this.grade.setText(this.service.getHotelGradeAssessment(this.hotel.getHotelID()));
 
 		// 标签汇总方法

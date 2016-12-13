@@ -63,7 +63,7 @@ public class HotelStaffHotelInfoViewController {
 		this.description.setText(this.hotel.getHotelDiscription());
 
 		// bl层暂时还没实现的方法
-		this.strategy.setText(this.hotelService.getHotelStrategy(this.hotel.getHotelID()));
+		// this.strategy.setText(this.hotelService.getHotelStrategy(this.hotel.getHotelID()));
 		String[] tag = this.hotelService.getHotelTagAssessment(this.hotel.getHotelID());
 		String tagListLabel = "";
 		int count = 0;
@@ -73,7 +73,7 @@ public class HotelStaffHotelInfoViewController {
 		}
 		this.tag.setText(tagListLabel);
 
-		//this.price.setText(this.hotelService.getHotelRoomPrice(this.hotel.getHotelID()));
+		this.price.setText(this.hotelService.getHotelRoomPrice(this.hotel.getHotelID()));
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff, HotelInfoVO hotel) {
