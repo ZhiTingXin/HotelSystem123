@@ -866,13 +866,7 @@ public class Main extends Application {
 	}
 
 	/**
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/é™èˆµæª½å¨‰ï¿½
 	 * show ç½‘ç«™è¥é”€äººå‘˜ ä¿®æ”¹èŠ‚æ—¥ç³»ç»Ÿä¿ƒé”€ç­–ç•¥ç•Œé¢
-=======
->>>>>>> refs/remotes/origin/å¶æ™“æ³?
-	 * show ÍøÕ¾ÓªÏúÈËÔ± ÐÞ¸Ä½ÚÈÕÏµÍ³´ÙÏú²ßÂÔ½çÃæ
->>>>>>> refs/remotes/origin/master
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
 	 * 

@@ -3,13 +3,10 @@ package blservice.impl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import PO.AdviceFeedBackPO;
 import PO.HotelPO;
-import PO.HotelRoomInfoPO;
 import PO.HotelStaffPO;
-import PO.Label;
 import PO.OrderPO;
-import PO.Rank;
+import PO.RoomPO;
 import RMI.RemoteHelper;
 import VO.HotelInfoVO;
 import VO.HotelStaffVO;
@@ -45,7 +42,7 @@ public class Hotel_bl implements Hotel_blservice {
 			return false;
 		}
 	}
-
+	
 	public ArrayList<HotelInfoVO> getListOfHotel(String strict,String type) {
 		ArrayList<HotelPO> poList = null; 
 		try {
@@ -151,24 +148,37 @@ public class Hotel_bl implements Hotel_blservice {
 
 	@Override
 	public String getHotelRoomPrice(String hotelID) {
-		String price = null;
+		String roomAndPrice = null;
+		ArrayList<RoomPO> roomPOs = null; 
 		try {
-			price =  dataService.find(hotelID).getPrice();
+			roomPOs = RemoteHelper.getInstance().getRoomDataService().getAllRoomPO();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return price;
+		for(RoomPO roomPO: roomPOs){
+			if(roomPO.getHotelId().equals(hotelID))
+				roomAndPrice = roomAndPrice+","+roomPO.getType()+"_"+roomPO.getPrice();
+		}
+		return roomAndPrice;
 	}
 
 	@Override
 	public String genarateHotelID() {
-		// TODO Auto-generated method stub
+		try {
+			return RemoteHelper.getInstance().getIdGernerateService().gernerateId();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public String genarateHotelStaffID() {
-		// TODO Auto-generated method stub
+		try {
+			return RemoteHelper.getInstance().getIdGernerateService().gernerateId();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
