@@ -1,12 +1,18 @@
 package PO;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="AssessmentPO")
-public class AssessmentPO {
+public class AssessmentPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*
 	 * userId 评价所属用户id
 	 * content 评价的信息

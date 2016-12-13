@@ -1,9 +1,8 @@
 package testAll;
 
-import java.util.ArrayList;
-
-import PO.CustomerPO;
-import other.hibernateUtil;
+import PO.ClassToGreId;
+import data.service.IdGernerateService;
+import data.service.impl.IdGernerateServiceImpl;
 
 //import PO.AdviceFeedBackPO;
 //import data.service.AdviceFeedBackDataService;
@@ -28,10 +27,10 @@ public class tes {
 //		customerPO.setPhone("15851266554");
 //		customerPO.setUserName("xinzhiting");
 //		hibernateUtil.add(customerPO);
-		ArrayList<CustomerPO> list2 = (ArrayList<CustomerPO>)hibernateUtil.getAll("customer",CustomerPO.class);
-		for(int i=0;i<list2.size();i++){
-			System.out.println(list2.get(i).getId());
-		}
+//		ArrayList<CustomerPO> list2 = (ArrayList<CustomerPO>)hibernateUtil.getAll("customer",CustomerPO.class);
+//		for(int i=0;i<list2.size();i++){
+//			System.out.println(list2.get(i).getId());
+//		}
 //		for(CustomerPO customerPO:list){
 //			
 //		}
@@ -39,5 +38,14 @@ public class tes {
 //		for(int i=0;i<list.size();i++){
 //			System.out.println(list.get(i).getId());
 //		}
+//		LoginPO loginPO = new  LoginPO("gh1jg","ghgh");
+//		LoginDataService loginDataService = new LoginDataServiceImpl();
+//		loginDataService.add(loginPO);
+		ClassToGreId classToGreId = new ClassToGreId();
+		classToGreId.setId("123");
+		classToGreId.setNeverChanged("1");
+		IdGernerateService idGernerateService = new IdGernerateServiceImpl();
+		String id = idGernerateService.gernerateId();
+		System.out.println(id);
 	}
 }

@@ -1,12 +1,18 @@
 package PO;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Id")
-public class ClassToGreId {
-    private String Id;
+@Table(name="greID")
+public class ClassToGreId implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String Id;
     private String neverChanged;
     public ClassToGreId(){}
     public ClassToGreId(String Id){

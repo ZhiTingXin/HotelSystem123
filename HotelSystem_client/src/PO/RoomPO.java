@@ -1,9 +1,15 @@
 package PO;
 
+import java.io.Serializable;
+
 import VO.HotelRoomInfoVO;
 import other.RoomType;
-public class RoomPO {
+public class RoomPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*
 	 * price 房间的单价
 	 * type 房间的类型

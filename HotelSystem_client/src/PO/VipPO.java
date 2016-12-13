@@ -1,9 +1,15 @@
 package PO;
 
+import java.io.Serializable;
+
 import VO.VipVO;
 
-public class VipPO {
-	 private int mincredit;
+public class VipPO implements Serializable{
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int mincredit;
 	    private int maxcredit;
 	    private int Vipgrade;
 	    private double discount;
