@@ -13,9 +13,10 @@ public class HotelStrategyPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Id
 	private String id;
 	private String hotelStrategyInfo;
-	String hotelID;
+	private String hotelID;
 
 	/**
 	 * 
@@ -28,7 +29,7 @@ public class HotelStrategyPO implements Serializable{
 		this.hotelStrategyInfo = hotelStrategyInfo;
 		this.hotelID = hotelID;
 	}
-	@Id
+	
 	public String getId() {
 		return id;
 	}

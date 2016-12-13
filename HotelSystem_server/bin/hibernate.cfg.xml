@@ -23,7 +23,7 @@
     <mapping class="PO.CustomerPO"/>
     <mapping class="PO.HotelStaffPO"/>
     <mapping class="PO.HotelStrategyPO"/>
-    <mapping class="PO.SystemManagerPO"/>
+    <mapping class="PO.LoginPO"/>
     <mapping class="PO.SystemStaffPO"/>
     <mapping class="PO.SystemStrategyPO"/>
     <mapping class="PO.VipPO"/>

@@ -29,8 +29,13 @@ public class Login_bl implements Login_blservice {
 
 	@Override
 	public UserType assertUserType(String userIdInField) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+		 UserType type = dataService.findByID(userIdInField).getUserType();
+		 return type;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

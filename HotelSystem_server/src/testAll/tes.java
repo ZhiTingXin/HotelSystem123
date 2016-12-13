@@ -2,7 +2,9 @@ package testAll;
 
 import PO.ClassToGreId;
 import data.service.IdGernerateService;
+import data.service.LoginDataService;
 import data.service.impl.IdGernerateServiceImpl;
+import data.service.impl.LoginDataServiceImpl;
 
 //import PO.AdviceFeedBackPO;
 //import data.service.AdviceFeedBackDataService;
@@ -41,11 +43,13 @@ public class tes {
 //		LoginPO loginPO = new  LoginPO("gh1jg","ghgh");
 //		LoginDataService loginDataService = new LoginDataServiceImpl();
 //		loginDataService.add(loginPO);
-		ClassToGreId classToGreId = new ClassToGreId();
-		classToGreId.setId("123");
-		classToGreId.setNeverChanged("1");
-		IdGernerateService idGernerateService = new IdGernerateServiceImpl();
-		String id = idGernerateService.gernerateId();
-		System.out.println(id);
+//		ClassToGreId classToGreId = new ClassToGreId();
+//		classToGreId.setId("123");
+//		classToGreId.setNeverChanged("1");
+//		IdGernerateService idGernerateService = new IdGernerateServiceImpl();
+//		String id = idGernerateService.gernerateId();
+		LoginDataService a = new LoginDataServiceImpl();
+		String string = "151250170";
+		System.out.println(a.findByID(string).getUserType());
 	}
 }

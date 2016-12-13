@@ -29,7 +29,7 @@ public class systemManagerTest {
 	@Test
 	public void test003fi()throws Exception{
 		String id = "151250169";
-		assertEquals("151250169",systemManagerDataService.findManager(id).getId());
+		assertEquals("151250169",systemManagerDataService.findManager(id).getManagerID());
 	}
 	@Test
 	public void test004del()throws Exception{

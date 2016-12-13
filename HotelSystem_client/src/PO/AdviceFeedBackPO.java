@@ -9,19 +9,24 @@ public class AdviceFeedBackPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private AdviceFeedBackState state;
-       private String AdviceFeedBack_content;
-       private String AdviceId;
-     //  private String userId;
-       
-       public AdviceFeedBackPO(){}
-       
-       public AdviceFeedBackPO(AdviceFeedBackState state1,String adviceFeedBack_content){
-    	   super();
-    	   this.AdviceFeedBack_content = adviceFeedBack_content;
-    	   this.state = state1;
-    	   //this.userId = userid;
-       }
+	 private AdviceFeedBackState state;
+     private String AdviceFeedBack_content;
+     private String AdviceId;
+     private String userId;
+     
+     public AdviceFeedBackPO(){}
+     public AdviceFeedBackPO(AdviceFeedBackState state,String content){
+    	 super();
+    	 this.state =state;
+    	 this.AdviceFeedBack_content = content;
+     }
+     public AdviceFeedBackPO(String Adviceid,AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
+  	   super();
+  	   this.AdviceId = Adviceid;
+  	   this.AdviceFeedBack_content = adviceFeedBack_content;
+  	   this.state = state1;
+  	   this.userId = userid;
+     }
 
 
 	public String getAdviceFeedBack_content() {
@@ -38,16 +43,15 @@ public class AdviceFeedBackPO implements Serializable{
 	public void setAdviceId(String adviceId) {
 		AdviceId = adviceId;
 	}
-//
-//	public String getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(String userId) {
-//		this.userId = userId;
-//	}
 
+	public String getUserId() {
+		return userId;
+	}
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+  
 	public AdviceFeedBackState getState() {
 		return state;
 	}
