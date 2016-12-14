@@ -40,6 +40,7 @@ public class HotelPO implements Serializable{
 		this.hotelName = hotelInfoVO.getHotelName();
 		this.hotelAddress = hotelInfoVO.getHotelAddress();
 		this.hotelDiscription = hotelInfoVO.getHotelDiscription();
+		this.grade = hotelInfoVO.getRank();
 	}
 	
 	
