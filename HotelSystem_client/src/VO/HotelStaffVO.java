@@ -3,27 +3,26 @@ package VO;
 import PO.HotelStaffPO;
 
 public class HotelStaffVO {
+	
 	private String id;
-
 	private String username;
 	private String hotelId;
+	//可能会删除
 	private String hotelName;
+	//是否需要phone
     private String phone;
 	private String password;
 
 	public HotelStaffVO() {
-		this.id = "200001";
-		this.username = "Ken";
-		this.hotelId = "500001";
-		this.hotelName = "Nanjing Hotel";
-		this.password = "Ken200001";
+	
 	}
-
+    
 	public HotelStaffVO(HotelStaffPO userPO) {
 		super();
 		this.id = userPO.getId();
 		this.username = userPO.getUsername();
-		this.hotelName = userPO.getHotelName();
+		this.hotelId = userPO.getHotelId();
+		this.phone = userPO.getPhone();
 	}
 	
 	public HotelStaffVO(String id,String name,String hotelID,String hotelName){
