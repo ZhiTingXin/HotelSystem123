@@ -8,6 +8,7 @@ import data.dao.HotelStaffDao;
 import data.dao.HotelStrategyDao;
 import data.dao.LoginDao;
 import data.dao.OrderDao;
+import data.dao.RoomDao;
 import data.dao.SystemManagerDao;
 import data.dao.SystemStaffDao;
 import data.dao.SystemStrategyDao;
@@ -57,6 +58,10 @@ public class DataFactoryImpl implements DataFactory{
 
 	public VipDao getVipDao() {
 		return new VipDaoImpl();
+	}
+
+	public RoomDao getRoomDao() {
+		return new RoomDaoImpl();
 	}
 
 }

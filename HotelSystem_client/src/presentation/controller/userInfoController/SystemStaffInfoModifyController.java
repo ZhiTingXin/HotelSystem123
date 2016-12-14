@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.Main;
 
-
 public class SystemStaffInfoModifyController {
 
 	@FXML
@@ -28,6 +27,8 @@ public class SystemStaffInfoModifyController {
 	private Label businessDistrictLabel;
 	@FXML
 	private Button changePicture;
+	@FXML
+	private TextField phoneTextField;
 
 	private Main mainScene;
 	private UserInfo_blservice blservice;
@@ -43,6 +44,7 @@ public class SystemStaffInfoModifyController {
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
 		this.businessDistrictLabel.setText(this.systemStaff.getBusinessDistrict());
+		// this.phoneTextField.setText(arg0);
 
 	}
 
@@ -56,8 +58,12 @@ public class SystemStaffInfoModifyController {
 	public void handleSave() {
 		if (this.nameField.getText() != "") {
 			this.systemStaff.setUsername(this.nameField.getText());
-			this.blservice.modifySystemStaff(systemStaff);
+
 		}
+		if (this.phoneTextField.getText() != "") {
+			// this.systemStaff.setUsername(this.nameField.getText());
+		}
+		this.blservice.modifySystemStaff(systemStaff);
 		this.mainScene.showSystemStaffInfoScene(systemStaff);
 	}
 
