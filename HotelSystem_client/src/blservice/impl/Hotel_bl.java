@@ -131,7 +131,9 @@ public class Hotel_bl implements Hotel_blservice {
 			    	roomInfoVOs.add(new HotelRoomInfoVO(roomPO));
 			    }
 			    HotelInfoVO hotelInfoVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels);
+		        voList.add(hotelInfoVO);
 		     }
+		    return voList;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -141,8 +143,41 @@ public class Hotel_bl implements Hotel_blservice {
 
 	public boolean addHotel(HotelInfoVO hotel) {
 		HotelPO hotelPO = new HotelPO(hotel);
+		ArrayList<OrderVO> orderVOs = hotel.getOrderVOs();
+		ArrayList<HotelRoomInfoVO> roomInfoVOs = hotel.getRooms();
+		ArrayList<HotelStrategyVO> hotelStrategyVOs = hotel.getHotelStrategy();
+		ArrayList<Label> labels = hotel.getLabelList();
 		try {
-			return dataService.add(hotelPO);
+			boolean a = dataService.add(hotelPO);
+			boolean order = true;
+			for(OrderVO ordervo:orderVOs){
+				OrderPO orderPO = new OrderPO(ordervo);
+				boolean b = orderDataService.add(orderPO);
+				order = order&&b;
+			}
+			boolean roo = true;
+			for(HotelRoomInfoVO room:roomInfoVOs){
+				RoomPO roomPO = new RoomPO(room,hotel.getHotelID());
+				boolean d = roomDataService.addRoom(roomPO);
+				roo = roo&&d;
+			}
+			boolean strategy = true;
+			for(HotelStrategyVO hotelStrategyVO: hotelStrategyVOs){
+				HotelStrategyPO hotelStrategyPO = new 
+						 HotelStrategyPO(hotelStrategyVO);
+				boolean h = hotelStrategyDataService.add(hotelStrategyPO);
+				strategy = strategy&&h;
+			}
+			/*
+			 * 没有label的dataservice
+			 */
+			
+			// TODO Auto-generated method stub
+			boolean lab = true;
+			for(Label label:labels){
+//				lab = lab&&;
+			}
+			return (order&&a&&lab&&strategy&&roo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return false;
@@ -160,14 +195,14 @@ public class Hotel_bl implements Hotel_blservice {
 	}
 
 	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId) {
-		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
 			ArrayList<OrderPO> orderPOList = (ArrayList<OrderPO>)orderDataService.findOrders(userId, "userId");
 			//遍历完成的订单
 			for(OrderPO po : orderPOList){
 				if(po.getStatus().equals(OrderState.FINISHED)){
-					HotelPO hotelPO = dataService.find(po.getHotelId());
-					hotelInfoVOs.add(new HotelInfoVO(hotelPO));
+					HotelInfoVO hotelInfoVO = getHotelInfo(po.getHotelId());
+					hotelInfoVOs.add(hotelInfoVO);
 				}
 			}
 		} catch (RemoteException e) {
@@ -183,81 +218,32 @@ public class Hotel_bl implements Hotel_blservice {
 		try {
 			ArrayList<HotelPO> hotelPOs = dataService.getAllHotels();
 			for(HotelPO po : hotelPOs){
-				hotelInfoVOs.add(new HotelInfoVO(po));
+				HotelInfoVO hotelInfoVO = getHotelInfo(po.getHotelId());
+				hotelInfoVOs.add(hotelInfoVO);
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return hotelInfoVOs;
-	}
-
-
-	@Override
-	public String getHotelGradeAssessment(String hotelID) {
-		try {
-			HotelPO hotelPO = dataService.find(hotelID);
-			return hotelPO.getGrade();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@Override
-	public String[] getHotelTagAssessment(String hotelID) {
-		return null;
 	}
 
 	@Override
 	public ArrayList<HotelInfoVO> getHotelFromName(String text) {
+		
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
 		try {
 			ArrayList<HotelPO> hotelPOs = dataService.getAllHotels();
 			for(HotelPO po : hotelPOs){
-				if(po.getHotelName().equals(text))
-					hotelInfoVOs.add(new HotelInfoVO(po));
+				if(po.getHotelName().contains(text)){
+					HotelInfoVO hotelInfoVO = getHotelInfo(po.getHotelId());
+					hotelInfoVOs.add(hotelInfoVO);
+				}	
 			}
+			return hotelInfoVOs;
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return null;
 		}
-		
-		return hotelInfoVOs;
-	}
-
-	@Override
-	public String getHotelRoomPrice(String hotelID) {
-		String roomAndPrice = null;
-		ArrayList<RoomPO> roomPOs = null; 
-		try {
-			roomPOs = RemoteHelper.getInstance().getRoomDataService().getAllRoomPO();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		for(RoomPO roomPO: roomPOs){
-			if(roomPO.getHotelId().equals(hotelID))
-				roomAndPrice = roomAndPrice+","+roomPO.getType()+"_"+roomPO.getPrice();
-		}
-		return roomAndPrice;
-	}
-
-	@Override
-	public String genarateHotelID() {
-		try {
-			return RemoteHelper.getInstance().getIdGernerateService().gernerateId();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@Override
-	public String genarateHotelStaffID() {
-		try {
-			return RemoteHelper.getInstance().getIdGernerateService().gernerateId();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 }
