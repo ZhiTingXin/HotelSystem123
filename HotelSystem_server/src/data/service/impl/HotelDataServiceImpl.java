@@ -30,9 +30,9 @@ public class HotelDataServiceImpl implements HotelDataService{
 		return hotelDao.get(hotelId);
 	}
 
-	public ArrayList<HotelPO> getHotels(String strict, String type) throws RemoteException {
+	public ArrayList<HotelPO> getHotels(String strict) throws RemoteException {
 
-		return hotelDao.getHotels(strict, type);
+		return hotelDao.getHotels(strict);
 	}
 	public boolean update(HotelPO hotel) throws RemoteException{
 		return hotelDao.update(hotel);

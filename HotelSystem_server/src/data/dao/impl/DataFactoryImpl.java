@@ -1,6 +1,7 @@
 package data.dao.impl;
 
 import data.dao.AdviceFeedbackDao;
+import data.dao.AssessmentDao;
 import data.dao.CustomerDao;
 import data.dao.DataFactory;
 import data.dao.HotelDao;
@@ -62,6 +63,10 @@ public class DataFactoryImpl implements DataFactory{
 
 	public RoomDao getRoomDao() {
 		return new RoomDaoImpl();
+	}
+
+	public AssessmentDao getAssessmentDao() {
+		return new AssessmentDaoImpl();
 	}
 
 }
