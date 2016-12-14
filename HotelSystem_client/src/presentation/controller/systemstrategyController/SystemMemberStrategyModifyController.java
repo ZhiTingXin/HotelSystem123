@@ -6,7 +6,9 @@ import VO.SystemStrategyVO;
 import VO.VipStrategyVO;
 import VO.VipVO;
 import blservice.SystemStrategy_blservice;
+import blservice.VipStrategy_blService;
 import blservice.impl.SystemStrategy_bl;
+import blservice.impl.VipStrategy_blServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -65,9 +67,11 @@ public class SystemMemberStrategyModifyController {
 	private SystemStrategyVO systemStrategyVO;
 	private ArrayList<VipVO> vipVOList;
 	private SystemStrategy_blservice systemStrategy_blservice;
+	private VipStrategy_blService vipStrategy_blService;
 	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();// ÉùÃ÷
 
 	public SystemMemberStrategyModifyController() {
+		vipStrategy_blService = new VipStrategy_blServiceImpl();
 		systemStrategy_blservice = new SystemStrategy_bl();
 	}
 
@@ -86,7 +90,7 @@ public class SystemMemberStrategyModifyController {
 		nameOfStrategy.setText(systemStrategyVO.getSystemStrategyName());
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
 		// ³õÊ¼»¯ table
-		vipVOList = systemStrategy_blservice.getVipStrategyVOList();
+		vipVOList = vipStrategy_blService.getVipStrategy().getVipStrategyVOList();
 		for (VipVO vipVO : vipVOList) {
 			vipVOData.add(vipVO);
 		}
@@ -154,7 +158,7 @@ public class SystemMemberStrategyModifyController {
 		}
 		VipStrategyVO vipStrategyVO = new VipStrategyVO();
 		vipStrategyVO.setVipStrategyVOList(newVipStrategyVoList);
-		boolean isModify2 = systemStrategy_blservice.modifyVipStrategyVOList(vipStrategyVO);
+		boolean isModify2 = vipStrategy_blService.modifyVipStrategy(vipStrategyVO);
 
 		if (isModify1 && isModify2) {
 			Alert alert = new Alert(AlertType.INFORMATION);

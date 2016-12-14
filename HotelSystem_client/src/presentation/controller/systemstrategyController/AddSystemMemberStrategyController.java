@@ -6,7 +6,9 @@ import VO.SystemStrategyVO;
 import VO.VipStrategyVO;
 import VO.VipVO;
 import blservice.SystemStrategy_blservice;
+import blservice.VipStrategy_blService;
 import blservice.impl.SystemStrategy_bl;
+import blservice.impl.VipStrategy_blServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -62,11 +64,13 @@ public class AddSystemMemberStrategyController {
 
 		private Main mainScene;
 		private SystemStaffVO systemStaffVO;
-		private SystemStrategy_blservice systemStrategy_blservice;
+		private SystemStrategy_blservice strategy_blservice;
+		private VipStrategy_blService vipStrategy_blService;
 		private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();// 声明
 
 		public AddSystemMemberStrategyController() {
-			systemStrategy_blservice = new SystemStrategy_bl();
+			strategy_blservice = new SystemStrategy_bl();
+			vipStrategy_blService = new VipStrategy_blServiceImpl();
 		}
 
 		public void initilize(Main mainScene, SystemStaffVO systemStaffVO) {
@@ -144,7 +148,7 @@ public class AddSystemMemberStrategyController {
 			}
 			// SystemStrategyVO构造函数
 			SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, strategyState);
-			boolean isModify1 = systemStrategy_blservice.makeSystemStrategy(newSystemStrategy);
+			boolean isModify1 = strategy_blservice.makeSystemStrategy(newSystemStrategy);
 
 			vipVOData.clear();// 清空
 			vipVOData = memberStrategyTable.getItems();
@@ -155,7 +159,7 @@ public class AddSystemMemberStrategyController {
 			}
 			VipStrategyVO vipStrategyVO = new VipStrategyVO();
 			vipStrategyVO.setVipStrategyVOList(newVipStrategyVoList);
-			boolean isModify2 = systemStrategy_blservice.makeVipStrategyVOList(vipStrategyVO);
+			boolean isModify2 = vipStrategy_blService.makeVipStrategy(vipStrategyVO);
 
 			if (isModify1 && isModify2) {
 				Alert alert = new Alert(AlertType.INFORMATION);
