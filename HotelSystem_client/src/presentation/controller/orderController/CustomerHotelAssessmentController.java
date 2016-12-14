@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
 
+//待修改的界面
 public class CustomerHotelAssessmentController {
 
 	@FXML
