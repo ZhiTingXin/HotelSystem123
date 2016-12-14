@@ -12,8 +12,8 @@ public interface AdviceFeedBack_blservice {
 
 	public boolean modifyAdviceFeedBack(AdviceFeedBackVO advicefeedbackvo);
 
-	public ArrayList<AdviceFeedBackVO> getUnprocessedAdvice(String systemstaffId);
+	public ArrayList<AdviceFeedBackVO> getUnprocessedAdvice();
 
-    public ArrayList<AdviceFeedBackVO> getProcessedAdvice(String systemstaffId);
+    public ArrayList<AdviceFeedBackVO> getProcessedAdvice();
 	
 }

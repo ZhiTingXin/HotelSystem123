@@ -12,20 +12,17 @@ public class CustomerPO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String id;
-	
 	private String userName;
 	private String phone;
-
 	private int credit;
-
 	private int memberGrade;
-	
 	private LocalDate birthday;
 	
 	public CustomerPO() {
 	}
 
 	public CustomerPO(CustomerVO customerVO){
+		super();
 		this.birthday = customerVO.getBirthday();
 		this.id = customerVO.getId();
 		this.userName = customerVO.getUsername();

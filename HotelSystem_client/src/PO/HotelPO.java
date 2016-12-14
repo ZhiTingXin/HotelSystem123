@@ -19,6 +19,8 @@ public class HotelPO implements Serializable{
 	private String hotelStaffId;
 	private String hotelStrict;
 	private String hotelName;
+	private String hotelDiscription;
+	private String hotelAddress;
 	
 	//Hotel的构造方法
 	public HotelPO(String hid,String hsid,String hstri,String hotelname){
@@ -31,10 +33,13 @@ public class HotelPO implements Serializable{
 	
 	//VO > PO structure
 	public HotelPO(HotelInfoVO hotelInfoVO){
+		super();
 		this.hotelId = hotelInfoVO.getHotelID();
 		this.hotelStaffId = hotelInfoVO.getHotelStaffId();
 		this.hotelStrict = hotelInfoVO.getHotelDistrict();
 		this.hotelName = hotelInfoVO.getHotelName();
+		this.hotelAddress = hotelInfoVO.getHotelAddress();
+		this.hotelDiscription = hotelInfoVO.getHotelDiscription();
 	}
 	
 	
@@ -69,5 +74,21 @@ public class HotelPO implements Serializable{
 	}
 	public void setGrade(String gra){
 		this.grade = gra;
+	}
+
+	public String getHotelDiscription() {
+		return hotelDiscription;
+	}
+
+	public void setHotelDiscription(String hotelDiscription) {
+		this.hotelDiscription = hotelDiscription;
+	}
+
+	public String getHotelAddress() {
+		return hotelAddress;
+	}
+
+	public void setHotelAddress(String hotelAddress) {
+		this.hotelAddress = hotelAddress;
 	}
 }

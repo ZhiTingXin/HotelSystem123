@@ -63,6 +63,14 @@ public class OrderDaoImpl implements OrderDao{
 			return orderL;
 		}
 	}
+	public List<OrderPO> getAllOrders() {
+		try {
+			return hibernateUtil.getAll("orderpo", OrderPO.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	
 }

@@ -1,7 +1,9 @@
 package PO;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
+import VO.AdviceFeedBackVO;
 import other.AdviceFeedBackState;
 
 public class AdviceFeedBackPO implements Serializable{
@@ -13,12 +15,20 @@ public class AdviceFeedBackPO implements Serializable{
      private String AdviceFeedBack_content;
      private String AdviceId;
      private String userId;
+     private LocalDate senddate;
+     private LocalDate replydate;
+     private String replycontent;
      
      public AdviceFeedBackPO(){}
-     public AdviceFeedBackPO(AdviceFeedBackState state,String content){
+     public AdviceFeedBackPO(AdviceFeedBackVO adviceFeedBackVO){
     	 super();
-    	 this.state =state;
-    	 this.AdviceFeedBack_content = content;
+    	 this.userId = adviceFeedBackVO.getUserID();
+    	 this.AdviceFeedBack_content = adviceFeedBackVO.getAdviceFeedBack_content();
+    	 this.AdviceId = adviceFeedBackVO.getAdviceId();
+    	 this.senddate = adviceFeedBackVO.getSendTime();
+    	 this.replycontent = adviceFeedBackVO.getReplyContent();
+    	 this.replydate = adviceFeedBackVO.getReplyTime();
+    	 this.state = adviceFeedBackVO.getState();
      }
      public AdviceFeedBackPO(String Adviceid,AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
   	   super();
@@ -27,8 +37,7 @@ public class AdviceFeedBackPO implements Serializable{
   	   this.state = state1;
   	   this.userId = userid;
      }
-
-
+     
 	public String getAdviceFeedBack_content() {
 		return AdviceFeedBack_content;
 	}
@@ -58,6 +67,24 @@ public class AdviceFeedBackPO implements Serializable{
 
 	public void setState(AdviceFeedBackState state) {
 		this.state = state;
+	}
+	public LocalDate getSenddate() {
+		return senddate;
+	}
+	public void setSenddate(LocalDate senddate) {
+		this.senddate = senddate;
+	}
+	public LocalDate getReplydate() {
+		return replydate;
+	}
+	public void setReplydate(LocalDate replydate) {
+		this.replydate = replydate;
+	}
+	public String getReplycontent() {
+		return replycontent;
+	}
+	public void setReplycontent(String replycontent) {
+		this.replycontent = replycontent;
 	}
        
 
