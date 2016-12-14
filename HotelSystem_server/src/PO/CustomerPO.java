@@ -1,7 +1,7 @@
 package PO;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,7 +25,7 @@ public class CustomerPO implements Serializable{
 
 	private int memberGrade;
 	
-	private Date birthday;
+	private LocalDate birthday;
 	
 	public CustomerPO() {
 	}
@@ -80,11 +80,11 @@ public class CustomerPO implements Serializable{
 		this.memberGrade = memberGrade;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 	

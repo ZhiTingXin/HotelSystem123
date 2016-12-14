@@ -1,8 +1,6 @@
 package data.dao.impl;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import PO.SystemStaffPO;
 import data.dao.SystemStaffDao;
 import other.hibernateUtil;

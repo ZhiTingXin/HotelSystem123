@@ -1,11 +1,5 @@
 package testAll;
 
-import PO.ClassToGreId;
-import data.service.IdGernerateService;
-import data.service.LoginDataService;
-import data.service.impl.IdGernerateServiceImpl;
-import data.service.impl.LoginDataServiceImpl;
-
 //import PO.AdviceFeedBackPO;
 //import data.service.AdviceFeedBackDataService;
 //import data.service.impl.AdviceFeedBackDataServiceImpl;
@@ -48,8 +42,8 @@ public class tes {
 //		classToGreId.setNeverChanged("1");
 //		IdGernerateService idGernerateService = new IdGernerateServiceImpl();
 //		String id = idGernerateService.gernerateId();
-		LoginDataService a = new LoginDataServiceImpl();
-		String string = "151250170";
-		System.out.println(a.findByID(string).getUserType());
+//		LoginDataService a = new LoginDataServiceImpl();
+//		String string = "151250170";
+//		System.out.println(a.findByID(string).getUserType());
 	}
 }

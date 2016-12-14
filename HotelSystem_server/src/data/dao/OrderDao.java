@@ -10,6 +10,7 @@ public interface OrderDao {
 	public boolean dalete(OrderPO order);
 	public OrderPO findorder(String orderId);
 	public List<OrderPO> findOrders(String userId,String type);
+	public List<OrderPO> getAllOrders();
 	
 }
 

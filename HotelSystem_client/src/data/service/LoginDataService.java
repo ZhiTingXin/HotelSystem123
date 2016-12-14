@@ -14,6 +14,6 @@ public interface LoginDataService extends Remote {
 	
 	public boolean update(LoginPO login)throws RemoteException;
 	
-	public LoginPO findByID(String userID) throws RemoteException;
-
+	public LoginPO findByID(String userID)throws RemoteException;
+	
 }

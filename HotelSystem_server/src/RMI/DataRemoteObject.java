@@ -12,6 +12,7 @@ import PO.HotelStaffPO;
 import PO.HotelStrategyPO;
 import PO.LoginPO;
 import PO.OrderPO;
+import PO.RoomPO;
 import PO.SystemManagerPO;
 import PO.SystemStaffPO;
 import PO.SystemStrategyPO;
@@ -21,9 +22,11 @@ import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.HotelStaffDataService;
 import data.service.HotelStrategyDataService;
+import data.service.HotelStrategyDataServiceImpl;
 import data.service.IdGernerateService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
+import data.service.RoomDataService;
 import data.service.SystemManagerDataService;
 import data.service.SystemStaffDataService;
 import data.service.SystemStrategyDataService;
@@ -32,20 +35,20 @@ import data.service.impl.AdviceFeedBackDataServiceImpl;
 import data.service.impl.CustomerDataServiceImpl;
 import data.service.impl.HotelDataServiceImpl;
 import data.service.impl.HotelStaffDataServiceImpl;
-import data.service.impl.HotelStrategyDataServiceImpl;
 import data.service.impl.IdGernerateServiceImpl;
 import data.service.impl.LoginDataServiceImpl;
 import data.service.impl.OrderDataServiceImpl;
+import data.service.impl.RoomDataServiceImpl;
 import data.service.impl.SystemManagerDataServiceImpl;
 import data.service.impl.SystemStaffDataServiceImpl;
 import data.service.impl.SystemStrategyDataServiceImpl;
 import data.service.impl.VipDataServiceImpl;
 import other.SystemStrategyType;
-import other.UserType;
 
 public class DataRemoteObject extends UnicastRemoteObject implements LoginDataService
 ,OrderDataService,HotelStrategyDataService,SystemStrategyDataService,HotelDataService,AdviceFeedBackDataService
-,HotelStaffDataService,SystemStaffDataService,SystemManagerDataService,CustomerDataService,VipDataService,IdGernerateService{
+,HotelStaffDataService,SystemStaffDataService,SystemManagerDataService
+,RoomDataService,CustomerDataService,VipDataService,IdGernerateService{
 	
 	/**
 	 * 
@@ -63,6 +66,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	private HotelStaffDataService hotelStaffDataService;
 	private VipDataService vipDataService;
 	private IdGernerateService idGernerateService;
+	private RoomDataService roomDataService;
 	protected DataRemoteObject() throws RemoteException {
 		vipDataService = new VipDataServiceImpl();
 		idGernerateService = new IdGernerateServiceImpl();
@@ -76,6 +80,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 		systemstrategy = new SystemStrategyDataServiceImpl();
 		hotel = new HotelDataServiceImpl();
 		advice = new AdviceFeedBackDataServiceImpl();
+		roomDataService = new RoomDataServiceImpl();
 	}
 	public boolean addAdvice(AdviceFeedBackPO advicefeedback) throws RemoteException {
 		return advice.addAdvice(advicefeedback);
@@ -244,9 +249,19 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public LoginPO findByID(String userID) throws RemoteException {
 		return login.findByID(userID);
 	}
-	public UserType test() throws RemoteException {
-		// TODO Auto-generated method stub
-		return UserType.CUSTOMER;
+	public List<OrderPO> getAllOrders() throws RemoteException {
+		return orderdata.getAllOrders();
 	}
-
+	public ArrayList<RoomPO> getAllRoomPO(String hotelid) throws RemoteException{
+		return roomDataService.getAllRoomPO(hotelid);
+	};
+	public RoomPO findRoomPO(String roomID) throws RemoteException{
+		return roomDataService.findRoomPO(roomID);
+	};
+    public boolean modify(RoomPO roomPO)throws RemoteException{
+    	return roomDataService.modify(roomPO);
+    };
+    public boolean addRoom(RoomPO roomPO) throws RemoteException{
+    	return roomDataService.addRoom(roomPO);
+    };
 }

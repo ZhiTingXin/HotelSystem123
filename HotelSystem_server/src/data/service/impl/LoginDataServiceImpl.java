@@ -43,8 +43,5 @@ public class LoginDataServiceImpl implements LoginDataService{
 		return loginPO;
 	}
     
-	public UserType test()throws RemoteException{
-		return UserType.CUSTOMER;
-	}
 
 }

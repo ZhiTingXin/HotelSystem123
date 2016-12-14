@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import VO.SystemManagerVO;
 import blservice.UserManagement_blservice;
 import blservice.impl.UserManagement_bl;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -63,8 +61,8 @@ public class SystemManagerMainController {
 		// ”“¿∏
 		LocalDate nowDate = LocalDate.now();
 		dateTime.setText(util.DateUtil.format(nowDate));
-		userNumber.setText(String.valueOf(userManagement_blservice.getCotemerNum()));
-		hotelNumber.setText(String.valueOf(userManagement_blservice.getHotelNum()));
+		userNumber.setText(String.valueOf(userManagement_blservice.getCustomerNum()));
+		hotelNumber.setText(String.valueOf(userManagement_blservice.getHotelStaffNum()));
 		hotelStaffNumber.setText(String.valueOf(userManagement_blservice.getHotelStaffNum()));
 		systemStaffNumber.setText(String.valueOf(userManagement_blservice.getSystemStaffNum()));
 		todayOrderNumber.setText(String.valueOf(userManagement_blservice.getTodayOrderNumberNum()));

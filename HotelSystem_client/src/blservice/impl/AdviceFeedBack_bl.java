@@ -14,7 +14,7 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 	AdviceFeedBackDataService adviceFeedBackDataService =	RemoteHelper.getInstance().getAdviceFeedBackDataService();
 	public ArrayList<AdviceFeedBackVO> getAllAdvice(String userID) {
 		try {
-			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAdvices(userID, "type");
+			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAdvices(userID, "userId");
 			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 			for(int i = 0; i<poList.size(); i++){
 				voList.add(new AdviceFeedBackVO(poList.get(i)));
@@ -28,9 +28,7 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 	}
 
 	public boolean addAdviceFeedBack(AdviceFeedBackVO advicefeedbackvo) {
-		AdviceFeedBackState state1 = advicefeedbackvo.getState();
-		String adviceFeedBack_content = advicefeedbackvo.getAdviceFeedBack_content();
-		 AdviceFeedBackPO addPO =new AdviceFeedBackPO(state1,adviceFeedBack_content);
+		 AdviceFeedBackPO addPO =new AdviceFeedBackPO(advicefeedbackvo);
 		
 		try {
 			return adviceFeedBackDataService.addAdvice(addPO);
@@ -41,10 +39,7 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 	}
 
 	public boolean modifyAdviceFeedBack(AdviceFeedBackVO advicefeedbackvo) {
-		AdviceFeedBackState state1 = advicefeedbackvo.getState();
-		String adviceFeedBack_content = advicefeedbackvo.getAdviceFeedBack_content();
-		 AdviceFeedBackPO addPO =new AdviceFeedBackPO(state1,adviceFeedBack_content);
-		
+		 AdviceFeedBackPO addPO =new AdviceFeedBackPO(advicefeedbackvo);
 		try {
 			return adviceFeedBackDataService.updateAdvice(addPO);
 		} catch (RemoteException e) {
@@ -53,9 +48,9 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 		}
 	}
 
-	public ArrayList<AdviceFeedBackVO> getUnprocessedAdvice(String systemstaffId) {
+	public ArrayList<AdviceFeedBackVO> getUnprocessedAdvice() {
 		try {
-			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAdvices(systemstaffId, "null");
+			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAllAdvices();
 			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 			
 			for(AdviceFeedBackPO po : poList){
@@ -72,9 +67,9 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 		}
 	}
 
-	public ArrayList<AdviceFeedBackVO> getProcessedAdvice(String systemstaffId) {
+	public ArrayList<AdviceFeedBackVO> getProcessedAdvice() {
 		try {
-			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAdvices(systemstaffId, "null");
+			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAllAdvices();
 			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 			
 			for(AdviceFeedBackPO po : poList){

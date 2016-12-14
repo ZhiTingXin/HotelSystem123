@@ -37,6 +37,9 @@ public class OrderDataServiceImpl implements OrderDataService{
 	public List<OrderPO> findOrders(String userId, String type) throws RemoteException {
 		return orderDao.findOrders(userId, type);
 	}
+	public List<OrderPO> getAllOrders() throws RemoteException {
+		return orderDao.getAllOrders();
+	}
 
 
 }

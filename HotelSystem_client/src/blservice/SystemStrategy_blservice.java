@@ -3,7 +3,6 @@ package blservice;
 import java.util.ArrayList;
 
 import VO.SystemStrategyVO;
-import VO.VipStrategyVO;
 import VO.VipVO;
 import other.SystemStrategyType;
 
@@ -18,9 +17,6 @@ public interface SystemStrategy_blservice {
 	public boolean makeSystemStrategy(SystemStrategyVO systemstrategyvo);
 	
 	public boolean deleteSystemStrategy(SystemStrategyVO systemStrategyVO);
-	//12.08 新增
-	public ArrayList<VipVO> getVipStrategyVOList();//获取会员信息
-	public boolean modifyVipStrategyVOList(VipStrategyVO vipStrategyVO);
-	public boolean makeVipStrategyVOList(VipStrategyVO vipStrategyVO);
+	
 	public ArrayList<VipVO> getVipMemberVOList();//获取vip会员的vipVO 所谓的VIP 会员就是达到四级会员升级为VIP 会员
 }

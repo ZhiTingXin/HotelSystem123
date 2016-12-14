@@ -8,16 +8,11 @@ import other.memberState;
 public class CustomerVO {
 
 	private String id;
-
 	private String userName;
 	private String password;
-
 	private int credit;
-
 	private LocalDate birthday;
-
 	private String companyName;
-
 	private int memberGrade;
 	private memberState memberState;
 
@@ -25,25 +20,15 @@ public class CustomerVO {
 		this.memberState = memberState;
 	}
 	public CustomerVO(){}
-
-//	public CustomerVO() {
-//		this.id = "123456";
-//		this.birthday = LocalDate.of(1995, 11, 19);
-//		this.companyName = "NJU";
-//		this.credit = 100;
-//		this.userName = "William";
-//		this.password = "William123456";
-//		this.memberGrade = 1;
-//		this.memberState = memberState.NORMAL_MEMBER;
-//	}
-
+	
 	public CustomerVO(CustomerPO customerPO) {
 		super();
 		this.id = customerPO.getId();
 		this.userName = customerPO.getUserName();
 		this.credit = customerPO.getCredit();
-		//this.birthday = customerPO.getBirthday();
+		this.birthday = customerPO.getBirthday();
 		this.memberGrade = customerPO.getMemberGrade();
+		this.companyName = customerPO.getCompanyName();
 	}
 
 	public CustomerVO(String id, String userName, int credit) {

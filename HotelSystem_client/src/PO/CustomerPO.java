@@ -12,24 +12,23 @@ public class CustomerPO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String id;
-	
 	private String userName;
 	private String phone;
-
 	private int credit;
-
 	private int memberGrade;
-	
 	private LocalDate birthday;
+	public String companyName;
 	
 	public CustomerPO() {
 	}
 
 	public CustomerPO(CustomerVO customerVO){
+		super();
 		this.birthday = customerVO.getBirthday();
 		this.id = customerVO.getId();
 		this.userName = customerVO.getUsername();
 		//是否需要电话号码
+		this.companyName = customerVO.getCompanyName();
 		this.credit = customerVO.getCredit();
 		this.memberGrade = customerVO.getMemberGrade();
 	}
@@ -89,6 +88,14 @@ public class CustomerPO implements Serializable{
 
 	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 }
