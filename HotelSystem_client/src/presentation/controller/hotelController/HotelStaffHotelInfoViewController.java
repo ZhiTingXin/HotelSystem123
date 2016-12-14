@@ -63,8 +63,11 @@ public class HotelStaffHotelInfoViewController {
 		this.description.setText(this.hotel.getHotelDiscription());
 
 		// 标签方法
-
+		this.tag.setText(getTagString());
+		this.strategy.setText(getStrategyString());
+		this.grade.setText(this.hotel.getRank());
 		// 房间价格方法
+		this.price.setText(this.getRoomPrice());
 
 	}
 
@@ -82,5 +85,38 @@ public class HotelStaffHotelInfoViewController {
 
 	public void handleModify() {
 		this.mainScene.showHotelStaffHotelInfoModifyScene(hotelStaff, hotel);
+	}
+
+	
+	
+	// 酒店促销策略显示方法
+	private String getStrategyString() {
+		String strategyInfo = "";
+		int count = 0;
+		while (count < this.hotel.getHotelStrategy().size()) {
+			strategyInfo += this.hotel.getHotelStrategy().get(count).getStrategyInfo();
+			count++;
+		}
+		return strategyInfo;
+	}
+
+	// 酒店标签显示方法
+	private String getTagString() {
+		String tagInfo = "";
+		int count = 0;
+		while (count < this.hotel.getLabelList().size()) {
+			tagInfo += this.hotel.getLabelList().get(count).getLabel().toString();
+			count++;
+		}
+		return tagInfo;
+	}
+
+	// 房间价格显示方法
+	private String getRoomPrice() {
+		String doubleRoomInfo = "双人间：" + String.valueOf(this.hotel.getHotelRoomInfo()[0].getRoomPrice());
+		String bigRoomInfo = "大床房：" + String.valueOf(this.hotel.getHotelRoomInfo()[1].getRoomPrice());
+		String singleRoomInfo = "单人间：" + String.valueOf(this.hotel.getHotelRoomInfo()[2].getRoomPrice());
+		String multiRoomInfo = "多人间：" + String.valueOf(this.hotel.getHotelRoomInfo()[3].getRoomPrice());
+		return doubleRoomInfo + ";" + bigRoomInfo + ";" + singleRoomInfo + ";" + multiRoomInfo;
 	}
 }
