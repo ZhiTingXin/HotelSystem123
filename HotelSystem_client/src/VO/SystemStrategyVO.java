@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
 import other.StrategyState;
 import other.SystemStrategyType;
-import other.memberState;
 
 /**
  * 网站营销策略的名称 网站营销策略的内容 制定网站营销策略的网站营销人员的id 网站营销策略的开始时间 网站营销策略的结束时间
@@ -17,6 +17,7 @@ import other.memberState;
  */
 public class SystemStrategyVO {
 
+	private String id;
 	private String systemStaffID;
 	private String systemStrategyName;
 	private SystemStrategyType systemStrategyType;
@@ -26,8 +27,11 @@ public class SystemStrategyVO {
 	// 节日优惠
 	private LocalDate begin_date;
 	private LocalDate end_date;
-	// 会员优惠
-	private memberState memberState;
+	
+	public SystemStrategyVO(){
+		super();
+		this.id = IdGernerateServiceImpl.gernerateId();
+	}
     //PO到Vo的构造方法
 	public SystemStrategyVO(SystemStrategyPO strategypo){
 		super();
@@ -39,33 +43,6 @@ public class SystemStrategyVO {
 		this.strategyState = strategypo.getState();
 		this.discount = strategypo.getDiscount();
 		this.end_date =strategypo.getEnd_date();
-	}
-
-	// 节日优惠的VO的构造函数
-	public SystemStrategyVO(String strategyName, String strategyDsciption, LocalDate startDate, LocalDate endDate,
-			double discount, StrategyState state) {
-
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.begin_date = startDate;
-		this.end_date = endDate;
-		this.discount = discount;
-		this.strategyState = state;
-	}
-
-	//会员优惠VO构造函数
-	public SystemStrategyVO(String strategyName, String strategyDsciption,StrategyState state){
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.strategyState =  state;
-	}
-	//其他优惠构造函数
-	public SystemStrategyVO(String strategyName, String strategyDsciption,double discount,StrategyState state){
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.discount = discount;
-		this.strategyState =  state;
-		
 	}
 	public double getDiscount() {
 		return this.discount;
@@ -115,14 +92,12 @@ public class SystemStrategyVO {
 		this.strategyState = strategyState;
 	}
 	
-	public memberState getMemberState() {
-		return memberState;
+	public String getId() {
+		return id;
 	}
-
-	public void setMemberState(memberState memberState) {
-		this.memberState = memberState;
+	public void setId(String id) {
+		this.id = id;
 	}
-	
 	// ui属性-------------------分割线---------------------
 	public StringProperty getStrategyNameProperty() {
 		return new SimpleStringProperty(this.systemStrategyName);

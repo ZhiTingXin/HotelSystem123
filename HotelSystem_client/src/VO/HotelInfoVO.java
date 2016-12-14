@@ -6,6 +6,7 @@ import PO.HotelPO;
 import PO.Label;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
 
 public class HotelInfoVO {
 	String hotelID;
@@ -21,20 +22,10 @@ public class HotelInfoVO {
 	ArrayList<OrderVO> orderVOs;
 
 	public HotelInfoVO() {
-
+       super();
+       this.hotelID = IdGernerateServiceImpl.gernerateId();
 	}
 
-	public HotelInfoVO(String ID, String Name, String Address, String Discription) {
-		this.hotelName = Name;
-		this.hotelID = ID;
-		this.hotelAddress = Address;
-		this.hotelDiscription = Discription;
-	}
-
-	public HotelInfoVO(String name, String district) {
-		this.hotelName = name;
-		this.hotelDistrict = district;
-	}
 	// 构造方法
 
 	// *********used
