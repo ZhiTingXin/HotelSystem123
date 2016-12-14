@@ -54,7 +54,7 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 			
 			for(AdviceFeedBackPO po : poList){
-				if(po.getState().equals(AdviceFeedBackState.UNPROCESSED)){
+				if(po.getState()==(AdviceFeedBackState.UNPROCESSED)){
 					voList.add(new AdviceFeedBackVO(po));
 				}
 			}
@@ -73,7 +73,7 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 			
 			for(AdviceFeedBackPO po : poList){
-				if(po.getState().equals(AdviceFeedBackState.PROCESSED)){
+				if(po.getState()==(AdviceFeedBackState.PROCESSED)){
 					voList.add(new AdviceFeedBackVO(po));
 				}
 			}

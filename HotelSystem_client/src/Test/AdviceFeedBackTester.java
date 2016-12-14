@@ -10,6 +10,7 @@ import VO.AdviceFeedBackVO;
 import blservice.AdviceFeedBack_blservice;
 import blservice.impl.AdviceFeedBack_bl;
 import main.ClientRunner;
+import other.AdviceFeedBackState;
 import util.DateUtil;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -25,17 +26,18 @@ public class AdviceFeedBackTester {
 	   adviceFeedBackVO.setReplyContent("lizojie");
 	   adviceFeedBackVO.setUserID("151250");
 	   AdviceFeedBackVO adviceFeedBackVO1 = new AdviceFeedBackVO();
-	   adviceFeedBackVO.setAdviceFeedBack_content("ÍøÕ¾ÈÕ³£±ÀÀ£");
-	   adviceFeedBackVO.setReplyContent("lizojie");
-	   adviceFeedBackVO.setUserID("151250");
+	   adviceFeedBackVO1.setAdviceFeedBack_content("ÍøÕ¾ÈÕ³£±ÀÀ£");
+	   adviceFeedBackVO1.setReplyContent("lizojie");
+	   adviceFeedBackVO1.setUserID("151250");
 	   AdviceFeedBackVO adviceFeedBackVO2 = new AdviceFeedBackVO();
-	   adviceFeedBackVO.setAdviceFeedBack_content("ÍøÕ¾ÈÕ³£±ÀÀ£");
-	   adviceFeedBackVO.setReplyContent("lizojie");
-	   adviceFeedBackVO.setUserID("151250");
+	   adviceFeedBackVO2.setAdviceFeedBack_content("ÍøÕ¾ÈÕ³£±ÀÀ£");
+	   adviceFeedBackVO2.setReplyContent("lizojie");
+	   adviceFeedBackVO2.setUserID("151250");
 	   AdviceFeedBackVO adviceFeedBackVO3 = new AdviceFeedBackVO();
-	   adviceFeedBackVO.setAdviceFeedBack_content("ÍøÕ¾ÈÕ³£±ÀÀ£");
-	   adviceFeedBackVO.setReplyContent("lizojie");
-	   adviceFeedBackVO.setUserID("151250");
+	   adviceFeedBackVO3.setAdviceFeedBack_content("ÍøÕ¾ÈÕ³£±ÀÀ£");
+	   adviceFeedBackVO3.setReplyContent("lizojie");
+	   adviceFeedBackVO3.setUserID("151250");
+	   adviceFeedBackVO3.setState(AdviceFeedBackState.UNPROCESSED);
 	   adviceFeedBack_blservice.addAdviceFeedBack(adviceFeedBackVO3);
 	   adviceFeedBack_blservice.addAdviceFeedBack(adviceFeedBackVO2);
 	   adviceFeedBack_blservice.addAdviceFeedBack(adviceFeedBackVO1);
@@ -57,6 +59,6 @@ public class AdviceFeedBackTester {
   @Test
   public void test004getunprocessed(){
 	  ArrayList<AdviceFeedBackVO> adviceFeedBackVOs = adviceFeedBack_blservice.getUnprocessedAdvice();
-	  assertEquals(0, adviceFeedBackVOs.size());
+	  assertEquals(AdviceFeedBackState.UNPROCESSED, adviceFeedBackVOs.get(0).getState());
   }
 }

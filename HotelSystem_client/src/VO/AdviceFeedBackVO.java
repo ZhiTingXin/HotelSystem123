@@ -35,6 +35,9 @@ public class AdviceFeedBackVO {
 	public AdviceFeedBackState getState() {
 		return state;
 	}
+	public void setState(AdviceFeedBackState state) {
+		this.state = state;
+	}
 
 	public String getAdviceFeedBack_content() {
 		return AdviceFeedBack_content;

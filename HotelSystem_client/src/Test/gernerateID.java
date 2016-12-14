@@ -1,18 +1,20 @@
-//package Test;
+package Test;
+//import blservice.Login_blservice;
+//import blservice.impl.Login_bl;
 //import VO.AdviceFeedBackVO;
 //import blservice.AdviceFeedBack_blservice;
 //import blservice.impl.AdviceFeedBack_bl;
-//import main.ClientRunner;
+import main.ClientRunner;
 //import other.AdviceFeedBackState;
 //import util.DateUtil;
 //
-//public class gernerateID {
-//   public static void main(String [] args)throws Exception{
+public class gernerateID {
+   public static void main(String [] args)throws Exception{
 //	   /*
 //	    * 注册的测试代码
 //	    */
-//	   ClientRunner clientRunner = new ClientRunner();
-////	   Login_blservice login_blservice = new Login_bl();
+	   ClientRunner clientRunner = new ClientRunner();
+//	   Login_blservice login_blservice = new Login_bl();
 //	   /*
 //	    * 测试修改密码
 //	    */
@@ -26,7 +28,7 @@
 //	    * 用户的登录测试
 //	    */
 ////	   LoginPO login = new LoginPO("abcdskd", "mdaada");
-////	   System.out.println(login_blservice.comfirm("123456", "yxb19951119"));
+//	   System.out.println(login_blservice.comfirm("151250", "xzt123"));
 //	   /*
 //	    * 测试所属的用户类型
 //	    */
@@ -52,5 +54,5 @@
 //       /*
 //        * 
 //        */
-//   }
-//}
+   }
+}
