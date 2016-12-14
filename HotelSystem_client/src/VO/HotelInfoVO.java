@@ -14,7 +14,7 @@ public class HotelInfoVO {
 	String hotelStaffId;
 	String hotelAddress;
 	String hotelDiscription;
-    String rank;
+	String rank;
 	ArrayList<HotelRoomInfoVO> rooms;
 	ArrayList<HotelStrategyVO> hotelStrategy;
 	ArrayList<Label> labelList;
@@ -31,26 +31,26 @@ public class HotelInfoVO {
 		this.hotelDiscription = Discription;
 	}
 
-	public HotelInfoVO(String name,String district){
+	public HotelInfoVO(String name, String district) {
 		this.hotelName = name;
 		this.hotelDistrict = district;
 	}
 	// 构造方法
-	
-	//*********used
-	public HotelInfoVO(HotelPO hotelInfo,ArrayList<OrderVO> orderVOs,ArrayList<HotelStrategyVO> hotelStrategyVOs
-			,ArrayList<HotelRoomInfoVO> roomInfoVOs,ArrayList<Label> labels) {
+
+	// *********used
+	public HotelInfoVO(HotelPO hotelInfo, ArrayList<OrderVO> orderVOs, ArrayList<HotelStrategyVO> hotelStrategyVOs,
+			ArrayList<HotelRoomInfoVO> roomInfoVOs, ArrayList<Label> labels) {
 		super();
 		this.orderVOs = orderVOs;
 		this.rooms = roomInfoVOs;
 		this.hotelAddress = hotelInfo.getHotelAddress();
 		this.hotelDiscription = hotelInfo.getHotelDiscription();
-	    this.hotelDistrict = hotelInfo.getHotelStrict();
-	    this.hotelID = hotelInfo.getHotelId();
-	    this.hotelStaffId = hotelInfo.getHotelStaffId();
-	    this.hotelName = hotelInfo.getHotelName();
-	    this.hotelStrategy = hotelStrategyVOs;
-	    this.labelList = labels;
+		this.hotelDistrict = hotelInfo.getHotelStrict();
+		this.hotelID = hotelInfo.getHotelId();
+		this.hotelStaffId = hotelInfo.getHotelStaffId();
+		this.hotelName = hotelInfo.getHotelName();
+		this.hotelStrategy = hotelStrategyVOs;
+		this.labelList = labels;
 	}
 
 	public String getRank() {
@@ -60,7 +60,6 @@ public class HotelInfoVO {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
-
 
 	public String getHotelID() {
 		return hotelID;
@@ -153,5 +152,15 @@ public class HotelInfoVO {
 
 	public StringProperty getHotelDiscriptionProperty() {
 		return new SimpleStringProperty(this.hotelDiscription);
+	}
+
+	// 调用界面方法
+	public HotelRoomInfoVO[] getHotelRoomInfo() {
+		HotelRoomInfoVO[] list = new HotelRoomInfoVO[4];
+		list[0] = this.rooms.get(0);
+		list[1] = this.rooms.get(1);
+		list[2] = this.rooms.get(2);
+		list[3] = this.rooms.get(3);
+		return list;
 	}
 }

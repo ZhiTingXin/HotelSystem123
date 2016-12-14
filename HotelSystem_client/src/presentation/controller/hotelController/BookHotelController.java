@@ -119,15 +119,18 @@ public class BookHotelController {
 		this.days = 1;
 		this.duration.setText(String.valueOf(days) + "天");
 
+		// this.holidayDeals.setText();
+		// his.memberDeals.setText(value);
+		// this.otherDeals.setText(value);
+
 	}
 
 	public void handleIncrease() {
 		if (this.days < 30) {
 			this.days++;
 			this.order.setLastime(days);
-			// bl层方法
-			this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-			this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+			this.refreshActualPayment();
+			this.refreshOrderTotal();
 		}
 		this.duration.setText(String.valueOf(days) + "天");
 	}
@@ -136,9 +139,8 @@ public class BookHotelController {
 		if (this.days > 1) {
 			this.days--;
 			this.order.setLastime(days);
-			// bl层方法
-			this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-			this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+			this.refreshActualPayment();
+			this.refreshOrderTotal();
 		}
 		this.duration.setText(String.valueOf(days) + "天");
 	}
@@ -147,81 +149,72 @@ public class BookHotelController {
 		this.roomtype = RoomType.singlePersonRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("单人间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleMultiPersonRoom() {
 		this.roomtype = RoomType.multiPersonRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("多人间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleDoublePersonRoom() {
 		this.roomtype = RoomType.doublePersonRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("双人间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleBigBedRoom() {
 		this.roomtype = RoomType.bigBedRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("大床房");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleOneRoom() {
 		this.roomNum = 1;
 		this.order.setRoomNum(1);
 		this.numberOfRoom.setText("1间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleTwoRoom() {
 		this.roomNum = 2;
 		this.order.setRoomNum(2);
 		this.numberOfRoom.setText("2间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleThreeRoom() {
 		this.roomNum = 3;
 		this.order.setRoomNum(3);
 		this.numberOfRoom.setText("3间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleFourRoom() {
 		this.roomNum = 4;
 		this.order.setRoomNum(4);
 		this.numberOfRoom.setText("4间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleFiveRoom() {
 		this.roomNum = 5;
 		this.order.setRoomNum(5);
 		this.numberOfRoom.setText("5间");
-		// bl层方法
-		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
 	}
 
 	public void handleSave() {
@@ -251,8 +244,18 @@ public class BookHotelController {
 	public void handleDatePicker() {
 		// 获取时间
 		this.order.setEntryTime(dateOfCheckIn.getValue());
-		// bl层方法
+
+		this.refreshActualPayment();
+		this.refreshOrderTotal();
+	}
+
+	// 刷新总价
+	private void refreshOrderTotal() {
 		this.orderTotal.setText(String.valueOf(this.orderService.getOrderOriginalPrice(order)));
+	}
+
+	// 刷新实际价格
+	private void refreshActualPayment() {
 		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
 	}
 }
