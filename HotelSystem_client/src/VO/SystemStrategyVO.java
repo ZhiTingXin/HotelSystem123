@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.MenuButton;
 import other.StrategyState;
 import other.SystemStrategyType;
 import other.memberState;
@@ -42,32 +41,6 @@ public class SystemStrategyVO {
 		this.end_date =strategypo.getEnd_date();
 	}
 
-	// 节日优惠的VO的构造函数
-	public SystemStrategyVO(String strategyName, String strategyDsciption, LocalDate startDate, LocalDate endDate,
-			double discount, StrategyState state) {
-
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.begin_date = startDate;
-		this.end_date = endDate;
-		this.discount = discount;
-		this.strategyState = state;
-	}
-	
-	//会员优惠VO构造函数
-	public SystemStrategyVO(String strategyName, String strategyDsciption,StrategyState state){
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.strategyState =  state;
-	}
-	//其他优惠构造函数
-	public SystemStrategyVO(String strategyName, String strategyDsciption,double discount,StrategyState state){
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.discount = discount;
-		this.strategyState =  state;
-		
-	}
 	public double getDiscount() {
 		return this.discount;
 	}
