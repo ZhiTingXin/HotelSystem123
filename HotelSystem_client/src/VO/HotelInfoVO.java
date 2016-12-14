@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import PO.HotelPO;
 import PO.Label;
-import PO.Rank;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -15,21 +14,11 @@ public class HotelInfoVO {
 	String hotelStaffId;
 	String hotelAddress;
 	String hotelDiscription;
-
+    String rank;
 	ArrayList<HotelRoomInfoVO> rooms;
 	ArrayList<HotelStrategyVO> hotelStrategy;
-	ArrayList<Rank> rankList;
 	ArrayList<Label> labelList;
 	ArrayList<OrderVO> orderVOs;
-    HotelRoomInfoVO[] hotelRoomInfo;
-
-	public HotelRoomInfoVO[] getHotelRoomInfo() {
-		return hotelRoomInfo;
-	}
-
-	public void setHotelRoomInfo(HotelRoomInfoVO[] hotelRoomInfo) {
-		this.hotelRoomInfo = hotelRoomInfo;
-	}
 
 	public HotelInfoVO() {
 
@@ -62,6 +51,14 @@ public class HotelInfoVO {
 	    this.hotelName = hotelInfo.getHotelName();
 	    this.hotelStrategy = hotelStrategyVOs;
 	    this.labelList = labels;
+	}
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 
 
