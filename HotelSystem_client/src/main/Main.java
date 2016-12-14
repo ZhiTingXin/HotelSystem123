@@ -870,8 +870,8 @@ public class Main extends Application {
 >>>>>>> refs/remotes/origin/鍙舵檽娉�
 	 * show 网站营销人员 修改节日系统促销策略界面
 =======
->>>>>>> refs/remotes/origin/叶晓�?
-	 * show ��վӪ����Ա �޸Ľ���ϵͳ�������Խ���
+>>>>>>> refs/remotes/origin/叶晓�?
+	 * show ��վӪ����Ա �޸Ľ���ϵͳ�������Խ���
 >>>>>>> refs/remotes/origin/master
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
