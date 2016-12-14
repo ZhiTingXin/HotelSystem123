@@ -43,10 +43,10 @@ public class HotelDaoImpl implements HotelDao{
 		}
 	}
 
-	public ArrayList<HotelPO> getHotels(String strict, String type) {
+	public ArrayList<HotelPO> getHotels(String strict) {
 		ArrayList<HotelPO> list = null;
 		try{
-			list = (ArrayList<HotelPO>)hibernateUtil.findbySome("HotelPO", type, strict);
+			list = (ArrayList<HotelPO>)hibernateUtil.findbySome("HotelPO", "hotelStrict", strict);
 			return list;
 		}catch(Exception e){
 			e.printStackTrace();

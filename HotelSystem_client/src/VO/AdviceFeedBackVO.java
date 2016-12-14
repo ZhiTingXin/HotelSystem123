@@ -16,11 +16,10 @@ public class AdviceFeedBackVO {
 	private LocalDate sendTime;
 	private LocalDate replyTime;
 	private String replyContent;
-	private String id;
     private String userID;
 	public AdviceFeedBackVO() {
 		super();
-		this.id = IdGernerateServiceImpl.gernerateId();
+		this.AdviceId = IdGernerateServiceImpl.gernerateId();
 	}
 	public AdviceFeedBackVO(AdviceFeedBackPO advicefeedbackpo) {
 		super();
@@ -32,12 +31,7 @@ public class AdviceFeedBackVO {
 		this.state = advicefeedbackpo.getState();
 		this.AdviceId = advicefeedbackpo.getAdviceId();
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+
 	public AdviceFeedBackState getState() {
 		return state;
 	}
