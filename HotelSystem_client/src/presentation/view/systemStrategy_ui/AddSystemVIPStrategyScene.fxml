@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.systemstrategyController.SystemVIPStrategyModifyController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.systemstrategyController.AddSystemVIPStrategyController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -21,13 +21,13 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
-                  <Button fx:id="handleSave" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="保存策略" />
+                  <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="保存策略" />
                   <Button fx:id="back" layoutX="11.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="strategyType" layoutX="167.0" layoutY="32.0" text="修改VIP会员优惠">
+                  <Label fx:id="strategyType" layoutX="167.0" layoutY="32.0" text="新增VIP会员优惠">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -111,10 +111,14 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MenuButton layoutX="185.0" layoutY="219.0" mnemonicParsing="false" text="MenuButton">
+                  <Label layoutX="182.0" layoutY="224.0" text="会员等级达到" />
+                  <MenuButton layoutX="272.0" layoutY="219.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="会员等级">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="d1" />
-                      <MenuItem mnemonicParsing="false" text="d2" />
+                      <MenuItem mnemonicParsing="false" text="1级" />
+                        <MenuItem mnemonicParsing="false" text="2级" />
+                      <MenuItem mnemonicParsing="false" text="3级" />
+                        <MenuItem mnemonicParsing="false" text="4级" />
+                        <MenuItem mnemonicParsing="false" text="5级" />
                     </items>
                   </MenuButton>
                </children>

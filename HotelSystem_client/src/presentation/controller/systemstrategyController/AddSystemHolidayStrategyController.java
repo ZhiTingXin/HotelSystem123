@@ -32,8 +32,6 @@ public class AddSystemHolidayStrategyController {
 	@FXML
 	private Button save;
 	@FXML
-	private Button delete;
-	@FXML
 	private Button back;
 	@FXML
 	private Label strategyType;// 大标题
@@ -68,7 +66,6 @@ public class AddSystemHolidayStrategyController {
 		// 左栏
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
-		strategyType.setText("新增节日优惠");
 		SystemHolidayStrategyModifyShow(mainScene);
 	}
 

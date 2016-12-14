@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.MenuButton;
 import other.StrategyState;
 import other.SystemStrategyType;
 import other.memberState;
@@ -52,7 +53,7 @@ public class SystemStrategyVO {
 		this.discount = discount;
 		this.strategyState = state;
 	}
-
+	
 	//会员优惠VO构造函数
 	public SystemStrategyVO(String strategyName, String strategyDsciption,StrategyState state){
 		this.systemStrategyName = strategyName;
