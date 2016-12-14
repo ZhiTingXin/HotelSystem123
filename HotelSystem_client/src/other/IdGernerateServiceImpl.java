@@ -1,11 +1,10 @@
-package blservice.impl;
+package other;
 
 import RMI.RemoteHelper;
-import blservice.IdGernerateService;
 
-public class IdGernerateServiceImpl implements IdGernerateService{
+public class IdGernerateServiceImpl{
 	
-	public String gernerateId() {
+	public  static String gernerateId() {
 		try{
 			return RemoteHelper.getInstance().getIdGernerateService().gernerateId();
 		}catch (Exception e) {

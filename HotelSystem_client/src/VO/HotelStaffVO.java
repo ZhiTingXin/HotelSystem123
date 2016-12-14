@@ -7,9 +7,7 @@ public class HotelStaffVO {
 	private String id;
 	private String username;
 	private String hotelId;
-	//可能会删除
 	private String hotelName;
-	//是否需要phone
     private String phone;
 	private String password;
 
@@ -34,6 +32,9 @@ public class HotelStaffVO {
 
 	public String getPhone(){
 		return phone;
+	}
+	public void setPhone(String phone){
+		this.phone = phone;
 	}
 	public String getId() {
 		return id;
