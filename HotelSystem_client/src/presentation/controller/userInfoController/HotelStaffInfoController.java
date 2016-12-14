@@ -28,6 +28,8 @@ public class HotelStaffInfoController {
 	private Label hotelId;
 	@FXML
 	private Label hotelName;
+	@FXML
+	private Label phone;
 
 	private Main mainScene;
 	private UserInfo_blservice blservice;
@@ -50,6 +52,7 @@ public class HotelStaffInfoController {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.hotelId.setText(this.hotelStaff.getHotelId());
+		// this.phone.setText(value);
 	}
 
 	public void handleInfoModify() {
@@ -59,7 +62,8 @@ public class HotelStaffInfoController {
 	public void handlePasswordModify() {
 		this.mainScene.showHotelStaffPasswordModifyScene(hotelStaff);
 	}
-	public void handleBack(){
+
+	public void handleBack() {
 		this.mainScene.showHotelStaffMainScene(hotelStaff);
 	}
 }

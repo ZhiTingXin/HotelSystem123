@@ -92,17 +92,8 @@ public class HotelInfoController {
 		this.description.setText(this.hotel.getHotelDiscription());
 		this.roomInfoTabel.setItems(roomData);
 
-		//this.strategy.setText(this.service.getHotelStrategy(this.hotel.getHotelID()));
-		this.grade.setText(this.service.getHotelGradeAssessment(this.hotel.getHotelID()));
-
-		// 标签汇总方法
-		int count = 0;
-		String[] tagList = this.service.getHotelTagAssessment(this.hotel.getHotelID());
-		String tagSummary = "";
-		while (count < tagList.length) {
-			tagSummary += tagList[count];
-		}
-		this.tag.setText(tagSummary);
+		//标签方法
+		
 
 		// 图片方法
 		// this.hotelPicture2

@@ -26,6 +26,8 @@ public class SystemStaffInfoController {
 	private Label nameLabel;
 	@FXML
 	private Label districtName;
+	@FXML
+	private Label phone;
 
 	private Main mainScene;
 	private SystemStaffVO systemStaff;
@@ -41,7 +43,7 @@ public class SystemStaffInfoController {
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
 		this.districtName.setText(this.systemStaff.getBusinessDistrict());
-
+		// this.phone.setText(value);
 	}
 
 	public void initialize(Main mainScene, SystemStaffVO systemStaff) {
@@ -60,6 +62,6 @@ public class SystemStaffInfoController {
 	}
 
 	public void handleBack() {
-		// this.mainScene.showSystemStaffMainScene(systemStaff);
+		this.mainScene.showSystemStaffMainScene(systemStaff);
 	}
 }

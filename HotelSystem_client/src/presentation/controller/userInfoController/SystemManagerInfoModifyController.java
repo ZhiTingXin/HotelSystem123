@@ -25,6 +25,8 @@ public class SystemManagerInfoModifyController {
 	private TextField nameLabel;
 	@FXML
 	private Button changePicture;
+	@FXML
+	private TextField phoneTextField;
 
 	private Main mainScene;
 	private UserInfo_blservice blservice;
