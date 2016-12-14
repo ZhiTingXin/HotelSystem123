@@ -29,6 +29,8 @@ public class HotelStaffInfoModifyController {
 	private Label hotelName;
 	@FXML
 	private Button changePicture;
+	@FXML
+	private TextField phoneTextField;
 
 	private Main mainScene;
 	private UserInfo_blservice blservice;
@@ -51,15 +53,19 @@ public class HotelStaffInfoModifyController {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.hotelId.setText(this.hotelStaff.getHotelId());
+		// this.phoneTextField.setText(value);
 
 	}
 
 	public void handleSave() {
 		if (this.name.getText() != "") {
 			this.hotelStaff.setUsername(this.name.getText());
-			// bl²ã·½·¨
-			this.blservice.modifyHotelStaff(hotelStaff);
+
 		}
+		if (this.phoneTextField.getText() != "") {
+			// this.hotelStaff
+		}
+		this.blservice.modifyHotelStaff(hotelStaff);
 		this.mainScene.showHotelStaffInfoScene(this.hotelStaff);
 	}
 

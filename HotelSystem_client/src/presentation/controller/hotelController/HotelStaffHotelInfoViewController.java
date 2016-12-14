@@ -62,18 +62,10 @@ public class HotelStaffHotelInfoViewController {
 		this.district.setText(this.hotel.getHotelDistrict());
 		this.description.setText(this.hotel.getHotelDiscription());
 
-		// bl层暂时还没实现的方法
-		// this.strategy.setText(this.hotelService.getHotelStrategy(this.hotel.getHotelID()));
-		String[] tag = this.hotelService.getHotelTagAssessment(this.hotel.getHotelID());
-		String tagListLabel = "";
-		int count = 0;
-		while (count < tag.length) {
-			tagListLabel += tag[count];
-			count++;
-		}
-		this.tag.setText(tagListLabel);
+		// 标签方法
 
-		this.price.setText(this.hotelService.getHotelRoomPrice(this.hotel.getHotelID()));
+		// 房间价格方法
+
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff, HotelInfoVO hotel) {
