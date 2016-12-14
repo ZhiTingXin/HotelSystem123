@@ -37,6 +37,10 @@ public class CustomerInfoModifyController {
 	private DatePicker datePicker;
 	@FXML
 	private TextField companyTextField;
+	@FXML
+	private TextField phoneTextField;
+	@FXML
+	private Label stateLabel;
 
 	private Main mainScene;
 	private CustomerVO customer;
@@ -69,7 +73,7 @@ public class CustomerInfoModifyController {
 		} else if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
 			this.memberLabel.setText("普通会员");
 		}
-
+		// this.phoneTextField.setText();
 	}
 
 	public void handleBack() {
@@ -83,7 +87,9 @@ public class CustomerInfoModifyController {
 		if (this.companyTextField.getText() != "") {
 			this.customer.setCompanyName(this.companyTextField.getText());
 		}
-
+		if (this.phoneTextField.getText() != "") {
+			// this.customer
+		}
 		// 调用Bl层的方法对数据库进行修改
 		this.blservice.modifyCustomer(this.customer);
 		this.mainScene.showCustomerInfoScene(customer);

@@ -44,6 +44,8 @@ public class CustomerInfoController {
 	private ImageView leftMenuImage;
 	@FXML
 	private ImageView image;
+	@FXML
+	private Label phoneLabel;
 
 	private Main mainsence;
 	private CustomerVO Customer;
@@ -63,7 +65,7 @@ public class CustomerInfoController {
 	public void CustomerinfoShow(Main mainScene) {
 		this.idLabel.setText(Customer.getId());
 		this.nameLabel.setText(Customer.getUsername());
-		//this.birthdayLabel.setText(DateUtil.format(Customer.getBirthday()));
+		// this.birthdayLabel.setText(DateUtil.format(Customer.getBirthday()));
 		this.companyLabel.setText(Customer.getCompanyName());
 		this.creditLabel.setText(String.valueOf(Customer.getCredit()));
 
@@ -77,6 +79,8 @@ public class CustomerInfoController {
 
 		this.leftMenuIdLabel.setText(Customer.getId());
 		this.leftMenuNameLabel.setText(Customer.getUsername());
+		
+		// this.phoneLabel.setText();
 		// this.leftMenuImage.setImage(new Image("D:/ÎÒµÄÎÄµµ/Pictures/as"));
 	}
 
