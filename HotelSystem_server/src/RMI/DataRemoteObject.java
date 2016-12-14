@@ -41,7 +41,6 @@ import data.service.impl.SystemStaffDataServiceImpl;
 import data.service.impl.SystemStrategyDataServiceImpl;
 import data.service.impl.VipDataServiceImpl;
 import other.SystemStrategyType;
-import other.UserType;
 
 public class DataRemoteObject extends UnicastRemoteObject implements LoginDataService
 ,OrderDataService,HotelStrategyDataService,SystemStrategyDataService,HotelDataService,AdviceFeedBackDataService
@@ -244,9 +243,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public LoginPO findByID(String userID) throws RemoteException {
 		return login.findByID(userID);
 	}
-	public UserType test() throws RemoteException {
-		// TODO Auto-generated method stub
-		return UserType.CUSTOMER;
+	public List<OrderPO> getAllOrders() throws RemoteException {
+		return orderdata.getAllOrders();
 	}
-
 }

@@ -40,7 +40,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getOrdersOfUsers(String userID) {
 		
 		try {
-			ArrayList<OrderPO> poList = dataService.findOrders(userID, "customer");
+			ArrayList<OrderPO> poList = (ArrayList<OrderPO>)dataService.findOrders(userID, "customer");
 			ArrayList<OrderVO> voList = new ArrayList<OrderVO>();
 			
 			for(OrderPO po : poList){
@@ -115,7 +115,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getOrderFromInput(String text) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for(OrderPO po : orderPOs){
 				String hotelID = po.getHotelId();
 				HotelPO hotelPO = hotelDataService.find(hotelID);
@@ -167,7 +167,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> allOrders = dataService.getAllOrders();
+			ArrayList<OrderPO> allOrders = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for(OrderPO po : allOrders){
 				if(po.getHotelId().equals(hotelId)&&po.getEntryTime().equals("")){
 					orderVOs.add(new OrderVO(po));
@@ -183,7 +183,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for (OrderPO po : orderPOs){
 				if(po.getStatus().equals(OrderState.UNFINISHED))
 					orderVOs.add(new OrderVO(po));
@@ -198,7 +198,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for (OrderPO po : orderPOs){
 				if(po.getStatus().equals(OrderState.ABNOMAL))
 					orderVOs.add(new OrderVO(po));
@@ -213,7 +213,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for (OrderPO po : orderPOs){
 				if(po.getStatus().equals(OrderState.FINISHED))
 					orderVOs.add(new OrderVO(po));

@@ -54,7 +54,7 @@ public class Login_bl implements Login_blservice {
 	public HotelStaffVO getHotelStaff(String hotelStaffID) {
 		HotelStaffVO staffvo = null;
 		try {
-			HotelStaffPO staffpo = RemoteHelper.getInstance().getHotelStaffDataService().findStaff(hotelStaffID);
+			HotelStaffPO staffpo = RemoteHelper.getInstance().getHotelStaffDataService().findHotelStaff(hotelStaffID);
 			staffvo = new HotelStaffVO(staffpo);
 		} catch (RemoteException e) {
 			e.printStackTrace();

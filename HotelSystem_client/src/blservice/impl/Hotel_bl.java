@@ -83,7 +83,7 @@ public class Hotel_bl implements Hotel_blservice {
 	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOList = orderDataService.findOrders(userId, "userId");
+			ArrayList<OrderPO> orderPOList = (ArrayList<OrderPO>)orderDataService.findOrders(userId, "userId");
 			//遍历完成的订单
 			for(OrderPO po : orderPOList){
 				if(po.getStatus().equals(OrderState.FINISHED)){
@@ -126,7 +126,6 @@ public class Hotel_bl implements Hotel_blservice {
 
 	@Override
 	public String[] getHotelTagAssessment(String hotelID) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

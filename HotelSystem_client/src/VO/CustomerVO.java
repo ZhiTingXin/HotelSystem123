@@ -42,7 +42,7 @@ public class CustomerVO {
 		this.id = customerPO.getId();
 		this.userName = customerPO.getUserName();
 		this.credit = customerPO.getCredit();
-		//this.birthday = customerPO.getBirthday();
+		this.birthday = customerPO.getBirthday();
 		this.memberGrade = customerPO.getMemberGrade();
 	}
 

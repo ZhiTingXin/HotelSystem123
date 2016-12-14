@@ -70,7 +70,7 @@ public class HotelInfoController {
 		this.service = new Hotel_bl();
 		this.customer = customer;
 		this.hotel = hotel;
-		this.hotelRoomInfo = hotel.getRoomInfo();
+		this.hotelRoomInfo = hotel.getHotelRoomInfo();
 		this.roomData.add(this.hotelRoomInfo[0]);
 		this.roomData.add(this.hotelRoomInfo[1]);
 		this.roomData.add(this.hotelRoomInfo[2]);

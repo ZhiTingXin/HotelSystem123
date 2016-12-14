@@ -32,7 +32,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 	public HotelStaffVO getHotelStaff(String hotelStaffId) {
 		HotelStaffVO hotelStaffVO = null;
 		try {
-			HotelStaffPO hotelStaffPO = RemoteHelper.getInstance().getHotelStaffDataService().findStaff(hotelStaffId);
+			HotelStaffPO hotelStaffPO = RemoteHelper.getInstance().getHotelStaffDataService().findHotelStaff(hotelStaffId);
 			hotelStaffVO = new HotelStaffVO(hotelStaffPO);
 			return hotelStaffVO;
 		} catch (Exception e) {
