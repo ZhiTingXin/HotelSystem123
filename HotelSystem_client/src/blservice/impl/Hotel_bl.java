@@ -5,25 +5,52 @@ import java.util.ArrayList;
 
 import PO.HotelPO;
 import PO.HotelStaffPO;
+import PO.HotelStrategyPO;
+import PO.Label;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
 import VO.HotelInfoVO;
+import VO.HotelRoomInfoVO;
 import VO.HotelStaffVO;
+import VO.HotelStrategyVO;
+import VO.OrderVO;
 import blservice.Hotel_blservice;
 import data.service.HotelDataService;
+import data.service.HotelStrategyDataService;
 import data.service.OrderDataService;
+import data.service.RoomDataService;
 import other.OrderState;
 
 public class Hotel_bl implements Hotel_blservice {
 
 	HotelDataService dataService = RemoteHelper.getInstance().getHotelDataService();
+	RoomDataService roomDataService = RemoteHelper.getInstance().getRoomDataService();
 	OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
-	
+	HotelStrategyDataService hotelStrategyDataService = RemoteHelper.getInstance().getHotelStrategyDataService();
 	public HotelInfoVO getHotelInfo(String hotelId) {
 		try {
 			HotelPO hotelPO = dataService.find(hotelId);
-			HotelInfoVO hotelVO = new HotelInfoVO(hotelPO);
+			ArrayList<HotelStrategyPO> hotelStrategyPOs = hotelStrategyDataService.getAll(hotelId);
+			ArrayList<OrderPO> orderPOs = orderDataService.getAllHotelOrders(hotelId);
+			/*
+			 * 目前底层还没有label的实现
+			 */
+			ArrayList<Label> labels = new ArrayList<Label>();
+			ArrayList<RoomPO> roomPOs = roomDataService.getAllRoomPO(hotelId);
+			ArrayList<HotelStrategyVO> hotelStrategyVOs = new ArrayList<HotelStrategyVO>();
+			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+			ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
+			for(HotelStrategyPO hotelStrategyPO:hotelStrategyPOs){
+				hotelStrategyVOs.add(new HotelStrategyVO(hotelStrategyPO));
+			}
+			for(RoomPO room:roomPOs){
+				roomInfoVOs.add(new HotelRoomInfoVO(room));
+			}
+			for(OrderPO po:orderPOs){
+				orderVOs.add(new OrderVO(po));
+			}
+			HotelInfoVO hotelVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels);
 			
 			return hotelVO;
 		} catch (RemoteException e) {

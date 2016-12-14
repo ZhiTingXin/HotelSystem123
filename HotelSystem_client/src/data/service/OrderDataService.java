@@ -2,6 +2,7 @@ package data.service;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import PO.OrderPO;
@@ -13,4 +14,5 @@ public interface OrderDataService extends Remote {
 	public OrderPO findorder(String orderId)throws RemoteException;
 	public List<OrderPO> findOrders(String userId,String type)throws RemoteException;
 	public List<OrderPO> getAllOrders()throws RemoteException;
+	public ArrayList<OrderPO> getAllHotelOrders(String hotelid)throws RemoteException;
 }

@@ -3,7 +3,6 @@ package VO;
 import java.util.ArrayList;
 
 import PO.HotelPO;
-import PO.HotelStrategyPO;
 import PO.Label;
 import PO.Rank;
 import javafx.beans.property.SimpleStringProperty;
@@ -17,8 +16,8 @@ public class HotelInfoVO {
 	String hotelAddress;
 	String hotelDiscription;
 
-//	ArrayList<HotelRoomInfoVO> rooms;
-	ArrayList<HotelStrategyPO> hotelStrategy;
+	ArrayList<HotelRoomInfoVO> rooms;
+	ArrayList<HotelStrategyVO> hotelStrategy;
 	ArrayList<Rank> rankList;
 	ArrayList<Label> labelList;
 	ArrayList<OrderVO> orderVOs;
@@ -50,8 +49,19 @@ public class HotelInfoVO {
 	// 构造方法
 	
 	//*********used
-	public HotelInfoVO(HotelPO hotelInfo) {
-		// TODO Auto-generated constructor stub
+	public HotelInfoVO(HotelPO hotelInfo,ArrayList<OrderVO> orderVOs,ArrayList<HotelStrategyVO> hotelStrategyVOs
+			,ArrayList<HotelRoomInfoVO> roomInfoVOs,ArrayList<Label> labels) {
+		super();
+		this.orderVOs = orderVOs;
+		this.rooms = roomInfoVOs;
+		this.hotelAddress = hotelInfo.getHotelAddress();
+		this.hotelDiscription = hotelInfo.getHotelDiscription();
+	    this.hotelDistrict = hotelInfo.getHotelStrict();
+	    this.hotelID = hotelInfo.getHotelId();
+	    this.hotelStaffId = hotelInfo.getHotelStaffId();
+	    this.hotelName = hotelInfo.getHotelName();
+	    this.hotelStrategy = hotelStrategyVOs;
+	    this.labelList = labels;
 	}
 
 
@@ -103,19 +113,19 @@ public class HotelInfoVO {
 		this.hotelDiscription = hotelDiscription;
 	}
 
-//	public ArrayList<HotelRoomInfoVO> getRooms() {
-//		return rooms;
-//	}
-//
-//	public void setRooms(ArrayList<HotelRoomInfoVO> rooms) {
-//		this.rooms = rooms;
-//	}
+	public ArrayList<HotelRoomInfoVO> getRooms() {
+		return rooms;
+	}
 
-	public ArrayList<HotelStrategyPO> getHotelStrategy() {
+	public void setRooms(ArrayList<HotelRoomInfoVO> rooms) {
+		this.rooms = rooms;
+	}
+
+	public ArrayList<HotelStrategyVO> getHotelStrategy() {
 		return hotelStrategy;
 	}
 
-	public void setHotelStrategy(ArrayList<HotelStrategyPO> hotelStrategy) {
+	public void setHotelStrategy(ArrayList<HotelStrategyVO> hotelStrategy) {
 		this.hotelStrategy = hotelStrategy;
 	}
 
