@@ -1,9 +1,9 @@
 package presentation.controller.loginController;
 
-import VO.CustomerVO;
-import VO.HotelStaffVO;
 import blservice.Login_blservice;
+import blservice.UserManagement_blservice;
 import blservice.impl.Login_bl;
+import blservice.impl.UserManagement_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -24,6 +24,7 @@ public class LoginController {
 
 	private Main mainScene;
 	private Login_blservice loginService;
+	private UserManagement_blservice usermanagementService;
 
 	public LoginController() {
 
@@ -33,11 +34,13 @@ public class LoginController {
 		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.loginService = new Login_bl();
+		this.usermanagementService = new UserManagement_bl();
 		this.LoginShow();
 	}
 
 	public void LoginShow() {
-
+		this.userId.setPromptText("请输入您的ID");
+		this.userPassword.setPromptText("请输入您的密码");
 	}
 
 	public void handleLogin() {
@@ -45,20 +48,20 @@ public class LoginController {
 		String userPasswordInField = this.userPassword.getText();
 		boolean isComfirm = this.loginService.comfirm(userIdInField, userPasswordInField);
 		if (isComfirm) {
-			
-			//待修改方法
+
+			// 待修改方法
 			UserType loginType = this.loginService.assertUserType(userIdInField);
 			if (loginType.equals(UserType.CUSTOMER)) {
-				this.mainScene.showCustomerMainScene(new CustomerVO());
+				this.mainScene.showCustomerMainScene(this.usermanagementService.getCustomer(userIdInField));
 			}
 			if (loginType.equals(UserType.HOTELSTAFF)) {
-				this.mainScene.showHotelStaffMainScene(new HotelStaffVO());
+				this.mainScene.showHotelStaffMainScene(this.usermanagementService.getHotelStaff(userIdInField));
 			}
 			if (loginType.equals(UserType.SYSTEMSTAFF)) {
-				// this.mainScene.showCustomerMainScene(new CustomerVO());
+				this.mainScene.showSystemStaffMainScene(this.usermanagementService.getSystemStaff(userIdInField));
 			}
 			if (loginType.equals(UserType.SYSTEMMANAGER)) {
-				// this.mainScene.showCustomerMainScene(new CustomerVO());
+				this.mainScene.showSystemManagerMainScene(this.usermanagementService.getSystemManager(userIdInField));
 			}
 
 		}

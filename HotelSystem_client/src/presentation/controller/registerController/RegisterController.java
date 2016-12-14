@@ -1,5 +1,7 @@
 package presentation.controller.registerController;
 
+import java.time.LocalDate;
+
 import VO.CustomerVO;
 import VO.UserVO;
 import blservice.Register_blservice;
@@ -62,8 +64,7 @@ public class RegisterController {
 		String userNameInField = this.name.getText();
 		String userPasswordInField = this.password.getText();
 		String userPasswordConfirmInField = this.confirmPassword.getText();
-		String userBirthdayInField = this.birthday.getPromptText();
-
+		LocalDate userBirthday = this.birthday.getValue();
 		// Ìõ¼þÅÐ¶ÏÓï¾ä
 		boolean isPasswordReady = false;
 		boolean isNameReady = false;
@@ -94,7 +95,9 @@ public class RegisterController {
 				CustomerVO customer = new CustomerVO();
 				customer.setUsername(userNameInField);
 				customer.setPassword(userPasswordConfirmInField);
-				customer.setBirthday(this.birthday.getValue());
+				if (userBirthday != null) {
+					customer.setBirthday(userBirthday);
+				}
 				this.registerService.addRegister(customer);
 			}
 			this.mainScene.showCustomerMainScene(new CustomerVO());
