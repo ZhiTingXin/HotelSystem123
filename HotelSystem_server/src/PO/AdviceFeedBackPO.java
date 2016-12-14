@@ -1,6 +1,7 @@
 package PO;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,18 +16,25 @@ public class AdviceFeedBackPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private AdviceFeedBackState state;
+	   private AdviceFeedBackState state;
        private String AdviceFeedBack_content;
        private String AdviceId;
        private String userId;
+       private LocalDate senddate;
+       private LocalDate replydate;
+       private String replycontent;
        
        public AdviceFeedBackPO(){}
        
-       public AdviceFeedBackPO(AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
+       public AdviceFeedBackPO(String Adviceid,LocalDate send,LocalDate reply,String replyc,AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
     	   super();
+    	   this.AdviceId = Adviceid;
     	   this.AdviceFeedBack_content = adviceFeedBack_content;
     	   this.state = state1;
     	   this.userId = userid;
+    	   this.senddate = send;
+    	   this.replycontent = replyc;
+    	   this.replydate = reply;
        }
 
 
@@ -53,13 +61,37 @@ public class AdviceFeedBackPO implements Serializable{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
+    
 	public AdviceFeedBackState getState() {
 		return state;
 	}
 
 	public void setState(AdviceFeedBackState state) {
 		this.state = state;
+	}
+
+	public LocalDate getSenddate() {
+		return senddate;
+	}
+
+	public void setSenddate(LocalDate senddate) {
+		this.senddate = senddate;
+	}
+
+	public LocalDate getReplydate() {
+		return replydate;
+	}
+
+	public void setReplydate(LocalDate replydate) {
+		this.replydate = replydate;
+	}
+
+	public String getReplycontent() {
+		return replycontent;
+	}
+
+	public void setReplycontent(String replycontent) {
+		this.replycontent = replycontent;
 	}
        
 

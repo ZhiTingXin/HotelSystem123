@@ -4,8 +4,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="PO">
-   <class name="LoginPO" table="login">
-     <id name ="id" column = "id"></id>
-     <property name="userPassword" column="password"></property>
+   <class name="SystemManagerPO" table="systemmanager">
+     <id name ="managerID" column = "managerID"></id>
+     <property name="managerName" column="managerName"></property>
    </class>
 </hibernate-mapping>

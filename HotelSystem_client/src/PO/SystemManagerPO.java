@@ -23,11 +23,11 @@ public class SystemManagerPO implements Serializable{
 		this.managerName = managerName;
 	}
 	
-	public String getId() {
+	public String getManagerId() {
 		return managerID;
 	}
 
-	public void setId(String managerID) {
+	public void setManagerId(String managerID) {
 		this.managerID = managerID;
 	}
 

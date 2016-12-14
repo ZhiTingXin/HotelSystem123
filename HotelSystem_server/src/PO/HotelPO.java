@@ -20,22 +20,24 @@ public class HotelPO implements Serializable {
      * hotelStaffId 酒店工作人员的id
      * hotelStrict 酒店的商圈地址
      */
+	private String grade;
 	private String hotelId;
 	private String hotelStaffId;
 	private String hotelStrict;
 	private String hotelName;
+	private String hotelDiscription;
+	private String hotelAddress;
 	
 	//Hotel的构造方法
-	public HotelPO(){}
-	public HotelPO(String hid,String hsid,String hstri,String hotelname){
+	public HotelPO(String hid,String hsid,String hstri,String hotelname,String hoteldis,String address){
 		super();
 		this.hotelId = hid;
 		this.hotelStaffId = hsid;
 		this.hotelStrict = hstri;
 		this.hotelName = hotelname;
+		this.hotelAddress = address;
+		this.hotelDiscription = hoteldis;
 	}
-	
-	//属性的get和set方法
 	@Id
 	public String getHotelId() {
 		return hotelId;
@@ -61,5 +63,24 @@ public class HotelPO implements Serializable {
 	}
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String gra){
+		this.grade = gra;
+	}
+	public String getHotelDiscription() {
+		return hotelDiscription;
+	}
+	public void setHotelDiscription(String hotelDiscription) {
+		this.hotelDiscription = hotelDiscription;
+	}
+	public String getHotelAddress() {
+		return hotelAddress;
+	}
+	public void setHotelAddress(String hotelAddress) {
+		this.hotelAddress = hotelAddress;
 	}
 }

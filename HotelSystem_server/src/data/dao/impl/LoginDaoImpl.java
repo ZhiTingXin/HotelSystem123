@@ -51,4 +51,13 @@ public class LoginDaoImpl implements LoginDao{
 			return false;
 		}
 	}
+	
+
+	public LoginPO findById(String userId) {
+		try {
+			return (LoginPO)hibernateUtil.findById(LoginPO.class, userId);
+		} catch (Exception e) {
+		    return null;
+		}
+	}
 }

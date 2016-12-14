@@ -11,11 +11,8 @@ public class HotelStaffPO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private String id;
-
 	private String username;
-
 	private String phone;
-	
 	private String hotelId;
 
 
@@ -23,6 +20,7 @@ public class HotelStaffPO implements Serializable{
 	}
 	
 	public HotelStaffPO(HotelStaffVO hotelStaffVO){
+		super();
 		this.hotelId = hotelStaffVO.getHotelId();
 		this.username = hotelStaffVO.getUsername();
 		this.phone = hotelStaffVO.getPhone();
@@ -61,11 +59,11 @@ public class HotelStaffPO implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getHotelName() {
+	public String getHotelId() {
 		return hotelId;
 	}
 
-	public void setHotelName(String hotelId) {
+	public void setHotelId(String hotelId) {
 		this.hotelId = hotelId;
 	}
 

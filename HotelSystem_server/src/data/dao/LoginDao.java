@@ -11,4 +11,6 @@ public interface LoginDao {
 	public boolean delete(LoginPO login);
 	
 	public boolean update(LoginPO login);
+	
+	public LoginPO findById(String userId);
 }

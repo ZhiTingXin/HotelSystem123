@@ -36,8 +36,7 @@ public interface UserManagement_blservice {
     public boolean addHotelStaff(HotelStaffVO hotelStaffVO);
     
     //新增
-    public int getCotemerNum();//获取客户数量
-    public int getHotelNum();
+    public int getCustomerNum();//获取客户数量
     public int getHotelStaffNum();
     public int getSystemStaffNum();
     public int getTodayOrderNumberNum();

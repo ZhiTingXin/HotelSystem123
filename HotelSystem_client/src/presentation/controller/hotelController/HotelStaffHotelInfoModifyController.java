@@ -102,7 +102,7 @@ public class HotelStaffHotelInfoModifyController {
 		this.hotelStaff = hotelStaff;
 		this.service = new Hotel_bl();
 
-		this.roomInfo = this.hotel.getRoomInfo();
+		this.roomInfo = this.hotel.getHotelRoomInfo();
 		this.doubleRoomPrice = this.roomInfo[0].getRoomPrice();
 		this.singleRoomPrice = this.roomInfo[2].getRoomPrice();
 		this.multiRoomPrice = this.roomInfo[3].getRoomPrice();

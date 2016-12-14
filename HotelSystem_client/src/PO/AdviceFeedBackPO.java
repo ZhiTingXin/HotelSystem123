@@ -1,7 +1,9 @@
 package PO;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
+import VO.AdviceFeedBackVO;
 import other.AdviceFeedBackState;
 
 public class AdviceFeedBackPO implements Serializable{
@@ -9,21 +11,33 @@ public class AdviceFeedBackPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private AdviceFeedBackState state;
-       private String AdviceFeedBack_content;
-       private String AdviceId;
-     //  private String userId;
-       
-       public AdviceFeedBackPO(){}
-       
-       public AdviceFeedBackPO(AdviceFeedBackState state1,String adviceFeedBack_content){
-    	   super();
-    	   this.AdviceFeedBack_content = adviceFeedBack_content;
-    	   this.state = state1;
-    	   //this.userId = userid;
-       }
-
-
+	 private AdviceFeedBackState state;
+     private String AdviceFeedBack_content;
+     private String AdviceId;
+     private String userId;
+     private LocalDate senddate;
+     private LocalDate replydate;
+     private String replycontent;
+     
+     public AdviceFeedBackPO(){}
+     public AdviceFeedBackPO(AdviceFeedBackVO adviceFeedBackVO){
+    	 super();
+    	 this.userId = adviceFeedBackVO.getUserID();
+    	 this.AdviceFeedBack_content = adviceFeedBackVO.getAdviceFeedBack_content();
+    	 this.AdviceId = adviceFeedBackVO.getAdviceId();
+    	 this.senddate = adviceFeedBackVO.getSendTime();
+    	 this.replycontent = adviceFeedBackVO.getReplyContent();
+    	 this.replydate = adviceFeedBackVO.getReplyTime();
+    	 this.state = adviceFeedBackVO.getState();
+     }
+     public AdviceFeedBackPO(String Adviceid,AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
+  	   super();
+  	   this.AdviceId = Adviceid;
+  	   this.AdviceFeedBack_content = adviceFeedBack_content;
+  	   this.state = state1;
+  	   this.userId = userid;
+     }
+     
 	public String getAdviceFeedBack_content() {
 		return AdviceFeedBack_content;
 	}
@@ -38,22 +52,39 @@ public class AdviceFeedBackPO implements Serializable{
 	public void setAdviceId(String adviceId) {
 		AdviceId = adviceId;
 	}
-//
-//	public String getUserId() {
-//		return userId;
-//	}
-//
-//	public void setUserId(String userId) {
-//		this.userId = userId;
-//	}
 
+	public String getUserId() {
+		return userId;
+	}
 
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+  
 	public AdviceFeedBackState getState() {
 		return state;
 	}
 
 	public void setState(AdviceFeedBackState state) {
 		this.state = state;
+	}
+	public LocalDate getSenddate() {
+		return senddate;
+	}
+	public void setSenddate(LocalDate senddate) {
+		this.senddate = senddate;
+	}
+	public LocalDate getReplydate() {
+		return replydate;
+	}
+	public void setReplydate(LocalDate replydate) {
+		this.replydate = replydate;
+	}
+	public String getReplycontent() {
+		return replycontent;
+	}
+	public void setReplycontent(String replycontent) {
+		this.replycontent = replycontent;
 	}
        
 

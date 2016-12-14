@@ -7,6 +7,7 @@ import data.dao.DataFactory;
 import data.dao.LoginDao;
 import data.dao.impl.DataFactoryImpl;
 import data.service.LoginDataService;
+import other.UserType;
 
 
 public class LoginDataServiceImpl implements LoginDataService{
@@ -35,7 +36,12 @@ public class LoginDataServiceImpl implements LoginDataService{
 	public boolean update(LoginPO login) throws RemoteException{
 		return loginDao.update(login);
 	}
+
+
+	public LoginPO findByID(String userID) throws RemoteException {
+		LoginPO loginPO = new LoginPO("151250170", "helloword", UserType.CUSTOMER);
+		return loginPO;
+	}
     
-	
 
 }

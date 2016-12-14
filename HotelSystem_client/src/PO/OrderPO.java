@@ -5,9 +5,11 @@ import java.time.LocalDate;
 
 import VO.OrderVO;
 import other.OrderState;
+import other.RoomType;
 
 public class OrderPO implements Serializable{
 
+	
 	/**
 	 * 
 	 */
@@ -20,12 +22,17 @@ public class OrderPO implements Serializable{
 	private int lastTime;
 	private String orderInfo;
 	private double price;
+	
+	//
+	private RoomType roomType;
+
+	private int num_Room;
 
 	public OrderPO() {
 	}
 
 	public OrderPO(String Id, String htId, String userId, OrderState st, LocalDate entry, int last, String info,
-			int pr) {
+			int pr,RoomType roomType,int num_Room) {
 		super();
 		this.id = Id;
 		this.hotelId = htId;
@@ -35,6 +42,10 @@ public class OrderPO implements Serializable{
 		this.price = pr;
 		this.orderInfo = info;
 		this.lastTime = last;
+		
+		//
+		this.roomType = roomType;
+		this.num_Room = num_Room;
 	}
 
 	// structer vo >po
@@ -46,6 +57,8 @@ public class OrderPO implements Serializable{
 		status = orderVO.getOrderState();
 		price = orderVO.getPrice();
 		lastTime = orderVO.getLastime();
+		num_Room = orderVO.getRoomNum();
+		roomType = orderVO.getRoomType();
 	}
 
 	public String getId() {
@@ -64,6 +77,21 @@ public class OrderPO implements Serializable{
 		this.hotelId = hotelId;
 	}
 
+	public RoomType getRoomType() {
+		return roomType;
+	}
+	
+	public void setRoomType(RoomType roomType) {
+		this.roomType = roomType;
+	}
+	
+	public int getNum_Room() {
+		return num_Room;
+	}
+	
+	public void setNum_Room(int num_Room) {
+		this.num_Room = num_Room;
+	}
 	public String getUserId() {
 		return userId;
 	}
@@ -111,4 +139,5 @@ public class OrderPO implements Serializable{
 	public void setPrice(int price) {
 		this.price = price;
 	}
+
 }

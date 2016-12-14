@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import PO.CustomerPO;
 import PO.HotelPO;
 import PO.HotelStaffPO;
+import PO.OrderPO;
 import PO.SystemManagerPO;
 import PO.SystemStaffPO;
 import RMI.RemoteHelper;
@@ -14,6 +15,11 @@ import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.UserManagement_blservice;
+import data.service.CustomerDataService;
+import data.service.HotelDataService;
+import data.service.HotelStaffDataService;
+import data.service.OrderDataService;
+import data.service.SystemStaffDataService;
 
 public class UserManagement_bl implements UserManagement_blservice {
 
@@ -32,7 +38,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 	public HotelStaffVO getHotelStaff(String hotelStaffId) {
 		HotelStaffVO hotelStaffVO = null;
 		try {
-			HotelStaffPO hotelStaffPO = RemoteHelper.getInstance().getHotelStaffDataService().findStaff(hotelStaffId);
+			HotelStaffPO hotelStaffPO = RemoteHelper.getInstance().getHotelStaffDataService().findHotelStaff(hotelStaffId);
 			hotelStaffVO = new HotelStaffVO(hotelStaffPO);
 			return hotelStaffVO;
 		} catch (Exception e) {
@@ -143,38 +149,70 @@ public class UserManagement_bl implements UserManagement_blservice {
 	}
 	@Override
 	public ArrayList<HotelStaffVO> getAllHotelStaff() {
-		// TODO Auto-generated method stub
-		return null;
+		HotelStaffDataService hotelStaffDataService = RemoteHelper.getInstance().getHotelStaffDataService();
+		try {
+			ArrayList<HotelStaffPO> hotelStaffPOs = hotelStaffDataService.getAllHotelStaffs();
+			ArrayList<HotelStaffVO> hotelStaffVOs = new  ArrayList<HotelStaffVO>();
+			for(HotelStaffPO po:hotelStaffPOs){
+				hotelStaffVOs.add(new HotelStaffVO(po));
+			}
+			return hotelStaffVOs;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public ArrayList<SystemStaffVO> getAllSystemStaff() {
-		// TODO Auto-generated method stub
-		return null;
+		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
+		try {
+			ArrayList<SystemStaffPO> staffPOs = service.getAllSystemStaffs();
+			ArrayList<SystemStaffVO> staffVOs = new ArrayList<SystemStaffVO>();
+			for(SystemStaffPO po:staffPOs){
+				staffVOs.add(new SystemStaffVO(po));
+			}
+			return staffVOs;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
-	public int getCotemerNum() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getCustomerNum() {
+		CustomerDataService dataService = RemoteHelper.getInstance().getCustomerDataService();
+		try{
+			ArrayList<CustomerPO> customerPOs = dataService.getAllCustomers();
+			return customerPOs.size();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
-
-	@Override
-	public int getHotelNum() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
 	@Override
 	public int getHotelStaffNum() {
-		// TODO Auto-generated method stub
-		return 0;
+		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+		try {
+			ArrayList<HotelPO> hotelPOs = hotelDataService .getAllHotels();
+			return hotelPOs.size();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	@Override
 	public int getSystemStaffNum() {
-		// TODO Auto-generated method stub
-		return 0;
+		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
+		try{
+			ArrayList<SystemStaffPO> staffPOs = service.getAllSystemStaffs();
+			return staffPOs.size();
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	@Override
@@ -185,8 +223,14 @@ public class UserManagement_bl implements UserManagement_blservice {
 
 	@Override
 	public int getOrderNumber() {
-		// TODO Auto-generated method stub
-		return 0;
+		OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
+		try {
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)orderDataService.getAllOrders();
+			return orderPOs.size();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 	
 }

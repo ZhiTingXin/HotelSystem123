@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import PO.HotelPO;
 import PO.OrderPO;
+import PO.RoomPO;
 import RMI.RemoteHelper;
 import VO.OrderVO;
 import blservice.Order_blservice;
@@ -39,7 +40,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getOrdersOfUsers(String userID) {
 		
 		try {
-			ArrayList<OrderPO> poList = dataService.findOrders(userID, "customer");
+			ArrayList<OrderPO> poList = (ArrayList<OrderPO>)dataService.findOrders(userID, "customer");
 			ArrayList<OrderVO> voList = new ArrayList<OrderVO>();
 			
 			for(OrderPO po : poList){
@@ -114,7 +115,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getOrderFromInput(String text) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for(OrderPO po : orderPOs){
 				String hotelID = po.getHotelId();
 				HotelPO hotelPO = hotelDataService.find(hotelID);
@@ -132,31 +133,33 @@ public class Order_bl implements Order_blservice{
 
 	@Override
 	public String getOrderOriginalPrice(OrderVO order) {
-		String hotelID = order.getHotelID();
-		HotelPO hotelPO;
+		String roomID = order.getHotelID()+order.getRoomType();
+		String price = null;
 		try {
-			hotelPO = hotelDataService.find(hotelID);
-			String price = hotelPO.getPrice();
-			return price;
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
+			double dprice = roomPO.getNumber()*roomPO.getPrice();
+			price = String.valueOf(dprice);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		
+		return price;
 	}
 
 	@Override
 	//ºÚµ• µœ÷
 	public String getOrderPrice(OrderVO order, String id) {
-		String hotelID = order.getHotelID();
-		HotelPO hotelPO;
+		String roomID = order.getHotelID()+order.getRoomType();
+		String price = null;
 		try {
-			hotelPO = hotelDataService.find(hotelID);
-			String price = hotelPO.getPrice();
-			return price;
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
+			double dprice = roomPO.getNumber()*roomPO.getPrice();
+			price = String.valueOf(dprice);
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		
+		return price;
 	}
 
 	@Override
@@ -164,7 +167,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> allOrders = dataService.getAllOrders();
+			ArrayList<OrderPO> allOrders = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for(OrderPO po : allOrders){
 				if(po.getHotelId().equals(hotelId)&&po.getEntryTime().equals("")){
 					orderVOs.add(new OrderVO(po));
@@ -180,7 +183,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for (OrderPO po : orderPOs){
 				if(po.getStatus().equals(OrderState.UNFINISHED))
 					orderVOs.add(new OrderVO(po));
@@ -195,7 +198,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for (OrderPO po : orderPOs){
 				if(po.getStatus().equals(OrderState.ABNOMAL))
 					orderVOs.add(new OrderVO(po));
@@ -210,7 +213,7 @@ public class Order_bl implements Order_blservice{
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for (OrderPO po : orderPOs){
 				if(po.getStatus().equals(OrderState.FINISHED))
 					orderVOs.add(new OrderVO(po));

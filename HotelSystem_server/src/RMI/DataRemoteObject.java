@@ -240,5 +240,10 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public String gernerateId() throws RemoteException {
 		return idGernerateService.gernerateId();
 	}
-
+	public LoginPO findByID(String userID) throws RemoteException {
+		return login.findByID(userID);
+	}
+	public List<OrderPO> getAllOrders() throws RemoteException {
+		return orderdata.getAllOrders();
+	}
 }
