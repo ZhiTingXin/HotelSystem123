@@ -9,7 +9,7 @@ public class HotelStrategyVO {
 	public String hotelId;
 	private String id;
 	private String strategyInfo;
-
+	
 	public HotelStrategyVO(HotelStrategyPO hotelStrategy) {
 		super();
 		hotelId = hotelStrategy.getHotelID();

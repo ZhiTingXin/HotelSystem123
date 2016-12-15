@@ -1,5 +1,8 @@
 package testAll;
 
+import PO.ClassToGreId;
+import other.hibernateUtil;
+
 //import PO.AdviceFeedBackPO;
 //import data.service.AdviceFeedBackDataService;
 //import data.service.impl.AdviceFeedBackDataServiceImpl;
@@ -37,9 +40,10 @@ public class tes {
 //		LoginPO loginPO = new  LoginPO("gh1jg","ghgh");
 //		LoginDataService loginDataService = new LoginDataServiceImpl();
 //		loginDataService.add(loginPO);
-//		ClassToGreId classToGreId = new ClassToGreId();
-//		classToGreId.setId("123");
-//		classToGreId.setNeverChanged("1");
+		ClassToGreId classToGreId = new ClassToGreId();
+		classToGreId.setId("123");
+		classToGreId.setNeverChanged("1");
+		hibernateUtil.add(classToGreId);
 //		IdGernerateService idGernerateService = new IdGernerateServiceImpl();
 //		String id = idGernerateService.gernerateId();
 //		LoginDataService a = new LoginDataServiceImpl();

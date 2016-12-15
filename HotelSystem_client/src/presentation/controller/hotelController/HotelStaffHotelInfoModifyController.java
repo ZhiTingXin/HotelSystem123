@@ -72,10 +72,6 @@ public class HotelStaffHotelInfoModifyController {
 	private HotelInfoVO hotel;
 	private HotelRoomInfoVO[] roomInfo;
 	private Hotel_blservice service;
-	private int doubleRoomPrice;
-	private int singleRoomPrice;
-	private int multiRoomPrice;
-	private int bigRoomPrice;
 	private RoomType roomType;
 
 	public HotelStaffHotelInfoModifyController() {
@@ -103,10 +99,7 @@ public class HotelStaffHotelInfoModifyController {
 		this.service = new Hotel_bl();
 
 		this.roomInfo = this.hotel.getHotelRoomInfo();
-		this.doubleRoomPrice = this.roomInfo[0].getRoomPrice();
-		this.singleRoomPrice = this.roomInfo[2].getRoomPrice();
-		this.multiRoomPrice = this.roomInfo[3].getRoomPrice();
-		this.bigRoomPrice = this.roomInfo[1].getRoomPrice();
+
 		this.roomType = RoomType.doublePersonRoom;
 
 		this.HotelStaffHotelInfoModifyShow();
@@ -131,7 +124,7 @@ public class HotelStaffHotelInfoModifyController {
 		this.hotel.setHotelAddress(this.address.getText());
 		this.hotel.setHotelDiscription(this.description.getText());
 
-		// this.service.modifyHotelInfo(hotel);
+		this.service.modifyHotelInfo(hotel);
 		this.mainScene.showHotelStaffHotelInfoViewScene(hotelStaff, hotel);
 	}
 

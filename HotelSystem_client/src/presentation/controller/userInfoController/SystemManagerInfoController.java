@@ -24,6 +24,8 @@ public class SystemManagerInfoController {
 	private Label idLabel;
 	@FXML
 	private Label nameLabel;
+	@FXML
+	private Label phone;
 
 	private Main mainScene;
 	private SystemManagerVO systemManager;
@@ -45,6 +47,7 @@ public class SystemManagerInfoController {
 		leftNameLabel.setText(systemManager.getUserName());
 		idLabel.setText(systemManager.getId());
 		nameLabel.setText(systemManager.getUserName());
+		// this.phone.setText(value);
 
 	}
 

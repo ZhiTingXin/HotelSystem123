@@ -62,18 +62,13 @@ public class HotelStaffHotelInfoViewController {
 		this.district.setText(this.hotel.getHotelDistrict());
 		this.description.setText(this.hotel.getHotelDiscription());
 
-		// bl层暂时还没实现的方法
-		// this.strategy.setText(this.hotelService.getHotelStrategy(this.hotel.getHotelID()));
-		String[] tag = this.hotelService.getHotelTagAssessment(this.hotel.getHotelID());
-		String tagListLabel = "";
-		int count = 0;
-		while (count < tag.length) {
-			tagListLabel += tag[count];
-			count++;
-		}
-		this.tag.setText(tagListLabel);
+		// 标签方法
+		this.tag.setText(getTagString());
+		this.strategy.setText(getStrategyString());
+		this.grade.setText(this.hotel.getRank());
+		// 房间价格方法
+		this.price.setText(this.getRoomPrice());
 
-		this.price.setText(this.hotelService.getHotelRoomPrice(this.hotel.getHotelID()));
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff, HotelInfoVO hotel) {
@@ -90,5 +85,38 @@ public class HotelStaffHotelInfoViewController {
 
 	public void handleModify() {
 		this.mainScene.showHotelStaffHotelInfoModifyScene(hotelStaff, hotel);
+	}
+
+	
+	
+	// 酒店促销策略显示方法
+	private String getStrategyString() {
+		String strategyInfo = "";
+		int count = 0;
+		while (count < this.hotel.getHotelStrategy().size()) {
+			strategyInfo += this.hotel.getHotelStrategy().get(count).getStrategyInfo();
+			count++;
+		}
+		return strategyInfo;
+	}
+
+	// 酒店标签显示方法
+	private String getTagString() {
+		String tagInfo = "";
+		int count = 0;
+		while (count < this.hotel.getLabelList().size()) {
+			tagInfo += this.hotel.getLabelList().get(count).getLabel().toString();
+			count++;
+		}
+		return tagInfo;
+	}
+
+	// 房间价格显示方法
+	private String getRoomPrice() {
+		String doubleRoomInfo = "双人间：" + String.valueOf(this.hotel.getHotelRoomInfo()[0].getRoomPrice());
+		String bigRoomInfo = "大床房：" + String.valueOf(this.hotel.getHotelRoomInfo()[1].getRoomPrice());
+		String singleRoomInfo = "单人间：" + String.valueOf(this.hotel.getHotelRoomInfo()[2].getRoomPrice());
+		String multiRoomInfo = "多人间：" + String.valueOf(this.hotel.getHotelRoomInfo()[3].getRoomPrice());
+		return doubleRoomInfo + ";" + bigRoomInfo + ";" + singleRoomInfo + ";" + multiRoomInfo;
 	}
 }

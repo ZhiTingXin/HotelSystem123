@@ -66,25 +66,13 @@ public class HotelViewController {
 
 		// 获取所有酒店的ID
 		this.hotelList = this.service.getAllHotel();
-
-		int count = 0;
-
-		while (count < this.hotelList.size()) {
-
-			this.hotelData.add(this.hotelList.get(count));
-			count++;
-		}
-		// VO列表赋值给表格
-		this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
-		this.address.setCellValueFactory(cellData -> cellData.getValue().getHotelAddressProperty());
-		this.description.setCellValueFactory(cellData -> cellData.getValue().getHotelDiscriptionProperty());
+		this.refreshTabel();
 		this.HotelViewShow();
 	}
 
 	public void HotelViewShow() {
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
-		this.hotelTable.setItems(this.hotelData);
 	}
 
 	public void handleViewHotelInfo() {
@@ -93,22 +81,8 @@ public class HotelViewController {
 	}
 
 	public void handleGuess() {
-		// 刷新ID列表
 		this.hotelList = this.service.getListOfHotelPrefer(this.customer.getId());
-		int count = 0;
-
-		while (count < this.hotelList.size()) {
-
-			// 获取所有酒店的VO对象
-
-			this.hotelData.add(this.hotelList.get(count));
-			count++;
-		}
-		// VO列表赋值给表格
-		this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
-		this.address.setCellValueFactory(cellData -> cellData.getValue().getHotelAddressProperty());
-		this.description.setCellValueFactory(cellData -> cellData.getValue().getHotelDiscriptionProperty());
-		this.hotelTable.setItems(this.hotelData);
+		this.refreshTabel();
 	}
 
 	public void handleBack() {
@@ -119,20 +93,24 @@ public class HotelViewController {
 	public void handleSearch() {
 		this.hotelList = this.service.getHotelFromName(this.searchInput.getText());
 		if (hotelList != null && hotelList.size() > 0) {
-
-			int count = 0;
-
-			while (count < this.hotelList.size()) {
-				this.hotelData.add(this.hotelList.get(count));
-				count++;
-			}
-			// VO列表赋值给表格
-			this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
-			this.address.setCellValueFactory(cellData -> cellData.getValue().getHotelAddressProperty());
-			this.description.setCellValueFactory(cellData -> cellData.getValue().getHotelDiscriptionProperty());
-			this.hotelTable.setItems(this.hotelData);
+			this.refreshTabel();
 		} else {
 			this.StateField.setText("未找到匹配的酒店！");
 		}
+	}
+
+	// 刷新表格方法
+	private void refreshTabel() {
+		int count = 0;
+
+		while (count < this.hotelList.size()) {
+			this.hotelData.add(this.hotelList.get(count));
+			count++;
+		}
+		// VO列表赋值给表格
+		this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
+		this.address.setCellValueFactory(cellData -> cellData.getValue().getHotelAddressProperty());
+		this.description.setCellValueFactory(cellData -> cellData.getValue().getHotelDiscriptionProperty());
+		this.hotelTable.setItems(this.hotelData);
 	}
 }

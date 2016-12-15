@@ -68,16 +68,7 @@ public class CustomerOrderViewController {
 
 		// 表格方法
 		this.orderList = this.service.getOrdersOfUsers(this.customer.getId());
-		int count = 0;
-
-		while (count < this.orderList.size()) {
-			this.orderData.add(this.orderList.get(count));
-			count++;
-		}
-		this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
-		this.timeOfArrive.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
-		this.payment.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty());
-		this.stateOfOrder.setCellValueFactory(cellData -> cellData.getValue().getOrderStateProperty());
+		this.refreshTable();
 
 		this.CustomerOrderViewShow();
 	}
@@ -85,39 +76,41 @@ public class CustomerOrderViewController {
 	public void CustomerOrderViewShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
-		this.orderTable.setItems(orderData);
-
 	}
 
+	// 订单详细信息按钮监听方法
 	public void handleOrderInfo() {
 		int focusOn = this.orderTable.getSelectionModel().getFocusedIndex();
 		this.mainScene.showCustomerOrderInfoViewScene(customer, this.orderList.get(focusOn));
-
 	}
 
+	// 返回按钮监听方法
 	public void handleback() {
 		this.mainScene.showCustomerMainScene(customer);
 	}
 
+	// 搜索按钮监听方法
 	public void handleSearch() {
 		ArrayList<OrderVO> searchOrderList = this.service.getOrderFromInput(this.searchInput.getText());
 		if (searchOrderList != null && searchOrderList.size() > 0) {
-			int count = 0;
-			while (count < this.orderList.size()) {
-				this.orderData.add(this.orderList.get(count));
-				count++;
-			}
-			// VO列表赋值给表格
-			this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
-			// this.timeOfArrive.setCellValueFactory(cellData ->
-			// cellData.getValue().getEntryTimeProperty());
-			this.payment.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty());
-			this.stateOfOrder.setCellValueFactory(cellData -> cellData.getValue().getOrderStateProperty());
-			this.orderTable.setItems(orderData);
-
+			this.refreshTable();
 		} else {
 			this.StateField.setText("未找到匹配的酒店！");
 		}
 	}
 
+	// 表格刷新方法
+	private void refreshTable() {
+		int count = 0;
+		while (count < this.orderList.size()) {
+			this.orderData.add(this.orderList.get(count));
+			count++;
+		}
+		// VO列表赋值给表格
+		this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
+		this.timeOfArrive.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
+		this.payment.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty());
+		this.stateOfOrder.setCellValueFactory(cellData -> cellData.getValue().getOrderStateProperty());
+		this.orderTable.setItems(orderData);
+	}
 }

@@ -11,6 +11,6 @@ public interface HotelDataService extends Remote{
 	public boolean del(HotelPO hotel)throws RemoteException;
 	public HotelPO find(String hotelId)throws RemoteException;
     public boolean update(HotelPO hotel)throws RemoteException;
-	public ArrayList<HotelPO> getHotels(String strict,String type) throws RemoteException;
+	public ArrayList<HotelPO> getHotels(String strict) throws RemoteException;
 	public ArrayList<HotelPO> getAllHotels()throws RemoteException;
 }

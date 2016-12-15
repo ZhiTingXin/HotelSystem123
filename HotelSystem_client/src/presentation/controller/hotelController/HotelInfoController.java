@@ -92,17 +92,10 @@ public class HotelInfoController {
 		this.description.setText(this.hotel.getHotelDiscription());
 		this.roomInfoTabel.setItems(roomData);
 
-		//this.strategy.setText(this.service.getHotelStrategy(this.hotel.getHotelID()));
-		this.grade.setText(this.service.getHotelGradeAssessment(this.hotel.getHotelID()));
-
-		// 标签汇总方法
-		int count = 0;
-		String[] tagList = this.service.getHotelTagAssessment(this.hotel.getHotelID());
-		String tagSummary = "";
-		while (count < tagList.length) {
-			tagSummary += tagList[count];
-		}
-		this.tag.setText(tagSummary);
+		// 标签方法
+		this.strategy.setText(this.getStrategyString());
+		this.grade.setText(this.hotel.getRank());
+		this.tag.setText(this.getTagString());
 
 		// 图片方法
 		// this.hotelPicture2
@@ -115,4 +108,27 @@ public class HotelInfoController {
 	public void handleBack() {
 		this.mainScene.showCustomerHotelViewScene(customer);
 	}
+
+	// 酒店促销策略显示方法
+	private String getStrategyString() {
+		String strategyInfo = "";
+		int count = 0;
+		while (count < this.hotel.getHotelStrategy().size()) {
+			strategyInfo += this.hotel.getHotelStrategy().get(count).getStrategyInfo();
+			count++;
+		}
+		return strategyInfo;
+	}
+
+	// 酒店标签显示方法
+	private String getTagString() {
+		String tagInfo = "";
+		int count = 0;
+		while (count < this.hotel.getLabelList().size()) {
+			tagInfo += this.hotel.getLabelList().get(count).getLabel().toString();
+			count++;
+		}
+		return tagInfo;
+	}
+
 }

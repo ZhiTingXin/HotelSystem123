@@ -6,6 +6,7 @@ import PO.AdviceFeedBackPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.AdviceFeedBackState;
+import other.IdGernerateServiceImpl;
 
 public class AdviceFeedBackVO {
 
@@ -15,21 +16,11 @@ public class AdviceFeedBackVO {
 	private LocalDate sendTime;
 	private LocalDate replyTime;
 	private String replyContent;
-	private String userID;
+    private String userID;
 	public AdviceFeedBackVO() {
 		super();
+		this.AdviceId = IdGernerateServiceImpl.gernerateId();
 	}
-    public AdviceFeedBackVO(String userid,AdviceFeedBackState state,String coontent,String AdviceId,LocalDate send,LocalDate reply,
-    		String replycontent){
-    	super();
-    	this.userID = userid;
-    	this.AdviceId = AdviceId;
-    	this.state = state;
-    	this.AdviceFeedBack_content = coontent;
-    	this.sendTime = send;
-    	this.replyContent = replycontent;
-    	this.replyTime = reply;
-    }
 	public AdviceFeedBackVO(AdviceFeedBackPO advicefeedbackpo) {
 		super();
 		this.sendTime = advicefeedbackpo.getSenddate();
@@ -43,6 +34,9 @@ public class AdviceFeedBackVO {
 
 	public AdviceFeedBackState getState() {
 		return state;
+	}
+	public void setState(AdviceFeedBackState state) {
+		this.state = state;
 	}
 
 	public String getAdviceFeedBack_content() {

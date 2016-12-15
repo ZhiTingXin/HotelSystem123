@@ -3,11 +3,10 @@ package VO;
 import java.util.ArrayList;
 
 public class VipStrategyVO {
-
+    
 	private ArrayList<VipVO> vipStrategyVOList = new ArrayList<VipVO>();
 	
 	public VipStrategyVO() {
-		
 	}
 	public ArrayList<VipVO> getVipStrategyVOList() {
 		return vipStrategyVOList;

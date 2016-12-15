@@ -74,6 +74,7 @@ public class CustomerOrderInfoViewController {
 		this.IdLabel.setText(this.customer.getId());
 		this.nameLabel.setText(customer.getUsername());
 		this.nameOfHotel.setText(this.hotelService.getHotelInfo(this.order.getHotelID()).getHotelName());
+		// 确定是何种房间类型
 		if (this.order.getRoomType().equals(RoomType.bigBedRoom))
 			this.typeOfRoom.setText("大床房");
 		else if (this.order.getRoomType().equals(RoomType.doublePersonRoom))
@@ -85,8 +86,19 @@ public class CustomerOrderInfoViewController {
 
 		this.numberOfRoom.setText(String.valueOf(this.order.getRoomNum()));
 		this.durationOfOrder.setText(String.valueOf(this.order.getLastime()));
-		// this.timeOfArrive.setText();
+		this.timeOfArrive.setText(util.DateUtil.format(this.order.getEntryTime()));
 		this.actualPayment.setText(String.valueOf(this.order.getPrice()));
+		this.controlRecallOrAssessment();
+	}
+
+	// 返回方法
+	public void handleback() {
+		this.mainScene.showCustomerOrderViewScene(customer);
+	}
+
+	// 评价或撤销按钮的控制方法
+	private void controlRecallOrAssessment() {
+
 		if (this.order.getOrderState().equals(OrderState.FINISHED)) {
 			this.stateOfOrder.setText("已执行");
 			this.recallOrAssessment.setText("评价订单");
@@ -101,14 +113,11 @@ public class CustomerOrderInfoViewController {
 			this.stateOfOrder.setText("已评价");
 			this.recallOrAssessment.setText("修改评价");
 		}
-
 	}
 
-	public void handleback() {
-		this.mainScene.showCustomerOrderViewScene(customer);
-	}
-
+	// 评价或撤销按钮的监听方法
 	public void handleRecallOrAssessment() {
+
 		if (this.order.getOrderState().equals(OrderState.FINISHED)) {
 			this.stateOfOrder.setText("已执行");
 			this.recallOrAssessment.setText("评价订单");
@@ -125,6 +134,7 @@ public class CustomerOrderInfoViewController {
 		}
 	}
 
+	// 显示酒店的方法
 	public void handleViewHotel() {
 		this.mainScene.showCustomerHotelInfoScene(customer, this.hotelService.getHotelInfo(this.order.getHotelID()));
 	}

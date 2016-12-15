@@ -78,65 +78,48 @@ public class HotelStaffOrderViewController {
 		this.orderService = new Order_bl();
 
 		this.orderList = this.orderService.getUnfinishedOrders(this.hotelStaff.getHotelId());
-		int count = 0;
-		while (count < this.orderList.size()) {
-			this.orderData.add(this.orderList.get(count));
-		}
-		this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
-		this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIDProperty());
-		this.arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
-		this.orderTpye.setCellValueFactory(cellData -> cellData.getValue().getRoomInfoProperty());
+		this.refreshTable();
 
 		this.orderType.setText("未执行订单列表");
 		this.HotelStaffOrderViewShow();
 	}
 
+	// 返回按钮监听方法
 	public void handleBack() {
 		this.mainScene.showHotelStaffMainScene(hotelStaff);
 	}
 
+	// 订单详细信息按钮监听方法
 	public void handleViewOrderInfo() {
-		// 点击方法
 		int focus = 0;
 		focus = this.orderTable.getSelectionModel().getFocusedIndex();
 		this.mainScene.showHotelStaffManagementOrderScene(hotelStaff, this.orderList.get(focus));
 	}
 
+	// 未完成订单列表按钮监听方法
 	public void handleUndo() {
 		this.orderList = this.orderService.getUnfinishedOrders(this.hotelStaff.getHotelId());
-		int count = 0;
-		while (count < this.orderList.size()) {
-			this.orderData.add(this.orderList.get(count));
-		}
-		this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
-		this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIDProperty());
-		this.arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
-		this.orderTpye.setCellValueFactory(cellData -> cellData.getValue().getRoomInfoProperty());
-
+		this.refreshTable();
 		this.orderType.setText("未执行订单列表");
 	}
 
+	// 已完成订单列表按钮监听方法
 	public void handleDone() {
-		// this.orderList =
-		// this.orderService.getHotelDoneOrderList(this.hotelStaff.getHotelId());
-		// int count = 0;
-		// while (count < this.orderList.size()) {
-		// this.orderData.add(this.orderList.get(count));
-		// }
-		// this.orderId.setCellValueFactory(cellData ->
-		// cellData.getValue().getOrderIDProperty());
-		// this.customerId.setCellValueFactory(cellData ->
-		// cellData.getValue().getCustomerIDProperty());
-		// this.arriveTime.setCellValueFactory(cellData ->
-		// cellData.getValue().getEntryTimeProperty());
-		// this.orderTpye.setCellValueFactory(cellData ->
-		// cellData.getValue().getRoomInfoProperty());
-		//
-		// this.orderType.setText("已执行订单列表");
+		this.orderList = this.orderService.getHotelFinishedOrderList(this.hotelStaff.getHotelId());
+		this.refreshTable();
+
+		this.orderType.setText("已执行订单列表");
 	}
 
+	// 异常订单列表按钮监听方法
 	public void handleException() {
 		this.orderList = this.orderService.getAbnomalOrders(this.hotelStaff.getHotelId());
+		this.refreshTable();
+		this.orderType.setText("异常订单列表");
+	}
+
+	// 刷新表格方法
+	private void refreshTable() {
 		int count = 0;
 		while (count < this.orderList.size()) {
 			this.orderData.add(this.orderList.get(count));
@@ -145,7 +128,6 @@ public class HotelStaffOrderViewController {
 		this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIDProperty());
 		this.arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
 		this.orderTpye.setCellValueFactory(cellData -> cellData.getValue().getRoomInfoProperty());
-
-		this.orderType.setText("异常订单列表");
+		this.orderTable.setItems(orderData);
 	}
 }

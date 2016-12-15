@@ -66,6 +66,38 @@ public class HotelStaffManagementOrderController {
 		this.stateOfOrder.setText(this.order.getOrderState().toString());
 		this.arriveTime.setText(this.order.getEntryTime().toString());
 
+		this.controlSetOrderState();
+
+	}
+
+	public void initialize(Main main, HotelStaffVO hotelStaff, OrderVO order) {
+		// TODO Auto-generated method stub
+		this.mainScene = main;
+		this.hotelStaff = hotelStaff;
+		this.order = order;
+		this.HotelStaffManagementOrderShow();
+
+	}
+
+	// 设置为异常订单按钮监听方法
+	public void handleSetToException() {
+		this.order.setOrderState(OrderState.FINISHED);
+		this.orderServcie.changeState(order);
+	}
+
+	// 设置为已完成订单监听方法
+	public void handleSetToDone() {
+		this.order.setOrderState(OrderState.FINISHED);
+		this.orderServcie.changeState(order);
+	}
+
+	// 返回按钮监听方法
+	public void handleBack() {
+		this.mainScene.showHotelStaffOrderViewScene(hotelStaff);
+	}
+
+	// 订单状态设置按钮控制方法
+	private void controlSetOrderState() {
 		if (this.order.getOrderState().equals(OrderState.UNFINISHED)) {
 			this.setToDone.setDisable(true);
 			this.setToException.setDisable(true);
@@ -79,29 +111,5 @@ public class HotelStaffManagementOrderController {
 			this.setToDone.setDisable(true);
 			this.setToException.setDisable(false);
 		}
-
-	}
-
-	public void initialize(Main main, HotelStaffVO hotelStaff, OrderVO order) {
-		// TODO Auto-generated method stub
-		this.mainScene = main;
-		this.hotelStaff = hotelStaff;
-		this.order = order;
-		this.HotelStaffManagementOrderShow();
-
-	}
-
-	public void handleSetToException() {
-		this.order.setOrderState(OrderState.FINISHED);
-		this.orderServcie.changeState(order);
-	}
-
-	public void handleSetToDone() {
-		this.order.setOrderState(OrderState.FINISHED);
-		this.orderServcie.changeState(order);
-	}
-
-	public void handleBack() {
-		this.mainScene.showHotelStaffOrderViewScene(hotelStaff);
 	}
 }
