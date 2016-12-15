@@ -2,13 +2,16 @@ package VO;
 
 
 import PO.Label;
+import other.IdGernerateServiceImpl;
 import other.LabelType;
 
 public class LabelVO {
 	private String hotelId;
 	private LabelType label;
 	private String id;
-	public LabelVO(){}
+	public LabelVO(){
+		id = IdGernerateServiceImpl.gernerateId();
+	}
 	public LabelVO(Label label){
 		super();
 		this.id = label.getId();
