@@ -1,6 +1,7 @@
 package VO;
 
 import PO.HotelStaffPO;
+import other.IdGernerateServiceImpl;
 
 public class HotelStaffVO {
 	
@@ -12,7 +13,7 @@ public class HotelStaffVO {
 	private String password;
 
 	public HotelStaffVO() {
-	
+	   id = IdGernerateServiceImpl.gernerateId();
 	}
     
 	public HotelStaffVO(HotelStaffPO userPO) {
