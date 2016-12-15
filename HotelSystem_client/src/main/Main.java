@@ -897,7 +897,7 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
-					.getResource("/presentation/view/systemStrategy_ui/SystemHolidayStrategyModifyScene.fxml"));
+					.getResource("/presentation/view/systemStrategy_ui/AddSystemHolidayStrategyScene.fxml"));
 			AnchorPane AddSystemHolidayStrategyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(AddSystemHolidayStrategyScene);
 
@@ -919,7 +919,7 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
-					.getResource("/presentation/view/systemStrategy_ui/SystemMemberStrategyModifyScene.fxml"));
+					.getResource("/presentation/view/systemStrategy_ui/AddSystemMemberStrategyScene.fxml"));
 			AnchorPane SystemMemberStrategyModifyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemMemberStrategyModifyScene);
 
@@ -998,7 +998,7 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
-					Main.class.getResource("/presentation/view/systemStrategy_ui/SystemVIPStrategyModifyScene.fxml"));
+					Main.class.getResource("/presentation/view/systemStrategy_ui/AddSystemVIPStrategyScene.fxml"));
 			AnchorPane SystemVIPStrategyModifyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemVIPStrategyModifyScene);
 
@@ -1063,7 +1063,7 @@ public class Main extends Application {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
-					Main.class.getResource("/presentation/view/systemStrategy_ui/SystemOtherStrategyModifyScene.fxml"));
+					Main.class.getResource("/presentation/view/systemStrategy_ui/AddSystemOtherStrategyScene.fxml"));
 			AnchorPane SystemOtherStrategyModifyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemOtherStrategyModifyScene);
 
@@ -1395,7 +1395,7 @@ public class Main extends Application {
 	 * 
 	 * @param
 	 */
-	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO) {
+	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO, HotelStaffVO hotelStaffVO) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
@@ -1406,7 +1406,7 @@ public class Main extends Application {
 			// get Controller
 			SystemManagerHotelRegisterShowIDController SystemManagerHotelRegisterShowIDController = loader
 					.getController();
-			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this,systemManagerVO,hotelInfoVO);
+			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this,systemManagerVO,hotelInfoVO,hotelStaffVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.systemstrategyController.SystemOtherStrategyModifyController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.systemstrategyController.AddSystemOtherStrategyController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
@@ -27,7 +27,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="strategyType" layoutX="205.0" layoutY="30.0" text="修改其他优惠">
+                  <Label fx:id="strategyType" layoutX="205.0" layoutY="30.0" text="新增其他优惠">
                      <font>
                         <Font size="24.0" />
                      </font>

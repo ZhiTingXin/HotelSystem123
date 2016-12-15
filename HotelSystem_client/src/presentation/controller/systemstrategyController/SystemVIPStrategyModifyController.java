@@ -1,5 +1,7 @@
 package presentation.controller.systemstrategyController;
 
+import javax.sound.midi.VoiceStatus;
+
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import blservice.SystemStrategy_blservice;
@@ -75,5 +77,20 @@ public class SystemVIPStrategyModifyController {
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
 		// ≥ı ºªØ table
 		
+	}
+	
+	@FXML//edit the table
+	private void handleEdit(){
+		
+	}
+	
+	@FXML// save the strategy.
+	private void handleSave(){
+		
+	}
+	
+	@FXML//cancel and back to the former view.
+	private void handleCancel(){
+		mainScene.showSystemStrategyViewScene(systemStaffVO);
 	}
 }
