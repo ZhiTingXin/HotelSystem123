@@ -19,8 +19,9 @@ public class SystemStaffVO {
 	public SystemStaffVO(SystemStaffPO userPO) {
 		super();
 		this.id = userPO.getId();
-//		this.username = userPO.getUsername();
+		this.username = userPO.getStaffName();
 		this.businessDistrict = userPO.getBusinessDistrict();
+		this.phone = userPO.getPhone();
 	}
 
 	public SystemStaffVO(String id,String name, String district){

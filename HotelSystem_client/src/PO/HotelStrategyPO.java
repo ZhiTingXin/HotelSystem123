@@ -31,8 +31,8 @@ public class HotelStrategyPO implements Serializable{
 	   super();
 	   this.hotelID = hotelStrategyVO.getHotelId();
 	   this.hotelStrategyInfo = hotelStrategyVO.getStrategyInfo();
-//	   this.strategyName = hotelStrategyVO.
-	   
+	   this.strategyName = hotelStrategyVO.getStrategyName();
+	   this.id = hotelStrategyVO.getId();
 	}
 	
 	public String getId() {
