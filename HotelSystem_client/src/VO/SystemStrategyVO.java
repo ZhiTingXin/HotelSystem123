@@ -5,7 +5,10 @@ import java.time.LocalDate;
 import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+<<<<<<< HEAD
+=======
 import other.IdGernerateServiceImpl;
+>>>>>>> origin/陈步兵
 import other.StrategyState;
 import other.SystemStrategyType;
 
@@ -44,6 +47,10 @@ public class SystemStrategyVO {
 		this.discount = strategypo.getDiscount();
 		this.end_date =strategypo.getEnd_date();
 	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/陈步兵
 	public double getDiscount() {
 		return this.discount;
 	}
