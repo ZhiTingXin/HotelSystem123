@@ -22,10 +22,12 @@ public class OrderVO {
 	private RoomType roomType;
 	private int roomNum;
 	private LocalDateTime revocationTime;
+	private LocalDate gretime;
 
 	public OrderVO(){
 		super();
 		this.orderID = IdGernerateServiceImpl.gernerateId();
+		this.gretime = LocalDate.now();
 	}
 	// structure method po > vo
 	public OrderVO(OrderPO orderPO) {
@@ -134,6 +136,12 @@ public class OrderVO {
 		this.revocationTime = revocationTime;
 	}
 
+	public LocalDate getGretime() {
+		return gretime;
+	}
+	public void setGretime(LocalDate gretime) {
+		this.gretime = gretime;
+	}
 	// 表格服务方法
 	public StringProperty getCustomerIDProperty() {
 		return new SimpleStringProperty(this.userID);
