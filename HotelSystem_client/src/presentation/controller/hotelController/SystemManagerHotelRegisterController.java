@@ -5,6 +5,7 @@ package presentation.controller.hotelController;
 import java.util.Optional;
 
 import VO.HotelInfoVO;
+import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import blservice.Hotel_blservice;
 import blservice.impl.Hotel_bl;
@@ -55,10 +56,13 @@ public class SystemManagerHotelRegisterController {
 		String name = hotelName.getText();
 		String districtName = district.getText();
 		
-		HotelInfoVO newHotel = new HotelInfoVO(name,districtName);
+		HotelInfoVO newHotel = new HotelInfoVO();
+		newHotel.setHotelName(name);
+		newHotel.setHotelDistrict(districtName);
 		
 		boolean isModify = hotel_blservice.addHotel(newHotel);
 		
+		HotelStaffVO hotelStaffVO = new HotelStaffVO();
 		if (isModify) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("¹§Ï²");
@@ -67,7 +71,7 @@ public class SystemManagerHotelRegisterController {
 			
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
-				mainScene.showSystemManagerHotelRegisterShowIDScene(systemManagerVO,newHotel);
+				mainScene.showSystemManagerHotelRegisterShowIDScene(systemManagerVO,newHotel,hotelStaffVO);
 			}
 			
 		} else {

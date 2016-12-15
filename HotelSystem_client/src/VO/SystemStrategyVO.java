@@ -5,7 +5,11 @@ import java.time.LocalDate;
 import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+<<<<<<< HEAD
 import other.IdGernerateServiceImpl;
+=======
+import javafx.scene.control.MenuButton;
+>>>>>>> refs/remotes/origin/é™ˆæ­¥å…µ
 import other.StrategyState;
 import other.SystemStrategyType;
 
@@ -44,6 +48,36 @@ public class SystemStrategyVO {
 		this.discount = strategypo.getDiscount();
 		this.end_date =strategypo.getEnd_date();
 	}
+<<<<<<< HEAD
+=======
+
+	// ½ÚÈÕÓÅ»ÝµÄVOµÄ¹¹Ôìº¯Êý
+	public SystemStrategyVO(String strategyName, String strategyDsciption, LocalDate startDate, LocalDate endDate,
+			double discount, StrategyState state) {
+
+		this.systemStrategyName = strategyName;
+		this.systemStrategyDescription = strategyDsciption;
+		this.begin_date = startDate;
+		this.end_date = endDate;
+		this.discount = discount;
+		this.strategyState = state;
+	}
+	
+	//»áÔ±ÓÅ»ÝVO¹¹Ôìº¯Êý
+	public SystemStrategyVO(String strategyName, String strategyDsciption,StrategyState state){
+		this.systemStrategyName = strategyName;
+		this.systemStrategyDescription = strategyDsciption;
+		this.strategyState =  state;
+	}
+	//ÆäËûÓÅ»Ý¹¹Ôìº¯Êý
+	public SystemStrategyVO(String strategyName, String strategyDsciption,double discount,StrategyState state){
+		this.systemStrategyName = strategyName;
+		this.systemStrategyDescription = strategyDsciption;
+		this.discount = discount;
+		this.strategyState =  state;
+		
+	}
+>>>>>>> refs/remotes/origin/é™ˆæ­¥å…µ
 	public double getDiscount() {
 		return this.discount;
 	}

@@ -76,5 +76,18 @@ public class AddSystemVIPStrategyController {
 		// ≥ı ºªØ table
 		
 	}
+	@FXML
+	public void handleSave(){
+		
+	}
 	
+	@FXML
+	public void handleCancel(){
+		
+	}
+	
+	@FXML
+	private void handleEdit(){
+		
+	}
 }
