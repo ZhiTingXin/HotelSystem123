@@ -5,15 +5,13 @@ import java.time.LocalDate;
 import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-<<<<<<< HEAD
-=======
 import other.IdGernerateServiceImpl;
->>>>>>> origin/陈步兵
+
 import other.StrategyState;
 import other.SystemStrategyType;
 
 /**
- * 网站营销策略的名称 网站营销策略的内容 制定网站营销策略的网站营销人员的id 网站营销策略的开始时间 网站营销策略的结束时间
+ * 缃戠珯钀ラ攢绛栫暐鐨勫悕绉� 缃戠珯钀ラ攢绛栫暐鐨勫唴瀹� 鍒跺畾缃戠珯钀ラ攢绛栫暐鐨勭綉绔欒惀閿�浜哄憳鐨刬d 缃戠珯钀ラ攢绛栫暐鐨勫紑濮嬫椂闂� 缃戠珯钀ラ攢绛栫暐鐨勭粨鏉熸椂闂�
  * 
  * @author zhiting Xin
  *
@@ -26,8 +24,8 @@ public class SystemStrategyVO {
 	private SystemStrategyType systemStrategyType;
 	private String systemStrategyDescription;
 	private StrategyState strategyState;
-	private double discount;//节日优惠的折扣
-	// 节日优惠
+	private double discount;//鑺傛棩浼樻儬鐨勬姌鎵�
+	// 鑺傛棩浼樻儬
 	private LocalDate begin_date;
 	private LocalDate end_date;
 	
@@ -35,7 +33,7 @@ public class SystemStrategyVO {
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();
 	}
-    //PO到Vo的构造方法
+    //PO鍒癡o鐨勬瀯閫犳柟娉�
 	public SystemStrategyVO(SystemStrategyPO strategypo){
 		super();
 		this.systemStaffID = strategypo.getSystemStaffId();
@@ -47,10 +45,7 @@ public class SystemStrategyVO {
 		this.discount = strategypo.getDiscount();
 		this.end_date =strategypo.getEnd_date();
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/陈步兵
 	public double getDiscount() {
 		return this.discount;
 	}
@@ -105,7 +100,7 @@ public class SystemStrategyVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	// ui属性-------------------分割线---------------------
+	// ui灞炴��-------------------鍒嗗壊绾�---------------------
 	public StringProperty getStrategyNameProperty() {
 		return new SimpleStringProperty(this.systemStrategyName);
 	}
@@ -114,15 +109,15 @@ public class SystemStrategyVO {
 		return new SimpleStringProperty(this.systemStrategyDescription);
 	}
 
-	// 策略状态
+	// 绛栫暐鐘舵��
 	public StringProperty getStrategyStateProperty() {
 		if (systemStrategyType == null) {
 			return null;
 		} else {
 			if (systemStrategyType.equals(StrategyState.open)) {
-				return new SimpleStringProperty("启用");
+				return new SimpleStringProperty("鍚敤");
 			} else {
-				return new SimpleStringProperty("禁用");
+				return new SimpleStringProperty("绂佺敤");
 			}
 		}
 	}
