@@ -6,6 +6,7 @@ import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
+
 import other.StrategyState;
 import other.SystemStrategyType;
 
