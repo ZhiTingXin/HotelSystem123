@@ -26,23 +26,15 @@ public class RoomPO implements Serializable{
 	
 	//room 的构造方法
 	public RoomPO(){}
-	public RoomPO(HotelRoomInfoVO hotel,String hotelId){
+	public RoomPO(HotelRoomInfoVO hotel){
 		this.price = hotel.getRoomPrice();
-		this.hotelId = hotelId;
+		this.hotelId = hotel.getId();
 		this.type = hotel.getRoomType();
 		this.number = hotel.getRoomNum();
 		this.remainNum = hotel.getRoomRemain();
 		this.id = hotelId+hotel.getRoomType();
 	}
-	public RoomPO(int pric,RoomType type,String hotelid,int number,int remain){
-		super();
-		this.remainNum = remain;
-		this.price = pric;
-		this.hotelId = hotelid;
-		this.type = type;
-		this.number = number;
-		this.id = hotelid+type;
-	}
+	
 	public int getPrice() {
 		return price;
 	}

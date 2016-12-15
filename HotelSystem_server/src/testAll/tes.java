@@ -1,6 +1,11 @@
 package testAll;
 
+import java.time.LocalDate;
+
 import PO.ClassToGreId;
+import PO.SystemManagerPO;
+import data.service.IdGernerateService;
+import data.service.impl.IdGernerateServiceImpl;
 import other.hibernateUtil;
 
 //import PO.AdviceFeedBackPO;
@@ -40,14 +45,21 @@ public class tes {
 //		LoginPO loginPO = new  LoginPO("gh1jg","ghgh");
 //		LoginDataService loginDataService = new LoginDataServiceImpl();
 //		loginDataService.add(loginPO);
-		ClassToGreId classToGreId = new ClassToGreId();
-		classToGreId.setId("123");
-		classToGreId.setNeverChanged("1");
-		hibernateUtil.add(classToGreId);
+//		ClassToGreId classToGreId = new ClassToGreId();
+//		classToGreId.setId("123");
+//		classToGreId.setNeverChanged("1");
+//		hibernateUtil.add(classToGreId);
 //		IdGernerateService idGernerateService = new IdGernerateServiceImpl();
 //		String id = idGernerateService.gernerateId();
 //		LoginDataService a = new LoginDataServiceImpl();
 //		String string = "151250170";
 //		System.out.println(a.findByID(string).getUserType());
+//		IdGernerateServiceImpl aGernerateServiceImpl = new IdGernerateServiceImpl();
+//		SystemManagerPO systemManagerPO = new SystemManagerPO();
+//		systemManagerPO.setManagerID(aGernerateServiceImpl.gernerateId());
+//		systemManagerPO.setManagerName("xinzhiting");
+//		hibernateUtil.add(systemManagerPO);
+		LocalDate localDate = LocalDate.now();
+		System.out.println(localDate);
 	}
 }

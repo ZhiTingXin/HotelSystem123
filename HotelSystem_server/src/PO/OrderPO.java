@@ -2,6 +2,7 @@ package PO;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,48 +10,63 @@ import other.OrderState;
 import other.RoomType;
 
 @Entity
-@Table(name="orderpo")
+@Table(name = "orderpo")
 public class OrderPO implements Serializable{
 
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
 	private String id;
 	private String hotelId;
 	private String userId;
 	private OrderState status;
 	private LocalDate entryTime;
 	private int lastTime;
-	private String orderInfo;
 	private double price;
-	
-	//
 	private RoomType roomType;
-
+    private LocalDate gretime;
 	private int num_Room;
+	private double originalPrice;
+	private String userName;
+	private LocalDateTime revocationTime;
 
 	public OrderPO() {
 	}
 
-	public OrderPO(String Id, String htId, String userId, OrderState st, LocalDate entry, int last, String info,
-			int pr,RoomType roomType,int num_Room) {
-		super();
-		this.id = Id;
-		this.hotelId = htId;
-		this.userId = userId;
-		this.entryTime = entry;
-		this.status = st;
-		this.price = pr;
-		this.orderInfo = info;
-		this.lastTime = last;
-		
-		//
-		this.roomType = roomType;
-		this.num_Room = num_Room;
+
+	public double getOriginalPrice() {
+		return originalPrice;
 	}
 
+	public void setOriginalPrice(double originalPrice) {
+		this.originalPrice = originalPrice;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public LocalDateTime getRevocationTime() {
+		return revocationTime;
+	}
+
+	public void setRevocationTime(LocalDateTime revocationTime) {
+		this.revocationTime = revocationTime;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public double getPrice(){
+		return price;
+	}
+	@Id
 	public String getId() {
 		return id;
 	}
@@ -114,19 +130,12 @@ public class OrderPO implements Serializable{
 		this.lastTime = lastTime;
 	}
 
-	public String getOrderInfo() {
-		return orderInfo;
+	public LocalDate getGretime() {
+		return gretime;
 	}
 
-	public void setOrderInfo(String orderInfo) {
-		this.orderInfo = orderInfo;
+	public void setGretime(LocalDate gretime) {
+		this.gretime = gretime;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
 }

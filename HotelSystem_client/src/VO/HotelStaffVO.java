@@ -1,6 +1,7 @@
 package VO;
 
 import PO.HotelStaffPO;
+import other.IdGernerateServiceImpl;
 
 public class HotelStaffVO {
 	
@@ -12,7 +13,7 @@ public class HotelStaffVO {
 	private String password;
 
 	public HotelStaffVO() {
-	
+	   id = IdGernerateServiceImpl.gernerateId();
 	}
     
 	public HotelStaffVO(HotelStaffPO userPO) {
@@ -21,6 +22,7 @@ public class HotelStaffVO {
 		this.username = userPO.getUsername();
 		this.hotelId = userPO.getHotelId();
 		this.phone = userPO.getPhone();
+		this.hotelName = userPO.getHotelName();
 	}
 	
 	public HotelStaffVO(String id,String name,String hotelID,String hotelName){

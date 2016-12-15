@@ -12,6 +12,7 @@ public class SystemStrategyPO implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String id;
 	private String systemStrategy_name;
 	private String systemStaffId;
     private double discount;
@@ -24,6 +25,7 @@ public class SystemStrategyPO implements Serializable {
     }
     public SystemStrategyPO(SystemStrategyVO systemStrategyVO){
     	super();
+    	this.id = systemStrategyVO.getId();
     	this.systemStrategy_name = systemStrategyVO.getSystemStrategyName();
     	this.systemStaffId = systemStrategyVO.getSystemStaffID();
     	this.discount = systemStrategyVO.getDiscount();
@@ -95,6 +97,12 @@ public class SystemStrategyPO implements Serializable {
 	}
 	public void setSystemStrategyDescription(String systemStrategyDescription) {
 		this.systemStrategyDescription = systemStrategyDescription;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

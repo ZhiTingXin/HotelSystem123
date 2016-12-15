@@ -2,6 +2,8 @@ package PO;
 
 import java.io.Serializable;
 
+import VO.AssementVO;
+
 public class AssessmentPO implements Serializable{
 	/**
 	 * 
@@ -16,9 +18,16 @@ public class AssessmentPO implements Serializable{
 	 */
 	private String Orderid;
 	private String userId;
-	String content;
-	String type;
-	String hotelId;
+	private String content;
+	private String type;
+	private String hotelId;
+	public AssessmentPO(AssementVO assementVO){
+		Orderid = assementVO.getOrderId();
+		userId =assementVO.getUserId();
+		content =assementVO.getContent();
+		type = assementVO.getType();
+		hotelId = assementVO.getHotelId();
+	}
 	public String getUserId() {
 		return userId;
 	}

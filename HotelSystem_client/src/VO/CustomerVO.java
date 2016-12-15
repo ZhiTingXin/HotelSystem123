@@ -26,9 +26,11 @@ public class CustomerVO {
 		super();
 		this.id = customerPO.getId();
 		this.userName = customerPO.getUserName();
+		this.phone = customerPO.getPhone();
 		this.credit = customerPO.getCredit();
 		this.birthday = customerPO.getBirthday();
 		this.memberGrade = customerPO.getMemberGrade();
+		this.memberState = customerPO.getState();
 		this.companyName = customerPO.getCompanyName();
 	}
 	
