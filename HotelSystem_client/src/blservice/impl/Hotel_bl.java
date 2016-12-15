@@ -3,6 +3,7 @@ package blservice.impl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import PO.AssessmentPO;
 import PO.HotelPO;
 import PO.HotelStaffPO;
 import PO.HotelStrategyPO;
@@ -10,12 +11,14 @@ import PO.Label;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.AssementVO;
 import VO.HotelInfoVO;
 import VO.HotelRoomInfoVO;
 import VO.HotelStaffVO;
 import VO.HotelStrategyVO;
 import VO.OrderVO;
 import blservice.Hotel_blservice;
+import data.service.AssessmentDataService;
 import data.service.HotelDataService;
 import data.service.HotelStrategyDataService;
 import data.service.OrderDataService;
@@ -24,6 +27,7 @@ import other.OrderState;
 
 public class Hotel_bl implements Hotel_blservice {
 
+	AssessmentDataService assessmentDataService = RemoteHelper.getInstance().getAssessmentDataService();
 	HotelDataService dataService = RemoteHelper.getInstance().getHotelDataService();
 	RoomDataService roomDataService = RemoteHelper.getInstance().getRoomDataService();
 	OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
@@ -38,19 +42,30 @@ public class Hotel_bl implements Hotel_blservice {
 			 */
 			ArrayList<Label> labels = new ArrayList<Label>();
 			ArrayList<RoomPO> roomPOs = roomDataService.getAllRoomPO(hotelId);
+			ArrayList<AssessmentPO> assementPOs = assessmentDataService.getAllAssement(hotelId);
+			
 			ArrayList<HotelStrategyVO> hotelStrategyVOs = new ArrayList<HotelStrategyVO>();
 			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 			ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
+			ArrayList<AssementVO> arrayList = new ArrayList<AssementVO>();
+			
+		
 			for(HotelStrategyPO hotelStrategyPO:hotelStrategyPOs){
 				hotelStrategyVOs.add(new HotelStrategyVO(hotelStrategyPO));
 			}
+			
 			for(RoomPO room:roomPOs){
 				roomInfoVOs.add(new HotelRoomInfoVO(room));
 			}
+			
 			for(OrderPO po:orderPOs){
 				orderVOs.add(new OrderVO(po));
 			}
-			HotelInfoVO hotelVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels);
+			
+			for(AssessmentPO assessmentPO:assementPOs){
+				arrayList.add(new AssementVO(assessmentPO));
+			}
+			HotelInfoVO hotelVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels,arrayList);
 			
 			return hotelVO;
 		} catch (RemoteException e) {
@@ -102,7 +117,7 @@ public class Hotel_bl implements Hotel_blservice {
 		}
 	}
 	
-	public ArrayList<HotelInfoVO> getListOfHotel(String strict,String type) {
+	public ArrayList<HotelInfoVO> getListOfHotel(String strict) {
 		/*
 		 * 先查找所有的商圈的hotelPO对象，根据PO对象中的hotelid查找其他的表来构造vo对象
 		 */
@@ -111,7 +126,9 @@ public class Hotel_bl implements Hotel_blservice {
 			ArrayList<HotelStrategyVO> hotelStrategyVOs = new ArrayList<HotelStrategyVO>();
 			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 			ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
-			poList = dataService.getHotels(strict, type);
+			ArrayList<AssementVO> assementVOs = new ArrayList<AssementVO>();
+			poList = dataService.getHotels(strict);
+			
 		    ArrayList<HotelInfoVO> voList = new ArrayList<HotelInfoVO>();
 		    for(int i=0;i<poList.size();i++){
 			    HotelPO hotelPO = poList.get(i);
@@ -119,6 +136,7 @@ public class Hotel_bl implements Hotel_blservice {
 			    ArrayList<OrderPO> orderPOs = orderDataService.getAllHotelOrders(hotelid);
 			    ArrayList<HotelStrategyPO> hotelStrategyPOs = hotelStrategyDataService.getAll(hotelid);
 			    ArrayList<RoomPO> roomPOs = roomDataService.getAllRoomPO(hotelid);
+			    ArrayList<AssessmentPO> assessmentPOs = assessmentDataService.getAllAssement(hotelid);
 			    //TODO Auto-generated method stub
 			    ArrayList<Label> labels = new ArrayList<Label>();
 			    for(OrderPO orderPO : orderPOs){
@@ -130,7 +148,10 @@ public class Hotel_bl implements Hotel_blservice {
 			    for(RoomPO roomPO :roomPOs){
 			    	roomInfoVOs.add(new HotelRoomInfoVO(roomPO));
 			    }
-			    HotelInfoVO hotelInfoVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels);
+			    for(AssessmentPO assessmentPO:assessmentPOs){
+			    	assementVOs.add(new AssementVO(assessmentPO));
+			    }
+			    HotelInfoVO hotelInfoVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels,assementVOs);
 		        voList.add(hotelInfoVO);
 		     }
 		    return voList;

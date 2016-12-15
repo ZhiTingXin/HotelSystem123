@@ -3,27 +3,26 @@ package VO;
 import PO.RoomPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
 import other.RoomType;
 
 public class HotelRoomInfoVO {
-	RoomType roomType;
-	int roomNum;
-	int roomRemain;
-	int roomPrice;
-	public HotelRoomInfoVO(){}
+	private RoomType roomType;
+	private int roomNum;
+	private int roomRemain;
+	private int roomPrice;
+	private String id;
+	public HotelRoomInfoVO(){
+		super();
+		this.id = IdGernerateServiceImpl.gernerateId();
+	}
 	public HotelRoomInfoVO(RoomPO hotelRoomInfo) {
 		super();
 		this.roomNum = hotelRoomInfo.getNumber();
 		this.roomPrice = hotelRoomInfo.getPrice();
 		this.roomRemain = hotelRoomInfo.getRemainNum();
 		this.roomType = hotelRoomInfo.getType();
-	}
-
-	public HotelRoomInfoVO(RoomType roomType, int roomNum, int roomRemain, int roomPrice) {
-		this.roomType = roomType;
-		this.roomNum = roomNum;
-		this.roomPrice = roomPrice;
-		this.roomRemain = roomRemain;
+		this.id = hotelRoomInfo.getId();
 	}
 	
 	public RoomType getRoomType() {
@@ -57,6 +56,12 @@ public class HotelRoomInfoVO {
 		this.roomPrice = roomPrice;
 	}
 
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public StringProperty getRoomNumProperty() {
 		return new SimpleStringProperty(String.valueOf(roomNum));
 	}

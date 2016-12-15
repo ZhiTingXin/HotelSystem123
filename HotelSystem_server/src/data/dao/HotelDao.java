@@ -10,6 +10,6 @@ public interface HotelDao {
 	public boolean del(HotelPO hotel);
 	public HotelPO get(String hotelId);
 	public boolean update(HotelPO hotel);
-	public ArrayList<HotelPO> getHotels(String strict,String type);
+	public ArrayList<HotelPO> getHotels(String strict);
 	public ArrayList<HotelPO> getAllHotels();
 }

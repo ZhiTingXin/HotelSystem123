@@ -39,6 +39,8 @@ public class RegisterController {
 	private Button cancel;
 	@FXML
 	private Label errorLabel;
+	@FXML
+	private TextField phoneTextField;
 
 	private Main mainScene;
 	private UserVO user;
@@ -65,6 +67,7 @@ public class RegisterController {
 		String userPasswordInField = this.password.getText();
 		String userPasswordConfirmInField = this.confirmPassword.getText();
 		LocalDate userBirthday = this.birthday.getValue();
+		String phone = this.phoneTextField.getText();
 		// Ìõ¼þÅÐ¶ÏÓï¾ä
 		boolean isPasswordReady = false;
 		boolean isNameReady = false;
@@ -95,6 +98,7 @@ public class RegisterController {
 				CustomerVO customer = new CustomerVO();
 				customer.setUsername(userNameInField);
 				customer.setPassword(userPasswordConfirmInField);
+				// customer.setPhoneNum(phone);
 				if (userBirthday != null) {
 					customer.setBirthday(userBirthday);
 				}

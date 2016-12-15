@@ -2,10 +2,10 @@ package VO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import PO.OrderPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
 import other.OrderState;
 import other.RoomType;
 
@@ -23,25 +23,10 @@ public class OrderVO {
 	private int roomNum;
 	private LocalDateTime revocationTime;
 
-	public OrderVO(String orderID, String userID, String hotelID, double price, OrderState orderState) {
-		this.orderID = orderID;
-		this.userID = userID;
-		this.hotelID = hotelID;
-		this.price = price;
-		this.orderState = orderState;
+	public OrderVO(){
+		super();
+		this.orderID = IdGernerateServiceImpl.gernerateId();
 	}
-
-	public OrderVO(String orderID, String userID, String hotelID, double price, LocalDate entryTime, int lastime,
-			OrderState orderState) {
-		this.orderID = orderID;
-		this.userID = userID;
-		this.hotelID = hotelID;
-		this.price = price;
-		this.entryTime = entryTime;
-		this.lastime = lastime;
-		this.orderState = orderState;
-	}
-
 	// structure method po > vo
 	public OrderVO(OrderPO orderPO) {
 		orderID = orderPO.getId();
@@ -176,7 +161,7 @@ public class OrderVO {
 	}
 
 	public StringProperty getEntryTimeProperty() {
-		return new SimpleStringProperty(this.entryTime.toString());
+		return new SimpleStringProperty(util.DateUtil.format(entryTime));
 	}
 
 	public StringProperty getCustomerIdProperty() {
