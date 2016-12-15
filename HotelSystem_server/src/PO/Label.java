@@ -2,9 +2,14 @@ package PO;
 
 import java.io.Serializable;
 
-import VO.LabelVO;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import other.LabelType;
 
+@Entity
+@Table(name  = "label")
 public class Label implements Serializable{
 	/**
 	 * 
@@ -14,11 +19,7 @@ public class Label implements Serializable{
 	private String hotelId;
 	private LabelType label;
 	public Label(){}
-	public Label(LabelVO label){
-		this.id = label.getId();
-		this.hotelId = label.getHotelId();
-		this.label = label.getLabel();
-	}
+	
 	public String getHotelId() {
 		return hotelId;
 	}
@@ -31,6 +32,7 @@ public class Label implements Serializable{
 	public void setLabel(LabelType label) {
 		this.label = label;
 	}
+	@Id
 	public String getId() {
 		return id;
 	}

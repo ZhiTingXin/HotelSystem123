@@ -16,15 +16,6 @@ public class VipPO implements Serializable {
 
 	public VipPO() {
 	}
-
-	public VipPO(int min, int max, int gr, double disc) {
-		super();
-		this.mincredit = min;
-		this.maxcredit = max;
-		this.Vipgrade = gr;
-		this.discount = disc;
-	}
-
 	public VipPO(VipVO vipVO) {
 		super();
 		this.maxcredit = vipVO.getMaxcredit();

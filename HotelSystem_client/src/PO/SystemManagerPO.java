@@ -18,10 +18,6 @@ public class SystemManagerPO implements Serializable{
 		this.managerID = systemManagerVO.getId();
 		this.managerName = systemManagerVO.getUserName();
 	}
-	public SystemManagerPO(String managerID, String managerName){
-		this.managerID = managerID;
-		this.managerName = managerName;
-	}
 	
 	public String getManagerId() {
 		return managerID;

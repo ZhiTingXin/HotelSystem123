@@ -36,6 +36,7 @@ public class SystemStrategyVO {
     //PO鍒癡o鐨勬瀯閫犳柟娉�
 	public SystemStrategyVO(SystemStrategyPO strategypo){
 		super();
+		this.id = strategypo.getId();
 		this.systemStaffID = strategypo.getSystemStaffId();
 		this.systemStrategyName = strategypo.getSystemStrategy_name();
 		this.systemStrategyType = strategypo.getStrategyType();

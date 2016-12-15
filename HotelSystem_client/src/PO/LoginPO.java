@@ -20,7 +20,7 @@ public class LoginPO implements Serializable{
 	public LoginPO(String id,String password){
 		super();
 		this.id = id;
-		this.userPassword = password;
+		this.userPassword =password;
 	}
 	public LoginPO(String Id,String password,UserType type){
 		super();

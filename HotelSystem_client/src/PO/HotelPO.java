@@ -22,15 +22,6 @@ public class HotelPO implements Serializable{
 	private String hotelDiscription;
 	private String hotelAddress;
 	
-	//Hotel的构造方法
-	public HotelPO(String hid,String hsid,String hstri,String hotelname){
-		super();
-		this.hotelId = hid;
-		this.hotelStaffId = hsid;
-		this.hotelStrict = hstri;
-		this.hotelName = hotelname;
-	}
-	
 	//VO > PO structure
 	public HotelPO(HotelInfoVO hotelInfoVO){
 		super();

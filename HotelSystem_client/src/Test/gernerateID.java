@@ -1,10 +1,5 @@
 package Test;
-//import blservice.Login_blservice;
-//import blservice.impl.Login_bl;
-//import VO.AdviceFeedBackVO;
-//import blservice.AdviceFeedBack_blservice;
-//import blservice.impl.AdviceFeedBack_bl;
-import main.ClientRunner;
+
 //import other.AdviceFeedBackState;
 //import util.DateUtil;
 //
@@ -13,7 +8,7 @@ public class gernerateID {
 //	   /*
 //	    * ×¢²áµÄ²âÊÔ´úÂë
 //	    */
-	   ClientRunner clientRunner = new ClientRunner();
+//	   ClientRunner clientRunner = new ClientRunner();
 //	   Login_blservice login_blservice = new Login_bl();
 //	   /*
 //	    * ²âÊÔĞŞ¸ÄÃÜÂë
