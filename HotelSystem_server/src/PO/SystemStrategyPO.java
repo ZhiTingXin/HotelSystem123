@@ -16,24 +16,25 @@ public class SystemStrategyPO implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String id;
 	private String systemStrategy_name;
+	private String systemStaffId;
     private double discount;
     private LocalDate begin_date;
     private LocalDate end_date;
-    private SystemStrategyType type;
+    private String systemStrategyDescription;
+    private SystemStrategyType strategyType;
     private StrategyState state;
-    
     public SystemStrategyPO(){
-    	super();
     }
-    public SystemStrategyPO(String systemstrategy_name,double count,LocalDate begin,LocalDate end){
+
+    public SystemStrategyPO(String systemstrategy_name,double count,LocalDate begin,LocalDate end,String systemStaffID){
     	this.systemStrategy_name=systemstrategy_name;
     	this.discount = count;
     	this.begin_date = begin;
     	this.end_date =end;
+    	this.systemStaffId = systemStaffID;
     }
-    
-    @Id
 	public String getSystemStrategy_name() {
 		return systemStrategy_name;
 	}
@@ -65,17 +66,36 @@ public class SystemStrategyPO implements Serializable{
 	public void setEnd_date(LocalDate end_date) {
 		this.end_date = end_date;
 	}
-	public SystemStrategyType getType() {
-		return type;
+	public String getSystemStaffId() {
+		return systemStaffId;
 	}
-	public void setType(SystemStrategyType type) {
-		this.type = type;
+	public void setSystemStaffId(String systemStaffId) {
+		this.systemStaffId = systemStaffId;
+	}
+	public SystemStrategyType getStrategyType() {
+		return strategyType;
+	}
+	public void setStrategyType(SystemStrategyType strategyType) {
+		this.strategyType = strategyType;
 	}
 	public StrategyState getState() {
 		return state;
 	}
 	public void setState(StrategyState state) {
 		this.state = state;
+	}
+	public String getSystemStrategyDescription() {
+		return systemStrategyDescription;
+	}
+	public void setSystemStrategyDescription(String systemStrategyDescription) {
+		this.systemStrategyDescription = systemStrategyDescription;
+	}
+	@Id
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

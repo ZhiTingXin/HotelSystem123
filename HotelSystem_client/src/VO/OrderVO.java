@@ -31,13 +31,19 @@ public class OrderVO {
 	}
 	// structure method po > vo
 	public OrderVO(OrderPO orderPO) {
-		orderID = orderPO.getId();
-		userID = orderPO.getUserId();
 		hotelID = orderPO.getHotelId();
 		price = orderPO.getPrice();
+		originalPrice = orderPO.getOriginalPrice();
 		entryTime = orderPO.getEntryTime();
+		orderID = orderPO.getId();
+		userID = orderPO.getUserId();
+		userName = orderPO.getUserName();
 		lastime = orderPO.getLastTime();
 		orderState = orderPO.getStatus();
+		roomType = orderPO.getRoomType();
+		roomNum = orderPO.getNum_Room();
+		revocationTime = orderPO.getRevocationTime();
+		gretime = orderPO.getGretime();
 	}
 
 	public String getHotelID() {

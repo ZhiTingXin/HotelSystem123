@@ -90,7 +90,7 @@ public class Hotel_bl implements Hotel_blservice {
 			}
 			boolean roo = true;
 			for(HotelRoomInfoVO room:roomInfoVOs){
-				RoomPO roomPO = new RoomPO(room,hotelInfo.getHotelID());
+				RoomPO roomPO = new RoomPO(room);
 				boolean d = roomDataService.modify(roomPO);
 				roo = roo&&d;
 			}
@@ -178,7 +178,7 @@ public class Hotel_bl implements Hotel_blservice {
 			}
 			boolean roo = true;
 			for(HotelRoomInfoVO room:roomInfoVOs){
-				RoomPO roomPO = new RoomPO(room,hotel.getHotelID());
+				RoomPO roomPO = new RoomPO(room);
 				boolean d = roomDataService.addRoom(roomPO);
 				roo = roo&&d;
 			}

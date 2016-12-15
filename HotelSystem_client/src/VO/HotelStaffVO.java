@@ -22,6 +22,7 @@ public class HotelStaffVO {
 		this.username = userPO.getUsername();
 		this.hotelId = userPO.getHotelId();
 		this.phone = userPO.getPhone();
+		this.hotelName = userPO.getHotelName();
 	}
 	
 	public HotelStaffVO(String id,String name,String hotelID,String hotelName){

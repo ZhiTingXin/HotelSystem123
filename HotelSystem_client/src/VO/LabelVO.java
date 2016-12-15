@@ -1,23 +1,19 @@
-package PO;
+package VO;
 
-import java.io.Serializable;
 
-import VO.LabelVO;
+import PO.Label;
 import other.LabelType;
 
-public class Label implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String id;
+public class LabelVO {
 	private String hotelId;
 	private LabelType label;
-	public Label(){}
-	public Label(LabelVO label){
+	private String id;
+	public LabelVO(){}
+	public LabelVO(Label label){
+		super();
 		this.id = label.getId();
-		this.hotelId = label.getHotelId();
 		this.label = label.getLabel();
+		this.hotelId = label.getHotelId();
 	}
 	public String getHotelId() {
 		return hotelId;

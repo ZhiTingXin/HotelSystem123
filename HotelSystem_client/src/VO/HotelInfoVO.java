@@ -44,6 +44,7 @@ public class HotelInfoVO {
 		this.hotelStrategy = hotelStrategyVOs;
 		this.labelList = labels;
 		this.assmentVOs = arrayList;
+	    this.rank = hotelInfo.getGrade();
 	}
 
 	public String getRank() {

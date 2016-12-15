@@ -30,13 +30,6 @@ public class AdviceFeedBackPO implements Serializable{
     	 this.replydate = adviceFeedBackVO.getReplyTime();
     	 this.state = adviceFeedBackVO.getState();
      }
-     public AdviceFeedBackPO(String Adviceid,AdviceFeedBackState state1,String adviceFeedBack_content,String userid){
-  	   super();
-  	   this.AdviceId = Adviceid;
-  	   this.AdviceFeedBack_content = adviceFeedBack_content;
-  	   this.state = state1;
-  	   this.userId = userid;
-     }
      
 	public String getAdviceFeedBack_content() {
 		return AdviceFeedBack_content;

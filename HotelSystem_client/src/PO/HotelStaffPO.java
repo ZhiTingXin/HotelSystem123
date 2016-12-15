@@ -14,7 +14,7 @@ public class HotelStaffPO implements Serializable{
 	private String username;
 	private String phone;
 	private String hotelId;
-
+    private String hotelName;
 
 	public HotelStaffPO() {
 	}
@@ -25,14 +25,7 @@ public class HotelStaffPO implements Serializable{
 		this.username = hotelStaffVO.getUsername();
 		this.phone = hotelStaffVO.getPhone();
 		this.id = hotelStaffVO.getId();
-	}
-
-	public HotelStaffPO(String id, String username, String phone, String hotelId) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.phone = phone;
-		this.hotelId = hotelId;
+		this.hotelName = hotelStaffVO.getHotelName();
 	}
 
 	public String getId() {
@@ -65,6 +58,14 @@ public class HotelStaffPO implements Serializable{
 
 	public void setHotelId(String hotelId) {
 		this.hotelId = hotelId;
+	}
+
+	public String getHotelName() {
+		return hotelName;
+	}
+
+	public void setHotelName(String hotelName) {
+		this.hotelName = hotelName;
 	}
 
 }
