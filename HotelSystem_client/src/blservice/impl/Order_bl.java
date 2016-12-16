@@ -9,7 +9,6 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
-import VO.CustomerVO;
 import VO.OrderVO;
 import VO.VipVO;
 import blservice.Order_blservice;
@@ -17,7 +16,6 @@ import blservice.VipStrategy_blService;
 import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.OrderDataService;
-import javafx.util.converter.LocalDateStringConverter;
 import other.OrderState;
 
 public class Order_bl implements Order_blservice{
@@ -268,6 +266,21 @@ public class Order_bl implements Order_blservice{
 		}
 		
 		return price;
+	}
+
+	@Override
+	public ArrayList<OrderVO> getAllOrders(String hotelId) {
+		try {
+			ArrayList<OrderPO> orderPOs = dataService.getAllHotelOrders(hotelId);
+			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+			for(OrderPO po:orderPOs){
+				orderVOs.add(new OrderVO(po));
+			}
+			return orderVOs;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 
