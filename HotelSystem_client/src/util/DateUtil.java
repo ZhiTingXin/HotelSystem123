@@ -13,13 +13,13 @@ import javafx.util.StringConverter;
 public class DateUtil {
 	// 日期格式
 	private static final String DATE_PATTERN = "yyyy-MM-dd";
-	
+
 	// 日期+时间 格式
 	private static final String DATETIME_PATTERN = "yyyy-MM-dd HH:mm";
 
 	// 日期
 	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
-	
+
 	// 日期+时间
 	private static final DateTimeFormatter DATETIME_FORMATTER = DateTimeFormatter.ofPattern(DATETIME_PATTERN);
 
@@ -47,17 +47,16 @@ public class DateUtil {
 		}
 	}
 
-//	public static LocalDateTime parse_2(String dateTimeString) {
-//		try {
-//			return DATETIME_FORMATTER.parse(dateTimeString, LocalDateTime::from);
-//		} catch (DateTimeParseException e) {
-//			return null;
-//		}
-//	}
+	// public static LocalDateTime parse_2(String dateTimeString) {
+	// try {
+	// return DATETIME_FORMATTER.parse(dateTimeString, LocalDateTime::from);
+	// } catch (DateTimeParseException e) {
+	// return null;
+	// }
+	// }
 
 	// 转换 DatePicker converter
-	@SuppressWarnings({ "rawtypes"})
-	public static final StringConverter converter = new StringConverter<LocalDate>() {
+	public static StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
 
 		@Override
 		public String toString(LocalDate date) {
