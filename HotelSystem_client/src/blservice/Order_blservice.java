@@ -18,8 +18,6 @@ public interface Order_blservice {
 	public ArrayList<OrderVO> getAbnomalOrders(String userID);
 
 	public boolean generateOrder(OrderVO Order);
-
-	public boolean changeState(String orderID);
 	
 	public boolean changeCredit(String userID, String orderID);
 
