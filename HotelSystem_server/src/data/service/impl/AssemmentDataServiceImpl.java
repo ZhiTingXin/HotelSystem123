@@ -33,5 +33,8 @@ public class AssemmentDataServiceImpl implements AssessmentDataService{
 	public ArrayList<AssessmentPO> getAllAssement(String hotelid) throws RemoteException {
 		return assessmentDao.getAllAssement(hotelid);
 	}
+	public ArrayList<AssessmentPO> getUserASS(String userid) throws RemoteException {
+		return assessmentDao.getUserASS(userid);
+	}
 
 }

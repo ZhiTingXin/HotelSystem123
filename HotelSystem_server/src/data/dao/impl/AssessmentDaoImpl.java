@@ -46,4 +46,20 @@ public class AssessmentDaoImpl implements AssessmentDao{
 		}
 	}
 
+	public ArrayList<AssessmentPO> getUserASS(String userid) {
+		try{
+			ArrayList<AssessmentPO> assessmentPOs = new ArrayList<AssessmentPO>();
+			ArrayList<AssessmentPO> arrayList= (ArrayList<AssessmentPO>)hibernateUtil.getAll("AssessmentPO", AssessmentPO.class);
+			for(AssessmentPO po:arrayList){
+				if(po.getUserId().equals(userid)){
+					assessmentPOs.add(po);
+				}
+			}
+			return assessmentPOs;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

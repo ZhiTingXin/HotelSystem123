@@ -1,7 +1,5 @@
 package VO;
 
-import java.util.ArrayList;
-
 import PO.HotelPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -15,11 +13,6 @@ public class HotelInfoVO {
 	private String hotelAddress;
 	private String hotelDiscription;
 	private String rank;
-	private ArrayList<HotelRoomInfoVO> rooms;
-	private ArrayList<HotelStrategyVO> hotelStrategy;
-	private ArrayList<LabelVO> labelList;
-	private ArrayList<OrderVO> orderVOs;
-	private ArrayList<AssementVO> assmentVOs;
 
 	public HotelInfoVO() {
        super();
@@ -29,20 +22,14 @@ public class HotelInfoVO {
 	// 构造方法
 
 	// *********used
-	public HotelInfoVO(HotelPO hotelInfo, ArrayList<OrderVO> orderVOs, ArrayList<HotelStrategyVO> hotelStrategyVOs,
-			ArrayList<HotelRoomInfoVO> roomInfoVOs, ArrayList<LabelVO> labels,ArrayList<AssementVO> arrayList) {
+	public HotelInfoVO(HotelPO hotelInfo) {
 		super();
-		this.orderVOs = orderVOs;
-		this.rooms = roomInfoVOs;
 		this.hotelAddress = hotelInfo.getHotelAddress();
 		this.hotelDiscription = hotelInfo.getHotelDiscription();
 		this.hotelDistrict = hotelInfo.getHotelStrict();
 		this.hotelID = hotelInfo.getHotelId();
 		this.hotelStaffId = hotelInfo.getHotelStaffId();
 		this.hotelName = hotelInfo.getHotelName();
-		this.hotelStrategy = hotelStrategyVOs;
-		this.labelList = labels;
-		this.assmentVOs = arrayList;
 	    this.rank = hotelInfo.getGrade();
 	}
 
@@ -101,39 +88,7 @@ public class HotelInfoVO {
 	public void setHotelDiscription(String hotelDiscription) {
 		this.hotelDiscription = hotelDiscription;
 	}
-
-	public ArrayList<HotelRoomInfoVO> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(ArrayList<HotelRoomInfoVO> rooms) {
-		this.rooms = rooms;
-	}
-
-	public ArrayList<HotelStrategyVO> getHotelStrategy() {
-		return hotelStrategy;
-	}
-
-	public void setHotelStrategy(ArrayList<HotelStrategyVO> hotelStrategy) {
-		this.hotelStrategy = hotelStrategy;
-	}
-
-	public ArrayList<LabelVO> getLabelList() {
-		return labelList;
-	}
-
-	public void setLabelList(ArrayList<LabelVO> labelList) {
-		this.labelList = labelList;
-	}
-
-	public ArrayList<OrderVO> getOrderVOs() {
-		return orderVOs;
-	}
-
-	public void setOrderVOs(ArrayList<OrderVO> orderVOs) {
-		this.orderVOs = orderVOs;
-	}
-
+	
 	// 界面表格方法
 	public StringProperty getHotelNameProperty() {
 		return new SimpleStringProperty(this.hotelName);
@@ -147,26 +102,4 @@ public class HotelInfoVO {
 		return new SimpleStringProperty(this.hotelDiscription);
 	}
 
-	// 调用界面方法
-	public HotelRoomInfoVO[] getHotelRoomInfo() {
-		HotelRoomInfoVO[] list = new HotelRoomInfoVO[4];
-		list[0] = new HotelRoomInfoVO();
-		list[1] = new HotelRoomInfoVO();
-		list[2] = new HotelRoomInfoVO();
-		list[3] = new HotelRoomInfoVO();
-		int count=0;
-		while(count<this.rooms.size()){
-			list[count]=rooms.get(count);
-			count++;
-		}
-		return list;
-	}
-
-	public ArrayList<AssementVO> getAssmentVOs() {
-		return assmentVOs;
-	}
-
-	public void setAssmentVOs(ArrayList<AssementVO> assmentVOs) {
-		this.assmentVOs = assmentVOs;
-	}
 }
