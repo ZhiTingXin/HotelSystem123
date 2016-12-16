@@ -1,8 +1,6 @@
 package presentation.controller.userInfoController;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import VO.CustomerVO;
 import blservice.UserInfo_blservice;
 import blservice.impl.UserInfo_bl;
@@ -12,9 +10,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.Main;
-
 import other.memberState;
-import util.DateUtil;
 
 public class CustomerInfoModifyController {
 	@FXML

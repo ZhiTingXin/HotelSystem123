@@ -120,7 +120,7 @@ public class Main extends Application {
 			LoginController LoginController = loader.getController();
 			LoginController.initialize(this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -140,7 +140,7 @@ public class Main extends Application {
 			RegisterController RegisterController = loader.getController();
 			RegisterController.initialize(this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -152,7 +152,7 @@ public class Main extends Application {
 	 *            接受从其他界面传过来的CustomerVO 对象作为参数
 	 */
 	public void showCustomerInfoScene(CustomerVO customer) {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -164,7 +164,7 @@ public class Main extends Application {
 			CustomerInfoController customerInfoController = loader.getController();
 			customerInfoController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -187,7 +187,7 @@ public class Main extends Application {
 			CustomerInfoModifyController customerInfoModifyController = loader.getController();
 			customerInfoModifyController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 	}
@@ -211,7 +211,7 @@ public class Main extends Application {
 			CustomerPasswordModifyController customerPasswordModifyController = loader.getController();
 			customerPasswordModifyController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -234,7 +234,7 @@ public class Main extends Application {
 			CustomerMemberModifyController customerMemberModifyController = loader.getController();
 			customerMemberModifyController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -258,7 +258,7 @@ public class Main extends Application {
 			HotelStaffInfoController HotelStaffInfoController = loader.getController();
 			HotelStaffInfoController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -281,7 +281,7 @@ public class Main extends Application {
 			HotelStaffInfoModifyController HotelStaffInfoModifyController = loader.getController();
 			HotelStaffInfoModifyController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -305,7 +305,7 @@ public class Main extends Application {
 			HotelStaffPasswordModifyController HotelStaffPasswordModifyController = loader.getController();
 			HotelStaffPasswordModifyController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -327,7 +327,7 @@ public class Main extends Application {
 			CustomerMainController CustomerMainController = loader.getController();
 			CustomerMainController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -352,7 +352,7 @@ public class Main extends Application {
 			BookHotelController BookHotelController = loader.getController();
 			BookHotelController.initialize(this, customer, hotel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -375,7 +375,7 @@ public class Main extends Application {
 			HotelInfoController HotelInfoController = loader.getController();
 			HotelInfoController.initialize(this, customer, hotel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -397,7 +397,7 @@ public class Main extends Application {
 			HotelViewController HotelViewController = loader.getController();
 			HotelViewController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -419,7 +419,7 @@ public class Main extends Application {
 			CustomerOrderViewController CustomerOrderViewController = loader.getController();
 			CustomerOrderViewController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -431,7 +431,7 @@ public class Main extends Application {
 	 * @param orderVO
 	 */
 	public void showCustomerOrderInfoViewScene(CustomerVO customer, OrderVO orderVO) {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -443,7 +443,7 @@ public class Main extends Application {
 			CustomerOrderInfoViewController CustomerOrderInfoViewController = loader.getController();
 			CustomerOrderInfoViewController.initialize(this, customer, orderVO);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -456,7 +456,7 @@ public class Main extends Application {
 	 * @param order
 	 */
 	public void showHotelAssessmentScene(CustomerVO customer, HotelInfoVO hotel, OrderVO order) {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -468,7 +468,7 @@ public class Main extends Application {
 			CustomerHotelAssessmentController CustomerHotelAssessmentController = loader.getController();
 			CustomerHotelAssessmentController.initialize(this, customer, hotel, order);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -479,7 +479,7 @@ public class Main extends Application {
 	 * @param customer
 	 */
 	public void showCustomerAdviceViewScene(CustomerVO customer) {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -492,7 +492,7 @@ public class Main extends Application {
 			CustomerAdviceViewController CustomerAdviceViewController = loader.getController();
 			CustomerAdviceViewController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -503,7 +503,7 @@ public class Main extends Application {
 	 * @param customer
 	 */
 	public void showCustomerAdviceInfoScene(CustomerVO customer, AdviceFeedBackVO advice) {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -516,7 +516,7 @@ public class Main extends Application {
 			CustomerAdviceInfoController CustomerAdviceInfoController = loader.getController();
 			CustomerAdviceInfoController.initialize(this, customer, advice);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -527,7 +527,7 @@ public class Main extends Application {
 	 * @param customer
 	 */
 	public void showCustomerCreateAdviceScene(CustomerVO customer) {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -540,7 +540,7 @@ public class Main extends Application {
 			CustomerCreateAdviceController CustomerCreateAdviceController = loader.getController();
 			CustomerCreateAdviceController.initialize(this, customer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -562,7 +562,7 @@ public class Main extends Application {
 			HotelStaffMainController HotelStaffMainController = loader.getController();
 			HotelStaffMainController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -584,7 +584,7 @@ public class Main extends Application {
 			HotelStaffOrderViewController HotelStaffOrderViewController = loader.getController();
 			HotelStaffOrderViewController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -608,7 +608,7 @@ public class Main extends Application {
 			HotelStaffManagementOrderController HotelStaffManagementOrderController = loader.getController();
 			HotelStaffManagementOrderController.initialize(this, hotelStaff, order);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 	}
@@ -630,7 +630,7 @@ public class Main extends Application {
 			HotelStaffHotelInfoViewController HotelStaffHotelInfoViewController = loader.getController();
 			HotelStaffHotelInfoViewController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -653,7 +653,7 @@ public class Main extends Application {
 			HotelStaffHotelInfoModifyController HotelStaffHotelInfoModifyController = loader.getController();
 			HotelStaffHotelInfoModifyController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -676,7 +676,7 @@ public class Main extends Application {
 			HotelStrategyViewController HotelStrategyViewController = loader.getController();
 			HotelStrategyViewController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -700,7 +700,7 @@ public class Main extends Application {
 			HotelStrategyModifyController HotelStrategyModifyController = loader.getController();
 			HotelStrategyModifyController.initialize(this, hotelStaff, hotelStrategy, hotel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -723,7 +723,7 @@ public class Main extends Application {
 			HotelStrategyNewController HotelStrategyNewController = loader.getController();
 			HotelStrategyNewController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -746,7 +746,7 @@ public class Main extends Application {
 			SystemStaffMainController SystemStaffMainController = loader.getController();
 			SystemStaffMainController.initialize(this, systemStaffVO);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 	}
@@ -1093,7 +1093,6 @@ public class Main extends Application {
 			SystemStaffInfoController SystemStaffInfoController = loader.getController();
 			SystemStaffInfoController.initialize(this, systemStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1116,7 +1115,6 @@ public class Main extends Application {
 			SystemStaffInfoModifyController SystemStaffInfoModifyController = loader.getController();
 			SystemStaffInfoModifyController.initialize(this, systemStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1140,7 +1138,6 @@ public class Main extends Application {
 			SystemStaffPasswordModifyController SystemStaffPasswordModifyController = loader.getController();
 			SystemStaffPasswordModifyController.initialize(this, systemStaff);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1151,7 +1148,6 @@ public class Main extends Application {
 	 * @param
 	 */
 	public void showSystemManagerMainScene(SystemManagerVO systemManagerVO) {
-		// TODO Auto-generated method stub
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/main/SystemManagerMainScene.fxml"));
@@ -1162,7 +1158,6 @@ public class Main extends Application {
 			SystemManagerMainController SystemManagerMainController = loader.getController();
 			SystemManagerMainController.SystemManagerMainShow(this);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1173,7 +1168,6 @@ public class Main extends Application {
 	 * @param
 	 */
 	public void showCustomerManagementScene(SystemManagerVO systemManagerVO) {
-		// TODO Auto-generated method stub
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
@@ -1185,7 +1179,6 @@ public class Main extends Application {
 			CustomerManagementController CustomerManagementController = loader.getController();
 			CustomerManagementController.initialize(this, systemManagerVO);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1196,7 +1189,6 @@ public class Main extends Application {
 	 * @param
 	 */
 	public void showHotelStaffManagementScene(SystemManagerVO systemManagerVO) {
-		// TODO Auto-generated method stub
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
@@ -1208,7 +1200,6 @@ public class Main extends Application {
 			HotelStaffManagementController HotelStaffManagementController = loader.getController();
 			HotelStaffManagementController.initialize(this, systemManagerVO);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1219,7 +1210,6 @@ public class Main extends Application {
 	 * @param
 	 */
 	public void showSystemStaffManagementScene(SystemManagerVO systemManagerVO) {
-		// TODO Auto-generated method stub
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
@@ -1231,7 +1221,6 @@ public class Main extends Application {
 			SystemStaffManagementController SystemStaffManagementController = loader.getController();
 			SystemStaffManagementController.initialize(this, systemManagerVO);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1430,7 +1419,6 @@ public class Main extends Application {
 			SystemManagerInfoController SystemManagerInfoController = loader.getController();
 			SystemManagerInfoController.initialize(this, systemManager);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1454,7 +1442,6 @@ public class Main extends Application {
 			SystemManagerInfoModifyController SystemManagerInfoModifyController = loader.getController();
 			SystemManagerInfoModifyController.initialize(this, systemManager);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -1478,13 +1465,11 @@ public class Main extends Application {
 			SystemManagerPasswordModifyController SystemManagerPasswordModifyController = loader.getController();
 			SystemManagerPasswordModifyController.initialize(this, systemManager);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	private void initRootLayout() {
-		// TODO Auto-generated method stub
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("RootLayout.fxml"));
