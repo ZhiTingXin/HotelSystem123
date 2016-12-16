@@ -866,6 +866,27 @@ public class Main extends Application {
 	}
 
 	/**
+	 * show 网站营销人员 查看节日系统促销策略界面
+	 * 
+	 * @param systemStaffVO,systemStrategyVO
+	 * 
+	 */
+	public void showViewSystemHolidayStrategyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class
+					.getResource("/presentation/view/systemStrategy_ui/ViewSystemHolidayStrategyScene.fxml"));
+			AnchorPane ViewSystemHolidayStrategyScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(ViewSystemHolidayStrategyScene);
+
+			// get Controller
+			ViewSystemHolidayStrategyModifyController ViewSystemHolidayStrategyController = loader.getController();
+			ViewSystemHolidayStrategyController.initilize(this, systemStaffVO, systemStrategyVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
 	 * show 网站营销人员 修改节日系统促销策略界面
 	 * 
 	 * @param systemStaffVO,systemStrategyVO
@@ -909,6 +930,28 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * show 网站营销人员 新增会员系统促销策略界面
+	 * 
+	 * @param systemStaffVO
+	 * 
+	 */
+	public void showViewSystemMemberStrategyScene(SystemStaffVO systemStaffVO) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class
+					.getResource("/presentation/view/systemStrategy_ui/AddSystemMemberStrategyScene.fxml"));
+			AnchorPane SystemMemberStrategyModifyScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemMemberStrategyModifyScene);
+
+			// get Controller
+			AddSystemMemberStrategyController addSystemMemberStrategyController = loader.getController();
+			addSystemMemberStrategyController.initilize(this, systemStaffVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * show 网站营销人员 新增会员系统促销策略界面
 	 * 
