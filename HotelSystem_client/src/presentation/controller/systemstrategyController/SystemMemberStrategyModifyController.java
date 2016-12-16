@@ -149,11 +149,10 @@ public class SystemMemberStrategyModifyController {
 		SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, strategyState);
 		boolean isModify1 = systemStrategy_blservice.modifySystemStrategy(newSystemStrategy);
 
-		vipVOData.clear();// Çå¿Õ
-		vipVOData = memberStrategyTable.getItems();
+		ObservableList<VipVO> getVipVO = memberStrategyTable.getItems();
 
 		ArrayList<VipVO> newVipStrategyVoList = new ArrayList<VipVO>();
-		for (VipVO vipVO : vipVOData) {
+		for (VipVO vipVO : getVipVO) {
 			newVipStrategyVoList.add(vipVO);
 		}
 		VipStrategyVO vipStrategyVO = new VipStrategyVO();
@@ -185,7 +184,7 @@ public class SystemMemberStrategyModifyController {
 	private void handleEdit() {
 		VipVO selected = memberStrategyTable.getSelectionModel().getSelectedItem();
 		if (selected != null) {
-			mainScene.showPersonEditDialog(selected);
+			mainScene.showMemberEditDialog(selected);
 		} else {
 			// Nothing selected.
 			Alert alert = new Alert(AlertType.WARNING);
