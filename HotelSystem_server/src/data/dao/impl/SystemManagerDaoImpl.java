@@ -8,7 +8,7 @@ public class SystemManagerDaoImpl implements SystemManagerDao{
 
 	
 	public SystemManagerPO findManager(String managerID) {
-		SystemManagerPO manager = null;
+		SystemManagerPO manager = new SystemManagerPO();
 		try{
 			manager =(SystemManagerPO)hibernateUtil.findById(SystemManagerPO.class, managerID);
 			return manager;

@@ -29,8 +29,14 @@ public class LabelDaoImpl implements LabelDao {
 
 	public ArrayList<Label> getLabels(String hotelid) {
 		try {
-			ArrayList<Label> arrayList = (ArrayList<Label>)hibernateUtil.findbySome("label", "hotelid", hotelid);
-			return arrayList;
+		    ArrayList<Label> labels = (ArrayList<Label>) hibernateUtil.getAll("label",Label.class);
+		    ArrayList<Label> labels2 = new ArrayList<Label>();
+		    for(Label po:labels){
+		    	if(po.getHotelId().equals(hotelid)){
+		    		labels2.add(po);
+		    	}
+		    }
+			return labels2;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

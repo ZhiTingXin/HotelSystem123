@@ -46,7 +46,7 @@ public class HotelStaffDaoImpl implements HotelStaffDao{
 	}
 
 	public ArrayList<HotelStaffPO> getAllHotelStaffs() {
-		ArrayList<HotelStaffPO> list = null;
+		ArrayList<HotelStaffPO> list = new ArrayList<HotelStaffPO>();
 		try{
 			list = (ArrayList<HotelStaffPO>)hibernateUtil.getAll("hotelstaff", HotelStaffPO.class);
 		}catch (Exception e) {

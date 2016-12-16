@@ -1,7 +1,7 @@
 package data.service.impl;
 
 import java.rmi.RemoteException;
-import java.util.List;
+import java.util.ArrayList;
 
 import PO.RoomPO;
 import data.dao.DataFactory;
@@ -18,10 +18,6 @@ public class RoomDataServiceImpl implements RoomDataService{
 		roomDao = factory.getRoomDao();
 	}
 
-	public List<RoomPO> getAllRoomPO(String hotelid) throws RemoteException {
-		return roomDao.getAllRoomPO(hotelid);
-	}
-
 	public RoomPO findRoomPO(String roomID) throws RemoteException {
 		return roomDao.findRoomPO(roomID);
 	}
@@ -33,5 +29,10 @@ public class RoomDataServiceImpl implements RoomDataService{
 	public boolean addRoom(RoomPO roomPO) throws RemoteException {
 		return roomDao.addRoom(roomPO);
 	}
+
+	public ArrayList<RoomPO> getAllRoomPO(String hotelid) throws RemoteException {
+		return (ArrayList<RoomPO>)roomDao.getAllRoomPO(hotelid);
+	}
+
 
 }

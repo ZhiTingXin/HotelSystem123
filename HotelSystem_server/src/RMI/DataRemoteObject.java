@@ -3,7 +3,6 @@ package RMI;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.List;
 
 import PO.AdviceFeedBackPO;
 import PO.AssessmentPO;
@@ -147,7 +146,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public OrderPO findorder(String orderId) throws RemoteException {
 		return orderdata.findorder(orderId);
 	}
-	public List<OrderPO> findOrders(String userId, String type) throws RemoteException {
+	public ArrayList<OrderPO> findOrders(String userId, String type) throws RemoteException {
 		return orderdata.findOrders(userId, type);
 	}
 	public boolean confirm(String userId, String userPassword) throws RemoteException {
@@ -259,7 +258,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public LoginPO findByID(String userID) throws RemoteException {
 		return login.findByID(userID);
 	}
-	public List<OrderPO> getAllOrders() throws RemoteException {
+	public ArrayList<OrderPO> getAllOrders() throws RemoteException {
 		return orderdata.getAllOrders();
 	}
 	public ArrayList<RoomPO> getAllRoomPO(String hotelid) throws RemoteException{

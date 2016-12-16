@@ -41,12 +41,17 @@ public class Hotel_bl implements Hotel_blservice {
 			 * 得到PO
 			 */
 			HotelPO hotelPO = dataService.find(hotelId);
+			System.out.println("1");
 			ArrayList<HotelStrategyPO> hotelStrategyPOs = hotelStrategyDataService.getAll(hotelId);
-			ArrayList<OrderPO> orderPOs = orderDataService.getAllHotelOrders(hotelId);
+			System.out.println("2");
+//			ArrayList<OrderPO> orderPOs = orderDataService.getAllHotelOrders(hotelId);
+			System.out.println("3");
 			ArrayList<Label> labels = labelDataService.getLabels(hotelId);
+			System.out.println("4");
 			ArrayList<RoomPO> roomPOs = roomDataService.getAllRoomPO(hotelId);
+			System.out.println("5");
 			ArrayList<AssessmentPO> assementPOs = assessmentDataService.getAllAssement(hotelId);
-			
+			System.out.println("100");
 			ArrayList<HotelStrategyVO> hotelStrategyVOs = new ArrayList<HotelStrategyVO>();
 			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 			ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
@@ -62,9 +67,9 @@ public class Hotel_bl implements Hotel_blservice {
 				roomInfoVOs.add(new HotelRoomInfoVO(room));
 			}
 			
-			for(OrderPO po:orderPOs){
-				orderVOs.add(new OrderVO(po));
-			}
+//			for(OrderPO po:orderPOs){
+//				orderVOs.add(new OrderVO(po));
+//			}
 			
 			for(AssessmentPO assessmentPO:assementPOs){
 				arrayList.add(new AssementVO(assessmentPO));
@@ -72,7 +77,7 @@ public class Hotel_bl implements Hotel_blservice {
 			for(Label po:labels){
 				labelVOs.add(new LabelVO(po));
 			}
-			HotelInfoVO hotelVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels,arrayList);
+			HotelInfoVO hotelVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labelVOs,arrayList);
 			return hotelVO;
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -82,10 +87,13 @@ public class Hotel_bl implements Hotel_blservice {
 
 	public boolean modifyHotelInfo(HotelInfoVO hotelInfo){
 		HotelPO hotelPO = new HotelPO(hotelInfo);
+		/*
+		 * 得到VO
+		 */
 		ArrayList<OrderVO> orderVOs = hotelInfo.getOrderVOs();
 		ArrayList<HotelRoomInfoVO> roomInfoVOs = hotelInfo.getRooms();
 		ArrayList<HotelStrategyVO> hotelStrategyVOs = hotelInfo.getHotelStrategy();
-		ArrayList<Label> labels = hotelInfo.getLabelList();
+		ArrayList<LabelVO> labels = hotelInfo.getLabelList();
 		try {
 			boolean a = dataService.update(hotelPO);
 			boolean order = true;
@@ -107,14 +115,32 @@ public class Hotel_bl implements Hotel_blservice {
 				boolean h = hotelStrategyDataService.modify(hotelStrategyPO);
 				strategy = strategy&&h;
 			}
-			/*
-			 * 没有label的dataservice
-			 */
-			
-			// TODO Auto-generated method stub
 			boolean lab = true;
-			for(Label label:labels){
-//				lab = lab&&;
+			ArrayList<Label> lArrayList = labelDataService.getLabels(hotelInfo.getHotelID());
+			for(LabelVO label:labels){
+				boolean in = false;
+				for(Label po:lArrayList){
+					if(label.getId()==po.getId()){
+						in = true;
+						break;
+					}
+				}
+				if(in){
+				}else{
+					lab = lab &&labelDataService.addLabel(new Label(label));
+				}
+			}
+			for(Label po:lArrayList){
+				boolean in =false;
+				for(LabelVO labelVO:labels){
+					if(labelVO.getId()==po.getId()){
+						in = true;
+						break;
+					}
+				}
+				if(!in){
+					lab = lab&&labelDataService.delLabel(po);
+				}
 			}
 			return (order&&a&&lab&&strategy&&roo);
 		} catch (RemoteException e) {
@@ -133,6 +159,7 @@ public class Hotel_bl implements Hotel_blservice {
 			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 			ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
 			ArrayList<AssementVO> assementVOs = new ArrayList<AssementVO>();
+			ArrayList<LabelVO> labelVOs = new ArrayList<LabelVO>();
 			poList = dataService.getHotels(strict);
 			
 		    ArrayList<HotelInfoVO> voList = new ArrayList<HotelInfoVO>();
@@ -143,8 +170,9 @@ public class Hotel_bl implements Hotel_blservice {
 			    ArrayList<HotelStrategyPO> hotelStrategyPOs = hotelStrategyDataService.getAll(hotelid);
 			    ArrayList<RoomPO> roomPOs = roomDataService.getAllRoomPO(hotelid);
 			    ArrayList<AssessmentPO> assessmentPOs = assessmentDataService.getAllAssement(hotelid);
-			    //TODO Auto-generated method stub
-			    ArrayList<Label> labels = new ArrayList<Label>();
+			    ArrayList<Label> labels = labelDataService.getLabels(hotelid);
+			    
+			    
 			    for(OrderPO orderPO : orderPOs){
 			    	orderVOs.add(new OrderVO(orderPO));
 			    }
@@ -157,7 +185,10 @@ public class Hotel_bl implements Hotel_blservice {
 			    for(AssessmentPO assessmentPO:assessmentPOs){
 			    	assementVOs.add(new AssementVO(assessmentPO));
 			    }
-			    HotelInfoVO hotelInfoVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labels,assementVOs);
+			    for(Label label:labels){
+			    	labelVOs.add(new LabelVO(label));
+			    }
+			    HotelInfoVO hotelInfoVO = new HotelInfoVO(hotelPO, orderVOs, hotelStrategyVOs, roomInfoVOs, labelVOs,assementVOs);
 		        voList.add(hotelInfoVO);
 		     }
 		    return voList;
@@ -173,9 +204,15 @@ public class Hotel_bl implements Hotel_blservice {
 		ArrayList<OrderVO> orderVOs = hotel.getOrderVOs();
 		ArrayList<HotelRoomInfoVO> roomInfoVOs = hotel.getRooms();
 		ArrayList<HotelStrategyVO> hotelStrategyVOs = hotel.getHotelStrategy();
-		ArrayList<Label> labels = hotel.getLabelList();
+		ArrayList<LabelVO> labels = hotel.getLabelList();
+		ArrayList<AssementVO> assementVOs = hotel.getAssmentVOs();
 		try {
 			boolean a = dataService.add(hotelPO);
+			
+			boolean as = true;
+			for(AssementVO assementVO:assementVOs){
+				as = as&&assessmentDataService.addAssessment(new AssessmentPO(assementVO));
+			}
 			boolean order = true;
 			for(OrderVO ordervo:orderVOs){
 				OrderPO orderPO = new OrderPO(ordervo);
@@ -195,14 +232,10 @@ public class Hotel_bl implements Hotel_blservice {
 				boolean h = hotelStrategyDataService.add(hotelStrategyPO);
 				strategy = strategy&&h;
 			}
-			/*
-			 * 没有label的dataservice
-			 */
 			
-			// TODO Auto-generated method stub
 			boolean lab = true;
-			for(Label label:labels){
-//				lab = lab&&;
+			for(LabelVO label:labels){
+				lab = lab&&labelDataService.addLabel(new Label(label));
 			}
 			return (order&&a&&lab&&strategy&&roo);
 		} catch (RemoteException e) {
