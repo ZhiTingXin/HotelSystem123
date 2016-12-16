@@ -1,3 +1,5 @@
+/main/
+/presentation/
 /MockObject/
 /PO/
 /RMI/
@@ -5,7 +7,5 @@
 /blservice/
 /data/
 /other/
-/presentation/
 /util/
 /Test/
-/main/
