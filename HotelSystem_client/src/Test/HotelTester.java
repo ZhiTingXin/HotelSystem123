@@ -103,7 +103,7 @@ public class HotelTester {
  	
  	@Test
  	public void test002modify(){
- 		HotelInfoVO hotelInfoVO = ho.getHotelInfo("392");
+ 		HotelInfoVO hotelInfoVO = ho.getHotelInfo("471");
 // 		hotelInfoVO.setHotelAddress("苏州公园内");
 // 		ho.modifyHotelInfo(hotelInfoVO);
  		assertEquals("南京", hotelInfoVO.getHotelAddress());

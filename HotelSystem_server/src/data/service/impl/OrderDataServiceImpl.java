@@ -40,6 +40,9 @@ public class OrderDataServiceImpl implements OrderDataService{
 	public ArrayList<OrderPO> getAllOrders() throws RemoteException {
 		return orderDao.getAllOrders();
 	}
+	public ArrayList<OrderPO> getAllHotelOrders(String hotelid) throws RemoteException {
+		return orderDao.getAllHotelOrders(hotelid);
+	}
 
 
 }
