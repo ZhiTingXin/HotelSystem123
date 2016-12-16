@@ -1,11 +1,23 @@
 package testAll;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import PO.ClassToGreId;
+import PO.RoomPO;
 import PO.SystemManagerPO;
+import data.dao.AdviceFeedbackDao;
+import data.dao.OrderDao;
+import data.dao.RoomDao;
+import data.dao.impl.AdviceFeedbackDaoImpl;
+import data.dao.impl.OrderDaoImpl;
+import data.dao.impl.RoomDaoImpl;
+import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
+import data.service.RoomDataService;
+import data.service.impl.HotelStrategyDataServiceImpl;
 import data.service.impl.IdGernerateServiceImpl;
+import data.service.impl.RoomDataServiceImpl;
 import other.hibernateUtil;
 
 //import PO.AdviceFeedBackPO;
@@ -59,7 +71,31 @@ public class tes {
 //		systemManagerPO.setManagerID(aGernerateServiceImpl.gernerateId());
 //		systemManagerPO.setManagerName("xinzhiting");
 //		hibernateUtil.add(systemManagerPO);
-		LocalDate localDate = LocalDate.now();
-		System.out.println(localDate);
+//		LocalDate localDate = LocalDate.now();
+//		System.out.println(localDate);
+//		RoomDataService dataService = new RoomDataServiceImpl();
+//		RoomDao dao = new  RoomDaoImpl();
+//		String id = "377";
+//		System.out.println(dao.getAllRoomPO(id).size());
+//		String hotelId = "377";
+//		HotelStrategyDataService dataService = new HotelStrategyDataServiceImpl();
+//		System.out.println(dataService.getAll(hotelId).size());
+//		RoomPO roomPO = new RoomPO();
+//		roomPO.setHotelId("377");
+//		roomPO.setId("123");
+//		hibernateUtil.add(roomPO);
+		
+//		System.out.println(((RoomPO)hibernateUtil.findById(RoomPO.class, "123")).getHotelId());
+		
+//		ArrayList<RoomPO> roomPOs = (ArrayList<RoomPO>)hibernateUtil.getAll("roompo", RoomPO.class);
+//		System.out.println(roomPOs.size());
+//		RoomDao dao = new RoomDaoImpl();
+//		System.out.println(dao.getAllRoomPO("377").size());
+//		RoomDataService roomDataService = new RoomDataServiceImpl();
+//		AdviceFeedbackDao adviceFeedbackDao = new AdviceFeedbackDaoImpl();
+//		System.out.println(roomDataService.getAllRoomPO("377").get(0).getHotelId());
+//		System.out.println(adviceFeedbackDao.getAdvices());
+		OrderDao orderDao =new OrderDaoImpl();
+		System.out.println(orderDao);
 	}
 }

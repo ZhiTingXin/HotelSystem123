@@ -28,13 +28,6 @@ public class SystemStrategyPO implements Serializable{
     public SystemStrategyPO(){
     }
 
-    public SystemStrategyPO(String systemstrategy_name,double count,LocalDate begin,LocalDate end,String systemStaffID){
-    	this.systemStrategy_name=systemstrategy_name;
-    	this.discount = count;
-    	this.begin_date = begin;
-    	this.end_date =end;
-    	this.systemStaffId = systemStaffID;
-    }
 	public String getSystemStrategy_name() {
 		return systemStrategy_name;
 	}

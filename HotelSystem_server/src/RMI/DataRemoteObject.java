@@ -3,13 +3,14 @@ package RMI;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.List;
+
 import PO.AdviceFeedBackPO;
 import PO.AssessmentPO;
 import PO.CustomerPO;
 import PO.HotelPO;
 import PO.HotelStaffPO;
 import PO.HotelStrategyPO;
+import PO.Label;
 import PO.LoginPO;
 import PO.OrderPO;
 import PO.RoomPO;
@@ -24,6 +25,7 @@ import data.service.HotelDataService;
 import data.service.HotelStaffDataService;
 import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
+import data.service.LabelDataService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.RoomDataService;
@@ -38,6 +40,7 @@ import data.service.impl.HotelDataServiceImpl;
 import data.service.impl.HotelStaffDataServiceImpl;
 import data.service.impl.HotelStrategyDataServiceImpl;
 import data.service.impl.IdGernerateServiceImpl;
+import data.service.impl.LabelDataServiceImpl;
 import data.service.impl.LoginDataServiceImpl;
 import data.service.impl.OrderDataServiceImpl;
 import data.service.impl.RoomDataServiceImpl;
@@ -50,7 +53,7 @@ import other.SystemStrategyType;
 public class DataRemoteObject extends UnicastRemoteObject implements LoginDataService
 ,OrderDataService,HotelStrategyDataService,SystemStrategyDataService,HotelDataService,AdviceFeedBackDataService
 ,HotelStaffDataService,SystemStaffDataService,SystemManagerDataService
-,RoomDataService,CustomerDataService,VipDataService,IdGernerateService,AssessmentDataService{
+,RoomDataService,CustomerDataService,VipDataService,IdGernerateService,AssessmentDataService,LabelDataService{
 	
 	/**
 	 * 
@@ -70,7 +73,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	private IdGernerateService idGernerateService;
 	private RoomDataService roomDataService;
 	private AssessmentDataService assessmentDataService;
+	private LabelDataService labelDataService;
 	protected DataRemoteObject() throws RemoteException {
+		labelDataService = new LabelDataServiceImpl();
 		assessmentDataService = new AssemmentDataServiceImpl();
 		vipDataService = new VipDataServiceImpl();
 		idGernerateService = new IdGernerateServiceImpl();
@@ -141,7 +146,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public OrderPO findorder(String orderId) throws RemoteException {
 		return orderdata.findorder(orderId);
 	}
-	public List<OrderPO> findOrders(String userId, String type) throws RemoteException {
+	public ArrayList<OrderPO> findOrders(String userId, String type) throws RemoteException {
 		return orderdata.findOrders(userId, type);
 	}
 	public boolean confirm(String userId, String userPassword) throws RemoteException {
@@ -253,7 +258,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public LoginPO findByID(String userID) throws RemoteException {
 		return login.findByID(userID);
 	}
-	public List<OrderPO> getAllOrders() throws RemoteException {
+	public ArrayList<OrderPO> getAllOrders() throws RemoteException {
 		return orderdata.getAllOrders();
 	}
 	public ArrayList<RoomPO> getAllRoomPO(String hotelid) throws RemoteException{
@@ -279,5 +284,17 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	}
 	public ArrayList<AssessmentPO> getAllAssement(String hotelid) throws RemoteException {
 		return assessmentDataService.getAllAssement(hotelid);
+	}
+	public boolean addLabel(Label label)throws RemoteException{
+		return labelDataService.addLabel(label);
+	}
+	public boolean delLabel(Label label)throws RemoteException {
+		return labelDataService.delLabel(label);
+	}
+	public ArrayList<Label> getLabels(String hotelid) throws RemoteException {
+		return labelDataService.getLabels(hotelid);
+	}
+	public ArrayList<OrderPO> getAllHotelOrders(String hotelid) throws RemoteException {
+		return orderdata.getAllHotelOrders(hotelid);
 	};
 }

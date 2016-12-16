@@ -25,6 +25,7 @@ public class AssessmentPO implements Serializable{
 	String content;
 	String type;
 	String hotelId;
+	public AssessmentPO(){}
 	public String getUserId() {
 		return userId;
 	}

@@ -1,15 +1,21 @@
 package data.dao.impl;
 
-import java.util.List;
-
+import java.util.ArrayList;
 import PO.RoomPO;
 import data.dao.RoomDao;
 import other.hibernateUtil;
 
 public class RoomDaoImpl implements RoomDao{
 
-	public List<RoomPO> getAllRoomPO(String hotelid){
-		return hibernateUtil.getAll("RoomPO", RoomPO.class);
+	public ArrayList<RoomPO> getAllRoomPO(String hotelid){
+	      ArrayList<RoomPO> roomPOs = (ArrayList<RoomPO>)hibernateUtil.getAll("roompo", RoomPO.class);
+	      ArrayList<RoomPO> roomPOs2 = new ArrayList<RoomPO>();
+	      for(RoomPO p:roomPOs){
+	    	  if(p.getHotelId().equals(hotelid)){
+	    		  roomPOs2.add(p);
+	    	  }
+	      }
+	      return roomPOs2;
 	}
 
 	public RoomPO findRoomPO(String roomID){
@@ -17,8 +23,14 @@ public class RoomDaoImpl implements RoomDao{
 	}
 
 	public boolean modify(RoomPO roomPO){
-		hibernateUtil.update(roomPO);
-		return true;
+		try {
+			hibernateUtil.update(roomPO);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 	public boolean addRoom(RoomPO roomPO){

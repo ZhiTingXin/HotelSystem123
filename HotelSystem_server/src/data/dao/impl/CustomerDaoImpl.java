@@ -45,7 +45,7 @@ public class CustomerDaoImpl implements CustomerDao{
 		}	}
 
 	public ArrayList<CustomerPO> getAllCustomers() {
-	    ArrayList<CustomerPO> list = null;
+	    ArrayList<CustomerPO> list = new ArrayList<CustomerPO>();
 	    try {
 			list = (ArrayList<CustomerPO>)hibernateUtil.getAll("customer", CustomerPO.class);
 		} catch (Exception e) {

@@ -28,11 +28,11 @@ public class RoomPO implements Serializable{
 	public RoomPO(){}
 	public RoomPO(HotelRoomInfoVO hotel){
 		this.price = hotel.getRoomPrice();
-		this.hotelId = hotel.getId();
+		this.id = hotel.getId();
+		this.hotelId = hotel.getHotelid();
 		this.type = hotel.getRoomType();
 		this.number = hotel.getRoomNum();
 		this.remainNum = hotel.getRoomRemain();
-		this.id = hotelId+hotel.getRoomType();
 	}
 	
 	public int getPrice() {

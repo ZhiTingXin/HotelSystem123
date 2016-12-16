@@ -20,6 +20,7 @@
     <mapping class="PO.OrderPO" />
     <mapping class="PO.HotelPO"/>
     <mapping class="PO.RoomPO"/>
+    <mapping class="PO.Label"/>
     <mapping class="PO.AdviceFeedBackPO"/>
     <mapping class="PO.AssessmentPO"/>
     <mapping class="PO.CustomerPO"/>
