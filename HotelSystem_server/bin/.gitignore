@@ -1,7 +1,5 @@
-/testAll/
-/data/
 /PO/
 /RMI/
 /Runner/
-/other/
-/hibernate.cfg.out.xml
+/data/
+/testAll/
