@@ -41,17 +41,11 @@ public class Hotel_bl implements Hotel_blservice {
 			 * µÃµ½PO
 			 */
 			HotelPO hotelPO = dataService.find(hotelId);
-			System.out.println("1");
 			ArrayList<HotelStrategyPO> hotelStrategyPOs = hotelStrategyDataService.getAll(hotelId);
-			System.out.println("2");
-//			ArrayList<OrderPO> orderPOs = orderDataService.getAllHotelOrders(hotelId);
-			System.out.println("3");
+			ArrayList<OrderPO> orderPOs = orderDataService.getAllHotelOrders(hotelId);
 			ArrayList<Label> labels = labelDataService.getLabels(hotelId);
-			System.out.println("4");
 			ArrayList<RoomPO> roomPOs = roomDataService.getAllRoomPO(hotelId);
-			System.out.println("5");
 			ArrayList<AssessmentPO> assementPOs = assessmentDataService.getAllAssement(hotelId);
-			System.out.println("100");
 			ArrayList<HotelStrategyVO> hotelStrategyVOs = new ArrayList<HotelStrategyVO>();
 			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 			ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
@@ -67,9 +61,9 @@ public class Hotel_bl implements Hotel_blservice {
 				roomInfoVOs.add(new HotelRoomInfoVO(room));
 			}
 			
-//			for(OrderPO po:orderPOs){
-//				orderVOs.add(new OrderVO(po));
-//			}
+			for(OrderPO po:orderPOs){
+				orderVOs.add(new OrderVO(po));
+			}
 			
 			for(AssessmentPO assessmentPO:assementPOs){
 				arrayList.add(new AssementVO(assessmentPO));

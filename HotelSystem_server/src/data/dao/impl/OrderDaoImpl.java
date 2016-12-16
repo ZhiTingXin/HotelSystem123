@@ -1,5 +1,6 @@
 package data.dao.impl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import PO.OrderPO;
 import data.dao.OrderDao;
@@ -72,6 +73,19 @@ public class OrderDaoImpl implements OrderDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	public ArrayList<OrderPO> getAllHotelOrders(String hotelid) throws RemoteException {
+		try{
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)hibernateUtil.getAll("orderpo", OrderPO.class);
+			ArrayList<OrderPO> orderPOs2 = new ArrayList<OrderPO>();
+			for(OrderPO po:orderPOs){
+				orderPOs2.add(po);
+			}
+			return orderPOs2;
+		}catch (Exception e) {
+		    e.printStackTrace();
+		    return null;
 		}
 	}
 

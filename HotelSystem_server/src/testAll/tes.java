@@ -7,8 +7,10 @@ import PO.ClassToGreId;
 import PO.RoomPO;
 import PO.SystemManagerPO;
 import data.dao.AdviceFeedbackDao;
+import data.dao.OrderDao;
 import data.dao.RoomDao;
 import data.dao.impl.AdviceFeedbackDaoImpl;
+import data.dao.impl.OrderDaoImpl;
 import data.dao.impl.RoomDaoImpl;
 import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
@@ -89,9 +91,11 @@ public class tes {
 //		System.out.println(roomPOs.size());
 //		RoomDao dao = new RoomDaoImpl();
 //		System.out.println(dao.getAllRoomPO("377").size());
-		RoomDataService roomDataService = new RoomDataServiceImpl();
-		AdviceFeedbackDao adviceFeedbackDao = new AdviceFeedbackDaoImpl();
-		System.out.println(roomDataService.getAllRoomPO("377").get(0).getHotelId());
+//		RoomDataService roomDataService = new RoomDataServiceImpl();
+//		AdviceFeedbackDao adviceFeedbackDao = new AdviceFeedbackDaoImpl();
+//		System.out.println(roomDataService.getAllRoomPO("377").get(0).getHotelId());
 //		System.out.println(adviceFeedbackDao.getAdvices());
+		OrderDao orderDao =new OrderDaoImpl();
+		System.out.println(orderDao);
 	}
 }

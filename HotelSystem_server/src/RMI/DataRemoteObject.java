@@ -293,5 +293,8 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	}
 	public ArrayList<Label> getLabels(String hotelid) throws RemoteException {
 		return labelDataService.getLabels(hotelid);
+	}
+	public ArrayList<OrderPO> getAllHotelOrders(String hotelid) throws RemoteException {
+		return orderdata.getAllHotelOrders(hotelid);
 	};
 }
