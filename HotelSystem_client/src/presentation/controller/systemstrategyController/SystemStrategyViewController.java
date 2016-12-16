@@ -292,7 +292,7 @@ public class SystemStrategyViewController {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("警示");
 			alert.setHeaderText("删除失败");
-			alert.setContentText("不要着急，您应该先选择某个优惠项目再进行删除！");
+			alert.setContentText("不要着急，您应该先选择要删除的策略！");
 			alert.showAndWait();
 		}
 	}
