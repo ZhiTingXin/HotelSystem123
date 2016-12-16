@@ -46,7 +46,12 @@ public class CustomerAdviceInfoController {
 		this.leftIDLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
 		this.sendTime.setText(this.advice.getSendTime().toString());
-		this.rerlyTime.setText(this.advice.getReplyTime().toString());
+		if (this.advice.getReplyTime()!=null) {
+			this.rerlyTime.setText(this.advice.getReplyTime().toString());
+		}else {
+			this.rerlyTime.setText("Î´»Ø¸´");
+		}
+		
 		this.sendInfo.setText(this.advice.getAdviceFeedBack_content());
 		this.replyInfo.setText(this.advice.getReplyContent());
 	}

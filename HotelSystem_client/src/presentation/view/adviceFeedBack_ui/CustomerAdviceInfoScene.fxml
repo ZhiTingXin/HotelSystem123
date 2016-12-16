@@ -52,8 +52,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="sendInfo" layoutX="133.0" layoutY="114.0" prefHeight="197.0" prefWidth="356.0" />
-                  <TextArea fx:id="replyInfo" layoutX="133.0" layoutY="361.0" prefHeight="197.0" prefWidth="356.0" />
+                  <TextArea fx:id="sendInfo" editable="false" layoutX="133.0" layoutY="114.0" prefHeight="197.0" prefWidth="356.0" />
+                  <TextArea fx:id="replyInfo" editable="false" layoutX="133.0" layoutY="361.0" prefHeight="197.0" prefWidth="356.0" promptText="暂无信息" />
                   <Label fx:id="sendTime" layoutX="133.0" layoutY="80.0" text="Label">
                      <font>
                         <Font size="14.0" />

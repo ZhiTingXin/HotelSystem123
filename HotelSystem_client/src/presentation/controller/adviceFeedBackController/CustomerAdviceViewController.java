@@ -60,6 +60,7 @@ public class CustomerAdviceViewController {
 		this.replyTime.setCellValueFactory(cellData -> cellData.getValue().getReplyTimeProperty());
 		this.sendInfo.setCellValueFactory(cellData -> cellData.getValue().getSendContentProperty());
 		this.replyInfo.setCellValueFactory(cellData -> cellData.getValue().getReplyContentProperty());
+		this.showCustomerAdviceView();
 	}
 
 	public void showCustomerAdviceView() {
@@ -81,7 +82,10 @@ public class CustomerAdviceViewController {
 	@FXML
 	private void handleInfoShow() {
 		int foucus = this.adviceFeedBackTable.getSelectionModel().getFocusedIndex();
-		this.mainScene.showCustomerAdviceInfoScene(customer, this.adviceList.get(foucus));
+		if (foucus > 0) {
+			this.mainScene.showCustomerAdviceInfoScene(customer, this.adviceList.get(foucus));
+		}
+
 	}
 
 }

@@ -65,22 +65,22 @@ public class CustomerInfoController {
 	public void CustomerinfoShow(Main mainScene) {
 		this.idLabel.setText(Customer.getId());
 		this.nameLabel.setText(Customer.getUsername());
-		// this.birthdayLabel.setText(DateUtil.format(Customer.getBirthday()));
+		this.birthdayLabel.setText(DateUtil.format(Customer.getBirthday()));
 		this.companyLabel.setText(Customer.getCompanyName());
 		this.creditLabel.setText(String.valueOf(Customer.getCredit()));
 
-		if (Customer.getMemberState() == memberState.NON_MEMBER) {
-			this.memberLabel.setText("非会员");
-		} else if (Customer.getMemberState() == memberState.NORMAL_MEMBER) {
+		if (Customer.getMemberState() == memberState.BUSINESS_MEMBER) {
 			this.memberLabel.setText("企业会员");
 		} else if (Customer.getMemberState() == memberState.NORMAL_MEMBER) {
 			this.memberLabel.setText("普通会员");
+		} else {
+			this.memberLabel.setText("非会员");
 		}
 
 		this.leftMenuIdLabel.setText(Customer.getId());
 		this.leftMenuNameLabel.setText(Customer.getUsername());
 		
-		// this.phoneLabel.setText();
+		this.phoneLabel.setText(this.Customer.getPhone());
 		// this.leftMenuImage.setImage(new Image("D:/我的文档/Pictures/as"));
 	}
 

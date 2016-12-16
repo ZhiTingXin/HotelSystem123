@@ -48,6 +48,7 @@ public class CustomerCreateAdviceController {
 		if (this.sendInfo.getText() != "") {
 			this.advice.setAdviceFeedBack_content(this.sendInfo.getText());
 			LocalDate today = LocalDate.now();
+			this.advice.setUserID(this.customer.getId());
 			this.advice.setSendTime(today);
 			this.service.addAdviceFeedBack(advice);
 			this.mainScene.showCustomerAdviceViewScene(customer);

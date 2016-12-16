@@ -15,4 +15,6 @@ public interface AssessmentDataService extends Remote{
 	public AssessmentPO getAssessment(String orderID)throws RemoteException;
 	
 	public ArrayList<AssessmentPO> getAllAssement(String hotelid)throws RemoteException;
+	
+	public ArrayList<AssessmentPO> getUserASS(String userid)throws RemoteException;
 }

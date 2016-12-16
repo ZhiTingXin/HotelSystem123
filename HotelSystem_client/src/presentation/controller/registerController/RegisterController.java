@@ -44,6 +44,7 @@ public class RegisterController {
 	private Main mainScene;
 	private UserInfo_blservice user_blservice;
 	private Register_blservice registerService;
+	private CustomerVO customer;
 
 	public RegisterController() {
 
@@ -93,16 +94,16 @@ public class RegisterController {
 		if (isPasswordReady && isNameReady == true) {
 			// bl层创建新用户
 			{
-				CustomerVO customer = new CustomerVO();
+				customer = new CustomerVO();
 				customer.setUsername(userNameInField);
 				customer.setPassword(userPasswordConfirmInField);
-				// customer.setPhoneNum(phone);
+				customer.setPhone(phone);
 				if (userBirthday != null) {
 					customer.setBirthday(userBirthday);
 				}
 				this.registerService.addRegister(customer);
 			}
-			this.mainScene.showCustomerMainScene(new CustomerVO());
+			this.mainScene.showCustomerMainScene(customer);
 		}
 	}
 

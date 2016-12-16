@@ -14,4 +14,6 @@ public interface AssessmentDao {
 	
 	public ArrayList<AssessmentPO> getAllAssement(String hotelid);
 	
+	public ArrayList<AssessmentPO> getUserASS(String userid);
+	
 }
