@@ -95,7 +95,10 @@ public class tes {
 //		AdviceFeedbackDao adviceFeedbackDao = new AdviceFeedbackDaoImpl();
 //		System.out.println(roomDataService.getAllRoomPO("377").get(0).getHotelId());
 //		System.out.println(adviceFeedbackDao.getAdvices());
-		OrderDao orderDao =new OrderDaoImpl();
-		System.out.println(orderDao);
+//		OrderDao orderDao =new OrderDaoImpl();
+//		System.out.println(orderDao);
+		String aString = "仙林校区";
+		String aString2 = "仙林";
+		System.out.println(aString.contains(aString2));
 	}
 }

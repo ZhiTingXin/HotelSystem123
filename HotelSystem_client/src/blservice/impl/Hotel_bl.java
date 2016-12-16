@@ -81,9 +81,6 @@ public class Hotel_bl implements Hotel_blservice {
 
 	public boolean modifyHotelInfo(HotelInfoVO hotelInfo){
 		HotelPO hotelPO = new HotelPO(hotelInfo);
-		/*
-		 * µÃµ½VO
-		 */
 		ArrayList<OrderVO> orderVOs = hotelInfo.getOrderVOs();
 		ArrayList<HotelRoomInfoVO> roomInfoVOs = hotelInfo.getRooms();
 		ArrayList<HotelStrategyVO> hotelStrategyVOs = hotelInfo.getHotelStrategy();
@@ -268,7 +265,7 @@ public class Hotel_bl implements Hotel_blservice {
 	
 	@Override
 	public ArrayList<HotelInfoVO> getAllHotel() {
-		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
 			ArrayList<HotelPO> hotelPOs = dataService.getAllHotels();
 			for(HotelPO po : hotelPOs){
@@ -284,7 +281,7 @@ public class Hotel_bl implements Hotel_blservice {
 	@Override
 	public ArrayList<HotelInfoVO> getHotelFromName(String text) {
 		
-		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<>();
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
 			ArrayList<HotelPO> hotelPOs = dataService.getAllHotels();
 			for(HotelPO po : hotelPOs){
