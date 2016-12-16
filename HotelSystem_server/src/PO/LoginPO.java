@@ -23,11 +23,11 @@ public class LoginPO implements Serializable {
 	//构造方法
 	public LoginPO(){
 	}
-	public LoginPO(String Id,String password,UserType type){
+	public LoginPO(String id,String pass,UserType userType){
 		super();
-		this.id = Id;
-		this.userType = type;
-		this.userPassword = password;
+		this.id = id;
+		this.userPassword = pass;
+		this.userType = userType;
 	}
 	@Id
 	public String getId() {

@@ -39,7 +39,7 @@ public class HotelStrategyDaoImpl implements HotelStrategyDao {
 	}
 
 	public HotelStrategyPO get(String hotelstrategyId) {
-		HotelStrategyPO hotelstrategy = null;
+		HotelStrategyPO hotelstrategy = new HotelStrategyPO();
 		try{
 			hotelstrategy = (HotelStrategyPO)hibernateUtil.findById(HotelStrategyPO.class, hotelstrategyId);
 		    return hotelstrategy;
@@ -49,10 +49,15 @@ public class HotelStrategyDaoImpl implements HotelStrategyDao {
 	}
 
 	public ArrayList<HotelStrategyPO> getAll(String hotelId) {
-		ArrayList<HotelStrategyPO> hotelstrategy = null;
+		ArrayList<HotelStrategyPO> hotelstrategy = new ArrayList<HotelStrategyPO>();
 		try{
-			hotelstrategy = (ArrayList<HotelStrategyPO>)
-					hibernateUtil.findbySome("HotelStrategyPO", "hotelId", hotelId);
+			ArrayList<HotelStrategyPO> hotelstrategy2 = (ArrayList<HotelStrategyPO>)
+					hibernateUtil.getAll("hotelstrategypo", HotelStrategyPO.class);
+			for(HotelStrategyPO strategyPO:hotelstrategy2){
+				if(strategyPO.getHotelID().equals(hotelId)){
+					hotelstrategy.add(strategyPO);
+				}
+			}
 			return hotelstrategy;
 		}catch(Exception e){
 			e.printStackTrace();

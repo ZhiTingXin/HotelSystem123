@@ -29,14 +29,7 @@ public class HotelPO implements Serializable {
 	private String hotelAddress;
 	
 	//Hotel的构造方法
-	public HotelPO(String hid,String hsid,String hstri,String hotelname,String hoteldis,String address){
-		super();
-		this.hotelId = hid;
-		this.hotelStaffId = hsid;
-		this.hotelStrict = hstri;
-		this.hotelName = hotelname;
-		this.hotelAddress = address;
-		this.hotelDiscription = hoteldis;
+	public HotelPO(){
 	}
 	@Id
 	public String getHotelId() {

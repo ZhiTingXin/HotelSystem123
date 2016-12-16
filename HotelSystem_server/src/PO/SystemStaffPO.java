@@ -24,13 +24,6 @@ public class SystemStaffPO implements Serializable{
 	private String businessDistrict;
 
 	public SystemStaffPO() {
-		super();
-	}
-
-	public SystemStaffPO(String id, String staffName, String phone) {
-		this.id = id;
-		this.staffName = staffName;
-		this.phone = phone;
 	}
 
 	public String getId() {

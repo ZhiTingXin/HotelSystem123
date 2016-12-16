@@ -50,7 +50,7 @@ public class SystemStrategyDaoImpl implements SystemStrategyDao{
 }
 
 	public ArrayList<SystemStrategyPO> getAllStrategys() {
-	    ArrayList<SystemStrategyPO> list = null;
+	    ArrayList<SystemStrategyPO> list = new ArrayList<SystemStrategyPO>();
 	    try {
 			list = (ArrayList<SystemStrategyPO>)hibernateUtil.getAll("systemstrategy",SystemStrategyPO.class);
 		} catch (Exception e) {

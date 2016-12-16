@@ -33,7 +33,7 @@ public class HotelDaoImpl implements HotelDao{
 	}
 
 	public HotelPO get(String hotelId) {
-		HotelPO hotel = null;
+		HotelPO hotel = new HotelPO();
 		try{
 			hotel=(HotelPO)hibernateUtil.findById(HotelPO.class, hotelId);
 			return hotel;
@@ -44,9 +44,14 @@ public class HotelDaoImpl implements HotelDao{
 	}
 
 	public ArrayList<HotelPO> getHotels(String strict) {
-		ArrayList<HotelPO> list = null;
+		ArrayList<HotelPO> list = new ArrayList<HotelPO>();
 		try{
-			list = (ArrayList<HotelPO>)hibernateUtil.findbySome("HotelPO", "hotelStrict", strict);
+			ArrayList<HotelPO> list1 = (ArrayList<HotelPO>)hibernateUtil.getAll("hotel", HotelPO.class);
+			for(HotelPO hotelPO:list1){
+				if(hotelPO.getHotelStrict().equals(strict)){
+					list.add(hotelPO);
+				}
+			}
 			return list;
 		}catch(Exception e){
 			e.printStackTrace();
@@ -65,7 +70,7 @@ public class HotelDaoImpl implements HotelDao{
 	}
 
 	public ArrayList<HotelPO> getAllHotels() {
-		ArrayList<HotelPO> list = null;
+		ArrayList<HotelPO> list = new ArrayList<HotelPO>();
 		try {
 			list = (ArrayList<HotelPO>)hibernateUtil.getAll("hotel",HotelPO.class);
 		} catch (Exception e) {

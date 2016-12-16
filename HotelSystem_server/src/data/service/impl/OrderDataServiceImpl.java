@@ -1,7 +1,7 @@
 package data.service.impl;
 
 import java.rmi.RemoteException;
-import java.util.List;
+import java.util.ArrayList;
 
 import PO.OrderPO;
 import data.dao.DataFactory;
@@ -34,10 +34,10 @@ public class OrderDataServiceImpl implements OrderDataService{
 		return orderDao.findorder(orderId);
 	}
 
-	public List<OrderPO> findOrders(String userId, String type) throws RemoteException {
+	public ArrayList<OrderPO> findOrders(String userId, String type) throws RemoteException {
 		return orderDao.findOrders(userId, type);
 	}
-	public List<OrderPO> getAllOrders() throws RemoteException {
+	public ArrayList<OrderPO> getAllOrders() throws RemoteException {
 		return orderDao.getAllOrders();
 	}
 

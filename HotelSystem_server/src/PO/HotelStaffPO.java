@@ -29,14 +29,6 @@ public class HotelStaffPO implements Serializable {
 	}
 
 
-	public HotelStaffPO(String id, String username, String phone, String hotelId) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.phone = phone;
-		this.hotelId = hotelId;
-	}
-
 	public String getId() {
 		return id;
 	}

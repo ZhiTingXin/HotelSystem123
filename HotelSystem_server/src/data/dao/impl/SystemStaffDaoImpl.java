@@ -44,7 +44,7 @@ public class SystemStaffDaoImpl implements SystemStaffDao{
 		}	}
 
 	public ArrayList<SystemStaffPO> getAllSystemStaffs() {
-		ArrayList<SystemStaffPO> list = null;
+		ArrayList<SystemStaffPO> list = new ArrayList<SystemStaffPO>();
 		try {
 			list = (ArrayList<SystemStaffPO>)hibernateUtil.getAll("systemstaff", SystemStaffPO.class);
 		} catch (Exception e) {

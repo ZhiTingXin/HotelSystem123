@@ -1,7 +1,6 @@
 package data.dao.impl;
 
-import java.util.List;
-
+import java.util.ArrayList;
 import PO.OrderPO;
 import data.dao.OrderDao;
 import other.hibernateUtil;
@@ -42,7 +41,7 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	public OrderPO findorder(String orderId) {
-		OrderPO order = null;
+		OrderPO order = new OrderPO();
 		try{
 			order =(OrderPO)hibernateUtil.findById(OrderPO.class, orderId);
 			return order;
@@ -53,19 +52,23 @@ public class OrderDaoImpl implements OrderDao{
 	}
 
 	//获取某个用户的所有订单
-	public List<OrderPO> findOrders(String userId,String type) {
-		List<OrderPO> orderL = null;
+	public ArrayList<OrderPO> findOrders(String userId,String type) {
+		ArrayList<OrderPO> orderL = new ArrayList<OrderPO>();
 		try{
-		   orderL =hibernateUtil.findbySome("OrderPO",type,userId);
+			ArrayList<OrderPO> order = ( ArrayList<OrderPO>) hibernateUtil.getAll("orderpo", OrderPO.class);
+		   for(OrderPO po:order){
+			   if(po.getUserId().equals(userId))
+			   orderL.add(po);
+		   }
 		   return orderL;
 		}catch(Exception e){
 			e.printStackTrace();
 			return orderL;
 		}
 	}
-	public List<OrderPO> getAllOrders() {
+	public ArrayList<OrderPO> getAllOrders() {
 		try {
-			return hibernateUtil.getAll("orderpo", OrderPO.class);
+			return (ArrayList<OrderPO>)hibernateUtil.getAll("orderpo", OrderPO.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

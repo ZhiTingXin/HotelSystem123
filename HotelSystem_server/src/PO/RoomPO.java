@@ -9,7 +9,7 @@ import other.RoomType;
 
 
 @Entity
-@Table(name="room")
+@Table(name="RoomPO")
 public class RoomPO implements Serializable{
 
 	/**
@@ -28,20 +28,11 @@ public class RoomPO implements Serializable{
 	private String hotelId;
 	private int number;
 	private int remainNum;
-	@Id
 	private String id;
 	
 	//room 的构造方法
 	public RoomPO(){}
-	public RoomPO(int pric,RoomType type,String hotelid,int number,int remain){
-		super();
-		this.remainNum = remain;
-		this.price = pric;
-		this.hotelId = hotelid;
-		this.type = type;
-		this.number = number;
-		this.id = hotelid+type;
-	}
+
 	public int getPrice() {
 		return price;
 	}
@@ -61,6 +52,7 @@ public class RoomPO implements Serializable{
 	public void setNumber(int number) {
 		this.number = number;
 	}
+	@Id
 	public String getId() {
 		return id;
 	}

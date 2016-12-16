@@ -3,7 +3,6 @@ package VO;
 import java.util.ArrayList;
 
 import PO.HotelPO;
-import PO.Label;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
@@ -18,7 +17,7 @@ public class HotelInfoVO {
 	private String rank;
 	private ArrayList<HotelRoomInfoVO> rooms;
 	private ArrayList<HotelStrategyVO> hotelStrategy;
-	private ArrayList<Label> labelList;
+	private ArrayList<LabelVO> labelList;
 	private ArrayList<OrderVO> orderVOs;
 	private ArrayList<AssementVO> assmentVOs;
 
@@ -31,7 +30,7 @@ public class HotelInfoVO {
 
 	// *********used
 	public HotelInfoVO(HotelPO hotelInfo, ArrayList<OrderVO> orderVOs, ArrayList<HotelStrategyVO> hotelStrategyVOs,
-			ArrayList<HotelRoomInfoVO> roomInfoVOs, ArrayList<Label> labels,ArrayList<AssementVO> arrayList) {
+			ArrayList<HotelRoomInfoVO> roomInfoVOs, ArrayList<LabelVO> labels,ArrayList<AssementVO> arrayList) {
 		super();
 		this.orderVOs = orderVOs;
 		this.rooms = roomInfoVOs;
@@ -119,11 +118,11 @@ public class HotelInfoVO {
 		this.hotelStrategy = hotelStrategy;
 	}
 
-	public ArrayList<Label> getLabelList() {
+	public ArrayList<LabelVO> getLabelList() {
 		return labelList;
 	}
 
-	public void setLabelList(ArrayList<Label> labelList) {
+	public void setLabelList(ArrayList<LabelVO> labelList) {
 		this.labelList = labelList;
 	}
 

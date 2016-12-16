@@ -17,11 +17,6 @@ public class SystemManagerPO implements Serializable{
 	private String managerName;
 	
 	public SystemManagerPO(){}
-	public SystemManagerPO(String managerID, String managerName){
-		this.managerID = managerID;
-		this.managerName = managerName;
-	}
-	
 
 	public String getManagerName() {
 		return managerName;

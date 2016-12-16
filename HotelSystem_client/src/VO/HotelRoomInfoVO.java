@@ -12,6 +12,7 @@ public class HotelRoomInfoVO {
 	private int roomRemain;
 	private int roomPrice;
 	private String id;
+	private String hotelid;
 	public HotelRoomInfoVO(){
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();
@@ -23,6 +24,7 @@ public class HotelRoomInfoVO {
 		this.roomRemain = hotelRoomInfo.getRemainNum();
 		this.roomType = hotelRoomInfo.getType();
 		this.id = hotelRoomInfo.getId();
+		this.id = hotelRoomInfo.getHotelId();
 	}
 	
 	public RoomType getRoomType() {
@@ -61,6 +63,12 @@ public class HotelRoomInfoVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getHotelid() {
+		return hotelid;
+	}
+	public void setHotelid(String hotelid) {
+		this.hotelid = hotelid;
 	}
 	public StringProperty getRoomNumProperty() {
 		return new SimpleStringProperty(String.valueOf(roomNum));

@@ -41,16 +41,7 @@ public class CustomerPO implements Serializable{
 
 	public CustomerPO() {
 	}
-
-	public CustomerPO(String id, String username, String phone, int credit, int memberGrade) {
-		super();
-		this.id = id;
-		this.userName = username;
-		this.phone = phone;
-		this.credit = credit;
-		this.memberGrade = memberGrade;
-	}
-
+	
 	@Id
 	public String getId() {
 		return id;
