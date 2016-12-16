@@ -73,7 +73,7 @@ public class CustomerInfoModifyController {
 		} else if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
 			this.memberLabel.setText("普通会员");
 		}
-		// this.phoneTextField.setText();
+		this.phoneTextField.setText(this.customer.getPhone());
 	}
 
 	public void handleBack() {
@@ -88,7 +88,7 @@ public class CustomerInfoModifyController {
 			this.customer.setCompanyName(this.companyTextField.getText());
 		}
 		if (this.phoneTextField.getText() != "") {
-			// this.customer
+			this.customer.setPhone(this.phoneTextField.getText());
 		}
 		// 调用Bl层的方法对数据库进行修改
 		this.blservice.modifyCustomer(this.customer);

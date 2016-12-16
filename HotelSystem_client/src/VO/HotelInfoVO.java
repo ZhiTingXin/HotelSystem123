@@ -150,10 +150,15 @@ public class HotelInfoVO {
 	// 调用界面方法
 	public HotelRoomInfoVO[] getHotelRoomInfo() {
 		HotelRoomInfoVO[] list = new HotelRoomInfoVO[4];
-		list[0] = this.rooms.get(0);
-		list[1] = this.rooms.get(1);
-		list[2] = this.rooms.get(2);
-		list[3] = this.rooms.get(3);
+		list[0] = new HotelRoomInfoVO();
+		list[1] = new HotelRoomInfoVO();
+		list[2] = new HotelRoomInfoVO();
+		list[3] = new HotelRoomInfoVO();
+		int count=0;
+		while(count<this.rooms.size()){
+			list[count]=rooms.get(count);
+			count++;
+		}
 		return list;
 	}
 

@@ -86,6 +86,9 @@ public class AdviceFeedBackVO {
 	}
 
 	public StringProperty getReplyTimeProperty() {
+		if (this.replyTime==null) {
+			return new SimpleStringProperty("Î´»Ø¸´");
+		}
 		return new SimpleStringProperty(this.replyTime.toString());
 	}
 
