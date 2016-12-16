@@ -98,7 +98,7 @@ public class CustomerMainController {
 	}
 
 	public void handleAdviceFeedback() {
-
+		this.mainScene.showCustomerAdviceViewScene(customer);
 	}
 
 	public void handleExit() {
