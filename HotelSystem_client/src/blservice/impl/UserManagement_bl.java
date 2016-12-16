@@ -1,10 +1,12 @@
 package blservice.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import PO.CustomerPO;
 import PO.HotelPO;
 import PO.HotelStaffPO;
+import PO.LoginPO;
 import PO.OrderPO;
 import PO.SystemManagerPO;
 import PO.SystemStaffPO;
@@ -16,10 +18,10 @@ import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.UserManagement_blservice;
 import data.service.CustomerDataService;
-import data.service.HotelDataService;
 import data.service.HotelStaffDataService;
 import data.service.OrderDataService;
 import data.service.SystemStaffDataService;
+import other.UserType;
 
 public class UserManagement_bl implements UserManagement_blservice {
 
@@ -106,7 +108,10 @@ public class UserManagement_bl implements UserManagement_blservice {
 	public boolean addSystemStaff(SystemStaffVO staffVO) {
 		try {
 		     SystemStaffPO staffPO = new SystemStaffPO(staffVO);
-		     return RemoteHelper.getInstance().getSystemStaffDataService().addStaff(staffPO);
+		     boolean a = RemoteHelper.getInstance().getSystemStaffDataService().addStaff(staffPO);
+		     LoginPO login = new LoginPO(staffVO.getId(), staffVO.getPassword(), UserType.SYSTEMSTAFF);
+		     boolean b = RemoteHelper.getInstance().getLoginDataService().add(login);
+		     return a&&b;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -126,7 +131,10 @@ public class UserManagement_bl implements UserManagement_blservice {
 	public boolean addHotelStaff(HotelStaffVO hotelStaffVO) {
 		try {
 			HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO);
-			return RemoteHelper.getInstance().getHotelStaffDataService().addStaff(hotelStaffPO);
+			LoginPO loginPO = new LoginPO(hotelStaffVO.getId(),hotelStaffVO.getPassword(),UserType.HOTELSTAFF);
+			boolean a = RemoteHelper.getInstance().getHotelStaffDataService().addStaff(hotelStaffPO);
+			boolean b = RemoteHelper.getInstance().getLoginDataService().add(loginPO);
+			return a&&b;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -193,10 +201,9 @@ public class UserManagement_bl implements UserManagement_blservice {
 	
 	@Override
 	public int getHotelStaffNum() {
-		HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
 		try {
-			ArrayList<HotelPO> hotelPOs = hotelDataService .getAllHotels();
-			return hotelPOs.size();
+			ArrayList<HotelStaffVO> hotelStaffVOs = getAllHotelStaff();
+			return hotelStaffVOs.size();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -217,8 +224,21 @@ public class UserManagement_bl implements UserManagement_blservice {
 
 	@Override
 	public int getTodayOrderNumberNum() {
-		// TODO Auto-generated method stub
-		return 0;
+		LocalDate localDate  = LocalDate.now();
+		int num = 0;
+		try{
+	    ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)RemoteHelper.getInstance()
+	    		.getOrderDataService().getAllOrders();
+	    for(OrderPO po:orderPOs){
+	    	if(localDate==po.getGretime()){
+	    		num ++;
+	    	}
+	    }
+	    return num;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
 
 	@Override

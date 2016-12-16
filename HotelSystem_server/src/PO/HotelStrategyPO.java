@@ -17,6 +17,7 @@ public class HotelStrategyPO implements Serializable{
 	private String id;
 	private String hotelStrategyInfo;
 	private String hotelID;
+	private String strategyName;
 
 	/**
 	 * 
@@ -24,11 +25,6 @@ public class HotelStrategyPO implements Serializable{
 	 *  hotelID ¾ÆµêµÄid
 	 */
 	public HotelStrategyPO(){}
-	public HotelStrategyPO(String hotelStrategyInfo,String hotelID) {
-		super();
-		this.hotelStrategyInfo = hotelStrategyInfo;
-		this.hotelID = hotelID;
-	}
 	
 	public String getId() {
 		return id;
@@ -47,6 +43,12 @@ public class HotelStrategyPO implements Serializable{
 	}
 	public void setHotelID(String hotelID) {
 		this.hotelID = hotelID;
+	}
+	public String getStrategyName() {
+		return strategyName;
+	}
+	public void setStrategyName(String strategyName) {
+		this.strategyName = strategyName;
 	}
 	
 }

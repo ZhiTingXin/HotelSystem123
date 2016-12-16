@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import other.memberState;
+
 @Entity
 @Table(name = "customer")
 public class CustomerPO implements Serializable{
@@ -27,18 +29,19 @@ public class CustomerPO implements Serializable{
 	
 	private LocalDate birthday;
 	
+	private memberState state;
+	
+	public memberState getState() {
+		return state;
+	}
+
+	public void setState(memberState state) {
+		this.state = state;
+	}
+
 	public CustomerPO() {
 	}
-
-	public CustomerPO(String id, String username, String phone, int credit, int memberGrade) {
-		super();
-		this.id = id;
-		this.userName = username;
-		this.phone = phone;
-		this.credit = credit;
-		this.memberGrade = memberGrade;
-	}
-
+	
 	@Id
 	public String getId() {
 		return id;

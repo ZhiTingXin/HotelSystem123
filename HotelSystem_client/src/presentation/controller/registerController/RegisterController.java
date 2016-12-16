@@ -3,7 +3,6 @@ package presentation.controller.registerController;
 import java.time.LocalDate;
 
 import VO.CustomerVO;
-import VO.UserVO;
 import blservice.Register_blservice;
 import blservice.UserInfo_blservice;
 import blservice.impl.Register_bl;
@@ -43,7 +42,6 @@ public class RegisterController {
 	private TextField phoneTextField;
 
 	private Main mainScene;
-	private UserVO user;
 	private UserInfo_blservice user_blservice;
 	private Register_blservice registerService;
 

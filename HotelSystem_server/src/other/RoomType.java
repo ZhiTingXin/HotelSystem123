@@ -1,5 +1,5 @@
 package other;
 
 public enum RoomType {
-	BIAOJIAN
+	doublePersonRoom, singlePersonRoom, multiPersonRoom, bigBedRoom
 }

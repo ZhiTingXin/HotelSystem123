@@ -11,6 +11,13 @@ public class VipVO {
 	private int Vipgrade;//
 	private double discount;
 
+	public VipVO(int min, int max, int gr, double disc) {
+		super();
+		this.minCredit = min;
+		this.maxCredit = max;
+		this.Vipgrade = gr;
+		this.discount = disc;
+	}
 	public VipVO(VipPO vipPO) {
 		this.maxCredit = vipPO.getMaxcredit();
 		this.minCredit = vipPO.getMincredit();
@@ -18,12 +25,6 @@ public class VipVO {
 		this.Vipgrade = vipPO.getVipgrade();
 	}
 
-	public VipVO(int minCredit,int maxCredit,int grade,double discount){
-		this.minCredit = minCredit;
-		this.maxCredit=maxCredit;
-		this.Vipgrade = grade;
-		this.discount = discount;
-	}
 	public int getMincredit() {
 		return minCredit;
 	}

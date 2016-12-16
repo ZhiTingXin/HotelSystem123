@@ -28,7 +28,7 @@ public class AdviceFeedbackDaoImpl implements AdviceFeedbackDao {
 		}
 	}
 	public ArrayList<AdviceFeedBackPO> getAdvices(String userId,String type) {
-		ArrayList<AdviceFeedBackPO> list = null;
+		ArrayList<AdviceFeedBackPO> list = new ArrayList<AdviceFeedBackPO>();
 		try{
 			list = (ArrayList<AdviceFeedBackPO>) hibernateUtil.findbySome("AdviceFeedBackPO", type, userId);
 		}catch(Exception e){
@@ -37,7 +37,7 @@ public class AdviceFeedbackDaoImpl implements AdviceFeedbackDao {
 		return list;
 	}
 	public ArrayList<AdviceFeedBackPO> getAllAdvices() {
-		ArrayList<AdviceFeedBackPO> list =null;
+		ArrayList<AdviceFeedBackPO> list =  new ArrayList<AdviceFeedBackPO>();
 		try {
 			list = (ArrayList<AdviceFeedBackPO>)hibernateUtil.getAll("advicefeedbackpo", AdviceFeedBackPO.class);
 		} catch (Exception e) {

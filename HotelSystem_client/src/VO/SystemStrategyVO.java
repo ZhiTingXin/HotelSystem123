@@ -5,32 +5,38 @@ import java.time.LocalDate;
 import PO.SystemStrategyPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
+
 import other.StrategyState;
 import other.SystemStrategyType;
-import other.memberState;
 
 /**
- * ÍøÕ¾ÓªÏú²ßÂÔµÄÃû³Æ ÍøÕ¾ÓªÏú²ßÂÔµÄÄÚÈİ ÖÆ¶¨ÍøÕ¾ÓªÏú²ßÂÔµÄÍøÕ¾ÓªÏúÈËÔ±µÄid ÍøÕ¾ÓªÏú²ßÂÔµÄ¿ªÊ¼Ê±¼ä ÍøÕ¾ÓªÏú²ßÂÔµÄ½áÊøÊ±¼ä
+ * ç¼ƒæˆ ç¯é’€ãƒ©æ”¢ç»›æ «æšé¨å‹«æ‚•ç»‰ï¿½ ç¼ƒæˆ ç¯é’€ãƒ©æ”¢ç»›æ «æšé¨å‹«å”´ç€¹ï¿½ é’è·ºç•¾ç¼ƒæˆ ç¯é’€ãƒ©æ”¢ç»›æ «æšé¨å‹­ç¶‰ç»”æ¬’æƒ€é–¿ï¿½æµœå“„æ†³é¨åˆ¬d ç¼ƒæˆ ç¯é’€ãƒ©æ”¢ç»›æ «æšé¨å‹«ç´‘æ¿®å¬«æ¤‚é—‚ï¿½ ç¼ƒæˆ ç¯é’€ãƒ©æ”¢ç»›æ «æšé¨å‹­ç²¨é‰ç†¸æ¤‚é—‚ï¿½
  * 
  * @author zhiting Xin
  *
  */
 public class SystemStrategyVO {
 
+	private String id;
 	private String systemStaffID;
 	private String systemStrategyName;
 	private SystemStrategyType systemStrategyType;
 	private String systemStrategyDescription;
 	private StrategyState strategyState;
-	private double discount;//½ÚÈÕÓÅ»İµÄÕÛ¿Û
-	// ½ÚÈÕÓÅ»İ
+	private double discount;//é‘ºå‚›æ£©æµ¼æ¨»å„¬é¨å‹¬å§Œéµï¿½
+	// é‘ºå‚›æ£©æµ¼æ¨»å„¬
 	private LocalDate begin_date;
 	private LocalDate end_date;
-	// »áÔ±ÓÅ»İ
-	private memberState memberState;
-    //POµ½VoµÄ¹¹Ôì·½·¨
+	
+	public SystemStrategyVO(){
+		super();
+		this.id = IdGernerateServiceImpl.gernerateId();
+	}
+    //POé’ç™¡oé¨å‹¬ç€¯é–«çŠ³æŸŸå¨‰ï¿½
 	public SystemStrategyVO(SystemStrategyPO strategypo){
 		super();
+		this.id = strategypo.getId();
 		this.systemStaffID = strategypo.getSystemStaffId();
 		this.systemStrategyName = strategypo.getSystemStrategy_name();
 		this.systemStrategyType = strategypo.getStrategyType();
@@ -41,32 +47,6 @@ public class SystemStrategyVO {
 		this.end_date =strategypo.getEnd_date();
 	}
 
-	// ½ÚÈÕÓÅ»İµÄVOµÄ¹¹Ôìº¯Êı
-	public SystemStrategyVO(String strategyName, String strategyDsciption, LocalDate startDate, LocalDate endDate,
-			double discount, StrategyState state) {
-
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.begin_date = startDate;
-		this.end_date = endDate;
-		this.discount = discount;
-		this.strategyState = state;
-	}
-
-	//»áÔ±ÓÅ»İVO¹¹Ôìº¯Êı
-	public SystemStrategyVO(String strategyName, String strategyDsciption,StrategyState state){
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.strategyState =  state;
-	}
-	//ÆäËûÓÅ»İ¹¹Ôìº¯Êı
-	public SystemStrategyVO(String strategyName, String strategyDsciption,double discount,StrategyState state){
-		this.systemStrategyName = strategyName;
-		this.systemStrategyDescription = strategyDsciption;
-		this.discount = discount;
-		this.strategyState =  state;
-		
-	}
 	public double getDiscount() {
 		return this.discount;
 	}
@@ -115,15 +95,13 @@ public class SystemStrategyVO {
 		this.strategyState = strategyState;
 	}
 	
-	public memberState getMemberState() {
-		return memberState;
+	public String getId() {
+		return id;
 	}
-
-	public void setMemberState(memberState memberState) {
-		this.memberState = memberState;
+	public void setId(String id) {
+		this.id = id;
 	}
-	
-	// uiÊôĞÔ-------------------·Ö¸îÏß---------------------
+	// uiçç‚´ï¿½ï¿½-------------------é’å——å£Šç»¾ï¿½---------------------
 	public StringProperty getStrategyNameProperty() {
 		return new SimpleStringProperty(this.systemStrategyName);
 	}
@@ -132,15 +110,15 @@ public class SystemStrategyVO {
 		return new SimpleStringProperty(this.systemStrategyDescription);
 	}
 
-	// ²ßÂÔ×´Ì¬
+	// ç»›æ «æšé˜èˆµï¿½ï¿½
 	public StringProperty getStrategyStateProperty() {
 		if (systemStrategyType == null) {
 			return null;
 		} else {
 			if (systemStrategyType.equals(StrategyState.open)) {
-				return new SimpleStringProperty("ÆôÓÃ");
+				return new SimpleStringProperty("éšîˆœæ•¤");
 			} else {
-				return new SimpleStringProperty("½ûÓÃ");
+				return new SimpleStringProperty("ç»‚ä½ºæ•¤");
 			}
 		}
 	}

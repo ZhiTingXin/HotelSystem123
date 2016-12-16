@@ -3,11 +3,13 @@ package RMI;
 import java.rmi.Remote;
 
 import data.service.AdviceFeedBackDataService;
+import data.service.AssessmentDataService;
 import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.HotelStaffDataService;
 import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
+import data.service.LabelDataService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.RoomDataService;
@@ -71,5 +73,12 @@ public class RemoteHelper {
     }
     public RoomDataService getRoomDataService(){
     	return (RoomDataService) remote;
+    }
+    public AssessmentDataService getAssessmentDataService(){
+    	return (AssessmentDataService)remote;
+    }
+    
+    public LabelDataService getLabelDataService(){
+    	return (LabelDataService)remote;
     }
 }

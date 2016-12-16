@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import VO.CustomerVO;
+import other.memberState;
 
 public class CustomerPO implements Serializable{
 	/**
@@ -18,6 +19,7 @@ public class CustomerPO implements Serializable{
 	private int memberGrade;
 	private LocalDate birthday;
 	public String companyName;
+	private memberState state;
 	
 	public CustomerPO() {
 	}
@@ -28,18 +30,11 @@ public class CustomerPO implements Serializable{
 		this.id = customerVO.getId();
 		this.userName = customerVO.getUsername();
 		//是否需要电话号码
+		this.phone = customerVO.getPhone();
 		this.companyName = customerVO.getCompanyName();
 		this.credit = customerVO.getCredit();
 		this.memberGrade = customerVO.getMemberGrade();
-	}
-	public CustomerPO(String id, String username, String phone, int credit, int memberGrade,LocalDate birthday) {
-		super();
-		this.id = id;
-		this.userName = username;
-		this.phone = phone;
-		this.credit = credit;
-		this.memberGrade = memberGrade;
-		this.birthday = birthday;
+		this.state = customerVO.getMemberState();
 	}
 	
 	public String getId() {
@@ -96,6 +91,14 @@ public class CustomerPO implements Serializable{
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+
+	public memberState getState() {
+		return state;
+	}
+
+	public void setState(memberState state) {
+		this.state = state;
 	}
 	
 }

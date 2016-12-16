@@ -2,6 +2,7 @@ package PO;
 
 import java.io.Serializable;
 
+import VO.LabelVO;
 import other.LabelType;
 
 public class Label implements Serializable{
@@ -9,21 +10,14 @@ public class Label implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	String userId;
-	String hotelId;
-	LabelType label;
+	private String id;
+	private String hotelId;
+	private LabelType label;
 	public Label(){}
-	public Label(String userId,String hotelid,LabelType type){
-		super();
-		this.userId = userId;
-		this.hotelId = hotelid;
-		this.label = type;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public Label(LabelVO label){
+		this.id = label.getId();
+		this.hotelId = label.getHotelId();
+		this.label = label.getLabel();
 	}
 	public String getHotelId() {
 		return hotelId;
@@ -36,5 +30,11 @@ public class Label implements Serializable{
 	}
 	public void setLabel(LabelType label) {
 		this.label = label;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

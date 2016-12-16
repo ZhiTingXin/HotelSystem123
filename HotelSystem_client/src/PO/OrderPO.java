@@ -2,6 +2,7 @@ package PO;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import VO.OrderVO;
 import other.OrderState;
@@ -20,32 +21,15 @@ public class OrderPO implements Serializable{
 	private OrderState status;
 	private LocalDate entryTime;
 	private int lastTime;
-	private String orderInfo;
 	private double price;
-	
-	//
 	private RoomType roomType;
-
+    private LocalDate gretime;
 	private int num_Room;
+	private double originalPrice;
+	private String userName;
+	private LocalDateTime revocationTime;
 
 	public OrderPO() {
-	}
-
-	public OrderPO(String Id, String htId, String userId, OrderState st, LocalDate entry, int last, String info,
-			int pr,RoomType roomType,int num_Room) {
-		super();
-		this.id = Id;
-		this.hotelId = htId;
-		this.userId = userId;
-		this.entryTime = entry;
-		this.status = st;
-		this.price = pr;
-		this.orderInfo = info;
-		this.lastTime = last;
-		
-		//
-		this.roomType = roomType;
-		this.num_Room = num_Room;
 	}
 
 	// structer vo >po
@@ -59,8 +43,42 @@ public class OrderPO implements Serializable{
 		lastTime = orderVO.getLastime();
 		num_Room = orderVO.getRoomNum();
 		roomType = orderVO.getRoomType();
+		gretime = orderVO.getGretime();
+		userName = orderVO.getUserName();
+		originalPrice = orderVO.getOriginalPrice();
+		revocationTime = orderVO.getRevocationTime();
 	}
 
+	public double getOriginalPrice() {
+		return originalPrice;
+	}
+
+	public void setOriginalPrice(double originalPrice) {
+		this.originalPrice = originalPrice;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public LocalDateTime getRevocationTime() {
+		return revocationTime;
+	}
+
+	public void setRevocationTime(LocalDateTime revocationTime) {
+		this.revocationTime = revocationTime;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	public double getPrice(){
+		return price;
+	}
 	public String getId() {
 		return id;
 	}
@@ -124,20 +142,12 @@ public class OrderPO implements Serializable{
 		this.lastTime = lastTime;
 	}
 
-	public String getOrderInfo() {
-		return orderInfo;
+	public LocalDate getGretime() {
+		return gretime;
 	}
 
-	public void setOrderInfo(String orderInfo) {
-		this.orderInfo = orderInfo;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
+	public void setGretime(LocalDate gretime) {
+		this.gretime = gretime;
 	}
 
 }

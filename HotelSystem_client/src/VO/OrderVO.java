@@ -2,10 +2,10 @@ package VO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import PO.OrderPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
 import other.OrderState;
 import other.RoomType;
 
@@ -22,35 +22,28 @@ public class OrderVO {
 	private RoomType roomType;
 	private int roomNum;
 	private LocalDateTime revocationTime;
+	private LocalDate gretime;
 
-	public OrderVO(String orderID, String userID, String hotelID, double price, OrderState orderState) {
-		this.orderID = orderID;
-		this.userID = userID;
-		this.hotelID = hotelID;
-		this.price = price;
-		this.orderState = orderState;
+	public OrderVO(){
+		super();
+		this.orderID = IdGernerateServiceImpl.gernerateId();
+		this.gretime = LocalDate.now();
 	}
-
-	public OrderVO(String orderID, String userID, String hotelID, double price, LocalDate entryTime, int lastime,
-			OrderState orderState) {
-		this.orderID = orderID;
-		this.userID = userID;
-		this.hotelID = hotelID;
-		this.price = price;
-		this.entryTime = entryTime;
-		this.lastime = lastime;
-		this.orderState = orderState;
-	}
-
 	// structure method po > vo
 	public OrderVO(OrderPO orderPO) {
-		orderID = orderPO.getId();
-		userID = orderPO.getUserId();
 		hotelID = orderPO.getHotelId();
 		price = orderPO.getPrice();
+		originalPrice = orderPO.getOriginalPrice();
 		entryTime = orderPO.getEntryTime();
+		orderID = orderPO.getId();
+		userID = orderPO.getUserId();
+		userName = orderPO.getUserName();
 		lastime = orderPO.getLastTime();
 		orderState = orderPO.getStatus();
+		roomType = orderPO.getRoomType();
+		roomNum = orderPO.getNum_Room();
+		revocationTime = orderPO.getRevocationTime();
+		gretime = orderPO.getGretime();
 	}
 
 	public String getHotelID() {
@@ -149,6 +142,12 @@ public class OrderVO {
 		this.revocationTime = revocationTime;
 	}
 
+	public LocalDate getGretime() {
+		return gretime;
+	}
+	public void setGretime(LocalDate gretime) {
+		this.gretime = gretime;
+	}
 	// 表格服务方法
 	public StringProperty getCustomerIDProperty() {
 		return new SimpleStringProperty(this.userID);
@@ -176,7 +175,7 @@ public class OrderVO {
 	}
 
 	public StringProperty getEntryTimeProperty() {
-		return new SimpleStringProperty(this.entryTime.toString());
+		return new SimpleStringProperty(util.DateUtil.format(entryTime));
 	}
 
 	public StringProperty getCustomerIdProperty() {

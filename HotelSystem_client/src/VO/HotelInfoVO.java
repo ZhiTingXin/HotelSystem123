@@ -3,43 +3,34 @@ package VO;
 import java.util.ArrayList;
 
 import PO.HotelPO;
-import PO.Label;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
 
 public class HotelInfoVO {
-	String hotelID;
-	String hotelName;
-	String hotelDistrict;
-	String hotelStaffId;
-	String hotelAddress;
-	String hotelDiscription;
-	String rank;
-	ArrayList<HotelRoomInfoVO> rooms;
-	ArrayList<HotelStrategyVO> hotelStrategy;
-	ArrayList<Label> labelList;
-	ArrayList<OrderVO> orderVOs;
+	private String hotelID;
+	private String hotelName;
+	private String hotelDistrict;
+	private String hotelStaffId;
+	private String hotelAddress;
+	private String hotelDiscription;
+	private String rank;
+	private ArrayList<HotelRoomInfoVO> rooms;
+	private ArrayList<HotelStrategyVO> hotelStrategy;
+	private ArrayList<LabelVO> labelList;
+	private ArrayList<OrderVO> orderVOs;
+	private ArrayList<AssementVO> assmentVOs;
 
 	public HotelInfoVO() {
-
+       super();
+       this.hotelID = IdGernerateServiceImpl.gernerateId();
 	}
 
-	public HotelInfoVO(String ID, String Name, String Address, String Discription) {
-		this.hotelName = Name;
-		this.hotelID = ID;
-		this.hotelAddress = Address;
-		this.hotelDiscription = Discription;
-	}
-
-	public HotelInfoVO(String name, String district) {
-		this.hotelName = name;
-		this.hotelDistrict = district;
-	}
 	// 构造方法
 
 	// *********used
 	public HotelInfoVO(HotelPO hotelInfo, ArrayList<OrderVO> orderVOs, ArrayList<HotelStrategyVO> hotelStrategyVOs,
-			ArrayList<HotelRoomInfoVO> roomInfoVOs, ArrayList<Label> labels) {
+			ArrayList<HotelRoomInfoVO> roomInfoVOs, ArrayList<LabelVO> labels,ArrayList<AssementVO> arrayList) {
 		super();
 		this.orderVOs = orderVOs;
 		this.rooms = roomInfoVOs;
@@ -51,6 +42,8 @@ public class HotelInfoVO {
 		this.hotelName = hotelInfo.getHotelName();
 		this.hotelStrategy = hotelStrategyVOs;
 		this.labelList = labels;
+		this.assmentVOs = arrayList;
+	    this.rank = hotelInfo.getGrade();
 	}
 
 	public String getRank() {
@@ -125,11 +118,11 @@ public class HotelInfoVO {
 		this.hotelStrategy = hotelStrategy;
 	}
 
-	public ArrayList<Label> getLabelList() {
+	public ArrayList<LabelVO> getLabelList() {
 		return labelList;
 	}
 
-	public void setLabelList(ArrayList<Label> labelList) {
+	public void setLabelList(ArrayList<LabelVO> labelList) {
 		this.labelList = labelList;
 	}
 
@@ -162,5 +155,13 @@ public class HotelInfoVO {
 		list[2] = this.rooms.get(2);
 		list[3] = this.rooms.get(3);
 		return list;
+	}
+
+	public ArrayList<AssementVO> getAssmentVOs() {
+		return assmentVOs;
+	}
+
+	public void setAssmentVOs(ArrayList<AssementVO> assmentVOs) {
+		this.assmentVOs = assmentVOs;
 	}
 }

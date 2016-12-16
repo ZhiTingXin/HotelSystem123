@@ -21,11 +21,11 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
-                  <Button fx:id="viewVIPDiscount" layoutX="10.0" layoutY="385.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看VIP会员优惠" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="546.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="返回" />
-                  <Button fx:id="viewMemberDiscount" layoutX="10.0" layoutY="334.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看会员优惠" />
-                  <Button fx:id="viewHolidayDiscount" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看节日优惠" />
-                  <Button fx:id="viewOtherDiscount" layoutX="10.0" layoutY="437.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="查看其他优惠" />
+                  <Button fx:id="viewVIPDiscount" layoutX="10.0" layoutY="385.0" mnemonicParsing="false" onAction="#handleViewVIPStrategy" prefHeight="39.0" prefWidth="200.0" text="查看VIP会员优惠" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
+                  <Button fx:id="viewMemberDiscount" layoutX="10.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleViewMemberStrategy" prefHeight="39.0" prefWidth="200.0" text="查看会员优惠" />
+                  <Button fx:id="viewHolidayDiscount" layoutX="10.0" layoutY="285.0" mnemonicParsing="false" onAction="#handleViewHolidayStrategy" prefHeight="39.0" prefWidth="200.0" text="查看节日优惠" />
+                  <Button fx:id="viewOtherDiscount" layoutX="10.0" layoutY="437.0" mnemonicParsing="false" onAction="#handleViewOtherStrategy" prefHeight="39.0" prefWidth="200.0" text="查看其他优惠" />
                </children>
             </AnchorPane>
             <AnchorPane>
@@ -49,8 +49,10 @@
                   </TableView>
                   <Group>
                      <children>
-                        <Button fx:id="modifyStrategy" layoutX="377.0" layoutY="516.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="97.0" text="修改策略信息" />
-                        <Button fx:id="addStrategy" layoutX="250.0" layoutY="515.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="97.0" text="新增优惠策略" />
+                        <Button fx:id="modifyStrategy" layoutX="313.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleModifyStrategyButton" prefHeight="35.0" prefWidth="80.0" text="修改策略" />
+                        <Button fx:id="deleteStrategy" layoutX="397.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleDeleteStrategyButton" prefHeight="35.0" prefWidth="80.0" text="删除策略" />
+                        <Button fx:id="addStrategy" layoutX="229.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleAddStrategyButton" prefHeight="35.0" prefWidth="80.0" text="新增策略" />
+                        <Button fx:id="viewStrategy" layoutX="145.0" layoutY="516.0" mnemonicParsing="false" onAction="#handleViewStrategyButton" prefHeight="35.0" prefWidth="80.0" text="查看详情" />
                      </children>
                   </Group>
                </children>

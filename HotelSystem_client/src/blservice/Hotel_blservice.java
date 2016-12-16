@@ -8,7 +8,7 @@ public interface Hotel_blservice {
 
 	public boolean modifyHotelInfo(HotelInfoVO hotelInfo);
 
-	public ArrayList<HotelInfoVO> getListOfHotel(String strict, String type);
+	public ArrayList<HotelInfoVO> getListOfHotel(String strict);
 
 	public ArrayList<HotelInfoVO> getAllHotel();
 

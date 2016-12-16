@@ -1,36 +1,27 @@
 package VO;
 
 import PO.SystemStaffPO;
+import other.IdGernerateServiceImpl;
 
 public class SystemStaffVO {
 
 	private String id;
-
 	private String username;
-
 	private String businessDistrict;
 	private String password;
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	private String phone;
 
 	public SystemStaffVO() {
-		this.id = "300001";
-		this.username = "Bill";
-		this.businessDistrict = "ÐÂ½Ö¿ÚÉÌÈ¦";
-		this.password = "bill300001";
+		super();
+		this.id = IdGernerateServiceImpl.gernerateId();
 	}
 
 	public SystemStaffVO(SystemStaffPO userPO) {
 		super();
 		this.id = userPO.getId();
-//		this.username = userPO.getUsername();
+		this.username = userPO.getStaffName();
 		this.businessDistrict = userPO.getBusinessDistrict();
+		this.phone = userPO.getPhone();
 	}
 
 	public SystemStaffVO(String id,String name, String district){
@@ -62,7 +53,13 @@ public class SystemStaffVO {
 	public void setBusinessDistrict(String businessDistrict) {
 		this.businessDistrict = businessDistrict;
 	}
-	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getPhone(){
 		return phone;
 	}

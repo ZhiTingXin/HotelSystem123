@@ -1,20 +1,19 @@
 package VO;
 
 import PO.HotelStaffPO;
+import other.IdGernerateServiceImpl;
 
 public class HotelStaffVO {
 	
 	private String id;
 	private String username;
 	private String hotelId;
-	//可能会删除
 	private String hotelName;
-	//是否需要phone
     private String phone;
 	private String password;
 
 	public HotelStaffVO() {
-	
+	   id = IdGernerateServiceImpl.gernerateId();
 	}
     
 	public HotelStaffVO(HotelStaffPO userPO) {
@@ -23,6 +22,7 @@ public class HotelStaffVO {
 		this.username = userPO.getUsername();
 		this.hotelId = userPO.getHotelId();
 		this.phone = userPO.getPhone();
+		this.hotelName = userPO.getHotelName();
 	}
 	
 	public HotelStaffVO(String id,String name,String hotelID,String hotelName){
@@ -34,6 +34,9 @@ public class HotelStaffVO {
 
 	public String getPhone(){
 		return phone;
+	}
+	public void setPhone(String phone){
+		this.phone = phone;
 	}
 	public String getId() {
 		return id;

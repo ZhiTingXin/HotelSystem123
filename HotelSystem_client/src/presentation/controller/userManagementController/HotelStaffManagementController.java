@@ -2,24 +2,20 @@ package presentation.controller.userManagementController;
 
 import java.util.ArrayList;
 
-import VO.CustomerVO;
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
-import VO.UserVO;
-import blservice.UserInfo_blservice;
 import blservice.UserManagement_blservice;
-import blservice.impl.UserInfo_bl;
 import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import main.Main;
 
 public class HotelStaffManagementController {

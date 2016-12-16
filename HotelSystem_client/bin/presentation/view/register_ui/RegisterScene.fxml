@@ -59,10 +59,24 @@
       <Text layoutX="60.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="标记为*的为必填项" />
       <Button fx:id="confirm" layoutX="164.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleComfirm" prefHeight="23.0" prefWidth="54.0" text="确认" />
       <Button fx:id="cancel" layoutX="249.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="23.0" prefWidth="54.0" text="取消" />
-      <Label fx:id="errorLabel" layoutX="46.0" layoutY="293.0" text="Label" visible="false">
+      <Label fx:id="errorLabel" layoutX="31.0" layoutY="356.0" text="Label" visible="false">
          <font>
             <Font name="Microsoft YaHei" size="12.0" />
          </font>
       </Label>
+      <Label layoutX="43.0" layoutY="285.0" text=" 联系方式">
+         <font>
+            <Font name="Microsoft YaHei" size="12.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="phoneTextField" layoutX="111.0" layoutY="282.0" prefHeight="23.0" prefWidth="192.0" promptText="请输入您的联系方式">
+         <contextMenu>
+            <ContextMenu>
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+               </items>
+            </ContextMenu>
+         </contextMenu>
+      </PasswordField>
    </children>
 </AnchorPane>

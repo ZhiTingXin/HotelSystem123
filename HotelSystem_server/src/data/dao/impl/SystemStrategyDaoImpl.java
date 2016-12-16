@@ -50,7 +50,7 @@ public class SystemStrategyDaoImpl implements SystemStrategyDao{
 }
 
 	public ArrayList<SystemStrategyPO> getAllStrategys() {
-	    ArrayList<SystemStrategyPO> list = null;
+	    ArrayList<SystemStrategyPO> list = new ArrayList<SystemStrategyPO>();
 	    try {
 			list = (ArrayList<SystemStrategyPO>)hibernateUtil.getAll("systemstrategy",SystemStrategyPO.class);
 		} catch (Exception e) {
@@ -61,8 +61,14 @@ public class SystemStrategyDaoImpl implements SystemStrategyDao{
 
 	public ArrayList<SystemStrategyPO> getSystemStrategys(SystemStrategyType systemStrategyType) {
 		try {
-			ArrayList<SystemStrategyPO> systemStrategyPOs =(ArrayList<SystemStrategyPO>) hibernateUtil.findbySome("systemstrategy","SystemStrategyType",systemStrategyType);
-		    return systemStrategyPOs;
+			ArrayList<SystemStrategyPO> systemStrategy = new ArrayList<SystemStrategyPO>();
+			ArrayList<SystemStrategyPO> systemStrategyPOs =(ArrayList<SystemStrategyPO>) hibernateUtil.getAll("systemstrategy", SystemStrategyPO.class);
+			for(SystemStrategyPO po:systemStrategyPOs){
+				if(po.getStrategyType()==systemStrategyType){
+					systemStrategy.add(po);
+				}
+			}
+		    return systemStrategy;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

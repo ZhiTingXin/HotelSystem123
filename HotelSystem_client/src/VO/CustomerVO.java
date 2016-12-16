@@ -3,6 +3,7 @@ package VO;
 import java.time.LocalDate;
 
 import PO.CustomerPO;
+import other.IdGernerateServiceImpl;
 import other.memberState;
 
 public class CustomerVO {
@@ -13,41 +14,41 @@ public class CustomerVO {
 	private int credit;
 	private LocalDate birthday;
 	private String companyName;
+	private String phone;
 	private int memberGrade;
 	private memberState memberState;
-
-	public void setMemberState(memberState memberState) {
-		this.memberState = memberState;
+	public CustomerVO(){
+		super();
+		this.id = IdGernerateServiceImpl.gernerateId();
 	}
-	public CustomerVO(){}
 	
 	public CustomerVO(CustomerPO customerPO) {
 		super();
 		this.id = customerPO.getId();
 		this.userName = customerPO.getUserName();
+		this.phone = customerPO.getPhone();
 		this.credit = customerPO.getCredit();
 		this.birthday = customerPO.getBirthday();
 		this.memberGrade = customerPO.getMemberGrade();
+		this.memberState = customerPO.getState();
 		this.companyName = customerPO.getCompanyName();
 	}
-
-	public CustomerVO(String id, String userName, int credit) {
-
-		this.id = id;
-		this.userName = userName;
-		this.credit = credit;
-
-	}
-
-	public CustomerVO(String id, String name, int memberGrade, LocalDate date, String companyName, int credit){
-		this.id = id;
-		this.userName = name;
-		this.memberGrade = memberGrade;
-		this.birthday = date;
-		this.companyName= companyName;
-		this.credit = credit;
-	}
 	
+	public void setMemberState(memberState memberState) {
+		this.memberState = memberState;
+	}
+	public String getUsername() {
+		return userName;
+	}
+	public void setUsername(String userName) {
+		this.userName = userName;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getId() {
 		return id;
 	}
@@ -55,15 +56,7 @@ public class CustomerVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getUsername() {
-		return userName;
-	}
-
-	public void setUsername(String username) {
-		this.userName = username;
-	}
-
+	
 	public int getCredit() {
 		return credit;
 	}

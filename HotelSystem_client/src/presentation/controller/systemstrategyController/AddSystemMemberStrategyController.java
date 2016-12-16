@@ -79,7 +79,6 @@ public class AddSystemMemberStrategyController {
 			//左栏
 			leftIdLabel.setText(systemStaffVO.getId());
 			leftNameLabel.setText(systemStaffVO.getUsername());
-			strategyType.setText("新增会员优惠");
 			
 			SystemHolidayStrategyModifyShow(mainScene);
 		}

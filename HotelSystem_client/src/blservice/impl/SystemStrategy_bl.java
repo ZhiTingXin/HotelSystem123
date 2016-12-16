@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import PO.SystemStrategyPO;
 import RMI.RemoteHelper;
 import VO.SystemStrategyVO;
-import VO.VipVO;
 import blservice.SystemStrategy_blservice;
 import data.service.SystemStrategyDataService;
 import other.SystemStrategyType;
@@ -22,19 +21,6 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 				list.add(strategyVO);
 			}
 			return list;
-		}catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public SystemStrategyVO getSystemStrategy(String systemStrategy_Name) {
-		SystemStrategyVO systemStrategyVO =null;
-		try{
-			SystemStrategyPO systemStrategyPO =
-					RemoteHelper.getInstance().getSystemStrategyDataService().getSstrategy(systemStrategy_Name);
-		    systemStrategyVO = new SystemStrategyVO(systemStrategyPO);
-		    return systemStrategyVO;
 		}catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -99,12 +85,6 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 			e.printStackTrace();
 			return null;
 		}
-	}
-
-	@Override
-	public ArrayList<VipVO> getVipMemberVOList() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
