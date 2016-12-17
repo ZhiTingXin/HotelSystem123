@@ -11,6 +11,7 @@ import data.dao.LabelDao;
 import data.dao.LoginDao;
 import data.dao.OrderDao;
 import data.dao.RoomDao;
+import data.dao.SuperVipDao;
 import data.dao.SystemManagerDao;
 import data.dao.SystemStaffDao;
 import data.dao.SystemStrategyDao;
@@ -72,6 +73,10 @@ public class DataFactoryImpl implements DataFactory{
 
 	public LabelDao getlabelDao() {
 		return new LabelDaoImpl();
+	}
+
+	public SuperVipDao getSuovipdao() {
+		return new SupVipDaoImpl();
 	}
 
 }

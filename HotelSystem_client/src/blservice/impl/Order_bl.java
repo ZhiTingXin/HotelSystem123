@@ -283,6 +283,24 @@ public class Order_bl implements Order_blservice{
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public ArrayList<OrderVO> getAllHotelOrders(String hotelid) {
+		try {
+			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+			ArrayList<OrderPO> orderPOs = dataService.getAllHotelOrders(hotelid);
+			for(OrderPO po:orderPOs){
+				orderVOs.add(new OrderVO(po));
+			}
+		    return orderVOs;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+>>>>>>> refs/remotes/origin/master
 
 
 }

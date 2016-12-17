@@ -13,6 +13,7 @@ import data.service.LabelDataService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.RoomDataService;
+import data.service.SuperVipDataService;
 import data.service.SystemManagerDataService;
 import data.service.SystemStaffDataService;
 import data.service.SystemStrategyDataService;
@@ -80,5 +81,9 @@ public class RemoteHelper {
     
     public LabelDataService getLabelDataService(){
     	return (LabelDataService)remote;
+    }
+    
+    public SuperVipDataService getSuperVipDataServce(){
+    	return (SuperVipDataService)remote;
     }
 }
