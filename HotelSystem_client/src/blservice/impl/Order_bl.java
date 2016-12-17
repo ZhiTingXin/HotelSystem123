@@ -1,20 +1,30 @@
 package blservice.impl;
 
 import java.rmi.RemoteException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import PO.CustomerPO;
 import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.CustomerVO;
 import VO.OrderVO;
+import VO.VipVO;
 import blservice.Order_blservice;
+import blservice.VipStrategy_blService;
+import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.OrderDataService;
+import javafx.util.converter.LocalDateStringConverter;
 import other.OrderState;
 
 public class Order_bl implements Order_blservice{
 	OrderDataService dataService = RemoteHelper.getInstance().getOrderDataService();
 	HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
+	CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService(); 
+	VipStrategy_blService vipService =  new VipStrategy_blServiceImpl();
 	
 	public OrderState getState(String orderID) {
 		try {
@@ -85,12 +95,8 @@ public class Order_bl implements Order_blservice{
 		}
 		return abnomalVoList;
 	}
+	
 
-	//不明确   change 什么没传
-	public boolean changeCredit(String userID, String orderID) {
-		
-		return false;
-	}
 
 	public boolean changeState(OrderVO order_info) {
 		try {
@@ -131,45 +137,16 @@ public class Order_bl implements Order_blservice{
 		return orderVOs;
 	}
 
-	@Override
-	public String getOrderOriginalPrice(OrderVO order) {
-		String roomID = order.getHotelID()+order.getRoomType();
-		String price = null;
-		try {
-			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
-			double dprice = roomPO.getNumber()*roomPO.getPrice();
-			price = String.valueOf(dprice);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-		return price;
-	}
+
 
 	@Override
-	//简单实现
-	public String getOrderPrice(OrderVO order, String id) {
-		String roomID = order.getHotelID()+order.getRoomType();
-		String price = null;
-		try {
-			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
-			double dprice = roomPO.getNumber()*roomPO.getPrice();
-			price = String.valueOf(dprice);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		
-		return price;
-	}
-
-	@Override
-	//今天的时间
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<>();
 		try {
 			ArrayList<OrderPO> allOrders = (ArrayList<OrderPO>)dataService.getAllOrders();
 			for(OrderPO po : allOrders){
-				if(po.getHotelId().equals(hotelId)&&po.getEntryTime().equals("")){
+				LocalDate date = LocalDate.now();
+				if(po.getHotelId().equals(hotelId)&&po.getEntryTime().equals(date)){
 					orderVOs.add(new OrderVO(po));
 				}
 			}
@@ -224,12 +201,74 @@ public class Order_bl implements Order_blservice{
 		return orderVOs;
 	}
 
-	@Override
-	public boolean changeState(String orderID) {
-		// TODO Auto-generated method stub
-		return false;
+	//不明确   change 什么没传
+	public boolean changeCredit(String userID, String orderID) {
+		CustomerPO customer = null;
+		OrderPO order = null;
+		try {
+			customer = customerDataService.findCustomer(userID);
+			order = dataService.findorder(orderID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		int credit = 0;
+		if(order.getStatus() == OrderState.ABNOMAL){
+			credit = customer.getCredit() - (int)(order.getPrice()*0.5);
+		}else if(order.getStatus() == OrderState.FINISHED){
+			credit = customer.getCredit() + (int)(order.getPrice()*0.5);
+		}
+		customer.setCredit(credit);		
+		try {
+			customerDataService.updateCustomer(customer);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+			return true;	
 	}
 
+	
+	@Override
+	public String getOrderOriginalPrice(OrderVO order) {
+		String roomID = order.getHotelID()+order.getRoomType();
+		String price = null;
+		try {
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
+			double dprice = roomPO.getNumber()*roomPO.getPrice();
+			price = String.valueOf(dprice);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return price;
+	}
+
+	@Override
+	//简单实现
+	public String getOrderPrice(OrderVO order, String id) {
+		String roomID = order.getHotelID()+order.getRoomType();
+		String price = null;
+		try {
+			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
+			double dprice = roomPO.getNumber()*roomPO.getPrice();
+			
+			ArrayList<VipVO> vipVOs = vipService.getVipStrategy().getVipStrategyVOList();
+			int credit = customerDataService.findCustomer(order.getUserID()).getCredit();
+			double discount_vip = 0;
+			for(VipVO vipvo:vipVOs){
+				if(credit<=vipvo.getMaxcredit()&&credit>vipvo.getMincredit()){
+					discount_vip = vipvo.getDiscount();
+				}
+			}
+			dprice = dprice * discount_vip;
+			
+			price = String.valueOf(dprice);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
+		return price;
+	}
 
 
 

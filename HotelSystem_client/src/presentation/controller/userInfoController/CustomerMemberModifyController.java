@@ -49,12 +49,12 @@ public class CustomerMemberModifyController {
 		this.nameLabel.setText(this.customer.getUsername());
 		this.idLabel.setText(this.customer.getId());
 		this.CreditLabel.setText(String.valueOf(this.customer.getCredit()));
-		if (customer.getMemberState() == memberState.NON_MEMBER) {
-			this.memberLabel.setText("非会员");
-		} else if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
+		if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
 			this.memberLabel.setText("企业会员");
 		} else if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
 			this.memberLabel.setText("普通会员");
+		} else {
+			this.memberLabel.setText("非会员");
 		}
 	}
 

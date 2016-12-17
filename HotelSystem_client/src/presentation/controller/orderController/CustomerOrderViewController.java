@@ -46,7 +46,7 @@ public class CustomerOrderViewController {
 	@FXML
 	private TableColumn<OrderVO, String> stateOfOrder;
 	@FXML
-	private TextField StateField;
+	private Label StateField;
 
 	private Main mainScene;
 	private CustomerVO customer;

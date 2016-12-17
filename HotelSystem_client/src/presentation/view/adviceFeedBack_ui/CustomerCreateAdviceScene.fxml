@@ -15,9 +15,9 @@
                <children>
                   <ImageView fx:id="leftMenuImage" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="33.0" layoutY="180.0" text="ID" />
-                  <Label fx:id="leftMenuIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label fx:id="leftIDLabel" layoutX="95.0" layoutY="180.0" text="Label" />
                   <Label layoutX="33.0" layoutY="210.0" text="姓名" />
-                  <Label fx:id="leftMenuNameLabel" layoutX="95.0" layoutY="210.0" onDragDetected="#leftNameLabel" text="Label" />
+                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="客户" />
                   <Button fx:id="send" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSend" prefHeight="39.0" prefWidth="200.0" text="保存" />

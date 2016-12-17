@@ -43,7 +43,7 @@ public class HotelViewController {
 	@FXML
 	private TableColumn<HotelInfoVO, String> description;
 	@FXML
-	private TextField StateField;
+	private Label StateField;
 
 	// ui≤„ Ù–‘
 	private Hotel_blservice service;

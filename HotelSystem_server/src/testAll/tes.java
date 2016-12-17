@@ -1,7 +1,28 @@
 package testAll;
 
+<<<<<<< HEAD
 import PO.LoginPO;
 import other.UserType;
+=======
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import PO.ClassToGreId;
+import PO.RoomPO;
+import PO.SystemManagerPO;
+import data.dao.AdviceFeedbackDao;
+import data.dao.OrderDao;
+import data.dao.RoomDao;
+import data.dao.impl.AdviceFeedbackDaoImpl;
+import data.dao.impl.OrderDaoImpl;
+import data.dao.impl.RoomDaoImpl;
+import data.service.HotelStrategyDataService;
+import data.service.IdGernerateService;
+import data.service.RoomDataService;
+import data.service.impl.HotelStrategyDataServiceImpl;
+import data.service.impl.IdGernerateServiceImpl;
+import data.service.impl.RoomDataServiceImpl;
+>>>>>>> refs/remotes/origin/master
 import other.hibernateUtil;
 
 //import PO.AdviceFeedBackPO;
@@ -81,6 +102,7 @@ public class tes {
 //		System.out.println(adviceFeedbackDao.getAdvices());
 //		OrderDao orderDao =new OrderDaoImpl();
 //		System.out.println(orderDao);
+<<<<<<< HEAD
 //		String aString = "仙林校区";
 //		String aString2 = "仙林";
 //		System.out.println(aString.contains(aString2));
@@ -89,5 +111,10 @@ public class tes {
 		login.setUserPassword("xzt");
 		login.setUserType(UserType.CUSTOMER);
 		hibernateUtil.add(login);
+=======
+		String aString = "仙林校区";
+		String aString2 = "仙林";
+		System.out.println(aString.contains(aString2));
+>>>>>>> refs/remotes/origin/master
 	}
 }

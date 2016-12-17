@@ -1,3 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/VO/SystemStrategyVO.java=UTF-8
+<<<<<<< HEAD
+=======
+encoding//src/VO/VipStrategyVO.java=GBK
+>>>>>>> refs/remotes/origin/master
 encoding//src/main/Main.java=UTF-8

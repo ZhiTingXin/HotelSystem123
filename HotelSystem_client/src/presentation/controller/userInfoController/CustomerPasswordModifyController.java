@@ -1,7 +1,9 @@
 package presentation.controller.userInfoController;
 
 import VO.CustomerVO;
+import blservice.Login_blservice;
 import blservice.UserInfo_blservice;
+import blservice.impl.Login_bl;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,6 +40,7 @@ public class CustomerPasswordModifyController {
 
 	private Main mainScene;
 	private UserInfo_blservice blservice;
+	private Login_blservice login_blservice;
 	private CustomerVO customer;
 
 	public CustomerPasswordModifyController() {
@@ -47,6 +50,7 @@ public class CustomerPasswordModifyController {
 	public void initialize(Main mainScene, CustomerVO customer) {
 		this.customer = customer;
 		this.mainScene = mainScene;
+		this.login_blservice=new Login_bl();
 		this.CustomerPasswordModifyShow();
 	}
 
@@ -67,10 +71,10 @@ public class CustomerPasswordModifyController {
 		String passwordInField = this.passWord.getText();
 		String newPasswordInField = this.newPassword.getText();
 		String comfirmPasswordInField = this.confirmPassword.getText();
-		String originalPassword = this.customer.getPassword();
+		
 
-		boolean isPasswordOK = passwordInField == originalPassword;
-		boolean isNewPasswordOK = newPasswordInField == comfirmPasswordInField;
+		boolean isPasswordOK = this.login_blservice.comfirm(this.customer.getId(), passwordInField);
+		boolean isNewPasswordOK = newPasswordInField.equals(comfirmPasswordInField);
 		if (isPasswordOK && isNewPasswordOK) {
 			this.customer.setPassword(newPasswordInField);
 			// bl²ã·½·¨£¬ÐÞ¸ÄÃÜÂë

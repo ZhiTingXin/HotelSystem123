@@ -1,9 +1,14 @@
+<<<<<<< HEAD
+=======
+/main/
+/presentation/
+/MockObject/
+>>>>>>> refs/remotes/origin/master
 /PO/
 /RMI/
-/Test/
 /VO/
 /blservice/
 /data/
 /other/
-/presentation/
 /util/
+/Test/

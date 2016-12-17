@@ -24,6 +24,7 @@ public class CustomerPO implements Serializable{
 	private String phone;
 
 	private int credit;
+	private String companyName;
 
 	private int memberGrade;
 	
@@ -89,6 +90,14 @@ public class CustomerPO implements Serializable{
 
 	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 	
 }

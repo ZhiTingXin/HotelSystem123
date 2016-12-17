@@ -64,7 +64,7 @@ public class LoginController {
 				this.mainScene.showSystemManagerMainScene(this.usermanagementService.getSystemManager(userIdInField));
 			}
 
-		}
+		}else System.out.println("Error");
 	}
 
 	public void handleRegister() {

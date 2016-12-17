@@ -1,5 +1,6 @@
 package VO;
 
+import PO.SuperVipPO;
 import PO.VipPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -10,7 +11,13 @@ public class VipVO {
 	private int maxCredit;
 	private int Vipgrade;//
 	private double discount;
+<<<<<<< HEAD
 
+=======
+	private String district;//商圈
+	
+	//会员
+>>>>>>> refs/remotes/origin/master
 	public VipVO(int min, int max, int gr, double disc) {
 		super();
 		this.minCredit = min;
@@ -18,6 +25,18 @@ public class VipVO {
 		this.Vipgrade = gr;
 		this.discount = disc;
 	}
+<<<<<<< HEAD
+=======
+	
+	//VIP 会员
+	public VipVO(SuperVipPO superVipPO) {
+		super();
+		this.district = superVipPO.getDistrict();
+		this.Vipgrade = superVipPO.getVipgrade();
+		this.discount =superVipPO.getDiscount();
+	}
+	
+>>>>>>> refs/remotes/origin/master
 	public VipVO(VipPO vipPO) {
 		this.maxCredit = vipPO.getMaxcredit();
 		this.minCredit = vipPO.getMincredit();
@@ -73,5 +92,17 @@ public class VipVO {
 	
 	public StringProperty getMinCreditProperty(){
 		return new SimpleStringProperty(String.valueOf(minCredit));
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+	
+	public StringProperty getDistrictProperty() {
+		return new SimpleStringProperty(district);
 	}
 }
