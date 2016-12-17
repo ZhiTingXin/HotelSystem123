@@ -1,11 +1,21 @@
 package PO;
 
+import VO.VipVO;
+
 public class SuperVipPO {
 
+	private String id;
 	private int Vipgrade;//
 	private double discount;
 	private String district;// …Ã»¶
 
+	public SuperVipPO(VipVO vipVO){
+		super();
+		this.id = vipVO.getId();
+		this.Vipgrade = vipVO.getVipgrade();
+		this.discount = vipVO.getDiscount();
+		this.district = vipVO.getDistrict();
+	}
 	public int getVipgrade() {
 		return Vipgrade;
 	}
@@ -28,5 +38,11 @@ public class SuperVipPO {
 
 	public void setDistrict(String district) {
 		this.district = district;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }

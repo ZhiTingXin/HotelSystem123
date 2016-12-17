@@ -114,21 +114,6 @@ public class AddSystemVIPStrategyController {
 		systemStrategyTable.setItems(vipVOData);
 		
 	}
-<<<<<<< HEAD
-	@FXML
-	public void handleSave(){
-		
-	}
-	
-	@FXML
-	public void handleCancel(){
-		
-	}
-	
-	@FXML
-	private void handleEdit(){
-		
-=======
 
 	@FXML
 	private void handleDistrictB() {
@@ -230,6 +215,5 @@ public class AddSystemVIPStrategyController {
 	@FXML // cancel and back to the former view.
 	private void handleCancel() {
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
->>>>>>> refs/remotes/origin/master
 	}
 }

@@ -21,11 +21,7 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
-<<<<<<< HEAD
-                  <Button fx:id="handleSave" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="保存策略" />
-=======
                   <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="保存策略" />
->>>>>>> refs/remotes/origin/master
                   <Button fx:id="back" layoutX="11.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
                </children>
             </AnchorPane>
@@ -104,12 +100,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-<<<<<<< HEAD
-                  <Button fx:id="edit" layoutX="240.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleEdit" text="编辑" />
-                  <Label layoutX="54.0" layoutY="223.0" text="VIP会员定义">
-=======
                   <Label layoutX="57.0" layoutY="222.0" text="商圈名称">
->>>>>>> refs/remotes/origin/master
                      <effect>
                         <Blend />
                      </effect>
@@ -117,17 +108,10 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-<<<<<<< HEAD
-                  <MenuButton layoutX="185.0" layoutY="219.0" mnemonicParsing="false" text="MenuButton">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="d1" />
-                      <MenuItem mnemonicParsing="false" text="d2" />
-=======
                   <MenuButton fx:id="districtName" layoutX="182.0" layoutY="219.0" mnemonicParsing="false" text="商圈名称">
                     <items>
                       <MenuItem fx:id="districtA" mnemonicParsing="false" onAction="#handleDistrictA" text="新街口" />
                       <MenuItem fx:id="districtB" mnemonicParsing="false" onAction="#handleDistrictB" text="仙林中心" />
->>>>>>> refs/remotes/origin/master
                     </items>
                   </MenuButton>
                   <Button fx:id="saveTable" layoutX="286.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleSaveTable" text="保存表格" />

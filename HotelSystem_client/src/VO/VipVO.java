@@ -11,13 +11,9 @@ public class VipVO {
 	private int maxCredit;
 	private int Vipgrade;//
 	private double discount;
-<<<<<<< HEAD
-
-=======
 	private String district;//商圈
 	
 	//会员
->>>>>>> refs/remotes/origin/master
 	public VipVO(int min, int max, int gr, double disc) {
 		super();
 		this.minCredit = min;
@@ -25,8 +21,6 @@ public class VipVO {
 		this.Vipgrade = gr;
 		this.discount = disc;
 	}
-<<<<<<< HEAD
-=======
 	
 	//VIP 会员
 	public VipVO(SuperVipPO superVipPO) {
@@ -36,7 +30,6 @@ public class VipVO {
 		this.discount =superVipPO.getDiscount();
 	}
 	
->>>>>>> refs/remotes/origin/master
 	public VipVO(VipPO vipPO) {
 		this.maxCredit = vipPO.getMaxcredit();
 		this.minCredit = vipPO.getMincredit();

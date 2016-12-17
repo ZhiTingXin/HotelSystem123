@@ -1,9 +1,5 @@
 package testAll;
 
-<<<<<<< HEAD
-import PO.LoginPO;
-import other.UserType;
-=======
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -22,7 +18,6 @@ import data.service.RoomDataService;
 import data.service.impl.HotelStrategyDataServiceImpl;
 import data.service.impl.IdGernerateServiceImpl;
 import data.service.impl.RoomDataServiceImpl;
->>>>>>> refs/remotes/origin/master
 import other.hibernateUtil;
 
 //import PO.AdviceFeedBackPO;
@@ -102,19 +97,8 @@ public class tes {
 //		System.out.println(adviceFeedbackDao.getAdvices());
 //		OrderDao orderDao =new OrderDaoImpl();
 //		System.out.println(orderDao);
-<<<<<<< HEAD
-//		String aString = "仙林校区";
-//		String aString2 = "仙林";
-//		System.out.println(aString.contains(aString2));
-		LoginPO login = new LoginPO();
-		login.setId("123456");
-		login.setUserPassword("xzt");
-		login.setUserType(UserType.CUSTOMER);
-		hibernateUtil.add(login);
-=======
 		String aString = "仙林校区";
 		String aString2 = "仙林";
 		System.out.println(aString.contains(aString2));
->>>>>>> refs/remotes/origin/master
 	}
 }

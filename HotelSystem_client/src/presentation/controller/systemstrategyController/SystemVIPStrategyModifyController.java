@@ -1,11 +1,7 @@
 package presentation.controller.systemstrategyController;
 
-<<<<<<< HEAD
-import javax.sound.midi.VoiceStatus;
-=======
 import java.util.ArrayList;
 import java.util.Optional;
->>>>>>> refs/remotes/origin/master
 
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
@@ -134,12 +130,12 @@ public class SystemVIPStrategyModifyController {
 			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 					.setDiscount(Double.parseDouble(t.getNewValue()));
 		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);
-		
+		systemStrategyTable.setItems(vipVOData);	
 	}
 
 	@FXML
 	private void handleDistrictB() {
+		
 		String district = districtB.getText();
 		vipVOData.clear();// 清空
 		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
@@ -168,9 +164,9 @@ public class SystemVIPStrategyModifyController {
 		if (getVipVO != null) {
 			ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
 			for (VipVO vipVO : getVipVO) {
-				vipVO.setDistrict(districtName.getText());// 获取商圈名称
 				newVipVO.add(vipVO);
 			}
+			
 			VipStrategyVO vipStrategyVO = new VipStrategyVO();
 			vipStrategyVO.setVipStrategyVOList(newVipVO);
 			boolean isModifyTable = vipStrategy_blService.modifyVipStrategy(vipStrategyVO);
@@ -236,21 +232,6 @@ public class SystemVIPStrategyModifyController {
 
 	@FXML // cancel and back to the former view.
 	private void handleCancel() {
-		mainScene.showSystemStrategyViewScene(systemStaffVO);
-	}
-	
-	@FXML//edit the table
-	private void handleEdit(){
-		
-	}
-	
-	@FXML// save the strategy.
-	private void handleSave(){
-		
-	}
-	
-	@FXML//cancel and back to the former view.
-	private void handleCancel(){
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
 	}
 }
