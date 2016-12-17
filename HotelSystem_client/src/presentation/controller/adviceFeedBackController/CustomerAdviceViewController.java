@@ -50,16 +50,7 @@ public class CustomerAdviceViewController {
 		this.service = new AdviceFeedBack_bl();
 		this.adviceList = this.service.getAllAdvice(this.customer.getId());
 
-		// 表格方法
-		int count = 0;
-		while (count < this.adviceList.size()) {
-			this.adviceData.add(this.adviceList.get(count));
-			count++;
-		}
-		this.sendTime.setCellValueFactory(cellData -> cellData.getValue().getSendTimeProperty());
-		this.replyTime.setCellValueFactory(cellData -> cellData.getValue().getReplyTimeProperty());
-		this.sendInfo.setCellValueFactory(cellData -> cellData.getValue().getSendContentProperty());
-		this.replyInfo.setCellValueFactory(cellData -> cellData.getValue().getReplyContentProperty());
+		this.refreshtable();
 		this.showCustomerAdviceView();
 	}
 
@@ -88,4 +79,18 @@ public class CustomerAdviceViewController {
 
 	}
 
+	// 刷新表格方法
+	private void refreshtable() {
+		// TODO Auto-generated method stub
+		int count = 0;
+		while (count < this.adviceList.size()) {
+			this.adviceData.add(this.adviceList.get(count));
+			count++;
+		}
+		this.sendTime.setCellValueFactory(cellData -> cellData.getValue().getSendTimeProperty());
+		this.replyTime.setCellValueFactory(cellData -> cellData.getValue().getReplyTimeProperty());
+		this.sendInfo.setCellValueFactory(cellData -> cellData.getValue().getSendContentProperty());
+		this.replyInfo.setCellValueFactory(cellData -> cellData.getValue().getReplyContentProperty());
+		this.adviceFeedBackTable.setItems(adviceData);
+	}
 }

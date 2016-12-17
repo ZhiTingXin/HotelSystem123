@@ -101,6 +101,7 @@ public class HotelViewController {
 
 	// 刷新表格方法
 	private void refreshTabel() {
+		this.hotelData.clear();
 		int count = 0;
 
 		while (count < this.hotelList.size()) {
