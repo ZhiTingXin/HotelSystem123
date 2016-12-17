@@ -283,6 +283,8 @@ public class Order_bl implements Order_blservice{
 		}
 	}
 
+<<<<<<< HEAD
+=======
 	@Override
 	public ArrayList<OrderVO> getAllHotelOrders(String hotelid) {
 		try {
@@ -298,6 +300,7 @@ public class Order_bl implements Order_blservice{
 		}
 	}
 
+>>>>>>> refs/remotes/origin/master
 
 
 }
