@@ -25,7 +25,7 @@ public interface Order_blservice {
 
 	public String getOrderOriginalPrice(OrderVO order);
 
-	public String getOrderPrice(OrderVO order, String id);
+	public String getOrderPrice(OrderVO order);
 	
 	public ArrayList<OrderVO> getAllOrders(String hotelId);
 
