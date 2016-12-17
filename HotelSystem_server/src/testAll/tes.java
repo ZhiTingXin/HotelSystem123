@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import PO.ClassToGreId;
 import PO.RoomPO;
+import PO.SuperVipPO;
 import PO.SystemManagerPO;
 import data.dao.AdviceFeedbackDao;
 import data.dao.OrderDao;
@@ -15,9 +16,11 @@ import data.dao.impl.RoomDaoImpl;
 import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
 import data.service.RoomDataService;
+import data.service.SuperVipDataService;
 import data.service.impl.HotelStrategyDataServiceImpl;
 import data.service.impl.IdGernerateServiceImpl;
 import data.service.impl.RoomDataServiceImpl;
+import data.service.impl.SupVipDataServiceImpl;
 import other.hibernateUtil;
 
 //import PO.AdviceFeedBackPO;
@@ -97,8 +100,15 @@ public class tes {
 //		System.out.println(adviceFeedbackDao.getAdvices());
 //		OrderDao orderDao =new OrderDaoImpl();
 //		System.out.println(orderDao);
-		String aString = "仙林校区";
-		String aString2 = "仙林";
-		System.out.println(aString.contains(aString2));
+//		String aString = "仙林校区";
+//		String aString2 = "仙林";
+//		System.out.println(aString.contains(aString2));
+		SuperVipPO superVipPO = new SuperVipPO();
+		superVipPO.setDiscount(0.3);
+		superVipPO.setId("23");
+		superVipPO.setDistrict("nanjing");
+		superVipPO.setVipgrade(5);
+		SuperVipDataService service = new SupVipDataServiceImpl();
+		service.addSupVip(superVipPO);
 	}
 }

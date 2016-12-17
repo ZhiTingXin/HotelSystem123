@@ -36,4 +36,6 @@ public interface Order_blservice {
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID);
 	
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID);
+	
+	public ArrayList<OrderVO> getAllHotelOrders(String hotelid);
 }

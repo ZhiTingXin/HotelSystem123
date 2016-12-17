@@ -31,5 +31,6 @@
     <mapping class="PO.SystemStrategyPO"/>
     <mapping class="PO.VipPO"/>
     <mapping class="PO.ClassToGreId"/>
+    <mapping class="PO.SuperVipPO"/>
 </session-factory>  
 </hibernate-configuration> 

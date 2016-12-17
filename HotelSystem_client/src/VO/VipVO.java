@@ -4,9 +4,11 @@ import PO.SuperVipPO;
 import PO.VipPO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import other.IdGernerateServiceImpl;
 
 public class VipVO {
 
+    private String id;
 	private int minCredit;
 	private int maxCredit;
 	private int Vipgrade;//
@@ -20,6 +22,9 @@ public class VipVO {
 		this.maxCredit = max;
 		this.Vipgrade = gr;
 		this.discount = disc;
+	}
+	public VipVO(){
+		this.id = IdGernerateServiceImpl.gernerateId();
 	}
 	
 	//VIP ª·‘±
@@ -97,5 +102,13 @@ public class VipVO {
 	
 	public StringProperty getDistrictProperty() {
 		return new SimpleStringProperty(district);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }
