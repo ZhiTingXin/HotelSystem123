@@ -243,12 +243,17 @@ public class Order_bl implements Order_blservice{
 
 	@Override
 	//ºÚµ• µœ÷
-	public String getOrderPrice(OrderVO order, String id) {
-		String roomID = order.getHotelID()+order.getRoomType();
-		String price = null;
+	public String getOrderPrice(OrderVO order) {
+		String hotelId = order.getHotelID();
+		String price = new String();
+		double oprice = 0;
 		try {
-			RoomPO roomPO = RemoteHelper.getInstance().getRoomDataService().findRoomPO(roomID);
-			double dprice = roomPO.getNumber()*roomPO.getPrice();
+			ArrayList<RoomPO> roomPOs = RemoteHelper.getInstance().getRoomDataService().getAllRoomPO(hotelId);
+			for(RoomPO po:roomPOs){
+				if(po.getType()==order.getRoomType()){
+					oprice = po.getPrice()*order.getRoomNum();
+				}
+			}
 			
 			ArrayList<VipVO> vipVOs = vipService.getVipStrategy().getVipStrategyVOList();
 			int credit = customerDataService.findCustomer(order.getUserID()).getCredit();
@@ -258,9 +263,8 @@ public class Order_bl implements Order_blservice{
 					discount_vip = vipvo.getDiscount();
 				}
 			}
-			dprice = dprice * discount_vip;
-			
-			price = String.valueOf(dprice);
+			oprice =  oprice * discount_vip;
+			price = String.valueOf(oprice);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
