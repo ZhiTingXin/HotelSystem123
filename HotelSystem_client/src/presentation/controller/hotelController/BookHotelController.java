@@ -15,7 +15,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import main.Main;
 import other.RoomType;
 
@@ -104,7 +103,12 @@ public class BookHotelController {
 		this.mainScene = mainScene;
 		userService = new UserInfo_bl();
 		this.orderService = new Order_bl();
-		this.order=new OrderVO();
+		// order的初始设定
+		this.order = new OrderVO();
+		this.order.setHotelID(this.hotel.getHotelID());
+		this.order.setUserID(this.customer.getId());
+		this.order.setUserName(this.customer.getUsername());
+		
 		this.actualPayment.setText("0");
 		this.orderTotal.setText("0");
 		this.SystemManagerSystemStaffInfoModifyShow();
