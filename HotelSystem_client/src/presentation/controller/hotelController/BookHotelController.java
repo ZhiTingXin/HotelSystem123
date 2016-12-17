@@ -79,7 +79,7 @@ public class BookHotelController {
 	@FXML
 	private Label actualPayment;// Êµ¼Ê¸¶¿î
 	@FXML
-	private TextField stateField;
+	private Label stateField;
 
 	private Main mainScene;
 	private UserInfo_blservice userService;
@@ -104,6 +104,9 @@ public class BookHotelController {
 		this.mainScene = mainScene;
 		userService = new UserInfo_bl();
 		this.orderService = new Order_bl();
+		this.order=new OrderVO();
+		this.actualPayment.setText("0");
+		this.orderTotal.setText("0");
 		this.SystemManagerSystemStaffInfoModifyShow();
 	}
 
