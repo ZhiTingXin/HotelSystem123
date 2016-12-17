@@ -82,7 +82,7 @@ public class CustomerAdviceViewController {
 	@FXML
 	private void handleInfoShow() {
 		int foucus = this.adviceFeedBackTable.getSelectionModel().getFocusedIndex();
-		if (foucus > 0) {
+		if (foucus >= 0) {
 			this.mainScene.showCustomerAdviceInfoScene(customer, this.adviceList.get(foucus));
 		}
 
