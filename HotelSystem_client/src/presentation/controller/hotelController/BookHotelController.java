@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import main.Main;
+import other.OrderState;
 import other.RoomType;
 
 public class BookHotelController {
@@ -108,7 +109,9 @@ public class BookHotelController {
 		this.order.setHotelID(this.hotel.getHotelID());
 		this.order.setUserID(this.customer.getId());
 		this.order.setUserName(this.customer.getUsername());
-		
+		this.order.setRoomNum(1);
+		this.order.setOrderState(OrderState.UNFINISHED);
+
 		this.actualPayment.setText("0");
 		this.orderTotal.setText("0");
 		this.SystemManagerSystemStaffInfoModifyShow();
@@ -263,6 +266,6 @@ public class BookHotelController {
 
 	// 刷新实际价格
 	private void refreshActualPayment() {
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order)));
 	}
 }
