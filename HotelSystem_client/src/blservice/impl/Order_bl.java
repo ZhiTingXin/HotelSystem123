@@ -282,9 +282,6 @@ public class Order_bl implements Order_blservice{
 			return null;
 		}
 	}
-
-<<<<<<< HEAD
-=======
 	@Override
 	public ArrayList<OrderVO> getAllHotelOrders(String hotelid) {
 		try {
@@ -299,8 +296,6 @@ public class Order_bl implements Order_blservice{
 			return null;
 		}
 	}
-
->>>>>>> refs/remotes/origin/master
 
 
 }
