@@ -1,10 +1,18 @@
 package presentation.controller.hotelController;
 
+import java.util.ArrayList;
+
 import VO.CustomerVO;
 import VO.HotelInfoVO;
 import VO.HotelRoomInfoVO;
+import blservice.HotelStrategy_blservice;
 import blservice.Hotel_blservice;
+import blservice.Label_blService;
+import blservice.Room_blService;
+import blservice.impl.HotelStrategy_bl;
 import blservice.impl.Hotel_bl;
+import blservice.impl.Label_blServiceImpl;
+import blservice.impl.Room_blServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -57,8 +65,11 @@ public class HotelInfoController {
 	private Main mainScene;
 	private CustomerVO customer;
 	private HotelInfoVO hotel;
-	private HotelRoomInfoVO[] hotelRoomInfo;
+	private ArrayList<HotelRoomInfoVO> hotelRoomInfo;
 	private Hotel_blservice service;
+	private Room_blService roomService;
+	private Label_blService labelService;
+	private HotelStrategy_blservice hotelStrategyService;
 	private ObservableList<HotelRoomInfoVO> roomData = FXCollections.observableArrayList();
 
 	public HotelInfoController() {
@@ -68,16 +79,13 @@ public class HotelInfoController {
 		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.service = new Hotel_bl();
+		this.roomService = new Room_blServiceImpl();
+		this.labelService = new Label_blServiceImpl();
+		this.hotelStrategyService = new HotelStrategy_bl();
 		this.customer = customer;
 		this.hotel = hotel;
-		this.hotelRoomInfo = hotel.getHotelRoomInfo();
-		this.roomData.add(this.hotelRoomInfo[0]);
-		this.roomData.add(this.hotelRoomInfo[1]);
-		this.roomData.add(this.hotelRoomInfo[2]);
-		this.roomData.add(this.hotelRoomInfo[3]);
-		this.roomType.setCellValueFactory(cellData -> cellData.getValue().getRoomTypeProperty());
-		this.roomRemain.setCellValueFactory(cellData -> cellData.getValue().getRoomRemainProperty());
-		this.roomPrice.setCellValueFactory(cellData -> cellData.getValue().getRoomPriceProperty());
+		this.hotelRoomInfo = roomService.getAllRoom(this.hotel.getHotelID());
+		this.refreshTable();
 		this.HotelInfoShow();
 
 	}
@@ -113,8 +121,9 @@ public class HotelInfoController {
 	private String getStrategyString() {
 		String strategyInfo = "";
 		int count = 0;
-		while (count < this.hotel.getHotelStrategy().size()) {
-			strategyInfo += this.hotel.getHotelStrategy().get(count).getStrategyInfo();
+		while (count < this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size()) {
+			strategyInfo += this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).get(count)
+					.getStrategyInfo();
 			count++;
 		}
 		return strategyInfo;
@@ -124,11 +133,22 @@ public class HotelInfoController {
 	private String getTagString() {
 		String tagInfo = "";
 		int count = 0;
-		while (count < this.hotel.getLabelList().size()) {
-			tagInfo += this.hotel.getLabelList().get(count).getLabel().toString();
+		while (count < this.labelService.getHotelLabels(this.hotel.getHotelID()).size()) {
+			tagInfo += this.labelService.getHotelLabels(this.hotel.getHotelID()).get(count).getLabel().toString();
 			count++;
 		}
 		return tagInfo;
 	}
 
+	private void refreshTable() {
+		int count = 0;
+		while (count < this.hotelRoomInfo.size()) {
+			this.roomData.add(this.hotelRoomInfo.get(count));
+			count++;
+		}
+		this.roomType.setCellValueFactory(cellData -> cellData.getValue().getRoomTypeProperty());
+		this.roomRemain.setCellValueFactory(cellData -> cellData.getValue().getRoomRemainProperty());
+		this.roomPrice.setCellValueFactory(cellData -> cellData.getValue().getRoomPriceProperty());
+		this.roomInfoTabel.setItems(roomData);
+	}
 }
