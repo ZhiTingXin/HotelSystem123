@@ -22,7 +22,7 @@
                   <Label layoutX="95.0" layoutY="240.0" text="网站管理人员" />
                   <Button fx:id="modifyInfo" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleModifyInfo" prefHeight="39.0" prefWidth="200.0" text="修改个人信息" />
                   <Button fx:id="modifyPassword" layoutX="11.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleModifyPassword" prefHeight="39.0" prefWidth="200.0" text="更改密码" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="200.0" text="返回" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">

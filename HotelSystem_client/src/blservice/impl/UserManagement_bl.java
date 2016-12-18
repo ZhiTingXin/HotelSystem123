@@ -230,7 +230,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 	    ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)RemoteHelper.getInstance()
 	    		.getOrderDataService().getAllOrders();
 	    for(OrderPO po:orderPOs){
-	    	if(localDate==po.getGretime()){
+	    	if(localDate.equals(po.getGretime())){
 	    		num ++;
 	    	}
 	    }

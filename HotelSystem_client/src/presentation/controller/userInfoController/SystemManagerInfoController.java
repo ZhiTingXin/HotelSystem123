@@ -36,7 +36,6 @@ public class SystemManagerInfoController {
 	}
 
 	public void initialize(Main main, SystemManagerVO systemManager) {
-		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.systemManager = systemManager;
 		this.SystemManagerInfoShow();
@@ -57,5 +56,10 @@ public class SystemManagerInfoController {
 
 	public void handleModifyPassword() {
 		this.mainScene.showSystemManagerPasswordModifyScene(systemManager);
+	}
+	
+	@FXML
+	private void handleBack(){
+		mainScene.showSystemManagerMainScene(systemManager);
 	}
 }

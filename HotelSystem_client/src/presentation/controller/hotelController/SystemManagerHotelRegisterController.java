@@ -2,6 +2,7 @@ package presentation.controller.hotelController;
 
 
 
+import javafx.scene.control.MenuItem;
 import java.util.Optional;
 
 import VO.HotelInfoVO;
@@ -36,7 +37,10 @@ public class SystemManagerHotelRegisterController {
 	private TextField  hotelName;//客房
 	@FXML
 	private MenuButton district;
-	
+	@FXML
+	private MenuItem district1;
+	@FXML
+	private MenuItem district2;
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
 	private Hotel_blservice hotel_blservice;
@@ -61,8 +65,10 @@ public class SystemManagerHotelRegisterController {
 		newHotel.setHotelDistrict(districtName);
 		
 		boolean isModify = hotel_blservice.addHotel(newHotel);
-		
+
 		HotelStaffVO hotelStaffVO = new HotelStaffVO();
+		newHotel.setHotelStaffId(hotelStaffVO.getId());
+		hotelStaffVO.setHotelId(newHotel.getHotelID());
 		if (isModify) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
@@ -81,6 +87,15 @@ public class SystemManagerHotelRegisterController {
 			alert.setContentText("不好意思，您未能成功新增酒店信息！");
 			alert.showAndWait();
 		}
+	}
+	
+	@FXML
+	private void handleDistrict1(){
+		district.setText("新街口");
+	}
+	@FXML
+	private void handleDistrict2(){
+		district.setText("仙林中心");
 	}
 	@FXML
 	private void handleBack(){

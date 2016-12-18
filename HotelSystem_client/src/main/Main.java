@@ -1213,7 +1213,7 @@ public class Main extends Application {
 
 			// get Controller
 			SystemManagerMainController SystemManagerMainController = loader.getController();
-			SystemManagerMainController.SystemManagerMainShow(this);
+			SystemManagerMainController.initilize(this,systemManagerVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
