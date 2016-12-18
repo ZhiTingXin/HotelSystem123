@@ -26,6 +26,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
+import other.SystemStrategyType;
 
 public class AddSystemMemberStrategyController {
 
@@ -138,7 +139,7 @@ public class AddSystemMemberStrategyController {
 		private void handleSave() {
 			String strategyName = nameOfStrategy.getText();
 			String strategyDescription = descriptionOfStrategy.getText();
-
+            String systemStaffId = systemStaffVO.getId();
 			StrategyState strategyState;
 			if (open.isSelected()) {
 				strategyState = StrategyState.open;
@@ -146,7 +147,12 @@ public class AddSystemMemberStrategyController {
 				strategyState = StrategyState.close;
 			}
 			// SystemStrategyVO构造函数
-			SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, strategyState);
+			SystemStrategyVO newSystemStrategy = new SystemStrategyVO();
+			newSystemStrategy.setSystemStaffID(systemStaffId);
+			newSystemStrategy.setSystemStrategyType(SystemStrategyType.MEMBER);
+			newSystemStrategy.setStrategyState(strategyState);
+			newSystemStrategy.setSystemStrategyName(strategyName);
+			newSystemStrategy.setSystemStrategyDescription(strategyDescription);
 			boolean isModify1 = strategy_blservice.makeSystemStrategy(newSystemStrategy);
 
 			vipVOData.clear();// 清空
@@ -186,7 +192,7 @@ public class AddSystemMemberStrategyController {
 		private void handleEdit() {
 			VipVO selected = memberStrategyTable.getSelectionModel().getSelectedItem();
 			if (selected != null) {
-				mainScene.showPersonEditDialog(selected);
+				mainScene.showMemberEditDialog(selected);
 			} else {
 				// Nothing selected.
 				Alert alert = new Alert(AlertType.WARNING);
