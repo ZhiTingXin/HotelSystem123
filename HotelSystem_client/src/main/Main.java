@@ -51,6 +51,8 @@ import presentation.controller.systemstrategyController.SystemMemberStrategyModi
 import presentation.controller.systemstrategyController.SystemOtherStrategyModifyController;
 import presentation.controller.systemstrategyController.SystemStrategyViewController;
 import presentation.controller.systemstrategyController.SystemVIPStrategyModifyController;
+import presentation.controller.systemstrategyController.ViewSystemHolidayStrategyController;
+import presentation.controller.systemstrategyController.ViewSystemMemberStrategyController;
 import presentation.controller.userInfoController.CustomerInfoController;
 import presentation.controller.userInfoController.CustomerInfoModifyController;
 import presentation.controller.userInfoController.CustomerMemberModifyController;
@@ -880,7 +882,7 @@ public class Main extends Application {
 			rootLayout.setCenter(ViewSystemHolidayStrategyScene);
 
 			// get Controller
-			ViewSystemHolidayStrategyModifyController ViewSystemHolidayStrategyController = loader.getController();
+			ViewSystemHolidayStrategyController ViewSystemHolidayStrategyController = loader.getController();
 			ViewSystemHolidayStrategyController.initilize(this, systemStaffVO, systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -931,22 +933,22 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show 网站营销人员 新增会员系统促销策略界面
+	 * show 网站营销人员 查看会员系统促销策略界面
 	 * 
 	 * @param systemStaffVO
 	 * 
 	 */
-	public void showViewSystemMemberStrategyScene(SystemStaffVO systemStaffVO) {
+	public void showViewSystemMemberStrategyScene(SystemStaffVO systemStaffVO,SystemStrategyVO systemStrategyVO) {
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
-					.getResource("/presentation/view/systemStrategy_ui/AddSystemMemberStrategyScene.fxml"));
+					.getResource("/presentation/view/systemStrategy_ui/ViewSystemMemberStrategyScene.fxml"));
 			AnchorPane SystemMemberStrategyModifyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemMemberStrategyModifyScene);
 
 			// get Controller
-			AddSystemMemberStrategyController addSystemMemberStrategyController = loader.getController();
-			addSystemMemberStrategyController.initilize(this, systemStaffVO);
+			ViewSystemMemberStrategyController viewSystemMemberStrategyController = loader.getController();
+			viewSystemMemberStrategyController.initilize(this, systemStaffVO,systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
