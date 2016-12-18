@@ -149,11 +149,10 @@ public class AddSystemMemberStrategyController {
 			SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, strategyState);
 			boolean isModify1 = strategy_blservice.makeSystemStrategy(newSystemStrategy);
 
-			vipVOData.clear();// Çå¿Õ
-			vipVOData = memberStrategyTable.getItems();
+			ObservableList<VipVO>  newVipVOData= memberStrategyTable.getItems();
 
 			ArrayList<VipVO> newVipStrategyVoList = new ArrayList<VipVO>();
-			for (VipVO vipVO : vipVOData) {
+			for (VipVO vipVO : newVipVOData) {
 				newVipStrategyVoList.add(vipVO);
 			}
 			VipStrategyVO vipStrategyVO = new VipStrategyVO();

@@ -178,7 +178,11 @@ public class SystemStrategyViewController {
 			
 			if (strategyType == SystemStrategyType.HOLIDAY) {
 
+				mainScene.showViewSystemHolidayStrategyScene(systemStaffVO, selected);
+				
 			} else if (strategyType == SystemStrategyType.MEMBER) {
+				
+				mainScene.showViewSystemMemberStrategyScene(systemStaffVO,selected);
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
 
