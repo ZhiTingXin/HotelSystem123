@@ -52,7 +52,6 @@ public class AddSystemHolidayStrategyController {
 
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
-	private SystemStrategyVO newSystemStrategyVO;
 	private SystemStrategy_blservice systemStrategy_blservice;
 
 	public AddSystemHolidayStrategyController() {
@@ -69,7 +68,7 @@ public class AddSystemHolidayStrategyController {
 		SystemHolidayStrategyModifyShow(mainScene);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public void SystemHolidayStrategyModifyShow(Main mainScene) {
 
 		// 时间选择器属性设置
@@ -102,6 +101,7 @@ public class AddSystemHolidayStrategyController {
 
 	@FXML // 修改按钮 TODO 判断输入合法+提示框
 	private void handleSave() {
+		String systemStaffId = systemStaffVO.getId();
 		String strategyName = nameOfStrategy.getText();
 		String strategyDescription = descriptionOfStrategy.getText();
 		LocalDate big_Date = startDate.getValue();
@@ -114,8 +114,14 @@ public class AddSystemHolidayStrategyController {
 			strategyState = StrategyState.close;
 		}
 		// 构造函数
-		newSystemStrategyVO = new SystemStrategyVO(strategyName, strategyDescription, big_Date, end_Date, discount,
-				strategyState);
+		SystemStrategyVO newSystemStrategyVO = new SystemStrategyVO();
+		newSystemStrategyVO.setBegin_date(big_Date);
+		newSystemStrategyVO.setDiscount(discount);
+		newSystemStrategyVO.setEnd_date(end_Date);
+		newSystemStrategyVO.setSystemStaffID(systemStaffId);
+		newSystemStrategyVO.setSystemStrategyDescription(strategyDescription);
+		newSystemStrategyVO.setSystemStrategyName(strategyName);
+		newSystemStrategyVO.setStrategyState(strategyState);
 		systemStrategy_blservice.makeSystemStrategy(newSystemStrategyVO);
 	}
 

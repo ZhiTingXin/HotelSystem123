@@ -1,8 +1,6 @@
 package presentation.controller.userManagementController;
 
-import java.time.LocalDate;
 import java.util.Optional;
-
 import VO.CustomerVO;
 import VO.SystemManagerVO;
 import blservice.UserInfo_blservice;
@@ -61,7 +59,7 @@ public class SystemManagerCustomerInfoModifyController {
 		SystemManagerCustomerInfoModifyShow(mainScene);
 	}
 
-	@SuppressWarnings("unchecked")
+
 	public void SystemManagerCustomerInfoModifyShow(Main m) {
 		idLabel.setText(this.customerVO.getId());
 		nameTextField.setText(this.customerVO.getUsername());
@@ -74,14 +72,12 @@ public class SystemManagerCustomerInfoModifyController {
 
 	@FXML
 	private void handleSave() {
-		String id = idLabel.getText();
-		String name = nameTextField.getText();
-		int memberGrade = Integer.parseInt(memberLabel.getText());
-		LocalDate date = datePicker.getValue();
-		String companyName = companyTextField.getText();
-		int credit = Integer.parseInt(creditLabel.getText());
-
-		customerVO = new CustomerVO(id, name, memberGrade, date, companyName, credit);
+		 customerVO.setId(idLabel.getText());
+		 customerVO.setUsername(nameTextField.getText());
+		 customerVO.setMemberGrade(Integer.parseInt(memberLabel.getText()));
+		 customerVO.setBirthday(datePicker.getValue());
+		 customerVO.setCompanyName(companyTextField.getText());
+		 customerVO.setCredit(Integer.parseInt(creditLabel.getText()));
 
 		boolean isModify = userInfo_blservice.modifyCustomer(customerVO);
 

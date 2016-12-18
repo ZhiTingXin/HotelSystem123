@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
+import other.SystemStrategyType;
 
 public class AddSystemOtherStrategyController {
 	
@@ -67,6 +68,7 @@ public class AddSystemOtherStrategyController {
 		String strategyName = nameOfStrategy.getText();
 		String strategyDescription = descriptionOfStrategy.getText();
 		double discount = Double.parseDouble(discountForCustomer.getText());
+		String systemStaffID = systemStaffVO.getId();
 		StrategyState strategyState;
 		if (open.isSelected()) {
 			strategyState = StrategyState.open;
@@ -74,7 +76,13 @@ public class AddSystemOtherStrategyController {
 			strategyState = StrategyState.close;
 		}
 		// SystemStrategyVO¹¹Ôìº¯Êý
-		SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, discount,strategyState);
+		SystemStrategyVO newSystemStrategy = new SystemStrategyVO();
+		newSystemStrategy.setSystemStrategyName(strategyName);
+		newSystemStrategy.setSystemStrategyDescription(strategyDescription);
+		newSystemStrategy.setDiscount(discount);
+		newSystemStrategy.setStrategyState(strategyState);
+		newSystemStrategy.setSystemStaffID(systemStaffID);
+		newSystemStrategy.setSystemStrategyType(SystemStrategyType.OTHER);
 		boolean isModify1 = systemStrategy_blservice.makeSystemStrategy(newSystemStrategy);
 
 		if (isModify1) {
