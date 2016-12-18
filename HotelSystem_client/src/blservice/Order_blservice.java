@@ -25,7 +25,9 @@ public interface Order_blservice {
 
 	public String getOrderOriginalPrice(OrderVO order);
 
-	public String getOrderPrice(OrderVO order, String id);
+	public String getOrderPrice(OrderVO order);
+	
+	public ArrayList<OrderVO> getAllOrders(String hotelId);
 
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId);
 
@@ -34,4 +36,6 @@ public interface Order_blservice {
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID);
 	
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID);
+	
+	public ArrayList<OrderVO> getAllHotelOrders(String hotelid);
 }

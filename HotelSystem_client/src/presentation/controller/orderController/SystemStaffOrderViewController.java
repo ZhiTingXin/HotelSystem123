@@ -2,7 +2,6 @@ package presentation.controller.orderController;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-
 import VO.OrderVO;
 import VO.SystemStaffVO;
 import blservice.Order_blservice;
@@ -15,6 +14,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
+import other.OrderState;
 import util.DateUtil;
 
 public class SystemStaffOrderViewController {
@@ -88,7 +88,8 @@ public class SystemStaffOrderViewController {
 
 	@FXML//撤销订单
 	private void handleRevocationException(){
-		boolean isOK = 	order_blservice.changeState(orderVO.getOrderID());
+	    orderVO.setOrderState(OrderState.REVACATION);
+		boolean isOK = 	order_blservice.changeState(orderVO);
 		boolean isChange = order_blservice.changeCredit(orderVO.getUserID(), orderVO.getOrderID());//恢复信用值
 		if (isOK&& isChange) {
 		

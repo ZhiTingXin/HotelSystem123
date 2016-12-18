@@ -15,8 +15,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import main.Main;
+import other.OrderState;
 import other.RoomType;
 
 public class BookHotelController {
@@ -79,7 +79,7 @@ public class BookHotelController {
 	@FXML
 	private Label actualPayment;// 实际付款
 	@FXML
-	private TextField stateField;
+	private Label stateField;
 
 	private Main mainScene;
 	private UserInfo_blservice userService;
@@ -104,6 +104,16 @@ public class BookHotelController {
 		this.mainScene = mainScene;
 		userService = new UserInfo_bl();
 		this.orderService = new Order_bl();
+		// order的初始设定
+		this.order = new OrderVO();
+		this.order.setHotelID(this.hotel.getHotelID());
+		this.order.setUserID(this.customer.getId());
+		this.order.setUserName(this.customer.getUsername());
+		this.order.setRoomNum(1);
+		this.order.setOrderState(OrderState.UNFINISHED);
+
+		this.actualPayment.setText("0");
+		this.orderTotal.setText("0");
 		this.SystemManagerSystemStaffInfoModifyShow();
 	}
 
@@ -256,6 +266,6 @@ public class BookHotelController {
 
 	// 刷新实际价格
 	private void refreshActualPayment() {
-		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order, this.customer.getId())));
+		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order)));
 	}
 }

@@ -59,4 +59,10 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 		}
 	}
 
+	@Override
+	public VipStrategyVO getVipstrategy(String district) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,33 +1,34 @@
-//package testAll;
+package testAll;
 //
-//import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 //
 //import java.util.Date;
 //
 //import org.junit.FixMethodOrder;
-//import org.junit.Test;
+import org.junit.Test;
+
 //import org.junit.runners.MethodSorters;
 //
-//import PO.CustomerPO;
-//import data.service.CustomerDataService;
-//import data.service.impl.CustomerDataServiceImpl;
+import PO.CustomerPO;
+import data.service.CustomerDataService;
+import data.service.impl.CustomerDataServiceImpl;
 //
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-//public class customerTest {
+public class customerTest {
 //
-//	private CustomerDataService customerDataService = new CustomerDataServiceImpl();
+	private CustomerDataService customerDataService = new CustomerDataServiceImpl();
 //	
-//	@Test
-//	public void test001add()throws Exception{
-//		CustomerPO customerPO = new CustomerPO();
-//		customerPO.setBirthday(new Date());
-//		customerPO.setCredit(0);
-//		customerPO.setId("151250170");
-//		customerPO.setMemberGrade(5);
-//		customerPO.setPhone("15851266554");
-//		customerPO.setUserName("xinzhiting");
-//		assertEquals(true,customerDataService.addCustomer(customerPO));
-//	}
+	@Test
+	public void test001add()throws Exception{
+		CustomerPO customerPO = new CustomerPO();
+		customerPO.setCredit(0);
+		customerPO.setId("151250170");
+		customerPO.setMemberGrade(5);
+		customerPO.setPhone("15851266554");
+		customerPO.setUserName("xinzhiting");
+		assertEquals(true,customerDataService.addCustomer(customerPO));
+	}
 //	@Test
 //	public void test002up()throws Exception{
 //		CustomerPO customerPO = new CustomerPO("151250170", "zhiting xin", "15125017023", 0, 5);
@@ -43,4 +44,4 @@
 //		CustomerPO customerPO = new CustomerPO("151250170", "zhiting xin", "15125017023", 0, 5);
 //		assertEquals(true, customerDataService.deleteCustomer(customerPO));
 //	}
-//}
+}

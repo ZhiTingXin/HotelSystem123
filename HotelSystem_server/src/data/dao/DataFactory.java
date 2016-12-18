@@ -15,4 +15,5 @@ public interface DataFactory {
 	public RoomDao getRoomDao();
 	public AssessmentDao getAssessmentDao();
 	public LabelDao getlabelDao();
+	public SuperVipDao getSuovipdao();
 }

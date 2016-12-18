@@ -1,28 +1,20 @@
 package presentation.controller.systemstrategyController;
 
-import java.util.ArrayList;
-
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
-import VO.VipStrategyVO;
-import VO.VipVO;
 import blservice.SystemStrategy_blservice;
 import blservice.impl.SystemStrategy_bl;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
-import other.SystemStrategyType;
 
 public class SystemOtherStrategyModifyController {
 
@@ -86,18 +78,17 @@ public class SystemOtherStrategyModifyController {
 	
 	@FXML//保存修改
 	private void handleSave(){
-		String strategyName = nameOfStrategy.getText();
-		String strategyDescription = descriptionOfStrategy.getText();
-		double discount = Double.parseDouble(discountForCustomer.getText());
+		systemStrategyVO.setSystemStrategyName( nameOfStrategy.getText());
+		systemStrategyVO.setSystemStrategyDescription( descriptionOfStrategy.getText());
+		systemStrategyVO.setDiscount(Double.parseDouble(discountForCustomer.getText()));
 		StrategyState strategyState;
 		if (open.isSelected()) {
 			strategyState = StrategyState.open;
 		} else {
 			strategyState = StrategyState.close;
 		}
-		// SystemStrategyVO构造函数
-		SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, discount,strategyState);
-		boolean isModify1 = systemStrategy_blservice.modifySystemStrategy(newSystemStrategy);
+		systemStrategyVO.setStrategyState(strategyState);
+		boolean isModify1 = systemStrategy_blservice.modifySystemStrategy(systemStrategyVO);
 
 		if (isModify1) {
 			Alert alert = new Alert(AlertType.INFORMATION);

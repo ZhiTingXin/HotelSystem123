@@ -101,6 +101,7 @@ public class CustomerOrderViewController {
 
 	// 表格刷新方法
 	private void refreshTable() {
+		this.orderData.clear();
 		int count = 0;
 		while (count < this.orderList.size()) {
 			this.orderData.add(this.orderList.get(count));
@@ -110,7 +111,9 @@ public class CustomerOrderViewController {
 		this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
 		this.timeOfArrive.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
 		this.payment.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty());
-		this.stateOfOrder.setCellValueFactory(cellData -> cellData.getValue().getOrderStateProperty());
+		this.nameOfHotel.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
+		// this.stateOfOrder.setCellValueFactory(cellData ->
+		// cellData.getValue().getOrderStateProperty());
 		this.orderTable.setItems(orderData);
 	}
 }

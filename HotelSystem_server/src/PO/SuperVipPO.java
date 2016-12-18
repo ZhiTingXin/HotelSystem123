@@ -1,21 +1,24 @@
 package PO;
 
-import VO.VipVO;
+import java.io.Serializable;
 
-public class SuperVipPO {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name ="superVip")
+public class SuperVipPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private int Vipgrade;//
 	private double discount;
 	private String district;// …Ã»¶
-
-	public SuperVipPO(VipVO vipVO){
-		super();
-		this.id = vipVO.getId();
-		this.Vipgrade = vipVO.getVipgrade();
-		this.discount = vipVO.getDiscount();
-		this.district = vipVO.getDistrict();
-	}
+	
 	public int getVipgrade() {
 		return Vipgrade;
 	}
@@ -39,6 +42,7 @@ public class SuperVipPO {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
+	@Id
 	public String getId() {
 		return id;
 	}
