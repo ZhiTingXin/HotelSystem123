@@ -57,8 +57,8 @@ public class ViewSystemHolidayStrategyController {
 	public void ViewSystemHolidayStrategyShow(Main mainScene) {
 		nameOfStrategy.setText(systemStrategyVO.getSystemStrategyName());
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
-		startDate.setText(util.DateUtil.format(systemStrategyVO.getBegin_Date()));
-		endDate.setText(util.DateUtil.format(systemStrategyVO.getEnd_Date()));
+		startDate.setText(util.DateUtil.format(systemStrategyVO.getBegin_date()));
+		endDate.setText(util.DateUtil.format(systemStrategyVO.getEnd_date()));
 		discountForCustomer.setText(String.valueOf(systemStrategyVO.getDiscount()));
 		state.setText(String.valueOf(systemStrategyVO.getStrategyState()));
 	}
