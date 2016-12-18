@@ -52,6 +52,7 @@ public class SystemManagerMainController {
 	public void initilize(Main mainScene, SystemManagerVO systemManagerVO) {
 		this.mainScene = mainScene;
 		this.systemManagerVO = systemManagerVO;
+		SystemManagerMainShow(mainScene);
 	}
 
 	public void SystemManagerMainShow(Main mainScene) {
