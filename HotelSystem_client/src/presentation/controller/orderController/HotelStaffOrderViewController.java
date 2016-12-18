@@ -120,6 +120,7 @@ public class HotelStaffOrderViewController {
 
 	// 刷新表格方法
 	private void refreshTable() {
+		this.orderData.clear();
 		int count = 0;
 		while (count < this.orderList.size()) {
 			this.orderData.add(this.orderList.get(count));

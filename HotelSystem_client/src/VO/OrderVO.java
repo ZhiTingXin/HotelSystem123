@@ -3,6 +3,7 @@ package VO;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import PO.OrderPO;
+import blservice.impl.Hotel_bl;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
@@ -24,11 +25,12 @@ public class OrderVO {
 	private LocalDateTime revocationTime;
 	private LocalDate gretime;
 
-	public OrderVO(){
+	public OrderVO() {
 		super();
 		this.orderID = IdGernerateServiceImpl.gernerateId();
 		this.gretime = LocalDate.now();
 	}
+
 	// structure method po > vo
 	public OrderVO(OrderPO orderPO) {
 		hotelID = orderPO.getHotelId();
@@ -145,9 +147,11 @@ public class OrderVO {
 	public LocalDate getGretime() {
 		return gretime;
 	}
+
 	public void setGretime(LocalDate gretime) {
 		this.gretime = gretime;
 	}
+
 	// 表格服务方法
 	public StringProperty getCustomerIDProperty() {
 		return new SimpleStringProperty(this.userID);
@@ -193,5 +197,10 @@ public class OrderVO {
 	public StringProperty getRoomInfoProperty() {
 		return new SimpleStringProperty(this.roomType.toString() + "*" + String.valueOf(this.getRoomNum()));
 	}
-	
+
+	public StringProperty getHotelNameProperty() {
+		// TODO Auto-generated method stub
+		return new SimpleStringProperty(Hotel_bl.getHotelName(this.hotelID));
+	}
+
 }
