@@ -29,8 +29,8 @@ public class SystemStrategyPO implements Serializable {
     	this.systemStrategy_name = systemStrategyVO.getSystemStrategyName();
     	this.systemStaffId = systemStrategyVO.getSystemStaffID();
     	this.discount = systemStrategyVO.getDiscount();
-    	this.begin_date = systemStrategyVO.getBegin_Date();
-    	this.end_date = systemStrategyVO.getEnd_Date();
+    	this.begin_date = systemStrategyVO.getBegin_date();
+    	this.end_date = systemStrategyVO.getEnd_date();
     	this.state = systemStrategyVO.getStrategyState();
     	this.strategyType = systemStrategyVO.getSystemStrategyType();
     	this.systemStrategyDescription = systemStrategyVO.getSystemStrategyDescription();

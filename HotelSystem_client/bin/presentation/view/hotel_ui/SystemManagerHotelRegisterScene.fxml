@@ -45,11 +45,8 @@
                   <TextField fx:id="hotelName" layoutX="135.0" layoutY="87.0" prefHeight="23.0" prefWidth="296.0" />
                   <MenuButton fx:id="district" layoutX="135.0" layoutY="122.0" mnemonicParsing="false" text="MenuButton">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="商圈A" />
-                      <MenuItem mnemonicParsing="false" text="商圈B" />
-                        <MenuItem mnemonicParsing="false" text="商圈C" />
-                        <MenuItem mnemonicParsing="false" text="商圈D" />
-                        <MenuItem mnemonicParsing="false" text="商圈E" />
+                      <MenuItem fx:id="district1" mnemonicParsing="false" onAction="#handleDistrict1" text="新街口" />
+                      <MenuItem fx:id="district2" mnemonicParsing="false" onAction="#handleDistrict2" text="仙林中心" />
                     </items>
                   </MenuButton>
                </children>

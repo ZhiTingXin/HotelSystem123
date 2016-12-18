@@ -100,7 +100,6 @@
                      </effect>
                   </Label>
                   <Label layoutX="182.0" layoutY="83.0" text="节日优惠" />
-                  <DatePicker fx:id="startDate" layoutX="181.0" layoutY="233.0" prefHeight="27.0" prefWidth="144.0" promptText="yyyy-mm-dd" />
                   <Label layoutX="54.0" layoutY="238.0" text="优惠开始时间">
                      <effect>
                         <Blend />
@@ -109,7 +108,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="54.0" layoutY="271.0" text="优惠结束时间">
+                  <Label layoutX="54.0" layoutY="276.0" text="优惠结束时间">
                      <effect>
                         <Blend />
                      </effect>
@@ -117,7 +116,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <DatePicker fx:id="endDate" layoutX="181.0" layoutY="267.0" prefHeight="27.0" prefWidth="144.0" promptText="yyyy-mm-dd" />
+                  <DatePicker fx:id="startDate" layoutX="180.0" layoutY="234.0" prefHeight="27.0" prefWidth="123.0" />
+                  <DatePicker fx:id="endDate" layoutX="180.0" layoutY="272.0" prefHeight="27.0" prefWidth="123.0" />
                </children>
             </AnchorPane>
          </items>

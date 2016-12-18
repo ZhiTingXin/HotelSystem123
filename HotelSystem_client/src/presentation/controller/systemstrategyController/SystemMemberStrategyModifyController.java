@@ -136,8 +136,8 @@ public class SystemMemberStrategyModifyController {
 
 	@FXML // 保存修改信息
 	private void handleSave() {
-		String strategyName = nameOfStrategy.getText();
-		String strategyDescription = descriptionOfStrategy.getText();
+		systemStrategyVO.setSystemStrategyName(nameOfStrategy.getText());
+		systemStrategyVO.setSystemStrategyDescription(descriptionOfStrategy.getText());
 
 		StrategyState strategyState;
 		if (open.isSelected()) {
@@ -145,9 +145,10 @@ public class SystemMemberStrategyModifyController {
 		} else {
 			strategyState = StrategyState.close;
 		}
-		// SystemStrategyVO构造函数
-		SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, strategyState);
-		boolean isModify1 = systemStrategy_blservice.modifySystemStrategy(newSystemStrategy);
+		systemStrategyVO.setStrategyState(strategyState);
+		
+		
+		boolean isModify1 = systemStrategy_blservice.modifySystemStrategy(systemStrategyVO);
 
 		ObservableList<VipVO> getVipVO = memberStrategyTable.getItems();
 

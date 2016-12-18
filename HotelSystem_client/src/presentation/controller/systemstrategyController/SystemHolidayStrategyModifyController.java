@@ -9,6 +9,7 @@ import blservice.SystemStrategy_blservice;
 import blservice.impl.SystemStrategy_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -17,12 +18,10 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import main.Main;
 import other.StrategyState;
-import other.SystemStrategyType;
 
 public class SystemHolidayStrategyModifyController {
 
@@ -82,8 +81,8 @@ public class SystemHolidayStrategyModifyController {
 		startDate.setConverter(util.DateUtil.converter);
 		endDate.setConverter(util.DateUtil.converter);
 		// 设置初始值
-		startDate.setValue(systemStrategyVO.getBegin_Date());
-		endDate.setValue(systemStrategyVO.getEnd_Date());
+		startDate.setValue(systemStrategyVO.getBegin_date());
+		endDate.setValue(systemStrategyVO.getEnd_date());
 		// 设置结束时间在开始时间之前
 		final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
 			@Override
@@ -118,22 +117,20 @@ public class SystemHolidayStrategyModifyController {
 
 	@FXML // 修改按钮 TODO 判断输入合法+提示框
 	private void handleSave() {
-		String strategyName = nameOfStrategy.getText();
-		String strategyDescription = descriptionOfStrategy.getText();
-		LocalDate big_Date = startDate.getValue();
-		LocalDate end_Date = endDate.getValue();
-		double discount = Double.valueOf(discountForCustomer.getText());
+		systemStrategyVO.setSystemStrategyName(nameOfStrategy.getText());
+		systemStrategyVO.setSystemStrategyDescription(descriptionOfStrategy.getText());
+		systemStrategyVO.setBegin_date(startDate.getValue());
+		systemStrategyVO.setEnd_date(endDate.getValue());
+		systemStrategyVO.setDiscount(Double.valueOf(discountForCustomer.getText()));
 		StrategyState strategyState;
 		if (open.isSelected()) {
 			strategyState = StrategyState.open;
 		} else {
 			strategyState = StrategyState.close;
 		}
-		//构造函数
-		SystemStrategyVO newSystemStrategy = new SystemStrategyVO(strategyName, strategyDescription, big_Date, end_Date,
-				discount, strategyState);
-
-		boolean isModify = systemStrategy_blservice.modifySystemStrategy(newSystemStrategy);
+		systemStrategyVO.setStrategyState(strategyState);
+		//对于已经传上来的systemStrategy的修改
+		boolean isModify = systemStrategy_blservice.modifySystemStrategy(systemStrategyVO);
 
 		if (isModify) {
 			Alert alert = new Alert(AlertType.INFORMATION);
