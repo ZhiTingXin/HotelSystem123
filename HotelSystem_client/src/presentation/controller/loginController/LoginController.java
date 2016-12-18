@@ -51,16 +51,16 @@ public class LoginController {
 
 			// ´ýÐÞ¸Ä·½·¨
 			UserType loginType = this.loginService.assertUserType(userIdInField);
-			if (loginType.equals(UserType.CUSTOMER)) {
+			if (loginType==UserType.CUSTOMER) {
 				this.mainScene.showCustomerMainScene(this.usermanagementService.getCustomer(userIdInField));
 			}
-			if (loginType.equals(UserType.HOTELSTAFF)) {
+			if (loginType==UserType.HOTELSTAFF) {
 				this.mainScene.showHotelStaffMainScene(this.usermanagementService.getHotelStaff(userIdInField));
 			}
-			if (loginType.equals(UserType.SYSTEMSTAFF)) {
+			if (loginType==UserType.SYSTEMSTAFF) {
 				this.mainScene.showSystemStaffMainScene(this.usermanagementService.getSystemStaff(userIdInField));
 			}
-			if (loginType.equals(UserType.SYSTEMMANAGER)) {
+			if (loginType==UserType.SYSTEMMANAGER) {
 				this.mainScene.showSystemManagerMainScene(this.usermanagementService.getSystemManager(userIdInField));
 			}
 

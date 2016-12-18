@@ -875,6 +875,7 @@ public class Main extends Application {
 	 */
 	public void showViewSystemHolidayStrategyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/systemStrategy_ui/ViewSystemHolidayStrategyScene.fxml"));
@@ -896,6 +897,7 @@ public class Main extends Application {
 	 */
 	public void showSystemHolidayStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/systemStrategy_ui/SystemHolidayStrategyModifyScene.fxml"));
@@ -918,6 +920,7 @@ public class Main extends Application {
 	 */
 	public void showAddSystemHolidayStrategyScene(SystemStaffVO systemStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/systemStrategy_ui/AddSystemHolidayStrategyScene.fxml"));
@@ -940,6 +943,7 @@ public class Main extends Application {
 	 */
 	public void showViewSystemMemberStrategyScene(SystemStaffVO systemStaffVO,SystemStrategyVO systemStrategyVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/systemStrategy_ui/ViewSystemMemberStrategyScene.fxml"));
@@ -962,6 +966,7 @@ public class Main extends Application {
 	 */
 	public void showAddSystemMemberStrategyScene(SystemStaffVO systemStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/systemStrategy_ui/AddSystemMemberStrategyScene.fxml"));
@@ -984,6 +989,7 @@ public class Main extends Application {
 	 */
 	public void showSystemMemberStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/systemStrategy_ui/SystemMemberStrategyModifyScene.fxml"));
@@ -1006,6 +1012,7 @@ public class Main extends Application {
 	 */
 	public boolean showMemberEditDialog(VipVO vipVO) {
 		try {
+			this.initRootLayout();
 			// Load the fxml file and create a new stage for the popup dialog.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/presentation/view/systemStrategy_ui/MemberEditDialog.fxml"));
@@ -1041,6 +1048,7 @@ public class Main extends Application {
 	 */
 	public void showAddSystemVIPStrategyScene(SystemStaffVO systemStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/systemStrategy_ui/AddSystemVIPStrategyScene.fxml"));
@@ -1063,6 +1071,7 @@ public class Main extends Application {
 	 */
 	public void showSystemVIPStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/systemStrategy_ui/SystemVIPStrategyModifyScene.fxml"));
@@ -1084,6 +1093,7 @@ public class Main extends Application {
 	 */
 	public void showSystemOtherStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/systemStrategy_ui/SystemOtherStrategyModifyScene.fxml"));
@@ -1106,6 +1116,7 @@ public class Main extends Application {
 	 */
 	public void showAddSystemOtherStrategyScene(SystemStaffVO systemStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/systemStrategy_ui/AddSystemOtherStrategyScene.fxml"));
@@ -1194,6 +1205,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerMainScene(SystemManagerVO systemManagerVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/main/SystemManagerMainScene.fxml"));
 			AnchorPane SystemManagerMainScene = (AnchorPane) loader.load();
@@ -1214,6 +1226,7 @@ public class Main extends Application {
 	 */
 	public void showCustomerManagementScene(SystemManagerVO systemManagerVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/userManagement_ui/CustomerManagementScene.fxml"));
@@ -1235,6 +1248,7 @@ public class Main extends Application {
 	 */
 	public void showHotelStaffManagementScene(SystemManagerVO systemManagerVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/userManagement_ui/HotelStaffManagementScene.fxml"));
@@ -1256,6 +1270,7 @@ public class Main extends Application {
 	 */
 	public void showSystemStaffManagementScene(SystemManagerVO systemManagerVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/userManagement_ui/SystemStaffManagementScene.fxml"));
@@ -1277,6 +1292,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerCustomerInfoViewScene(SystemManagerVO systemManagerVO, CustomerVO customerVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/userManagement_ui/SystemManagerCustomerInfoViewScene.fxml"));
@@ -1298,6 +1314,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerCustomerInfoModifyScene(SystemManagerVO systemManagerVO, CustomerVO customerVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/userManagement_ui/SystemManagerCustomerInfoModifyScene.fxml"));
@@ -1320,6 +1337,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerHotelStaffInfoViewScene(SystemManagerVO systemManagerVO, HotelStaffVO hotelStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/userManagement_ui/SystemManagerHotelStaffInfoViewScene.fxml"));
@@ -1342,6 +1360,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerHotelStaffInfoModifyScene(SystemManagerVO systemManagerVO, HotelStaffVO hotelStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/userManagement_ui/SystemManagerHotelStaffInfoModifyScene.fxml"));
@@ -1365,6 +1384,7 @@ public class Main extends Application {
 	public void showSystemManagerSystemStaffInfoViewScene(SystemManagerVO systemManagerVO,
 			SystemStaffVO systemStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/userManagement_ui/SystemManagerSystemStaffInfoViewScene.fxml"));
@@ -1388,6 +1408,7 @@ public class Main extends Application {
 	public void showSystemManagerSystemStaffInfoModfyScene(SystemManagerVO systemManagerVO,
 			SystemStaffVO systemStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/userManagement_ui/SystemManagerSystemStaffInfoModifyScene.fxml"));
@@ -1410,6 +1431,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerHotelRegisterScene(SystemManagerVO systemManagerVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterScene.fxml"));
@@ -1431,6 +1453,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO, HotelStaffVO hotelStaffVO) {
 		try {
+			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
@@ -1516,6 +1539,7 @@ public class Main extends Application {
 
 	private void initRootLayout() {
 		try {
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();
