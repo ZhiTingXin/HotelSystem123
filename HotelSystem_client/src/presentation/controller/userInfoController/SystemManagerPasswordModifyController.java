@@ -68,8 +68,8 @@ public class SystemManagerPasswordModifyController {
 		String comfirmPasswordInField = this.confirmPassword.getText();
 		String originalPassword = this.systemManager.getPassword();
 
-		boolean isPasswordOK = passwordInField == originalPassword;
-		boolean isNewPasswordOK = newPasswordInField == comfirmPasswordInField;
+		boolean isPasswordOK = passwordInField.equals( originalPassword);
+		boolean isNewPasswordOK = newPasswordInField .equals(comfirmPasswordInField);
 		if (isPasswordOK && isNewPasswordOK) {
 			this.systemManager.setPassword(newPasswordInField);
 
