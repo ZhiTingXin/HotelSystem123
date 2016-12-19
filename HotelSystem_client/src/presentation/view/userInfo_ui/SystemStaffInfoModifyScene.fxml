@@ -70,7 +70,7 @@
                   </Label>
                   <Button fx:id="changePicture" layoutX="143.0" layoutY="502.0" mnemonicParsing="false" text="修改头像" />
                   <TextField fx:id="nameField" layoutX="189.0" layoutY="109.0" />
-                  <Label layoutX="75.0" layoutY="200.0" text="姓名">
+                  <Label layoutX="75.0" layoutY="200.0" text="联系方式">
                      <font>
                         <Font size="16.0" />
                      </font>

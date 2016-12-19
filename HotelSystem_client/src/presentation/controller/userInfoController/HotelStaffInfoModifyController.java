@@ -53,12 +53,12 @@ public class HotelStaffInfoModifyController {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.hotelId.setText(this.hotelStaff.getHotelId());
-		// this.phoneTextField.setText(value);
+		this.phoneTextField.setText(this.hotelStaff.getPhone());
 
 	}
 
 	public void handleSave() {
-		if (this.name.getText() != "") {
+		if (!this.name.getText().equals("")) {
 			this.hotelStaff.setUsername(this.name.getText());
 
 		}

@@ -1,11 +1,13 @@
 package presentation.controller.userManagementController;
 
+import java.awt.event.MouseWheelEvent;
 import java.util.ArrayList;
 
 import VO.CustomerVO;
 import VO.SystemManagerVO;
 import blservice.UserManagement_blservice;
 import blservice.impl.UserManagement_bl;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import main.Main;
 
 public class CustomerManagementController {
@@ -73,11 +76,11 @@ public class CustomerManagementController {
 		for (CustomerVO customerVO : customerList) {
 			customerData.add(customerVO);
 		}
-		// TODO
-		// idColumn.setCellValueFactory(cellData->cellData.getValue().getId());//TODO
-		// nameColumn.setCellValueFactory(cellData->cellData.getValue().getUsername());
-		// identityColumn.setCellValueFactory();
-		// stateColumn.setCellValueFactory(cellData->cellData.getValue().getCredit());
+		
+		 idColumn.setCellValueFactory(cellData->cellData.getValue().getIDstringProperty());
+		 nameColumn.setCellValueFactory(cellData->cellData.getValue().getUserNamePriperty());
+		 identityColumn.setCellValueFactory(cellData->cellData.getValue().getUserTypePriperty());
+		 stateColumn.setCellValueFactory(cellData->cellData.getValue().getCreditProperty());
 
 		userTable.setItems(customerData);
 	}

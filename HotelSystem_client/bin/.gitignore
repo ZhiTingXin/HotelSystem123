@@ -1,9 +1,11 @@
+/Test/
 /main/
 /presentation/
+/MockObject/
 /PO/
 /RMI/
 /VO/
 /blservice/
-/other/
 /data/
-/Test/
+/other/
+/util/

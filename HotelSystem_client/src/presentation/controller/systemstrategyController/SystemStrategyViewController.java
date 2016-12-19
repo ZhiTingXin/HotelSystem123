@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import main.Main;
+import other.StrategyState;
 import other.SystemStrategyType;
 
 public class SystemStrategyViewController {
@@ -184,7 +185,7 @@ public class SystemStrategyViewController {
 				mainScene.showViewSystemMemberStrategyScene(systemStaffVO,selected);
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
-
+				
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
 			}
@@ -216,8 +217,8 @@ public class SystemStrategyViewController {
 			mainScene.showAddSystemHolidayStrategyScene(systemStaffVO);
 
 		} else if (labelName == "会员优惠列表") {
-
-			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER) == null) {
+             
+			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER).size()==0) {
 				mainScene.showAddSystemMemberStrategyScene(systemStaffVO);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -241,7 +242,7 @@ public class SystemStrategyViewController {
 
 		} else if (labelName == "其他优惠列表") {
 
-			mainScene.showAddSystemHolidayStrategyScene(systemStaffVO);
+			mainScene.showAddSystemOtherStrategyScene(systemStaffVO);
 
 		}
 	}

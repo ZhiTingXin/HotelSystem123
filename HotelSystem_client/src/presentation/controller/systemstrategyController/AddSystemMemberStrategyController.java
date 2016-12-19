@@ -81,30 +81,19 @@ public class AddSystemMemberStrategyController {
 			leftIdLabel.setText(systemStaffVO.getId());
 			leftNameLabel.setText(systemStaffVO.getUsername());
 			
-			SystemHolidayStrategyModifyShow(mainScene);
+			AddSystemMemberStrategyShow(mainScene);
 		}
 
-		@SuppressWarnings("null")
-		public void SystemHolidayStrategyModifyShow(Main mainScene) {
+		public void AddSystemMemberStrategyShow(Main mainScene) {
 			// ”“¿∏
 			// ≥ı ºªØ table
-			VipVO v1 = null;
-			v1.setVipgrade(1);
-			VipVO v2 = null;
-			v2.setVipgrade(2);
-			VipVO v3 = null;
-			v3.setVipgrade(3);
-			VipVO v4 = null;
-			v4.setVipgrade(4);
-			VipVO v5 = null;
-			v5.setVipgrade(5);
+			VipStrategy_blService vipStrategy_blService = new VipStrategy_blServiceImpl();
+			ArrayList<VipVO> vips = vipStrategy_blService.getVipStrategy().getVipStrategyVOList();
 			
-			vipVOData.add(v1);
-			vipVOData.add(v2);
-			vipVOData.add(v3);
-			vipVOData.add(v4);
-			vipVOData.add(v5);
-
+			for (VipVO vipVO:vips) {
+				vipVOData.add(vipVO);
+			}
+			
 			memberStrategyTable.setEditable(true);// ø…±‡º≠
 
 			minCredit.setCellValueFactory(cellData -> cellData.getValue().getMinCreditProperty());

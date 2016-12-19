@@ -78,7 +78,7 @@
 								<Blend mode="RED" opacity="0.43" />
 							</effect>
 						</Label>
-						<TableView fx:id="systemStrategyTable" layoutX="115.0" layoutY="267.0" prefHeight="197.0" prefWidth="329.0">
+						<TableView fx:id="memberStrategyTable" layoutX="115.0" layoutY="267.0" prefHeight="197.0" prefWidth="329.0">
 							<columns>
 								<TableColumn fx:id="minCredit" prefWidth="75.0" text="信用下限" />
 								<TableColumn fx:id="maxCredit" prefWidth="75.0" text="信用上限" />

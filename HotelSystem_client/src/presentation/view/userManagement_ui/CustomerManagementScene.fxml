@@ -39,7 +39,7 @@
                       <TableColumn fx:id="idColumn" prefWidth="133.81341552734375" text="用户ID" />
                       <TableColumn fx:id="nameColumn" prefWidth="135.18658447265625" text="用户名" />
                         <TableColumn fx:id="identityColumn" minWidth="3.7308349609375" prefWidth="95.73583984375" text="用户身份" />
-                        <TableColumn fx:id="stateColumn" minWidth="0.0" prefWidth="96.83935546875" text="在线状况" />
+                        <TableColumn fx:id="stateColumn" minWidth="0.0" prefWidth="96.83935546875" text="信用值" />
                     </columns>
                   </TableView>
                   <TextField fx:id="inputSearchText" layoutX="33.0" layoutY="72.0" prefHeight="23.0" prefWidth="403.0" promptText="输入要搜索的用户的ID" />

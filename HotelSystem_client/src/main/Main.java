@@ -1012,7 +1012,6 @@ public class Main extends Application {
 	 */
 	public boolean showMemberEditDialog(VipVO vipVO) {
 		try {
-			this.initRootLayout();
 			// Load the fxml file and create a new stage for the popup dialog.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("/presentation/view/systemStrategy_ui/MemberEditDialog.fxml"));
