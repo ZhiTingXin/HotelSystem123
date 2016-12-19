@@ -75,7 +75,8 @@ public class AddSystemHolidayStrategyController {
 		startDate.setConverter(util.DateUtil.converter);
 		endDate.setConverter(util.DateUtil.converter);
 		// 设置初始值
-		startDate.setValue(startDate.getValue());
+		LocalDate nowDate =LocalDate.now();
+		startDate.setValue(nowDate);
 		// 设置结束时间在开始时间之前
 		final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
 			@Override
@@ -89,11 +90,27 @@ public class AddSystemHolidayStrategyController {
 							setStyle("-fx-background-color: #ffc0cb;");
 						}
 						long p = ChronoUnit.DAYS.between(endDate.getValue(), item);
-						setTooltip(new Tooltip("优惠策略将持续 " + p + " 天！"));
+						setTooltip(new Tooltip("优惠策略将持续 " + (p+1) + " 天！"));
 					}
 				};
 			}
 		};
+		final Callback<DatePicker, DateCell> dayCellFactoryForStartDate = new Callback<DatePicker, DateCell>() {
+			@Override
+			public DateCell call(final DatePicker datePicker) {
+				return new DateCell() {
+					@Override
+					public void updateItem(LocalDate item, boolean empty) {
+						super.updateItem(item, empty);
+						if (item.isBefore(nowDate)) {
+							setDisable(true);
+							setStyle("-fx-background-color: #ffc0cb;");
+						}
+					}
+				};
+			}
+		};
+		startDate.setDayCellFactory(dayCellFactoryForStartDate);
 		endDate.setDayCellFactory(dayCellFactory);
 		endDate.setValue(startDate.getValue().plusDays(1));
 		// 设置时间选择器结束

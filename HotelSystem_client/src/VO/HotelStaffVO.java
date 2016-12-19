@@ -1,6 +1,8 @@
 package VO;
 
 import PO.HotelStaffPO;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
 
 public class HotelStaffVO {
@@ -76,5 +78,21 @@ public class HotelStaffVO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public StringProperty getHotelStaffIdProperty() {
+		return new SimpleStringProperty(id);
+	}
+	
+	public StringProperty getHotelStaffNameProperty(){
+		return new SimpleStringProperty(username);
+	}
+	
+	public StringProperty getHotelStaffTypeProperty(){
+		return new SimpleStringProperty("酒店工作人员");
+	}
+	
+	public StringProperty getHotelNameProperty(){
+		return new SimpleStringProperty(hotelName);
 	}
 }

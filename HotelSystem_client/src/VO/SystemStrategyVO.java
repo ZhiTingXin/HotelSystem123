@@ -113,13 +113,13 @@ public class SystemStrategyVO {
 
 	// 绛栫暐鐘舵��
 	public StringProperty getStrategyStateProperty() {
-		if (systemStrategyType == null) {
+		if (strategyState == null) {
 			return null;
 		} else {
-			if (systemStrategyType.equals(StrategyState.open)) {
-				return new SimpleStringProperty("鍚敤");
+			if (strategyState==(StrategyState.open)) {
+				return new SimpleStringProperty("启用");
 			} else {
-				return new SimpleStringProperty("绂佺敤");
+				return new SimpleStringProperty("关闭");
 			}
 		}
 	}

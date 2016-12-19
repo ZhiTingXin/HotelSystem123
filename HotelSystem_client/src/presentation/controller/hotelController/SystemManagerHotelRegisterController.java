@@ -67,7 +67,9 @@ public class SystemManagerHotelRegisterController {
 		boolean isModify = hotel_blservice.addHotel(newHotel);
 
 		HotelStaffVO hotelStaffVO = new HotelStaffVO();
+		hotelStaffVO.setHotelName(name);
 		newHotel.setHotelStaffId(hotelStaffVO.getId());
+		hotelStaffVO.setPassword(hotelStaffVO.getId());
 		hotelStaffVO.setHotelId(newHotel.getHotelID());
 		if (isModify) {
 			Alert alert = new Alert(AlertType.INFORMATION);
