@@ -1,6 +1,8 @@
 package presentation.controller.systemstrategyController;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import blservice.SystemStrategy_blservice;
@@ -11,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -78,7 +81,7 @@ public class SystemStrategyViewController {
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
 		// 右边栏
-		discountListLabel.setText("所有优惠列表");
+		discountListLabel.setText("所有优惠");
 		systemStrategyVOList = systemStrategy_blservice.getAllSystemStrategys();
 		for (SystemStrategyVO systemStrategyVO : systemStrategyVOList) { // 默认初始化所有的促销策略
 			systemStrategyData.add(systemStrategyVO);
@@ -92,7 +95,7 @@ public class SystemStrategyViewController {
 
 	@FXML // 监听查看节日策略
 	private void handleViewHolidayStrategy() {
-		discountListLabel.setText("节日优惠列表");
+		discountListLabel.setText("节日优惠");
 		systemStrategyData.clear();// 清空列表
 		systemStrategyVOList.clear();// 清空List
 
@@ -110,7 +113,7 @@ public class SystemStrategyViewController {
 
 	@FXML // 查看会员优惠
 	private void handleViewMemberStrategy() {
-		discountListLabel.setText("会员优惠列表");
+		discountListLabel.setText("会员优惠");
 		systemStrategyData.clear();// 清空列表
 		systemStrategyVOList.clear();// 清空List
 
@@ -128,7 +131,7 @@ public class SystemStrategyViewController {
 
 	@FXML // 查看VIP会员优惠
 	private void handleViewVIPStrategy() {
-		discountListLabel.setText("VIP会员优惠列表");
+		discountListLabel.setText("VIP会员优惠");
 		systemStrategyData.clear();// 清空列表
 		systemStrategyVOList.clear();// 清空List
 
@@ -146,7 +149,7 @@ public class SystemStrategyViewController {
 
 	@FXML // 查看其他优惠策略
 	private void handleViewOtherStrategy() {
-		discountListLabel.setText("其他优惠列表");
+		discountListLabel.setText("其他优惠");
 		systemStrategyData.clear();// 清空列表
 		systemStrategyVOList.clear();// 清空List
 
@@ -173,28 +176,28 @@ public class SystemStrategyViewController {
 		SystemStrategyVO selected = systemStrategyTable.getSelectionModel().getSelectedItem();
 
 		if (selected != null) {
-			
+
 			SystemStrategyType strategyType = selected.getSystemStrategyType();
-			
+
 			if (strategyType == SystemStrategyType.HOLIDAY) {
 
 				mainScene.showViewSystemHolidayStrategyScene(systemStaffVO, selected);
-				
+
 			} else if (strategyType == SystemStrategyType.MEMBER) {
-				
-				mainScene.showViewSystemMemberStrategyScene(systemStaffVO,selected);
+
+				mainScene.showViewSystemMemberStrategyScene(systemStaffVO, selected);
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
-				
+
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
 			}
-			
+
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");
 			alert.setHeaderText("操作失败");
-			alert.setContentText("不要着急，您应该先选择某个优惠策略再进行查看！");
+			alert.setContentText("不要着急，您应该先选择需要查看的优惠策略！");
 			alert.showAndWait();
 		}
 	}
@@ -204,7 +207,7 @@ public class SystemStrategyViewController {
 
 		String labelName = discountListLabel.getText();
 
-		if (labelName == "所有优惠列表") {
+		if (labelName == "所有优惠") {
 
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");
@@ -212,13 +215,13 @@ public class SystemStrategyViewController {
 			alert.setContentText("不要着急，您应该先选择某个优惠类型再进行新增！");
 			alert.showAndWait();
 
-		} else if (labelName == "节日优惠列表") {
+		} else if (labelName == "节日优惠") {
 
 			mainScene.showAddSystemHolidayStrategyScene(systemStaffVO);
 
-		} else if (labelName == "会员优惠列表") {
-             
-			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER).size()==0) {
+		} else if (labelName == "会员优惠") {
+
+			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER).size() == 0) {
 				mainScene.showAddSystemMemberStrategyScene(systemStaffVO);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -228,7 +231,7 @@ public class SystemStrategyViewController {
 				alert.showAndWait();
 			}
 
-		} else if (labelName == "VIP会员优惠列表") {
+		} else if (labelName == "VIP会员优惠") {
 
 			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER) == null) {
 				mainScene.showAddSystemVIPStrategyScene(systemStaffVO);
@@ -240,7 +243,7 @@ public class SystemStrategyViewController {
 				alert.showAndWait();
 			}
 
-		} else if (labelName == "其他优惠列表") {
+		} else if (labelName == "其他优惠") {
 
 			mainScene.showAddSystemOtherStrategyScene(systemStaffVO);
 
@@ -249,30 +252,26 @@ public class SystemStrategyViewController {
 
 	@FXML // 修改优惠策略列表
 	private void handleModifyStrategyButton() {
-		String labelName = discountListLabel.getText();
+		
 		SystemStrategyVO selected = systemStrategyTable.getSelectionModel().getSelectedItem();
+		
 		if (selected != null) {// 选中
-			if (labelName == "所有优惠列表") {
 
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("警示");
-				alert.setHeaderText("修改失败");
-				alert.setContentText("不要着急，您应该先选择某个优惠类型再进行修改！");
-				alert.showAndWait();
+			SystemStrategyType strategyType = selected.getSystemStrategyType();
 
-			} else if (labelName == "节日优惠列表") {
+			if (strategyType == SystemStrategyType.HOLIDAY) {
 
 				mainScene.showSystemHolidayStrategyModifyScene(systemStaffVO, selected);
 
-			} else if (labelName == "会员优惠列表") {
+			} else if (strategyType == SystemStrategyType.MEMBER) {
 
 				mainScene.showSystemMemberStrategyModifyScene(systemStaffVO, selected);
 
-			} else if (labelName == "VIP会员优惠列表") {
+			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
 
 				mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, selected);
 
-			} else if (labelName == "其他优惠列表") {
+			} else if (strategyType == SystemStrategyType.OTHER) {
 
 				mainScene.showSystemOtherStrategyModifyScene(systemStaffVO, selected);
 
@@ -289,9 +288,48 @@ public class SystemStrategyViewController {
 
 	@FXML // 删除选中的策略
 	private void handleDeleteStrategyButton() {
+
 		SystemStrategyVO selected = systemStrategyTable.getSelectionModel().getSelectedItem();
 		if (selected != null) {
-			systemStrategy_blservice.deleteSystemStrategy(selected);
+			boolean isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
+			if (isDelete) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("恭喜");
+				alert.setHeaderText("删除成功");
+				alert.setContentText("您已成功删除一条策略信息！");
+				Optional<ButtonType> btn = alert.showAndWait();
+				if (btn.get() == ButtonType.OK) {
+					
+					String labelName = discountListLabel.getText();
+					if (labelName == "所有优惠") {
+						systemStrategyVOList = systemStrategy_blservice.getAllSystemStrategys();
+					} else if (labelName == "节日优惠") {
+						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.HOLIDAY);
+					} else if (labelName == "会员优惠") {
+						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER);
+					} else if (labelName == "VIP会员优惠") {
+						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER);
+					} else if (labelName == "其他优惠") {
+						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.OTHER);
+					}
+					for(SystemStrategyVO systemStrategy:systemStrategyVOList){
+						systemStrategyData.add(systemStrategy);
+					}
+					nameOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyNameProperty());
+					descriptionOfStrategy
+							.setCellValueFactory(cellData -> cellData.getValue().getStrategyDescriptionProperty());
+					stateOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyStateProperty());
+					discountNum.setCellValueFactory(cellData -> cellData.getValue().getDiscountForHolidayProperty());
+					systemStrategyTable.setItems(systemStrategyData);
+					
+				}
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("抱歉");
+				alert.setHeaderText("删除失败");
+				alert.setContentText("删除优惠策略失败，请重试！");
+				alert.showAndWait();
+			}
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("警示");
