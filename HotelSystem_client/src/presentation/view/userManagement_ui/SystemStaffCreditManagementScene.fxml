@@ -21,7 +21,7 @@
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
                   <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="确认并充值" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -39,7 +39,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="reditTextField" layoutX="129.0" layoutY="327.0" promptText="请输入充值额度" />
-                  <Button fx:id="search" layoutX="412.0" layoutY="95.0" mnemonicParsing="false" text="搜索" />
+                  <Button fx:id="search" layoutX="412.0" layoutY="95.0" mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
                   <TableView fx:id="customerTable" editable="true" layoutX="62.0" layoutY="173.0" prefHeight="136.0" prefWidth="398.0">
                     <columns>
                       <TableColumn fx:id="customerId" prefWidth="75.0" text="客户ID" />

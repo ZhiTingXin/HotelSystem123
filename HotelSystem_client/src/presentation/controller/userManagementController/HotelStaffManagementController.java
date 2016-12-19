@@ -77,11 +77,11 @@ public class HotelStaffManagementController {
 		for(HotelStaffVO hotelStaff : hotelStaffList){
 			hotelStaffData.add(hotelStaff);
 		}
-		//TODO
-//		idColumn.setCellValueFactory(cellData->cellData.getValue().getId());//TODO
-//		nameColumn.setCellValueFactory(cellData->cellData.getValue().getUsername());
-//		identityColumn.setCellValueFactory(cellData->cellData.getValue().getHotelName());//
-//		stateColumn.setCellValueFactory(cellData->cellData.getValue());
+	
+		idColumn.setCellValueFactory(cellData->cellData.getValue().getHotelStaffIdProperty());
+		nameColumn.setCellValueFactory(cellData->cellData.getValue().getHotelStaffNameProperty());
+		identityColumn.setCellValueFactory(cellData->cellData.getValue().getHotelStaffTypeProperty());//
+		stateColumn.setCellValueFactory(cellData->cellData.getValue().getHotelNameProperty());
 		
 		userTable.setItems(hotelStaffData);
 	}

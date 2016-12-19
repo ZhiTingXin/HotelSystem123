@@ -1,5 +1,7 @@
 package presentation.controller.userManagementController;
 
+import java.util.Optional;
+
 import VO.CustomerVO;
 import VO.SystemStaffVO;
 import blservice.UserInfo_blservice;
@@ -9,7 +11,10 @@ import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -64,31 +69,70 @@ public class SystemStaffCreditManagementController {
 	//搜索客户
 	@FXML
 	private void handleSearch(){
-		String customerID = inputIdText.getAccessibleText();
-		if (customerID!=null) {
-			if (userManagement_blservice.getCustomer(customerID)!=null) {//该用户存在
-				this.customerVO = userManagement_blservice.getCustomer(customerID);
+		String myCustomerID = inputIdText.getText();
+		if (!myCustomerID.equals("")) {
+			if (userManagement_blservice.getCustomer(myCustomerID)!=null) {//该用户存在
+				this.customerVO = userManagement_blservice.getCustomer(myCustomerID);
+				customerData.clear();
 				customerData.add(customerVO);//添加该用户
-				//customerId.setCellValueFactory(cellData->cellData.getValue().getId());
-//				customerName.setCellValueFactory(cellData->cellData.getValue().);
-//				customerCredit.setCellValueFactory(cellData->cellData.getValue().);
+				customerId.setCellValueFactory(cellData->cellData.getValue().getIDstringProperty());
+				customerName.setCellValueFactory(cellData->cellData.getValue().getUserNamePriperty());
+				customerCredit.setCellValueFactory(cellData->cellData.getValue().getCreditProperty());
 				customerTable.setItems(customerData);
 			} else {
-				//用户不存在 TODO
+				
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("查找失败");
+				alert.setContentText("抱歉，您所查找的用户不存在！");
+				alert.setTitle("错误");
+				alert.showAndWait();
 			}
 		} else {
-			//TODO 请输入ID
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("查找失败");
+			alert.setContentText("抱歉，请您先输入用户ID！");
+			alert.setTitle("错误");
+			alert.showAndWait();
 		}
 	}
 	//充值
 	@FXML
 	private void handleSave(){
-		String crditNum = reditTextField.getAccessibleText();
+		String crditNum = reditTextField.getText();
 		if (crditNum!=null) {
-			String CustomerId  = customerVO.getId();
-			//TODO 更新用户信用值列表
+			CustomerVO customer = customerTable.getSelectionModel().getSelectedItem();
+			if(customer==null){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setHeaderText("未选中任何用户");
+				alert.setContentText("请您先选中用户确认充值！");
+				alert.setTitle("警示");
+				alert.showAndWait();
+			}else{
+				int nowCridet = customer.getCredit()+Integer.valueOf(crditNum);
+				customer.setCredit(nowCridet);
+				boolean isOK = userManagement_blservice.modifyCustomer(customer);
+				if (isOK) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setHeaderText("充值成功");
+					alert.setContentText("您成功为用户"+"\""+customer.getUsername()+"\""+"充值信用值："+crditNum+"点");
+					alert.setTitle("恭喜");
+					Optional<ButtonType> button = alert.showAndWait();
+					if (button.get()==ButtonType.OK) {
+						customerData.clear();
+						customerData.add(customer);
+						customerId.setCellValueFactory(cellData->cellData.getValue().getIDstringProperty());
+						customerName.setCellValueFactory(cellData->cellData.getValue().getUserNamePriperty());
+						customerCredit.setCellValueFactory(cellData->cellData.getValue().getCreditProperty());
+						customerTable.setItems(customerData);
+					}
+				}
+			}
 		} else {
-			//TODO “请输入信用值”
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("充值失败");
+			alert.setContentText("抱歉，请您先输入要充值的信用值！");
+			alert.setTitle("错误");
+			alert.showAndWait();
 		}
 	}
 	//返回

@@ -71,8 +71,8 @@ public class SystemOtherStrategyModifyController {
 			open.setSelected(true);
 			close.setSelected(false);
 		} else {
-			open.setSelected(true);
-			close.setSelected(false);
+			open.setSelected(false);
+			close.setSelected(true);
 		}
 	}
 	
