@@ -1,14 +1,20 @@
 package presentation.controller.hotelController;
 
+import java.rmi.RemoteException;
+
+import PO.LoginPO;
+import RMI.RemoteHelper;
 import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import blservice.UserManagement_blservice;
 import blservice.impl.UserManagement_bl;
+import data.service.LoginDataService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import main.Main;
+import other.UserType;
 
 public class SystemManagerHotelRegisterShowIDController {
 
@@ -42,6 +48,13 @@ public class SystemManagerHotelRegisterShowIDController {
 		String hotelStaffID = hotelStaffVO.getId();
 		HotelStaffID.setText(hotelStaffID);//hotel staff id
 		
+		LoginPO loginPO = new LoginPO(hotelStaffVO.getId(),hotelStaffVO.getPassword(),UserType.HOTELSTAFF);
+		LoginDataService loginDataService = RemoteHelper.getInstance().getLoginDataService();
+		try {
+			loginDataService.add(loginPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		userManagement_blservice.addHotelStaff(hotelStaffVO);//´æ´¢hotel Staff
 		
 	}

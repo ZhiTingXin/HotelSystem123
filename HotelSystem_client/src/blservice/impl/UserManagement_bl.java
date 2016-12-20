@@ -26,14 +26,13 @@ import other.UserType;
 public class UserManagement_bl implements UserManagement_blservice {
 
 	public CustomerVO getCustomer(String customerId) {
-		CustomerVO customerVO = new CustomerVO();
 		try {
 			CustomerPO customerPO = RemoteHelper.getInstance().getCustomerDataService().findCustomer(customerId);
-			customerVO = new CustomerVO(customerPO);
+			CustomerVO customerVO = new CustomerVO(customerPO);
 			return customerVO;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return customerVO;
+			return null;
 		}
 	}
 

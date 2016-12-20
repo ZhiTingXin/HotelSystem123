@@ -3,6 +3,10 @@ package VO;
 import java.time.LocalDate;
 
 import PO.CustomerPO;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
 import other.memberState;
 
@@ -99,5 +103,18 @@ public class CustomerVO {
 
 	public String getPassword() {
 		return this.password;
+	}
+	public StringProperty getIDstringProperty(){
+		return new SimpleStringProperty(id);
+	}
+	
+	public StringProperty getUserNamePriperty(){
+		return new SimpleStringProperty(userName);
+	}
+	public StringProperty getUserTypePriperty(){
+		return new SimpleStringProperty("¿Í»§");
+	}
+	public StringProperty getCreditProperty(){
+		return new SimpleStringProperty(String.valueOf(credit));
 	}
 }

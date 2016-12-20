@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.SystemStaffVO;
 import blservice.Login_blservice;
 import blservice.impl.Login_bl;
+import blservice.impl.UserManagement_bl;
 import data.service.RoomDataService;
 import main.ClientRunner;
 import other.UserType;
@@ -67,9 +69,15 @@ public class gernerateID {
 //	   RoomDataService roomDataService = RemoteHelper.getInstance().getRoomDataService();
 //	   ArrayList<RoomPO> roomPOs = roomDataService.getAllRoomPO(hotelid);
 //	   System.out.println(roomPOs.size());
-	   String  string = "124";
-	   Login_blservice login_blservice = new Login_bl();
-	   UserType userType  = login_blservice.assertUserType(string);
-	   System.out.println(userType);
+//	   String  string = "124";
+//	   Login_blservice login_blservice = new Login_bl();
+//	   UserType userType  = login_blservice.assertUserType(string);
+//	   System.out.println(userType);
+	   SystemStaffVO staffVO = new SystemStaffVO();
+	   staffVO.setPassword("123");
+	   staffVO.setPhone("15951926228");
+	   staffVO.setBusinessDistrict("ÐÂ½Ö¿Ú");
+	   UserManagement_bl userManagement_bl = new UserManagement_bl();
+	   userManagement_bl.addSystemStaff(staffVO);
    }
 }

@@ -44,24 +44,23 @@ public class SystemStaffInfoModifyController {
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
 		this.businessDistrictLabel.setText(this.systemStaff.getBusinessDistrict());
-		// this.phoneTextField.setText(arg0);
+	    this.phoneTextField.setText(this.systemStaff.getPhone());
 
 	}
 
 	public void initialize(Main mainScene, SystemStaffVO systemStaff) {
-		// TODO Auto-generated method stub
 		this.mainScene = mainScene;
 		this.systemStaff = systemStaff;
 		this.SystemStaffInfoModifyShow();
 	}
 
 	public void handleSave() {
-		if (this.nameField.getText() != "") {
+		if (!this.nameField.getText().equals("")) {
 			this.systemStaff.setUsername(this.nameField.getText());
 
 		}
-		if (this.phoneTextField.getText() != "") {
-			// this.systemStaff.setUsername(this.nameField.getText());
+		if (!this.phoneTextField.getText().equals("")) {
+			 this.systemStaff.setPhone(this.phoneTextField.getText());
 		}
 		this.blservice.modifySystemStaff(systemStaff);
 		this.mainScene.showSystemStaffInfoScene(systemStaff);
