@@ -11,6 +11,7 @@ import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.UserInfo_blservice;
+import other.PassWordMd5;
 
 public class UserInfo_bl implements UserInfo_blservice{
 
@@ -56,7 +57,7 @@ public class UserInfo_bl implements UserInfo_blservice{
 
 	public boolean modifyPassword(String userId, String password) {
 		try {
-			LoginPO loginPO  = new LoginPO(userId, password);
+			LoginPO loginPO  = new LoginPO(userId,PassWordMd5.EncryptionStr16(password, PassWordMd5.MD5,PassWordMd5.UTF8));
 			return RemoteHelper.getInstance().getLoginDataService().update(loginPO);
 		} catch (Exception e) {
 			e.printStackTrace();
