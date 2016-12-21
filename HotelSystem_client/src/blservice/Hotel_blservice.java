@@ -18,5 +18,7 @@ public interface Hotel_blservice {
 
 	public ArrayList<HotelInfoVO> getHotelFromName(String text);
 	
-
+    public ArrayList<HotelInfoVO> getHotelFromGrade(double grade);
+    
+    public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice);
 }
