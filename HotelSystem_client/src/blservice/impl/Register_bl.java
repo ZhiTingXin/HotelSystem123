@@ -5,12 +5,14 @@ import PO.LoginPO;
 import RMI.RemoteHelper;
 import VO.CustomerVO;
 import blservice.Register_blservice;
+import other.PassWordMd5;
 import other.UserType;
 
 public class Register_bl implements Register_blservice{
 
 	public boolean addRegister(CustomerVO customerVO) {
-		LoginPO loginPO = new LoginPO(customerVO.getId(), customerVO.getPassword(),UserType.CUSTOMER);
+		LoginPO loginPO = new LoginPO(customerVO.getId(), PassWordMd5.
+				EncryptionStr16(customerVO.getPassword(),PassWordMd5.MD5,PassWordMd5.UTF8),UserType.CUSTOMER);
 		CustomerPO customerPO = new CustomerPO(customerVO);
 		try {
 			boolean a = RemoteHelper.getInstance().getLoginDataService().add(loginPO);
