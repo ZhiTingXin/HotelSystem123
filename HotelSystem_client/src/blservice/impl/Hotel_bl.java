@@ -2,12 +2,15 @@ package blservice.impl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
 import VO.HotelInfoVO;
+import VO.HotelRoomInfoVO;
 import blservice.Hotel_blservice;
+import blservice.Room_blService;
 import data.service.HotelDataService;
 import data.service.OrderDataService;
 import other.OrderState;
@@ -63,17 +66,16 @@ public class Hotel_bl implements Hotel_blservice {
 	@Override
 	public ArrayList<HotelInfoVO> getListOfHotel(String strict) {
 
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
 			ArrayList<HotelPO> poList = dataService.getHotels(strict);
-			ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 			for (HotelPO po : poList) {
 				hotelInfoVOs.add(new HotelInfoVO(po));
 			}
-			return hotelInfoVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return hotelInfoVOs;
 	}
 
 	/**
@@ -154,11 +156,10 @@ public class Hotel_bl implements Hotel_blservice {
 					hotelInfoVOs.add(hotelInfoVO);
 				}
 			}
-			return hotelInfoVOs;
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return hotelInfoVOs;
 	}
 
 	public static String getHotelName(String hotelID) {
@@ -177,19 +178,18 @@ public class Hotel_bl implements Hotel_blservice {
 	 */
 	@Override
 	public ArrayList<HotelInfoVO> getHotelFromGrade(double grade) {
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try{
-			ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
 			for(HotelPO po:hotelPOs){
 				if(Double.valueOf(po.getGrade())>=grade){
 					hotelInfoVOs.add(new HotelInfoVO(po));
 				}
 			}
-			return hotelInfoVOs;
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return hotelInfoVOs;
 	}
     /**
      * 
@@ -200,8 +200,8 @@ public class Hotel_bl implements Hotel_blservice {
      */
 	@Override
 	public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice) {
+		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
-			ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
 			for(HotelPO po:hotelPOs){
 				ArrayList<RoomPO> roomPOs = RemoteHelper.getInstance().getRoomDataService()
@@ -213,11 +213,34 @@ public class Hotel_bl implements Hotel_blservice {
 					}
 				}
 			}
-			return hotelInfoVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return hotelInfoVOs;
 	}
 
+	public boolean HotelInfoCompletedComfirm(HotelInfoVO hotel) {
+		
+		Room_blService roomService = new Room_blServiceImpl();
+		ArrayList<HotelRoomInfoVO> roomData = roomService.getAllRoom(hotel.getHotelID());
+
+		boolean isAddaressComplete = !hotel.getHotelAddress().equals("");
+		boolean isDescriptionComplete = !hotel.getHotelDiscription().equals("");
+		boolean isRoomInfoOK = true;
+		
+		if (roomData == null || roomData.size() == 0) {
+			isRoomInfoOK = false;
+		} else {
+			int count = 0;
+			int zeroRoomTypeNum = 0;
+			while (count < roomData.size()) {
+				if (roomData.get(count).getRoomNum() == 0)
+					zeroRoomTypeNum++;
+			}
+			if (zeroRoomTypeNum == roomData.size()) {
+				isRoomInfoOK = false;
+			}
+		}
+		return isAddaressComplete && isDescriptionComplete && isRoomInfoOK;
+	}
 }

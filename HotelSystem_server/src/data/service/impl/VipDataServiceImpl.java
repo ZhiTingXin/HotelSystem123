@@ -3,6 +3,7 @@ package data.service.impl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import PO.SuperVipPO;
 import PO.VipPO;
 import data.dao.DataFactory;
 import data.dao.VipDao;

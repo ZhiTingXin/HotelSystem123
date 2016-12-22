@@ -313,5 +313,6 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	}
 	public ArrayList<SuperVipPO> getStrict(String disstrict) throws RemoteException {
 		return vipDataService2.getStrict(disstrict);
-	};
+	}
+	
 }

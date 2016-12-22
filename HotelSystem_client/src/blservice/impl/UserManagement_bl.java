@@ -143,48 +143,47 @@ public class UserManagement_bl implements UserManagement_blservice {
 	}
 
 	public ArrayList<CustomerVO> getAllCustomer() {
+		ArrayList<CustomerVO> arrayList = new ArrayList<CustomerVO>();
 		try {
 			ArrayList<CustomerPO> list = RemoteHelper.getInstance().getCustomerDataService().getAllCustomers();
-			ArrayList<CustomerVO> arrayList = new ArrayList<CustomerVO>();
 			for(int i=0;i<list.size();i++){
 				CustomerVO customerVO = new CustomerVO(list.get(i));
 				arrayList.add(customerVO);
 			}
-			return arrayList;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return arrayList;
 	}
 	@Override
 	public ArrayList<HotelStaffVO> getAllHotelStaff() {
 		HotelStaffDataService hotelStaffDataService = RemoteHelper.getInstance().getHotelStaffDataService();
+		ArrayList<HotelStaffVO> hotelStaffVOs = new  ArrayList<HotelStaffVO>();
 		try {
 			ArrayList<HotelStaffPO> hotelStaffPOs = hotelStaffDataService.getAllHotelStaffs();
-			ArrayList<HotelStaffVO> hotelStaffVOs = new  ArrayList<HotelStaffVO>();
 			for(HotelStaffPO po:hotelStaffPOs){
 				hotelStaffVOs.add(new HotelStaffVO(po));
 			}
 			return hotelStaffVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return hotelStaffVOs;
 		}
 	}
 
 	@Override
 	public ArrayList<SystemStaffVO> getAllSystemStaff() {
 		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
+		ArrayList<SystemStaffVO> staffVOs = new ArrayList<SystemStaffVO>();
 		try {
 			ArrayList<SystemStaffPO> staffPOs = service.getAllSystemStaffs();
-			ArrayList<SystemStaffVO> staffVOs = new ArrayList<SystemStaffVO>();
 			for(SystemStaffPO po:staffPOs){
 				staffVOs.add(new SystemStaffVO(po));
 			}
 			return staffVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return staffVOs;
 		}
 	}
 
