@@ -52,7 +52,7 @@ public class HotelStaffInfoController {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.hotelId.setText(this.hotelStaff.getHotelId());
-		// this.phone.setText(value);
+		this.phone.setText(this.hotelStaff.getPhone());
 	}
 
 	public void handleInfoModify() {
