@@ -57,7 +57,8 @@ public class UserInfo_bl implements UserInfo_blservice{
 
 	public boolean modifyPassword(String userId, String password) {
 		try {
-			LoginPO loginPO  = new LoginPO(userId,PassWordMd5.EncryptionStr16(password, PassWordMd5.MD5,PassWordMd5.UTF8));
+			LoginPO loginPO1 = RemoteHelper.getInstance().getLoginDataService().findByID(userId);
+			LoginPO loginPO  = new LoginPO(userId,PassWordMd5.EncryptionStr16(password, PassWordMd5.MD5,PassWordMd5.UTF8),loginPO1.getUserType());
 			return RemoteHelper.getInstance().getLoginDataService().update(loginPO);
 		} catch (Exception e) {
 			e.printStackTrace();
