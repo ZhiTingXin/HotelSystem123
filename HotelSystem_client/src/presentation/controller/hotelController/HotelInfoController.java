@@ -146,8 +146,12 @@ public class HotelInfoController {
 	private void refreshTable() {
 		int count = 0;
 		while (count < this.hotelRoomInfo.size()) {
-			this.roomData.add(this.hotelRoomInfo.get(count));
-			count++;
+			if(this.hotelRoomInfo.get(count).getRoomNum()>0){
+				this.roomData.add(this.hotelRoomInfo.get(count));
+				count++;
+			}
+			
+			
 		}
 		this.roomType.setCellValueFactory(cellData -> cellData.getValue().getRoomTypeProperty());
 		this.roomRemain.setCellValueFactory(cellData -> cellData.getValue().getRoomRemainProperty());
