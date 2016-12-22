@@ -1,7 +1,5 @@
 package other;
 
-import java.io.Serializable;
-
-public enum UserType implements Serializable{
+public enum UserType{
 	CUSTOMER, HOTELSTAFF, SYSTEMSTAFF, SYSTEMMANAGER;
 }
