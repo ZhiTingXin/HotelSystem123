@@ -15,6 +15,9 @@ public class HotelRoomInfoVO {
 	private String hotelid;
 	public HotelRoomInfoVO(){
 		super();
+		this.roomNum=0;
+		this.roomRemain=0;
+		this.roomPrice=0;
 		this.id = IdGernerateServiceImpl.gernerateId();
 	}
 	public HotelRoomInfoVO(RoomPO hotelRoomInfo) {

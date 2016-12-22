@@ -6,6 +6,7 @@ import VO.HotelStaffVO;
 import VO.OrderVO;
 import blservice.Hotel_blservice;
 import blservice.Order_blservice;
+import blservice.impl.Hotel_bl;
 import blservice.impl.Order_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,6 +64,7 @@ public class HotelStaffMainController {
 		this.mainScene = main;
 		this.hotelStaff = hotelStaff;
 		this.orderService = new Order_bl();
+		this.hotelService=new Hotel_bl();
 		this.orderList = this.orderService.getOrderOfToday(this.hotelStaff.getHotelId());
 		if (this.orderList != null) {
 			int count = 0;
