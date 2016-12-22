@@ -103,7 +103,7 @@ public class HotelInfoController {
 		// 标签方法
 		this.strategy.setText(this.getStrategyString());
 		this.grade.setText(this.hotel.getRank());
-		this.tag.setText(this.getTagString());
+		// this.tag.setText(this.getTagString());
 
 		// 图片方法
 		// this.hotelPicture2
@@ -121,12 +121,15 @@ public class HotelInfoController {
 	private String getStrategyString() {
 		String strategyInfo = "";
 		int count = 0;
-		while (count < this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size()) {
-			strategyInfo += this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).get(count)
-					.getStrategyInfo();
-			count++;
+		if (this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size() > 0) {
+			while (count < this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size()) {
+				strategyInfo += this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).get(count)
+						.getStrategyInfo();
+				count++;
+			}
+			return strategyInfo;
 		}
-		return strategyInfo;
+		return "暂无策略";
 	}
 
 	// 酒店标签显示方法

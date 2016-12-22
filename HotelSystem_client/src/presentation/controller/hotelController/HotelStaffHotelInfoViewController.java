@@ -67,12 +67,25 @@ public class HotelStaffHotelInfoViewController {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.hotelName.setText(this.hotel.getHotelName());
-		this.address.setText(this.hotel.getHotelAddress());
-		this.district.setText(this.hotel.getHotelDistrict());
-		this.description.setText(this.hotel.getHotelDiscription());
+
+		if (this.hotel.getHotelAddress() != null && this.hotel.getHotelAddress().equals("")) {
+			this.address.setText(this.hotel.getHotelAddress());
+		} else {
+			this.address.setText("暂缺");
+		}
+		if (this.hotel.getHotelDistrict() != null && this.hotel.getHotelDistrict().equals("")) {
+			this.district.setText(this.hotel.getHotelDistrict());
+		} else {
+			this.district.setText("暂缺");
+		}
+		if (this.hotel.getHotelDiscription() != null && this.hotel.getHotelDiscription().equals("")) {
+			this.description.setText(this.hotel.getHotelDiscription());
+		} else {
+			this.description.setText("暂缺");
+		}
 
 		// 标签方法
-		this.tag.setText(getTagString());
+		// this.tag.setText(getTagString());
 		this.strategy.setText(getStrategyString());
 		this.grade.setText(this.hotel.getRank());
 		// 房间价格方法
@@ -103,12 +116,15 @@ public class HotelStaffHotelInfoViewController {
 	private String getStrategyString() {
 		String strategyInfo = "";
 		int count = 0;
-		while (count < this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size()) {
-			strategyInfo += this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).get(count)
-					.getStrategyInfo();
-			count++;
+		if (this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size() > 0) {
+			while (count < this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size()) {
+				strategyInfo += this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).get(count)
+						.getStrategyInfo();
+				count++;
+			}
+			return strategyInfo;
 		}
-		return strategyInfo;
+		return "暂无策略";
 	}
 
 	// 酒店标签显示方法

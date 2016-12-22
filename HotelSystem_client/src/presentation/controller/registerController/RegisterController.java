@@ -68,30 +68,21 @@ public class RegisterController {
 		LocalDate userBirthday = this.birthday.getValue();
 		String phone = this.phoneTextField.getText();
 		// 条件判断语句
-		boolean isPasswordReady = false;
-		boolean isNameReady = false;
+		boolean isPasswordReady = userPasswordInField.equals(userPasswordConfirmInField);
+		boolean isPasswordRight = !userPasswordInField.equals("");
+		boolean isNameReady = !userNameInField.equals("");
 
-		if (userNameInField != "") {
-			isNameReady = true;
-		} else {
+		if (!isNameReady) {
 			this.errorLabel.setVisible(true);
 			this.errorLabel.setText("请输入用户名！");
-		}
-
-		if (userPasswordInField != "") {
-			if (userPasswordInField.equals(userPasswordConfirmInField)) {
-				isPasswordReady = true;
-			} else {
-				this.errorLabel.setVisible(true);
-				this.errorLabel.setText("两次输入的密码不一致！");
-			}
-
-		} else {
+		} else if (!isPasswordRight) {
 			this.errorLabel.setVisible(true);
 			this.errorLabel.setText("请输入密码！");
-		}
-
-		if (isPasswordReady && isNameReady == true) {
+		}	if (!isPasswordReady) {
+			this.errorLabel.setVisible(true);
+			this.errorLabel.setText("两次输入的密码不一致！");
+		} 
+		if (isPasswordReady && isNameReady && isPasswordRight == true) {
 			// bl层创建新用户
 			{
 				customer = new CustomerVO();
