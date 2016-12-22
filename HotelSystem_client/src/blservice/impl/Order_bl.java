@@ -47,19 +47,17 @@ public class Order_bl implements Order_blservice {
 
 	public ArrayList<OrderVO> getOrdersOfUsers(String userID) {
 
+		ArrayList<OrderVO> voList = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> poList = (ArrayList<OrderPO>) dataService.findOrders(userID, "customer");
-			ArrayList<OrderVO> voList = new ArrayList<OrderVO>();
 
 			for (OrderPO po : poList) {
 				voList.add(new OrderVO(po));
 			}
-
-			return voList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return voList;
 	}
 
 	public boolean changeState(OrderPO order_info) {
@@ -67,9 +65,8 @@ public class Order_bl implements Order_blservice {
 			return dataService.update(order_info);
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return false;
 		}
-
-		return false;
 	}
 
 	public ArrayList<OrderVO> getUnfinishedOrders(String userID) {
@@ -99,8 +96,8 @@ public class Order_bl implements Order_blservice {
 			return dataService.update(new OrderPO(order_info));
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
 
 	}
 
@@ -109,13 +106,13 @@ public class Order_bl implements Order_blservice {
 			return dataService.add(new OrderPO(order));
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return false;
 		}
-		return false;
 	}
 
 	@Override
 	public ArrayList<OrderVO> getOrderFromInput(String text) {
-		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
@@ -135,7 +132,7 @@ public class Order_bl implements Order_blservice {
 
 	@Override
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId) {
-		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> allOrders = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : allOrders) {
@@ -152,7 +149,7 @@ public class Order_bl implements Order_blservice {
 
 	@Override
 	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID) {
-		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
@@ -167,7 +164,7 @@ public class Order_bl implements Order_blservice {
 
 	@Override
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID) {
-		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
@@ -182,7 +179,7 @@ public class Order_bl implements Order_blservice {
 
 	@Override
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID) {
-		ArrayList<OrderVO> orderVOs = new ArrayList<>();
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
@@ -274,32 +271,30 @@ public class Order_bl implements Order_blservice {
 
 	@Override
 	public ArrayList<OrderVO> getAllOrders(String hotelId) {
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = dataService.getAllHotelOrders(hotelId);
-			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 			for (OrderPO po : orderPOs) {
 				orderVOs.add(new OrderVO(po));
 			}
-			return orderVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return orderVOs;
 	}
 
 	@Override
 	public ArrayList<OrderVO> getAllHotelOrders(String hotelid) {
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 			ArrayList<OrderPO> orderPOs = dataService.getAllHotelOrders(hotelid);
 			for (OrderPO po : orderPOs) {
 				orderVOs.add(new OrderVO(po));
 			}
-			return orderVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return orderVOs;
 	}
 
 }

@@ -49,8 +49,8 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 			return hVo;
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	public ArrayList<HotelStrategyVO> getListOfHotelStrategys(String hotel_id) {
