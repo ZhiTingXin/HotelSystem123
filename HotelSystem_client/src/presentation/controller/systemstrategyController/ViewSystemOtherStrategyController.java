@@ -2,16 +2,21 @@ package presentation.controller.systemstrategyController;
 
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
+import blservice.SystemStrategy_blservice;
+import blservice.impl.SystemStrategy_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
 
-public class ViewSystemHolidayStrategyController {
+public class ViewSystemOtherStrategyController {
 
 	@FXML
 	private ImageView myPicture;
@@ -28,53 +33,48 @@ public class ViewSystemHolidayStrategyController {
 	@FXML
 	private TextArea descriptionOfStrategy;
 	@FXML
-	private Label startDate;
-	@FXML
-	private Label endDate;
-	@FXML
-	private Label discountForCustomer;// 优惠额度
+	private Label discount;
 	@FXML
 	private Label state;
-
+	
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategyVO systemStrategyVO;
 
-	public ViewSystemHolidayStrategyController() {
-		
+	public ViewSystemOtherStrategyController() {
+
 	}
 
-	public void initilize(Main mainScene, SystemStaffVO systemStaffVO,SystemStrategyVO systemStrategyVO) {
-
+	public void initilize(Main mainScene, SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 		this.systemStrategyVO = systemStrategyVO;
 		// 左栏
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
-		ViewSystemHolidayStrategyShow(mainScene);
+		SystemHolidayStrategyModifyShow(mainScene);
 	}
 
-	public void ViewSystemHolidayStrategyShow(Main mainScene) {
+	public void SystemHolidayStrategyModifyShow(Main mainScene) {
+		// 右栏
 		nameOfStrategy.setText(systemStrategyVO.getSystemStrategyName());
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
-		startDate.setText(util.DateUtil.format(systemStrategyVO.getBegin_date()));
-		endDate.setText(util.DateUtil.format(systemStrategyVO.getEnd_date()));
-		discountForCustomer.setText(String.valueOf(systemStrategyVO.getDiscount()));
+		discount.setText(String.valueOf(systemStrategyVO.getDiscount()));
 		if (systemStrategyVO.getStrategyState()==StrategyState.open) {
 			state.setText("启用");
 		} else {
 			state.setText("关闭");
 		}
 	}
-
-	@FXML 
-	private void handleModify() {
-		mainScene.showSystemHolidayStrategyModifyScene(systemStaffVO, systemStrategyVO);
+	
+	@FXML//保存修改
+	private void handleModify(){
+		mainScene.showSystemOtherStrategyModifyScene(systemStaffVO, systemStrategyVO);
 	}
 
 	@FXML // 取消修改并返回
 	private void handleCancel() {
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
 	}
+
 }
