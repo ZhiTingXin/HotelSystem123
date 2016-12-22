@@ -2,16 +2,19 @@ package blservice.impl;
 
 import java.util.ArrayList;
 
+import PO.SuperVipPO;
 import PO.VipPO;
 import RMI.RemoteHelper;
 import VO.VipStrategyVO;
 import VO.VipVO;
 import blservice.VipStrategy_blService;
+import data.service.SuperVipDataService;
 import data.service.VipDataService;
 
 public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 
 	VipDataService vipDataService = RemoteHelper.getInstance().getVipDataService();
+	SuperVipDataService service = RemoteHelper.getInstance().getSuperVipDataServce();
 	public boolean makeVipStrategy(VipStrategyVO vipstrategy) {
 		try {
 			ArrayList<VipVO> vipVOs = vipstrategy.getVipStrategyVOList();
@@ -61,8 +64,18 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 
 	@Override
 	public VipStrategyVO getVipstrategy(String district) {
-		// TODO Auto-generated method stub
-		return null;
+		VipStrategyVO vipStrategyVO = new VipStrategyVO();
+		try {
+			ArrayList<SuperVipPO> superVipPOs = service.getStrict(district);
+			ArrayList<VipVO> vipVOs = new ArrayList<VipVO>();
+			for(SuperVipPO po : superVipPOs){
+				vipVOs.add(new VipVO(po));
+			}
+			vipStrategyVO.setVipStrategyVOList(vipVOs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return vipStrategyVO;
 	}
 
 }

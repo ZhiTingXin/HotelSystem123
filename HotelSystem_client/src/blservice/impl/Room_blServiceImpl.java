@@ -13,17 +13,16 @@ public class Room_blServiceImpl implements Room_blService{
 	RoomDataService roomDataService = RemoteHelper.getInstance().getRoomDataService();
 	@Override
 	public ArrayList<HotelRoomInfoVO> getAllRoom(String hotelid) {
+		ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
 		try{
 		ArrayList<RoomPO>  roomPOs = roomDataService.getAllRoomPO(hotelid);
-		ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
 		for(RoomPO po:roomPOs){
 			roomInfoVOs.add(new HotelRoomInfoVO(po));
 		}
-		return roomInfoVOs;
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return roomInfoVOs;
 	}
 
 	@Override
