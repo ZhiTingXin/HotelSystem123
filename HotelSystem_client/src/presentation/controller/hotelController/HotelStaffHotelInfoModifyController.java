@@ -105,6 +105,18 @@ public class HotelStaffHotelInfoModifyController {
 		this.roomServcie = new Room_blServiceImpl();
 
 		this.roomInfo = this.roomServcie.getAllRoom(this.hotel.getHotelID());
+		if (roomInfo == null) {
+			this.roomInfo = new ArrayList<HotelRoomInfoVO>();
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.get(0).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(1).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(2).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(3).setHotelid(this.hotel.getHotelID());
+
+		}
 
 		this.roomType = RoomType.doublePersonRoom;
 

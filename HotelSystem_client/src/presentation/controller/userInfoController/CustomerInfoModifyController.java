@@ -60,8 +60,10 @@ public class CustomerInfoModifyController {
 		this.creditLabel.setText(String.valueOf(this.customer.getCredit()));
 		this.nameTextField.setText(this.customer.getUsername());
 		this.companyTextField.setText(this.customer.getCompanyName());
-		this.datePicker.setValue(LocalDate.of(this.customer.getBirthday().getYear(),
-				this.customer.getBirthday().getMonth(), this.customer.getBirthday().getDayOfMonth()));
+		if (this.customer.getBirthday() != null) {
+			this.datePicker.setValue(LocalDate.of(this.customer.getBirthday().getYear(),
+					this.customer.getBirthday().getMonth(), this.customer.getBirthday().getDayOfMonth()));
+		}
 		if (customer.getMemberState() == memberState.NON_MEMBER) {
 			this.memberLabel.setText("非会员");
 		} else if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
@@ -87,6 +89,7 @@ public class CustomerInfoModifyController {
 			this.customer.setPhone(this.phoneTextField.getText());
 		}
 		// 调用Bl层的方法对数据库进行修改
+		this.customer.setBirthday(this.datePicker.getValue());
 		this.blservice.modifyCustomer(this.customer);
 		this.mainScene.showCustomerInfoScene(customer);
 	}

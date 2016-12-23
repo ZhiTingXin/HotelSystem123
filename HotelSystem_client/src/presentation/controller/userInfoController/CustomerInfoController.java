@@ -64,9 +64,23 @@ public class CustomerInfoController {
 
 	public void CustomerinfoShow(Main mainScene) {
 		this.idLabel.setText(Customer.getId());
-		this.nameLabel.setText(Customer.getUsername());
-		this.birthdayLabel.setText(DateUtil.format(Customer.getBirthday()));
-		this.companyLabel.setText(Customer.getCompanyName());
+		if (!this.Customer.getUsername().equals("")) {
+			this.nameLabel.setText(Customer.getUsername());
+		} else {
+			this.nameLabel.setText("ÔÝÈ±");
+		}
+
+		if (this.Customer.getBirthday() != null) {
+			this.birthdayLabel.setText(DateUtil.format(Customer.getBirthday()));
+		} else {
+			this.birthdayLabel.setText("ÔÝÈ±");
+		}
+		if (this.Customer.getCompanyName() != null && !this.Customer.getCompanyName().equals("")) {
+			this.companyLabel.setText(Customer.getCompanyName());
+		} else {
+			this.companyLabel.setText("ÔÝÈ±");
+		}
+
 		this.creditLabel.setText(String.valueOf(Customer.getCredit()));
 
 		if (Customer.getMemberState() == memberState.BUSINESS_MEMBER) {
@@ -79,7 +93,7 @@ public class CustomerInfoController {
 
 		this.leftMenuIdLabel.setText(Customer.getId());
 		this.leftMenuNameLabel.setText(Customer.getUsername());
-		
+
 		this.phoneLabel.setText(this.Customer.getPhone());
 		// this.leftMenuImage.setImage(new Image("D:/ÎÒµÄÎÄµµ/Pictures/as"));
 	}

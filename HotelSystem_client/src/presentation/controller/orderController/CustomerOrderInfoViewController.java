@@ -109,6 +109,10 @@ public class CustomerOrderInfoViewController {
 			this.stateOfOrder.setText("异常");
 			this.recallOrAssessment.setText("撤销订单");
 			this.recallOrAssessment.setDisable(false);
+		} else if (this.order.getOrderState().equals(OrderState.REVACATION)) {
+			this.stateOfOrder.setText("已撤销");
+			this.recallOrAssessment.setText("撤销订单");
+			this.recallOrAssessment.setDisable(false);
 		} else if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
 			this.stateOfOrder.setText("已评价");
 			this.recallOrAssessment.setText("修改评价");
@@ -124,8 +128,8 @@ public class CustomerOrderInfoViewController {
 			this.mainScene.showHotelAssessmentScene(customer, this.hotelService.getHotelInfo(this.order.getHotelID()),
 					this.order);
 		} else if (this.order.getOrderState().equals(OrderState.UNFINISHED)) {
-			this.order.setOrderState(OrderState.ABNOMAL);
-			this.stateOfOrder.setText("异常");
+			this.order.setOrderState(OrderState.REVACATION);
+			this.stateOfOrder.setText("已撤销");
 			this.recallOrAssessment.setDisable(false);
 
 			// bl层方法

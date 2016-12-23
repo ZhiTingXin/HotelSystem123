@@ -15,4 +15,5 @@ public interface VipDataService extends Remote{
 	public boolean updateVip(VipPO vipPO)throws RemoteException;
 	
 	public ArrayList<VipPO> getAllVips()throws RemoteException;
+
 }

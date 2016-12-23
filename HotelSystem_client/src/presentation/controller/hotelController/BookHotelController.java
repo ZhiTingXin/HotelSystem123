@@ -1,5 +1,6 @@
 package presentation.controller.hotelController;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import VO.CustomerVO;
@@ -111,6 +112,7 @@ public class BookHotelController {
 		this.order.setUserName(this.customer.getUsername());
 		this.order.setRoomNum(1);
 		this.order.setOrderState(OrderState.UNFINISHED);
+		this.order.setLastime(1);
 
 		this.actualPayment.setText("0");
 		this.orderTotal.setText("0");
@@ -228,11 +230,12 @@ public class BookHotelController {
 	}
 
 	public void handleSave() {
-		boolean isRoomTypeOK = this.typeOfRoom.getText() != "请选择房间类型";
-		boolean isRoomNumOK = this.numberOfRoom.getText() != "请选择房间数量";
+		boolean isRoomTypeOK = !this.typeOfRoom.getText().equals("请选择房间类型");
+		boolean isRoomNumOK = !this.numberOfRoom.getText().equals("请选择房间数量");
 
 		// 待完成的日期确认
-		boolean isDateOK = true;
+		boolean isDateOK = this.dateOfCheckIn.getValue() != null
+				&& this.dateOfCheckIn.getValue().isAfter(LocalDate.now());
 
 		if (isRoomTypeOK && isRoomNumOK && isDateOK) {
 

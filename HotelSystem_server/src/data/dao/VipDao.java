@@ -2,6 +2,7 @@ package data.dao;
 
 import java.util.ArrayList;
 
+import PO.SuperVipPO;
 import PO.VipPO;
 
 public interface VipDao {
@@ -13,4 +14,6 @@ public interface VipDao {
 	public boolean updateVip(VipPO vipPO);
 	
 	public ArrayList<VipPO> getAllVips();
+	
+	public ArrayList<SuperVipPO> getAllSuperVips();
 }

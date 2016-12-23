@@ -63,7 +63,7 @@ public class HotelStaffInfoModifyController {
 
 		}
 		if (this.phoneTextField.getText() != "") {
-			// this.hotelStaff
+			this.hotelStaff.setPhone(this.phoneTextField.getText());
 		}
 		this.blservice.modifyHotelStaff(hotelStaff);
 		this.mainScene.showHotelStaffInfoScene(this.hotelStaff);
