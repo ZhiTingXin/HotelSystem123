@@ -314,5 +314,8 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	public ArrayList<SuperVipPO> getStrict(String disstrict) throws RemoteException {
 		return vipDataService2.getStrict(disstrict);
 	}
+	public boolean deleteSupVip(SuperVipPO po) throws RemoteException {
+		return vipDataService2.deleteSupVip(po);
+	}
 	
 }
