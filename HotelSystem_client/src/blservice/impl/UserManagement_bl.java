@@ -189,37 +189,22 @@ public class UserManagement_bl implements UserManagement_blservice {
 
 	@Override
 	public int getCustomerNum() {
-		CustomerDataService dataService = RemoteHelper.getInstance().getCustomerDataService();
-		try{
-			ArrayList<CustomerPO> customerPOs = dataService.getAllCustomers();
-			return customerPOs.size();
-		}catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
+		
+			ArrayList<CustomerVO> customerVOs = getAllCustomer();
+			return customerVOs.size();
+		
 	}
 	
 	@Override
 	public int getHotelStaffNum() {
-		try {
 			ArrayList<HotelStaffVO> hotelStaffVOs = getAllHotelStaff();
 			return hotelStaffVOs.size();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
 	}
 
 	@Override
 	public int getSystemStaffNum() {
-		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
-		try{
-			ArrayList<SystemStaffPO> staffPOs = service.getAllSystemStaffs();
+			ArrayList<SystemStaffVO> staffPOs = getAllSystemStaff();
 			return staffPOs.size();
-		}catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
 	}
 
 	@Override
