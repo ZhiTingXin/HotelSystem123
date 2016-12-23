@@ -105,7 +105,7 @@ public class HotelStaffHotelInfoModifyController {
 		this.roomServcie = new Room_blServiceImpl();
 
 		this.roomInfo = this.roomServcie.getAllRoom(this.hotel.getHotelID());
-		if (roomInfo == null) {
+		if (roomInfo.size() == 0 || roomInfo == null) {
 			this.roomInfo = new ArrayList<HotelRoomInfoVO>();
 			this.roomInfo.add(new HotelRoomInfoVO());
 			this.roomInfo.add(new HotelRoomInfoVO());
@@ -125,9 +125,7 @@ public class HotelStaffHotelInfoModifyController {
 
 	public void handleSave() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
-
 			this.roomInfo.get(0).setRoomPrice(Integer.parseInt(this.roomPriceField.getText()));
-
 		}
 		if (this.roomType.equals(RoomType.singlePersonRoom)) {
 			this.roomInfo.get(2).setRoomPrice(Integer.parseInt(this.roomPriceField.getText()));
@@ -142,6 +140,10 @@ public class HotelStaffHotelInfoModifyController {
 		this.hotel.setHotelAddress(this.address.getText());
 		this.hotel.setHotelDiscription(this.description.getText());
 
+		this.roomServcie.modify(roomInfo.get(0));
+		this.roomServcie.modify(roomInfo.get(1));
+		this.roomServcie.modify(roomInfo.get(2));
+		this.roomServcie.modify(roomInfo.get(3));
 		this.service.modifyHotelInfo(hotel);
 		this.mainScene.showHotelStaffHotelInfoViewScene(hotelStaff, hotel);
 	}
