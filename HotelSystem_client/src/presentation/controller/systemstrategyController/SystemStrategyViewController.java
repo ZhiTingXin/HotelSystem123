@@ -193,13 +193,13 @@ public class SystemStrategyViewController {
 				mainScene.showViewSystemMemberStrategyScene(systemStaffVO, selected);
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
-			
+
 				mainScene.showViewSystemVIPStrategyScene(systemStaffVO, selected);
-				
+
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
 				mainScene.showViewSystemOtherStrategyScene(systemStaffVO, selected);
-				
+
 			}
 
 		} else {
@@ -242,7 +242,7 @@ public class SystemStrategyViewController {
 
 		} else if (labelName == "VIP会员优惠") {
 
-			if (systemStrategy_blservice.getSystemStrategys(SystemStrategyType.VIPMEMBER).size()==0) {
+			if (systemStrategy_blservice.getSystemStrategys(SystemStrategyType.VIPMEMBER).size() == 0) {
 				mainScene.showAddSystemVIPStrategyScene(systemStaffVO);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -261,9 +261,9 @@ public class SystemStrategyViewController {
 
 	@FXML // 修改优惠策略列表
 	private void handleModifyStrategyButton() {
-		
+
 		SystemStrategyVO selected = systemStrategyTable.getSelectionModel().getSelectedItem();
-		
+
 		if (selected != null) {// 选中
 
 			SystemStrategyType strategyType = selected.getSystemStrategyType();
@@ -304,21 +304,22 @@ public class SystemStrategyViewController {
 			alert.setTitle("删除");
 			alert.setHeaderText("删除之后将无法撤销");
 			alert.setContentText("是否删除？");
-			ButtonType buttonOK  = new ButtonType("是");
-			ButtonType buttonNO  = new ButtonType("否");
-			alert.getButtonTypes().setAll(buttonOK,buttonNO);
+			ButtonType buttonOK = new ButtonType("是");
+			ButtonType buttonNO = new ButtonType("否");
+			alert.getButtonTypes().setAll(buttonOK, buttonNO);
 			Optional<ButtonType> btn = alert.showAndWait();
-			if (btn.get() == buttonOK) {//是
+			if (btn.get() == buttonOK) {// 是
 				boolean isDelete = false;
-				if(selected.getSystemStrategyType()==SystemStrategyType.HOLIDAY){
-				      isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
-				}else if(selected.getSystemStrategyType()==SystemStrategyType.OTHER){
-					  isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
-				}else if(selected.getSystemStrategyType()==SystemStrategyType.VIPMEMBER){
+				if (selected.getSystemStrategyType() == SystemStrategyType.HOLIDAY) {
 					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
-					isDelete = isDelete&&vipStrategy_blService.deleteSuperVipStrategy(systemStaffVO.getBusinessDistrict());
-				}else{
-					//TODO 对于网站会员策略的处理
+				} else if (selected.getSystemStrategyType() == SystemStrategyType.OTHER) {
+					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
+				} else if (selected.getSystemStrategyType() == SystemStrategyType.VIPMEMBER) {
+					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
+					isDelete = isDelete
+							&& vipStrategy_blService.deleteSuperVipStrategy(systemStaffVO.getBusinessDistrict());
+				} else {
+					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
 				}
 				if (isDelete) {
 					Alert alert1 = new Alert(AlertType.INFORMATION);
@@ -327,31 +328,36 @@ public class SystemStrategyViewController {
 					alert1.setContentText("您已成功删除一条策略信息！");
 					Optional<ButtonType> btn1 = alert1.showAndWait();
 					if (btn1.get() == ButtonType.OK) {
-						
+
 						String labelName = discountListLabel.getText();
 						if (labelName == "所有优惠") {
 							systemStrategyVOList = systemStrategy_blservice.getAllSystemStrategys();
 						} else if (labelName == "节日优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.HOLIDAY);
+							systemStrategyVOList = systemStrategy_blservice
+									.getSystemStrategys(SystemStrategyType.HOLIDAY);
 						} else if (labelName == "会员优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER);
+							systemStrategyVOList = systemStrategy_blservice
+									.getSystemStrategys(SystemStrategyType.MEMBER);
 						} else if (labelName == "VIP会员优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.VIPMEMBER);
+							systemStrategyVOList = systemStrategy_blservice
+									.getSystemStrategys(SystemStrategyType.VIPMEMBER);
 						} else if (labelName == "其他优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.OTHER);
+							systemStrategyVOList = systemStrategy_blservice
+									.getSystemStrategys(SystemStrategyType.OTHER);
 						}
-						
+
 						systemStrategyData.clear();
-						for(SystemStrategyVO systemStrategy:systemStrategyVOList){
+						for (SystemStrategyVO systemStrategy : systemStrategyVOList) {
 							systemStrategyData.add(systemStrategy);
 						}
 						nameOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyNameProperty());
 						descriptionOfStrategy
 								.setCellValueFactory(cellData -> cellData.getValue().getStrategyDescriptionProperty());
 						stateOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyStateProperty());
-						discountNum.setCellValueFactory(cellData -> cellData.getValue().getDiscountForHolidayProperty());
+						discountNum
+								.setCellValueFactory(cellData -> cellData.getValue().getDiscountForHolidayProperty());
 						systemStrategyTable.setItems(systemStrategyData);
-						
+
 					}
 				} else {
 					Alert alert2 = new Alert(AlertType.ERROR);
@@ -360,10 +366,9 @@ public class SystemStrategyViewController {
 					alert2.setContentText("删除优惠策略失败，请重试！");
 					alert2.showAndWait();
 				}
-			} else {//选择否
+			} else {// 选择否
 			}
-			
-			
+
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("警示");

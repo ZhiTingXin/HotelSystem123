@@ -23,6 +23,8 @@ public class SystemManagerMainController {
 	@FXML
 	private Button newHotel;
 	@FXML
+	private Button newSystemStaff;
+	@FXML
 	private Button maintainPersonalInfo;// 维护个人信息
 	@FXML
 	private Button exit;
@@ -81,6 +83,11 @@ public class SystemManagerMainController {
 		mainScene.showSystemManagerHotelRegisterScene(systemManagerVO);
 	}
 
+	@FXML
+	private void handleRegisterNewSystemStaff(){
+		mainScene.showSystemManagerAddSystemStaffScene(systemManagerVO);
+	}
+	
 	@FXML
 	private void handleMaintainMyInfo() {
 		mainScene.showSystemManagerInfoScene(systemManagerVO);
