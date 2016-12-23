@@ -19,11 +19,17 @@ import data.service.OrderDataService;
 import other.OrderState;
 
 public class Order_bl implements Order_blservice {
+	
+	
 	OrderDataService dataService = RemoteHelper.getInstance().getOrderDataService();
 	HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
 	CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
 	VipStrategy_blService vipService = new VipStrategy_blServiceImpl();
 
+	/**
+	 * @param 订单的id
+	 * @return 订单的状态
+	 */
 	public OrderState getState(String orderID) {
 		try {
 			OrderPO orderPO = dataService.findorder(orderID);
@@ -34,6 +40,10 @@ public class Order_bl implements Order_blservice {
 		}
 	}
 
+	/**
+	 * @param 订单id
+	 * @return 订单的信息
+	 */
 	public OrderVO getOrder(String orderID) {
 		try {
 			OrderPO orderPO = dataService.findorder(orderID);
@@ -45,8 +55,11 @@ public class Order_bl implements Order_blservice {
 		}
 	}
 
+	/**
+	 * @param 用户id
+	 * @return 用户的所有订单信息
+	 */
 	public ArrayList<OrderVO> getOrdersOfUsers(String userID) {
-
 		ArrayList<OrderVO> voList = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> poList = (ArrayList<OrderPO>) dataService.findOrders(userID, "customer");
@@ -60,15 +73,11 @@ public class Order_bl implements Order_blservice {
 		return voList;
 	}
 
-	public boolean changeState(OrderPO order_info) {
-		try {
-			return dataService.update(order_info);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
+	/**
+	 * @param 用户id
+	 * 
+	 * @return 用户未完成的所有订单信息
+	 */
 	public ArrayList<OrderVO> getUnfinishedOrders(String userID) {
 		ArrayList<OrderVO> voList = getOrdersOfUsers(userID);
 		ArrayList<OrderVO> UnfinishedVoList = new ArrayList<OrderVO>();
@@ -80,6 +89,11 @@ public class Order_bl implements Order_blservice {
 		return UnfinishedVoList;
 	}
 
+	/**
+	 * @param 用户id
+	 * 
+	 * @return 用户所有的异常订单信息
+	 */
 	public ArrayList<OrderVO> getAbnomalOrders(String userID) {
 		ArrayList<OrderVO> voList = getOrdersOfUsers(userID);
 		ArrayList<OrderVO> abnomalVoList = new ArrayList<OrderVO>();
@@ -91,6 +105,11 @@ public class Order_bl implements Order_blservice {
 		return abnomalVoList;
 	}
 
+	/**
+	 * @param 订单信息
+	 * 
+	 * @return 修改订单的状态
+	 */
 	public boolean changeState(OrderVO order_info) {
 		try {
 			return dataService.update(new OrderPO(order_info));
@@ -101,6 +120,14 @@ public class Order_bl implements Order_blservice {
 
 	}
 
+	/**
+	 * @param 订单信息
+	 * 
+	 * @return 
+	 * 是否生成订单
+	 */
+	
+	//生成用户的订单
 	public boolean generateOrder(OrderVO order) {
 		try {
 			return dataService.add(new OrderPO(order));
@@ -110,7 +137,12 @@ public class Order_bl implements Order_blservice {
 		}
 	}
 
-	@Override
+	/**
+	 * @param 通过输入订单中所属酒店的名称
+	 * 
+	 * @return 
+	 * 所有酒店中含有该字段的订单信息
+	 */
 	public ArrayList<OrderVO> getOrderFromInput(String text) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
@@ -130,7 +162,11 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	@Override
+	/**
+	 * @param 酒店id 
+	 * 
+	 * @return 今日的所有的订单信息
+	 */
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
@@ -147,7 +183,12 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	@Override
+	/**
+	 * @param 酒店id
+	 * 
+	 * @return 
+	 * 酒店中尚未执行的订单
+	 */
 	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
@@ -162,7 +203,11 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	@Override
+	/**
+	 * @param 酒店id
+	 * 
+	 * @return 酒店中所有的异常订单的信息
+	 */
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
@@ -177,7 +222,11 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	@Override
+	/**
+	 * @param 酒店id
+	 * 
+	 * @return  返回酒店已经完成的订单信息
+	 */
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
