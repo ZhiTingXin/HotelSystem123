@@ -23,8 +23,7 @@ public class Hotel_bl implements Hotel_blservice {
 	/**
 	 * 
 	 * @param hotelId
-	 * @return
-	 * 通过hotel的id来检索酒店
+	 * @return 通过hotel的id来检索酒店
 	 */
 	@Override
 	public HotelInfoVO getHotelInfo(String hotelId) {
@@ -40,12 +39,12 @@ public class Hotel_bl implements Hotel_blservice {
 			return null;
 		}
 	}
-    /**
-     * 
-     * @param hotelInfo
-     * @return
-     * 修改酒店的信息，返回是否成功修改酒店的信息
-     */
+
+	/**
+	 * 
+	 * @param hotelInfo
+	 * @return 修改酒店的信息，返回是否成功修改酒店的信息
+	 */
 	@Override
 	public boolean modifyHotelInfo(HotelInfoVO hotelInfo) {
 		HotelPO hotelPO = new HotelPO(hotelInfo);
@@ -57,12 +56,12 @@ public class Hotel_bl implements Hotel_blservice {
 			return false;
 		}
 	}
-    /**
-     * 
-     * @param strict
-     * @return
-     * 返回商圈内的全部酒店
-     */
+
+	/**
+	 * 
+	 * @param strict
+	 * @return 返回商圈内的全部酒店
+	 */
 	@Override
 	public ArrayList<HotelInfoVO> getListOfHotel(String strict) {
 
@@ -80,8 +79,7 @@ public class Hotel_bl implements Hotel_blservice {
 
 	/**
 	 * 
-	 * @return
-	 * 返回所有的酒店的信息
+	 * @return 返回所有的酒店的信息
 	 */
 	@Override
 	public ArrayList<HotelInfoVO> getAllHotel() {
@@ -100,8 +98,7 @@ public class Hotel_bl implements Hotel_blservice {
 	/**
 	 * 
 	 * @param hotel
-	 * @return
-	 * 添加酒店信息，返回是否添加成功
+	 * @return 添加酒店信息，返回是否添加成功
 	 */
 	@Override
 	public boolean addHotel(HotelInfoVO hotel) {
@@ -118,8 +115,7 @@ public class Hotel_bl implements Hotel_blservice {
 	/**
 	 * 
 	 * @param userId用户id
-	 * @return
-	 * 之前用户完成入住的酒店
+	 * @return 之前用户完成入住的酒店
 	 */
 	@Override
 	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId) {
@@ -138,6 +134,7 @@ public class Hotel_bl implements Hotel_blservice {
 		}
 		return hotelInfoVOs;
 	}
+
 	/**
 	 * 
 	 * @param text根据酒店名称的字段搜索酒店
@@ -171,43 +168,41 @@ public class Hotel_bl implements Hotel_blservice {
 
 	/**
 	 * 
-	 * @param 
-	 * 酒店的星级
-	 * @return
-	 * 所有符合条件的酒店
+	 * @param 酒店的星级
+	 * @return 所有符合条件的酒店
 	 */
 	@Override
 	public ArrayList<HotelInfoVO> getHotelFromGrade(double grade) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
-		try{
+		try {
 			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
-			for(HotelPO po:hotelPOs){
-				if(Double.valueOf(po.getGrade())>=grade){
+			for (HotelPO po : hotelPOs) {
+				if (Double.valueOf(po.getGrade()) >= grade) {
 					hotelInfoVOs.add(new HotelInfoVO(po));
 				}
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return hotelInfoVOs;
 	}
-    /**
-     * 
-     * @param minPrice
-     * @param maxPrice
-     * @return
-     * 存在价位在这个范围内的所有酒店
-     */
+
+	/**
+	 * 
+	 * @param minPrice
+	 * @param maxPrice
+	 * @return 存在价位在这个范围内的所有酒店
+	 */
 	@Override
 	public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
 			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
-			for(HotelPO po:hotelPOs){
+			for (HotelPO po : hotelPOs) {
 				ArrayList<RoomPO> roomPOs = RemoteHelper.getInstance().getRoomDataService()
 						.getAllRoomPO(po.getHotelId());
-				for(RoomPO roomPO:roomPOs){
-					if(roomPO.getPrice()<=maxPrice&&roomPO.getPrice()>=minPrice){
+				for (RoomPO roomPO : roomPOs) {
+					if (roomPO.getPrice() <= maxPrice && roomPO.getPrice() >= minPrice) {
 						hotelInfoVOs.add(new HotelInfoVO(po));
 						break;
 					}
@@ -220,14 +215,14 @@ public class Hotel_bl implements Hotel_blservice {
 	}
 
 	public boolean HotelInfoCompletedComfirm(HotelInfoVO hotel) {
-		
+
 		Room_blService roomService = new Room_blServiceImpl();
 		ArrayList<HotelRoomInfoVO> roomData = roomService.getAllRoom(hotel.getHotelID());
 
-		boolean isAddaressComplete = !hotel.getHotelAddress().equals("");
-		boolean isDescriptionComplete = !hotel.getHotelDiscription().equals("");
+		boolean isAddaressComplete = hotel.getHotelAddress() != null && !hotel.getHotelAddress().equals("");
+		boolean isDescriptionComplete = hotel.getHotelDiscription() != null && !hotel.getHotelDiscription().equals("");
 		boolean isRoomInfoOK = true;
-		
+
 		if (roomData == null || roomData.size() == 0) {
 			isRoomInfoOK = false;
 		} else {
@@ -236,6 +231,7 @@ public class Hotel_bl implements Hotel_blservice {
 			while (count < roomData.size()) {
 				if (roomData.get(count).getRoomNum() == 0)
 					zeroRoomTypeNum++;
+				count++;
 			}
 			if (zeroRoomTypeNum == roomData.size()) {
 				isRoomInfoOK = false;
