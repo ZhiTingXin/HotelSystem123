@@ -1,6 +1,8 @@
 package presentation.controller.systemstrategyController;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import VO.VipStrategyVO;
@@ -14,21 +16,23 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
-import other.SystemStrategyType;
 
-public class ViewSystemMemberStrategyController {
+public class ViewSystemVIPStrategyController {
 
 	@FXML
 	private ImageView myPicture;
@@ -45,11 +49,13 @@ public class ViewSystemMemberStrategyController {
 	@FXML
 	private TextArea descriptionOfStrategy;
 	@FXML
-	private TableView<VipVO> memberStrategyTable;
+	private MenuButton districtName;
 	@FXML
-	private TableColumn<VipVO, String> minCredit;
+	private MenuItem districtA;
 	@FXML
-	private TableColumn<VipVO, String> maxCredit;
+	private MenuItem districtB;
+	@FXML
+	private TableView<VipVO> systemStrategyTable;
 	@FXML
 	private TableColumn<VipVO, String> memberGrade;
 	@FXML
@@ -60,12 +66,12 @@ public class ViewSystemMemberStrategyController {
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategyVO systemStrategyVO;
-	private ArrayList<VipVO> vipVOList;
+	private SystemStrategy_blservice systemStrategy_blservice;
 	private VipStrategy_blService vipStrategy_blService;
-	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();// 声明
+	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();
 
-	public ViewSystemMemberStrategyController() {
-		vipStrategy_blService = new VipStrategy_blServiceImpl();
+	public ViewSystemVIPStrategyController() {
+		
 	}
 
 	public void initilize(Main mainScene, SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
@@ -73,44 +79,57 @@ public class ViewSystemMemberStrategyController {
 		this.systemStaffVO = systemStaffVO;
 		this.systemStrategyVO = systemStrategyVO;
 		// 左栏
-		leftIdLabel.setText(systemStaffVO.getId());
-		leftNameLabel.setText(systemStaffVO.getUsername());
-		ViewSystemHolidayStrategyShow(mainScene);
+		leftIdLabel.setText(this.systemStaffVO.getId());
+		leftNameLabel.setText(this.systemStaffVO.getUsername());
+		SystemVIPStrategyModifyShow(mainScene);
 	}
 
-	public void ViewSystemHolidayStrategyShow(Main mainScene) {
+	public void SystemVIPStrategyModifyShow(Main mainScene) {
 		// 右栏
 		nameOfStrategy.setText(systemStrategyVO.getSystemStrategyName());
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
-		// 初始化 table
-		vipVOList = vipStrategy_blService.getVipStrategy().getVipStrategyVOList();
-		for (VipVO vipVO : vipVOList) {
+		vipVOData.clear();
+	}
+
+	@FXML // 选择商圈
+	private void handleDistrictA() {
+
+		// 初始化表格
+		String district = districtA.getText();
+		vipVOData.clear();
+		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
+		for (VipVO vipVO : vipVOs) {
 			vipVOData.add(vipVO);
 		}
 
-		minCredit.setCellValueFactory(cellData -> cellData.getValue().getMinCreditProperty());
+		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+		systemStrategyTable.setItems(vipVOData);	
+		
+	}
 
-		maxCredit.setCellValueFactory(cellData -> cellData.getValue().getMaxCreditProperty());
+	@FXML
+	private void handleDistrictB() {
+		
+		String district = districtB.getText();
+		vipVOData.clear();// 清空
+		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
+		for (VipVO vipVO : vipVOs) {
+			vipVOData.add(vipVO);
+		}
 
 		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-
 		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+		systemStrategyTable.setItems(vipVOData);
 
-		memberStrategyTable.setItems(vipVOData);
-		// 策略的状态
-		if (systemStrategyVO.getStrategyState() == StrategyState.open) {
-			state.setText("启用");
-		} else {
-			state.setText("关闭");
-		}
 	}
 
-	@FXML // 保存修改信息
+	@FXML
 	private void handleModify() {
-		mainScene.showSystemMemberStrategyModifyScene(systemStaffVO, systemStrategyVO);
+		mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, systemStrategyVO);
 	}
 
-	@FXML // 取消修改并返回
+	@FXML // cancel and back to the former view.
 	private void handleCancel() {
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
 	}
