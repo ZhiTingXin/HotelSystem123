@@ -10,5 +10,7 @@ public interface SuperVipDao {
 	
 	public boolean modifySupVip(SuperVipPO po);
 	
+	public boolean delSupVip(SuperVipPO po);
+	
 	public ArrayList<SuperVipPO> getStrict(String disstrict);
 }

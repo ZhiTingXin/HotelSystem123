@@ -31,6 +31,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
+import other.SystemStrategyType;
 
 public class AddSystemVIPStrategyController {
 	
@@ -95,12 +96,19 @@ public class AddSystemVIPStrategyController {
 
 		// 初始化表格
 		String district = districtA.getText();
+		districtName.setText(district);
 		vipVOData.clear();
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
-		for (VipVO vipVO : vipVOs) {
-			vipVOData.add(vipVO);
-		}
-
+		
+		VipVO vipVO1 = new VipVO();
+		vipVO1.setDiscount(0);
+		vipVO1.setVipgrade(4);
+		VipVO vipVO = new VipVO();
+		vipVO.setDiscount(0);
+		vipVO.setVipgrade(5);
+		
+		vipVOData.add(vipVO1);
+		vipVOData.add(vipVO);
+		
 		systemStrategyTable.setEditable(true);// 可编辑
 
 		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
@@ -118,11 +126,18 @@ public class AddSystemVIPStrategyController {
 	@FXML
 	private void handleDistrictB() {
 		String district = districtB.getText();
+		districtName.setText(district);
 		vipVOData.clear();// 清空
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
-		for (VipVO vipVO : vipVOs) {
-			vipVOData.add(vipVO);
-		}
+		
+		VipVO vipVO1 = new VipVO();
+		vipVO1.setDiscount(0);
+		vipVO1.setVipgrade(4);
+		VipVO vipVO = new VipVO();
+		vipVO.setDiscount(0);
+		vipVO.setVipgrade(5);
+		
+		vipVOData.add(vipVO1);
+		vipVOData.add(vipVO);
 
 		systemStrategyTable.setEditable(true);// 可编辑
 
@@ -142,7 +157,7 @@ public class AddSystemVIPStrategyController {
 	private void handleSaveTable() {
 
 		ObservableList<VipVO> getVipVO = systemStrategyTable.getItems();
-		if (getVipVO != null) {
+		if (getVipVO.size()!=0) {
 			ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
 			for (VipVO vipVO : getVipVO) {
 				vipVO.setDistrict(districtName.getText());// 获取商圈名称
@@ -190,6 +205,8 @@ public class AddSystemVIPStrategyController {
 		newSystemStrategy.setSystemStrategyName(strategyName);
 		newSystemStrategy.setSystemStrategyDescription(strategyDescription);
 		newSystemStrategy.setStrategyState(strategyState);
+		newSystemStrategy.setSystemStaffID(systemStaffVO.getId());
+		newSystemStrategy.setSystemStrategyType(SystemStrategyType.VIPMEMBER);
 		
 		boolean isOK = systemStrategy_blservice.makeSystemStrategy(newSystemStrategy);
 		

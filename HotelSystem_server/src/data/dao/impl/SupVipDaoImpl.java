@@ -44,4 +44,14 @@ public class SupVipDaoImpl implements SuperVipDao {
 		}
 	}
 
+	public boolean delSupVip(SuperVipPO po) {
+		try {
+			hibernateUtil.delete(po);
+			return true;
+		} catch (Exception e) {
+		  e.printStackTrace();
+		  return false;
+		}
+	}
+
 }

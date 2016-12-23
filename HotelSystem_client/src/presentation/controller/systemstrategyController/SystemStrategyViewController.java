@@ -6,7 +6,9 @@ import java.util.Optional;
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import blservice.SystemStrategy_blservice;
+import blservice.VipStrategy_blService;
 import blservice.impl.SystemStrategy_bl;
+import blservice.impl.VipStrategy_blServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,16 +60,20 @@ public class SystemStrategyViewController {
 	private Button modifyStrategy;
 	@FXML
 	private Button deleteStrategy;
+	@FXML
+	private Button viewStrategy;
 
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategyVO systemStrategyVO;
 	private SystemStrategy_blservice systemStrategy_blservice;
+	private VipStrategy_blService vipStrategy_blService;
 	private ArrayList<SystemStrategyVO> systemStrategyVOList;
 	private ObservableList<SystemStrategyVO> systemStrategyData = FXCollections.observableArrayList();
 
 	public SystemStrategyViewController() {
 		systemStrategy_blservice = new SystemStrategy_bl();
+		vipStrategy_blService = new VipStrategy_blServiceImpl();
 	}
 
 	public void initialize(Main mainScene, SystemStaffVO systemStaffVO) {
@@ -295,45 +301,70 @@ public class SystemStrategyViewController {
 
 		SystemStrategyVO selected = systemStrategyTable.getSelectionModel().getSelectedItem();
 		if (selected != null) {
-			boolean isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
-			if (isDelete) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("恭喜");
-				alert.setHeaderText("删除成功");
-				alert.setContentText("您已成功删除一条策略信息！");
-				Optional<ButtonType> btn = alert.showAndWait();
-				if (btn.get() == ButtonType.OK) {
-					
-					String labelName = discountListLabel.getText();
-					if (labelName == "所有优惠") {
-						systemStrategyVOList = systemStrategy_blservice.getAllSystemStrategys();
-					} else if (labelName == "节日优惠") {
-						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.HOLIDAY);
-					} else if (labelName == "会员优惠") {
-						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER);
-					} else if (labelName == "VIP会员优惠") {
-						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER);
-					} else if (labelName == "其他优惠") {
-						systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.OTHER);
-					}
-					for(SystemStrategyVO systemStrategy:systemStrategyVOList){
-						systemStrategyData.add(systemStrategy);
-					}
-					nameOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyNameProperty());
-					descriptionOfStrategy
-							.setCellValueFactory(cellData -> cellData.getValue().getStrategyDescriptionProperty());
-					stateOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyStateProperty());
-					discountNum.setCellValueFactory(cellData -> cellData.getValue().getDiscountForHolidayProperty());
-					systemStrategyTable.setItems(systemStrategyData);
-					
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("删除");
+			alert.setHeaderText("删除之后将无法撤销");
+			alert.setContentText("是否删除？");
+			ButtonType buttonOK  = new ButtonType("是");
+			ButtonType buttonNO  = new ButtonType("否");
+			alert.getButtonTypes().setAll(buttonOK,buttonNO);
+			Optional<ButtonType> btn = alert.showAndWait();
+			if (btn.get() == buttonOK) {//是
+				boolean isDelete = false;
+				if(selected.getSystemStrategyType()==SystemStrategyType.HOLIDAY){
+				      isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
+				}else if(selected.getSystemStrategyType()==SystemStrategyType.OTHER){
+					  isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
+				}else if(selected.getSystemStrategyType()==SystemStrategyType.VIPMEMBER){
+					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
+					isDelete = isDelete&&vipStrategy_blService.deleteSuperVipStrategy(systemStaffVO.getBusinessDistrict());
+				}else{
+					//TODO 对于网站会员策略的处理
 				}
-			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("抱歉");
-				alert.setHeaderText("删除失败");
-				alert.setContentText("删除优惠策略失败，请重试！");
-				alert.showAndWait();
+				if (isDelete) {
+					Alert alert1 = new Alert(AlertType.INFORMATION);
+					alert1.setTitle("恭喜");
+					alert1.setHeaderText("删除成功");
+					alert1.setContentText("您已成功删除一条策略信息！");
+					Optional<ButtonType> btn1 = alert1.showAndWait();
+					if (btn1.get() == ButtonType.OK) {
+						
+						String labelName = discountListLabel.getText();
+						if (labelName == "所有优惠") {
+							systemStrategyVOList = systemStrategy_blservice.getAllSystemStrategys();
+						} else if (labelName == "节日优惠") {
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.HOLIDAY);
+						} else if (labelName == "会员优惠") {
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER);
+						} else if (labelName == "VIP会员优惠") {
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER);
+						} else if (labelName == "其他优惠") {
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.OTHER);
+						}
+						
+						systemStrategyData.clear();
+						for(SystemStrategyVO systemStrategy:systemStrategyVOList){
+							systemStrategyData.add(systemStrategy);
+						}
+						nameOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyNameProperty());
+						descriptionOfStrategy
+								.setCellValueFactory(cellData -> cellData.getValue().getStrategyDescriptionProperty());
+						stateOfStrategy.setCellValueFactory(cellData -> cellData.getValue().getStrategyStateProperty());
+						discountNum.setCellValueFactory(cellData -> cellData.getValue().getDiscountForHolidayProperty());
+						systemStrategyTable.setItems(systemStrategyData);
+						
+					}
+				} else {
+					Alert alert2 = new Alert(AlertType.ERROR);
+					alert2.setTitle("抱歉");
+					alert2.setHeaderText("删除失败");
+					alert2.setContentText("删除优惠策略失败，请重试！");
+					alert2.showAndWait();
+				}
+			} else {//选择否
 			}
+			
+			
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("警示");
