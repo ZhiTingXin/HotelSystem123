@@ -112,8 +112,7 @@ public class CustomerOrderViewController {
 		this.timeOfArrive.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
 		this.payment.setCellValueFactory(cellData -> cellData.getValue().getPriceProperty());
 		this.nameOfHotel.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
-		// this.stateOfOrder.setCellValueFactory(cellData ->
-		// cellData.getValue().getOrderStateProperty());
+		this.stateOfOrder.setCellValueFactory(cellData -> cellData.getValue().getOrderStateProperty());
 		this.orderTable.setItems(orderData);
 	}
 }

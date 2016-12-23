@@ -1,7 +1,9 @@
 package presentation.controller.userInfoController;
 
 import VO.HotelStaffVO;
+import blservice.Login_blservice;
 import blservice.UserInfo_blservice;
+import blservice.impl.Login_bl;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,6 +41,7 @@ public class HotelStaffPasswordModifyController {
 	private Main mainScene;
 	private UserInfo_blservice blservice;
 	private HotelStaffVO hotelStaff;
+	private Login_blservice loginService;
 
 	public HotelStaffPasswordModifyController() {
 		blservice = new UserInfo_bl();
@@ -47,6 +50,7 @@ public class HotelStaffPasswordModifyController {
 	public void initialize(Main mainScene, HotelStaffVO hotelStaff) {
 		this.mainScene = mainScene;
 		this.hotelStaff = hotelStaff;
+		this.loginService = new Login_bl();
 		this.HotelStaffPasswordModifyShow();
 	}
 
@@ -67,10 +71,9 @@ public class HotelStaffPasswordModifyController {
 		String passwordInField = this.passWord.getText();
 		String newPasswordInField = this.newPassword.getText();
 		String comfirmPasswordInField = this.confirmPassword.getText();
-		String originalPassword = this.hotelStaff.getPassword();
 
-		boolean isPasswordOK = passwordInField == originalPassword;
-		boolean isNewPasswordOK = newPasswordInField == comfirmPasswordInField;
+		boolean isPasswordOK = this.loginService.comfirm(this.hotelStaff.getId(), passwordInField);
+		boolean isNewPasswordOK = newPasswordInField.equals(comfirmPasswordInField);
 		if (isPasswordOK && isNewPasswordOK) {
 			this.hotelStaff.setPassword(newPasswordInField);
 			// bl²ã·½·¨£¬ÐÞ¸ÄÃÜÂë

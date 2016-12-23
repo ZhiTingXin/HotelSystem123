@@ -10,6 +10,7 @@ import blservice.impl.Login_bl;
 import blservice.impl.UserManagement_bl;
 import data.service.RoomDataService;
 import main.ClientRunner;
+import other.PassWordMd5;
 import other.UserType;
 
 //import other.AdviceFeedBackState;
@@ -20,7 +21,7 @@ public class gernerateID {
 //	   /*
 //	    * 注册的测试代码
 //	    */
-	   ClientRunner clientRunner = new ClientRunner();
+//	   ClientRunner clientRunner = new ClientRunner();
 //	   Login_blservice login_blservice = new Login_bl();
 //	   /*
 //	    * 测试修改密码
@@ -73,11 +74,14 @@ public class gernerateID {
 //	   Login_blservice login_blservice = new Login_bl();
 //	   UserType userType  = login_blservice.assertUserType(string);
 //	   System.out.println(userType);
-	   SystemStaffVO staffVO = new SystemStaffVO();
-	   staffVO.setPassword("123");
-	   staffVO.setPhone("15951926228");
-	   staffVO.setBusinessDistrict("新街口");
-	   UserManagement_bl userManagement_bl = new UserManagement_bl();
-	   userManagement_bl.addSystemStaff(staffVO);
+//	   SystemStaffVO staffVO = new SystemStaffVO();
+//	   staffVO.setPassword("123");
+//	   staffVO.setPhone("15951926228");
+//	   staffVO.setBusinessDistrict("新街口");
+//	   UserManagement_bl userManagement_bl = new UserManagement_bl();
+//	   userManagement_bl.addSystemStaff(staffVO);
+	   String string = "12345";
+	   String  string2 = PassWordMd5.EncryptionStr16(string,PassWordMd5.MD5,PassWordMd5.UTF8);
+	   System.out.println(string2);
    }
 }

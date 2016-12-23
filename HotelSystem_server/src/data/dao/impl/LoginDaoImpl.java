@@ -26,6 +26,7 @@ public class LoginDaoImpl implements LoginDao{
 	public boolean add(LoginPO login) {
 		try{
 			hibernateUtil.add(login);
+			System.out.println(login.getUserType());
 			return true;
 		}catch(Exception e){
 			e.printStackTrace();

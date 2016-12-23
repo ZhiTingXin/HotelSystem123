@@ -21,6 +21,7 @@ import data.service.CustomerDataService;
 import data.service.HotelStaffDataService;
 import data.service.OrderDataService;
 import data.service.SystemStaffDataService;
+import other.PassWordMd5;
 import other.UserType;
 
 public class UserManagement_bl implements UserManagement_blservice {
@@ -108,7 +109,8 @@ public class UserManagement_bl implements UserManagement_blservice {
 		try {
 		     SystemStaffPO staffPO = new SystemStaffPO(staffVO);
 		     boolean a = RemoteHelper.getInstance().getSystemStaffDataService().addStaff(staffPO);
-		     LoginPO login = new LoginPO(staffVO.getId(), staffVO.getPassword(), UserType.SYSTEMSTAFF);
+		     LoginPO login = new LoginPO(staffVO.getId(), PassWordMd5.
+		    		 EncryptionStr16(staffVO.getPassword(),PassWordMd5.MD5,PassWordMd5.UTF8), UserType.SYSTEMSTAFF);
 		     boolean b = RemoteHelper.getInstance().getLoginDataService().add(login);
 		     return a&&b;
 		} catch (Exception e) {
@@ -130,7 +132,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 	public boolean addHotelStaff(HotelStaffVO hotelStaffVO) {
 		try {
 			HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO);
-			LoginPO loginPO = new LoginPO(hotelStaffVO.getId(),hotelStaffVO.getPassword(),UserType.HOTELSTAFF);
+			LoginPO loginPO = new LoginPO(hotelStaffVO.getId(),PassWordMd5.EncryptionStr16(hotelStaffVO.getPassword(),PassWordMd5.MD5,PassWordMd5.UTF8),UserType.HOTELSTAFF);
 			boolean a = RemoteHelper.getInstance().getHotelStaffDataService().addStaff(hotelStaffPO);
 			boolean b = RemoteHelper.getInstance().getLoginDataService().add(loginPO);
 			return a&&b;
@@ -141,48 +143,47 @@ public class UserManagement_bl implements UserManagement_blservice {
 	}
 
 	public ArrayList<CustomerVO> getAllCustomer() {
+		ArrayList<CustomerVO> arrayList = new ArrayList<CustomerVO>();
 		try {
 			ArrayList<CustomerPO> list = RemoteHelper.getInstance().getCustomerDataService().getAllCustomers();
-			ArrayList<CustomerVO> arrayList = new ArrayList<CustomerVO>();
 			for(int i=0;i<list.size();i++){
 				CustomerVO customerVO = new CustomerVO(list.get(i));
 				arrayList.add(customerVO);
 			}
-			return arrayList;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return arrayList;
 	}
 	@Override
 	public ArrayList<HotelStaffVO> getAllHotelStaff() {
 		HotelStaffDataService hotelStaffDataService = RemoteHelper.getInstance().getHotelStaffDataService();
+		ArrayList<HotelStaffVO> hotelStaffVOs = new  ArrayList<HotelStaffVO>();
 		try {
 			ArrayList<HotelStaffPO> hotelStaffPOs = hotelStaffDataService.getAllHotelStaffs();
-			ArrayList<HotelStaffVO> hotelStaffVOs = new  ArrayList<HotelStaffVO>();
 			for(HotelStaffPO po:hotelStaffPOs){
 				hotelStaffVOs.add(new HotelStaffVO(po));
 			}
 			return hotelStaffVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return hotelStaffVOs;
 		}
 	}
 
 	@Override
 	public ArrayList<SystemStaffVO> getAllSystemStaff() {
 		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
+		ArrayList<SystemStaffVO> staffVOs = new ArrayList<SystemStaffVO>();
 		try {
 			ArrayList<SystemStaffPO> staffPOs = service.getAllSystemStaffs();
-			ArrayList<SystemStaffVO> staffVOs = new ArrayList<SystemStaffVO>();
 			for(SystemStaffPO po:staffPOs){
 				staffVOs.add(new SystemStaffVO(po));
 			}
 			return staffVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return staffVOs;
 		}
 	}
 

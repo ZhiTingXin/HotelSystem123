@@ -6,6 +6,8 @@ import VO.HotelStaffVO;
 import VO.OrderVO;
 import blservice.Hotel_blservice;
 import blservice.Order_blservice;
+import blservice.impl.Hotel_bl;
+import blservice.impl.Order_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -61,18 +63,21 @@ public class HotelStaffMainController {
 		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.hotelStaff = hotelStaff;
+		this.orderService = new Order_bl();
+		this.hotelService=new Hotel_bl();
 		this.orderList = this.orderService.getOrderOfToday(this.hotelStaff.getHotelId());
-		int count = 0;
+		if (this.orderList != null) {
+			int count = 0;
 
-		while (count < this.orderList.size()) {
-			this.orderData.add(this.orderList.get(count));
-			count++;
+			while (count < this.orderList.size()) {
+				this.orderData.add(this.orderList.get(count));
+				count++;
+			}
+			this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIDProperty());
+			this.roomInfo.setCellValueFactory(cellData -> cellData.getValue().getRoomInfoProperty());
+			this.arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
+			this.orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
 		}
-		this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIDProperty());
-		this.roomInfo.setCellValueFactory(cellData -> cellData.getValue().getRoomInfoProperty());
-		this.arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
-		this.orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
-
 		this.HotelStaffMainShow();
 	}
 
@@ -80,7 +85,7 @@ public class HotelStaffMainController {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
-		// this.orderTable.setItems(orderData);
+		this.orderTable.setItems(orderData);
 	}
 
 	public void handleViewOrder() {

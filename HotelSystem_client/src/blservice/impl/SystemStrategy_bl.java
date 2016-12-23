@@ -12,19 +12,18 @@ import other.SystemStrategyType;
 public class SystemStrategy_bl implements SystemStrategy_blservice{
 
 	public ArrayList<SystemStrategyVO> getAllSystemStrategys() {
+		ArrayList<SystemStrategyVO> list = new ArrayList<SystemStrategyVO>();
 		try{
 			ArrayList<SystemStrategyPO> arrayList = RemoteHelper.getInstance().getSystemStrategyDataService()
 					.getAllStrategys();
-			ArrayList<SystemStrategyVO> list = new ArrayList<SystemStrategyVO>();
 			for(int i=0;i<arrayList.size();i++){
 				SystemStrategyVO strategyVO = new SystemStrategyVO(arrayList.get(i));
 				list.add(strategyVO);
 			}
-			return list;
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return list;
 	}
 
 	public boolean modifySystemStrategy(SystemStrategyVO systemstrategyvo) {
@@ -74,17 +73,16 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 	@Override
 	public ArrayList<SystemStrategyVO> getSystemStrategy(SystemStrategyType systemStrategyType) {
 		SystemStrategyDataService service = RemoteHelper.getInstance().getSystemStrategyDataService();
+		ArrayList<SystemStrategyVO> strategyVOs = new ArrayList<SystemStrategyVO>();
 		try {
 			ArrayList<SystemStrategyPO> systemStrategyPOs = service.getSystemStrategys(systemStrategyType);
-			ArrayList<SystemStrategyVO> strategyVOs = new ArrayList<SystemStrategyVO>();
 			for(SystemStrategyPO po:systemStrategyPOs){
 				strategyVOs.add(new SystemStrategyVO(po));
 			}
-			return strategyVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return strategyVOs;
 	}
 
 }

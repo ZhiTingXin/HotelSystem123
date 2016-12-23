@@ -13,18 +13,17 @@ import other.AdviceFeedBackState;
 public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 	AdviceFeedBackDataService adviceFeedBackDataService =	RemoteHelper.getInstance().getAdviceFeedBackDataService();
 	public ArrayList<AdviceFeedBackVO> getAllAdvice(String userID) {
+		ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 		try {
 			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAdvices(userID, "userId");
-			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
+		    voList = new ArrayList<AdviceFeedBackVO>();
 			for(int i = 0; i<poList.size(); i++){
 				voList.add(new AdviceFeedBackVO(poList.get(i)));
 			}
-			
-			return voList;
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return voList;
 	}
 
 	public boolean addAdviceFeedBack(AdviceFeedBackVO advicefeedbackvo) {
@@ -49,28 +48,27 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 	}
 
 	public ArrayList<AdviceFeedBackVO> getUnprocessedAdvice() {
+		ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 		try {
 			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAllAdvices();
-			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
+			voList = new ArrayList<AdviceFeedBackVO>();
 			
 			for(AdviceFeedBackPO po : poList){
 				if(po.getState()==(AdviceFeedBackState.UNPROCESSED)){
 					voList.add(new AdviceFeedBackVO(po));
 				}
 			}
-			
-			return voList;
-			
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return voList;
 	}
 
 	public ArrayList<AdviceFeedBackVO> getProcessedAdvice() {
+		ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
 		try {
 			ArrayList<AdviceFeedBackPO> poList = adviceFeedBackDataService.getAllAdvices();
-			ArrayList<AdviceFeedBackVO> voList = new ArrayList<AdviceFeedBackVO>();
+		    voList = new ArrayList<AdviceFeedBackVO>();
 			
 			for(AdviceFeedBackPO po : poList){
 				if(po.getState()==(AdviceFeedBackState.PROCESSED)){
@@ -78,12 +76,10 @@ public class AdviceFeedBack_bl implements AdviceFeedBack_blservice{
 				}
 			}
 			
-			return voList;
-			
 		} catch (RemoteException e) {
 			e.printStackTrace();
-			return null;
 		}
+		return voList;
 	}
 
 	

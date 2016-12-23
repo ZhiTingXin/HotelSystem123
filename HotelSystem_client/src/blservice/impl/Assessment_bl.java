@@ -25,32 +25,30 @@ public class Assessment_bl implements Assessment_blService {
 
 	@Override
 	public ArrayList<AssementVO> getAllHotelAss(String hotelid) {
+		ArrayList<AssementVO> assementVOs = new ArrayList<AssementVO>();
 		try {
 			ArrayList<AssessmentPO> arrayList = dataService.getAllAssement(hotelid);
-			ArrayList<AssementVO> assementVOs = new ArrayList<AssementVO>();
 			for(AssessmentPO po:arrayList){
 				assementVOs.add(new AssementVO(po));
 			}
-			return assementVOs;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return assementVOs;
 	}
 
 	@Override
 	public ArrayList<AssementVO> getUserAss(String userId) {
+		ArrayList<AssementVO> arrayList = new ArrayList<AssementVO>();
 		try{
 			ArrayList<AssessmentPO> assessmentPOs = dataService.getUserASS(userId);
-			ArrayList<AssementVO> arrayList = new ArrayList<AssementVO>();
 			for(AssessmentPO assessmentPO:assessmentPOs){
 				arrayList.add(new AssementVO(assessmentPO));
 			}
-			return arrayList;
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
 		}
+		return arrayList;
 	}
 
 	@Override
@@ -73,7 +71,7 @@ public class Assessment_bl implements Assessment_blService {
 			return assementVO;
 		}catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return new AssementVO();
 		}
 	}
 }
