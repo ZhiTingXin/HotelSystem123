@@ -1,6 +1,9 @@
 package presentation.controller.hotelController;
 
+import java.util.ArrayList;
+
 import VO.HotelInfoVO;
+import VO.HotelRoomInfoVO;
 import VO.HotelStaffVO;
 import blservice.HotelStrategy_blservice;
 import blservice.Hotel_blservice;
@@ -59,6 +62,7 @@ public class HotelStaffHotelInfoViewController {
 	private Room_blService roomService;
 	private Label_blService labelService;
 	private HotelStrategy_blservice hotelStrategyService;
+	private ArrayList<HotelRoomInfoVO> roomInfo;
 
 	public HotelStaffHotelInfoViewController() {
 	}
@@ -68,17 +72,17 @@ public class HotelStaffHotelInfoViewController {
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.hotelName.setText(this.hotel.getHotelName());
 
-		if (this.hotel.getHotelAddress() != null && this.hotel.getHotelAddress().equals("")) {
+		if (this.hotel.getHotelAddress() != null || this.hotel.getHotelAddress().equals("")) {
 			this.address.setText(this.hotel.getHotelAddress());
 		} else {
 			this.address.setText("暂缺");
 		}
-		if (this.hotel.getHotelDistrict() != null && this.hotel.getHotelDistrict().equals("")) {
+		if (this.hotel.getHotelDistrict() != null || this.hotel.getHotelDistrict().equals("")) {
 			this.district.setText(this.hotel.getHotelDistrict());
 		} else {
 			this.district.setText("暂缺");
 		}
-		if (this.hotel.getHotelDiscription() != null && this.hotel.getHotelDiscription().equals("")) {
+		if (this.hotel.getHotelDiscription() != null || this.hotel.getHotelDiscription().equals("")) {
 			this.description.setText(this.hotel.getHotelDiscription());
 		} else {
 			this.description.setText("暂缺");
@@ -90,6 +94,7 @@ public class HotelStaffHotelInfoViewController {
 		this.grade.setText(this.hotel.getRank());
 		// 房间价格方法
 		this.price.setText(this.getRoomPrice());
+		this.restRoomNumber.setText(this.getRoomRemain());
 
 	}
 
@@ -99,8 +104,21 @@ public class HotelStaffHotelInfoViewController {
 		this.hotel = hotel;
 		this.hotelStaff = hotelStaff;
 		this.roomService = new Room_blServiceImpl();
-		this.labelService = new Label_blServiceImpl();
+		// this.labelService = new Label_blServiceImpl();
 		this.hotelStrategyService = new HotelStrategy_bl();
+		this.roomInfo = roomService.getAllRoom(this.hotel.getHotelID());
+		if (roomInfo.size() == 0 || roomInfo == null) {
+			this.roomInfo = new ArrayList<HotelRoomInfoVO>();
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.add(new HotelRoomInfoVO());
+			this.roomInfo.get(0).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(1).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(2).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(3).setHotelid(this.hotel.getHotelID());
+		}
+
 		this.HotelStaffHotelInfoViewShow();
 	}
 
@@ -140,14 +158,18 @@ public class HotelStaffHotelInfoViewController {
 
 	// 房间价格显示方法
 	private String getRoomPrice() {
-		String doubleRoomInfo = "双人间："
-				+ String.valueOf(this.roomService.getAllRoom(this.hotel.getHotelID()).get(0).getRoomPrice());
-		String bigRoomInfo = "大床房："
-				+ String.valueOf(this.roomService.getAllRoom(this.hotel.getHotelID()).get(1).getRoomPrice());
-		String singleRoomInfo = "单人间："
-				+ String.valueOf(this.roomService.getAllRoom(this.hotel.getHotelID()).get(2).getRoomPrice());
-		String multiRoomInfo = "多人间："
-				+ String.valueOf(this.roomService.getAllRoom(this.hotel.getHotelID()).get(3).getRoomPrice());
+		String doubleRoomInfo = "双人间：" + String.valueOf(this.roomInfo.get(0).getRoomPrice());
+		String bigRoomInfo = "大床房：" + String.valueOf(this.roomInfo.get(1).getRoomPrice());
+		String singleRoomInfo = "单人间：" + String.valueOf(this.roomInfo.get(2).getRoomPrice());
+		String multiRoomInfo = "多人间：" + String.valueOf(this.roomInfo.get(3).getRoomPrice());
+		return doubleRoomInfo + ";" + bigRoomInfo + ";" + singleRoomInfo + ";" + multiRoomInfo;
+	}
+
+	private String getRoomRemain() {
+		String doubleRoomInfo = "双人间：" + String.valueOf(this.roomInfo.get(0).getRoomRemain());
+		String bigRoomInfo = "大床房：" + String.valueOf(this.roomInfo.get(1).getRoomRemain());
+		String singleRoomInfo = "单人间：" + String.valueOf(this.roomInfo.get(2).getRoomRemain());
+		String multiRoomInfo = "多人间：" + String.valueOf(this.roomInfo.get(3).getRoomRemain());
 		return doubleRoomInfo + ";" + bigRoomInfo + ";" + singleRoomInfo + ";" + multiRoomInfo;
 	}
 }
