@@ -29,14 +29,16 @@ public class SystemManagerAddSystemStaffController {
 	@FXML
 	private TextField inputID;
 	@FXML
+	private ChoiceBox<String> city;
+	@FXML
 	private ChoiceBox<String> district;
 	@FXML
-	private ChoiceBox<String> city;
+	private ImageView image;
 	@FXML
 	private Button changePicture;
 	
-	ObservableList<String> cityList = FXCollections.observableArrayList();
-	ObservableList<String> districtList = FXCollections.observableArrayList();
+	ObservableList<String> cityList = FXCollections.observableArrayList();//城市列表
+	ObservableList<String> districtList = FXCollections.observableArrayList();//商圈列表
 
 	@FXML
 	private void initialize() {
@@ -58,7 +60,7 @@ public class SystemManagerAddSystemStaffController {
 	}
 
 	public SystemManagerAddSystemStaffController() {
-
+		
 	}
 
 }
