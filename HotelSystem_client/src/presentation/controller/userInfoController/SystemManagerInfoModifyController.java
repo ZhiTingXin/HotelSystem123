@@ -4,6 +4,8 @@ import VO.SystemManagerVO;
 import blservice.UserInfo_blservice;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -37,7 +39,7 @@ public class SystemManagerInfoModifyController {
 	}
 
 	public void initialize(Main main, SystemManagerVO systemManager2) {
-		// TODO Auto-generated method stub
+
 		this.mainScene = main;
 		this.systemManager = systemManager2;
 		this.SystemManagerInfoModifyShow();
@@ -51,14 +53,19 @@ public class SystemManagerInfoModifyController {
 	}
 
 	public void handleSave() {
+
+		this.systemManager.setUsername(this.nameLabel.getText());
+
 		if (this.nameLabel.getText() != "") {
 			// bl层方法
 			this.blservice.modifySystemManager(systemManager);
-
-			this.systemManager.setUsername(this.nameLabel.getText());
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("警告");
+			alert.setContentText("用户名为空，请输入您的用户名！");
+			alert.showAndWait();
 		}
 		this.mainScene.showSystemManagerInfoScene(systemManager);
-
 	}
 
 	public void handleBack() {
