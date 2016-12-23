@@ -49,14 +49,14 @@ public class SystemStrategyTester {
 	}
 	@Test
 	public void test002modify(){
-		ArrayList<SystemStrategyVO> strategyVOs = h.getSystemStrategy(SystemStrategyType.VIPMEMBER);
+		ArrayList<SystemStrategyVO> strategyVOs = h.getSystemStrategys(SystemStrategyType.VIPMEMBER);
 		SystemStrategyVO aStrategyVO = strategyVOs.get(0);
 		aStrategyVO.setSystemStrategyType(SystemStrategyType.HOLIDAY);
 		h.modifySystemStrategy(aStrategyVO);
 	}
 	@Test
 	public void test003getsome(){
-		ArrayList<SystemStrategyVO> strategyVOs = h.getSystemStrategy(SystemStrategyType.HOLIDAY);
+		ArrayList<SystemStrategyVO> strategyVOs = h.getSystemStrategys(SystemStrategyType.HOLIDAY);
 		assertEquals("291", strategyVOs.get(0).getId());
 	}
 	@Test 
