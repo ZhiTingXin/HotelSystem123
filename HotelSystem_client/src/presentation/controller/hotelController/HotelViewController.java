@@ -105,7 +105,9 @@ public class HotelViewController {
 		int count = 0;
 
 		while (count < this.hotelList.size()) {
-			this.hotelData.add(this.hotelList.get(count));
+			if (this.service.HotelInfoCompletedComfirm(this.hotelList.get(count))) {
+				this.hotelData.add(this.hotelList.get(count));
+			}
 			count++;
 		}
 		// VO列表赋值给表格
