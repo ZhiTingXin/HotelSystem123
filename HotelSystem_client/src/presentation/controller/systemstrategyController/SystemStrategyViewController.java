@@ -188,9 +188,13 @@ public class SystemStrategyViewController {
 				mainScene.showViewSystemMemberStrategyScene(systemStaffVO, selected);
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
-
+			
+				mainScene.showViewSystemVIPStrategyScene(systemStaffVO, selected);
+				
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
+				mainScene.showViewSystemOtherStrategyScene(systemStaffVO, selected);
+				
 			}
 
 		} else {
@@ -233,7 +237,7 @@ public class SystemStrategyViewController {
 
 		} else if (labelName == "VIPª·‘±”≈ª›") {
 
-			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER) == null) {
+			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER).size()==0) {
 				mainScene.showAddSystemVIPStrategyScene(systemStaffVO);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
