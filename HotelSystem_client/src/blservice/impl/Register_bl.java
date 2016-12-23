@@ -10,6 +10,12 @@ import other.UserType;
 
 public class Register_bl implements Register_blservice{
 
+	/**
+	 * @param 用户信息
+	 * 
+	 * @return 
+	 * 注册一个用户
+	 */
 	public boolean addRegister(CustomerVO customerVO) {
 		LoginPO loginPO = new LoginPO(customerVO.getId(), PassWordMd5.
 				EncryptionStr16(customerVO.getPassword(),PassWordMd5.MD5,PassWordMd5.UTF8),UserType.CUSTOMER);

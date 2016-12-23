@@ -78,7 +78,6 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * @param 商圈
 	 * 
 	 */
-	@Override
 	//返回商圈会员优惠信息
 	public VipStrategyVO getVipstrategy(String district) {
 		VipStrategyVO vipStrategyVO = new VipStrategyVO();
@@ -99,7 +98,6 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * @param 商圈会员优惠策略
 	 * 
 	 */
-	@Override
 	//制定商圈会员优惠策略
 	public boolean makeSuperVipStrategy(VipStrategyVO vipStrategyVO) {
 		ArrayList<VipVO> list = vipStrategyVO.getVipStrategyVOList();
@@ -117,7 +115,6 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * @param 商圈会员优惠策略
 	 * 
 	 */
-	@Override
 	//修改商圈会员策略
 	public boolean modifuSuperVipStrategy(VipStrategyVO vipStrategyVO) {
 		ArrayList<VipVO> list = vipStrategyVO.getVipStrategyVOList();

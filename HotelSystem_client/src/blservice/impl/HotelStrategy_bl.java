@@ -7,13 +7,17 @@ import PO.HotelStrategyPO;
 import RMI.RemoteHelper;
 import VO.HotelStrategyVO;
 import blservice.HotelStrategy_blservice;
-import data.service.HotelDataService;
 import data.service.HotelStrategyDataService;
 
 public class HotelStrategy_bl implements HotelStrategy_blservice {
+	
 	HotelStrategyDataService dataService = RemoteHelper.getInstance().getHotelStrategyDataService();
 	
-	HotelDataService hoteldataservice;
+	/**
+	 * @param 酒店促销策略的信息
+	 * @return
+	 * 是否成功添加促销策略
+	 */
 	public boolean makeHotelStrategy(HotelStrategyVO hotelstrategy) {
 		try {
 			return dataService.add(new HotelStrategyPO(hotelstrategy));
@@ -23,6 +27,11 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 		return false;
 	}
 
+	/**
+	 * @param 修改后的促销策略信息
+	 * @return
+	 * 返回是否修改成功
+	 */
 	public boolean modifyHotelStrategy(HotelStrategyVO hotelstrategy) {
 		try {
 			return dataService.modify(new HotelStrategyPO(hotelstrategy));
@@ -32,6 +41,11 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 		return false;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 * 返回是否删除促销策略信息成功
+	 */
 	public boolean deleteHotelStrategy(String hotelStrategyId) {
 		try {
 			HotelStrategyPO hPo = dataService.get(hotelStrategyId);
@@ -42,6 +56,11 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 		return false;
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 * 返回酒店促销策略的信息
+	 */
 	public HotelStrategyVO getHotelStrategy(String hotelStrategyId) {
 		try {
 			HotelStrategyPO hPo = dataService.get(hotelStrategyId);
@@ -53,6 +72,11 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 		}
 	}
 
+	/**
+	 * @param 酒店id
+	 * @return
+	 * 所有的酒店的促销策略
+	 */
 	public ArrayList<HotelStrategyVO> getListOfHotelStrategys(String hotel_id) {
 		ArrayList<HotelStrategyVO> voList = new ArrayList<>();
 		try {

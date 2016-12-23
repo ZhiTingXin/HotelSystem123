@@ -21,7 +21,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import main.Main;
-import other.StrategyState;
 import other.SystemStrategyType;
 
 public class SystemStrategyViewController {
@@ -106,7 +105,7 @@ public class SystemStrategyViewController {
 		systemStrategyVOList.clear();// 清空List
 
 		// 得到促销策略
-		systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.HOLIDAY);
+		systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.HOLIDAY);
 		for (SystemStrategyVO holidayStrategyVO : systemStrategyVOList) {
 			systemStrategyData.add(holidayStrategyVO);
 		}
@@ -124,7 +123,7 @@ public class SystemStrategyViewController {
 		systemStrategyVOList.clear();// 清空List
 
 		// 得到促销策略
-		systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER);
+		systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER);
 		for (SystemStrategyVO memberStrategyVO : systemStrategyVOList) {
 			systemStrategyData.add(memberStrategyVO);
 		}
@@ -142,7 +141,7 @@ public class SystemStrategyViewController {
 		systemStrategyVOList.clear();// 清空List
 
 		// 得到促销策略
-		systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER);
+		systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.VIPMEMBER);
 		for (SystemStrategyVO VIPStrategyVO : systemStrategyVOList) {
 			systemStrategyData.add(VIPStrategyVO);
 		}
@@ -160,7 +159,7 @@ public class SystemStrategyViewController {
 		systemStrategyVOList.clear();// 清空List
 
 		// 得到促销策略
-		systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.OTHER);
+		systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.OTHER);
 		for (SystemStrategyVO OtherStrategyVO : systemStrategyVOList) {
 			systemStrategyData.add(OtherStrategyVO);
 		}
@@ -231,7 +230,7 @@ public class SystemStrategyViewController {
 
 		} else if (labelName == "会员优惠") {
 
-			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER).size() == 0) {
+			if (systemStrategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER).size() == 0) {
 				mainScene.showAddSystemMemberStrategyScene(systemStaffVO);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -243,7 +242,7 @@ public class SystemStrategyViewController {
 
 		} else if (labelName == "VIP会员优惠") {
 
-			if (systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER).size()==0) {
+			if (systemStrategy_blservice.getSystemStrategys(SystemStrategyType.VIPMEMBER).size()==0) {
 				mainScene.showAddSystemVIPStrategyScene(systemStaffVO);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -333,13 +332,13 @@ public class SystemStrategyViewController {
 						if (labelName == "所有优惠") {
 							systemStrategyVOList = systemStrategy_blservice.getAllSystemStrategys();
 						} else if (labelName == "节日优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.HOLIDAY);
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.HOLIDAY);
 						} else if (labelName == "会员优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.MEMBER);
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER);
 						} else if (labelName == "VIP会员优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.VIPMEMBER);
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.VIPMEMBER);
 						} else if (labelName == "其他优惠") {
-							systemStrategyVOList = systemStrategy_blservice.getSystemStrategy(SystemStrategyType.OTHER);
+							systemStrategyVOList = systemStrategy_blservice.getSystemStrategys(SystemStrategyType.OTHER);
 						}
 						
 						systemStrategyData.clear();

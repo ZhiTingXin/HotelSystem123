@@ -8,7 +8,7 @@ public interface SystemStrategy_blservice {
 	
 	public ArrayList<SystemStrategyVO> getAllSystemStrategys();
 	
-	public ArrayList<SystemStrategyVO> getSystemStrategy(SystemStrategyType systemStrategyType);
+	public ArrayList<SystemStrategyVO> getSystemStrategys(SystemStrategyType systemStrategyType);
 	
 	public boolean modifySystemStrategy(SystemStrategyVO systemstrategyvo);
 	
