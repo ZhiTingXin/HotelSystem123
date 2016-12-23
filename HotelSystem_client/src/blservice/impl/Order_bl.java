@@ -241,7 +241,7 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	// 不明确 change 什么没传
+	//TODO 还没用确定具体的方法
 	public boolean changeCredit(String userID, String orderID) {
 		CustomerPO customer = null;
 		OrderPO order = null;
@@ -267,7 +267,11 @@ public class Order_bl implements Order_blservice {
 		return true;
 	}
 
-	@Override
+	/**
+	 * @param 订单的信息
+	 * 
+	 * @return 得到订单的原始价格
+	 */
 	public String getOrderOriginalPrice(OrderVO order) {
 		String hotelId = order.getHotelID();
 		String price = new String();
@@ -287,8 +291,12 @@ public class Order_bl implements Order_blservice {
 		return price;
 	}
 
-	@Override
-	// 简单实现
+	//TODO 
+	/**
+	 * @param 订单信息
+	 * 
+	 * @return 获得订单享受折扣之后的价格
+	 */
 	public String getOrderPrice(OrderVO order) {
 		String hotelId = order.getHotelID();
 		String price = new String();
@@ -318,7 +326,11 @@ public class Order_bl implements Order_blservice {
 		return price;
 	}
 
-	@Override
+	/**
+	 * @param 酒店id
+	 * @return 
+	 * 返回酒店的所有的订单信息
+	 */
 	public ArrayList<OrderVO> getAllOrders(String hotelId) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
@@ -332,7 +344,7 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	@Override
+    //TODO 可以告诉我为什么方法的实现是一样的吗
 	public ArrayList<OrderVO> getAllHotelOrders(String hotelid) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {

@@ -17,7 +17,6 @@ import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.UserManagement_blservice;
-import data.service.CustomerDataService;
 import data.service.HotelStaffDataService;
 import data.service.OrderDataService;
 import data.service.SystemStaffDataService;
@@ -26,6 +25,11 @@ import other.UserType;
 
 public class UserManagement_bl implements UserManagement_blservice {
 
+	/**
+	 * @param 客户id
+	 * 
+	 * @return 客户的基本信息
+	 */
 	public CustomerVO getCustomer(String customerId) {
 		try {
 			CustomerPO customerPO = RemoteHelper.getInstance().getCustomerDataService().findCustomer(customerId);
@@ -37,6 +41,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 酒店工作人员
+	 * 
+	 * @return 酒店工作人员信息
+	 */
 	public HotelStaffVO getHotelStaff(String hotelStaffId) {
 		HotelStaffVO hotelStaffVO = null;
 		try {
@@ -50,6 +59,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 		
 	}
 
+	/**
+	 * @param 网站营销人员id
+	 * 
+	 * @return 网站营销人员信息
+	 */
 	public SystemStaffVO getSystemStaff(String systemStaffId) {
 		SystemStaffVO staffVO = null;
 		try {
@@ -62,6 +76,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 网站管理人员id
+	 * 
+	 * @return 网站管理人员信息
+	 */
 	public SystemManagerVO getSystemManager(String systemManagerId) {
 		SystemManagerVO systemManagerVO = null;
 		try {
@@ -75,6 +94,12 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 修改后的客户信息
+	 * 
+	 * @return 
+	 * 更新客户信息
+	 */
 	public boolean modifyCustomer(CustomerVO customerVO) {
 		try {
 			CustomerPO customerPO = new  CustomerPO(customerVO);
@@ -85,6 +110,12 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 修改后的酒店工作人员信息
+	 * 
+	 * @return 
+	 * 更新酒店工作人员信息
+	 */
 	public boolean modifyHotelStaff(HotelStaffVO hotelStaffVO) {
 		try {
 			HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO);
@@ -95,6 +126,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 修改后的网站营销人员信息
+	 * 
+	 * @return 更新网站营销人员信息
+	 */
 	public boolean modifySystemStaff(SystemStaffVO systemStaffVO) {
 		try {
 			SystemStaffPO systemStaffPO = new SystemStaffPO(systemStaffVO);
@@ -105,6 +141,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 网站营销工作人员信息
+	 * 
+	 * @return 添加网站营销工作人员
+	 */
 	public boolean addSystemStaff(SystemStaffVO staffVO) {
 		try {
 		     SystemStaffPO staffPO = new SystemStaffPO(staffVO);
@@ -119,6 +160,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 酒店基本信息
+	 * 
+	 * @return 添加酒店 
+	 */
 	public boolean addHotel(HotelInfoVO hotelInfoVO) {
 		try {
 			HotelPO hotelPO = new HotelPO(hotelInfoVO);
@@ -129,6 +175,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 酒店工作人员信息
+	 * 
+	 * @return 添加酒店工作人员
+	 */
 	public boolean addHotelStaff(HotelStaffVO hotelStaffVO) {
 		try {
 			HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO);
@@ -142,6 +193,12 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 得到所有的客户信息
+	 */
 	public ArrayList<CustomerVO> getAllCustomer() {
 		ArrayList<CustomerVO> arrayList = new ArrayList<CustomerVO>();
 		try {
@@ -155,7 +212,13 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 		return arrayList;
 	}
-	@Override
+
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 返回所有的酒店工作人员信息
+	 */
 	public ArrayList<HotelStaffVO> getAllHotelStaff() {
 		HotelStaffDataService hotelStaffDataService = RemoteHelper.getInstance().getHotelStaffDataService();
 		ArrayList<HotelStaffVO> hotelStaffVOs = new  ArrayList<HotelStaffVO>();
@@ -171,7 +234,12 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
-	@Override
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 返回所有的网站营销人员信息
+	 */
 	public ArrayList<SystemStaffVO> getAllSystemStaff() {
 		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
 		ArrayList<SystemStaffVO> staffVOs = new ArrayList<SystemStaffVO>();
@@ -187,27 +255,47 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
-	@Override
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 网站注册客户的数量
+	 */
 	public int getCustomerNum() {
 		
 			ArrayList<CustomerVO> customerVOs = getAllCustomer();
 			return customerVOs.size();
 		
 	}
-	
-	@Override
+
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 网站注册酒店的数量
+	 */
 	public int getHotelStaffNum() {
 			ArrayList<HotelStaffVO> hotelStaffVOs = getAllHotelStaff();
 			return hotelStaffVOs.size();
 	}
 
-	@Override
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 网站营销人员的数量
+	 */
 	public int getSystemStaffNum() {
 			ArrayList<SystemStaffVO> staffPOs = getAllSystemStaff();
 			return staffPOs.size();
 	}
 
-	@Override
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 返回今日订单数量
+	 */
 	public int getTodayOrderNumberNum() {
 		LocalDate localDate  = LocalDate.now();
 		int num = 0;
@@ -226,7 +314,12 @@ public class UserManagement_bl implements UserManagement_blservice {
 		}
 	}
 
-	@Override
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 返回所有订单的数量
+	 */
 	public int getOrderNumber() {
 		OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
 		try {
