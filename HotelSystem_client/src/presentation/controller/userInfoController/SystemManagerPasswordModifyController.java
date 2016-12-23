@@ -1,12 +1,19 @@
 package presentation.controller.userInfoController;
 
+import java.util.Optional;
+
 import VO.SystemManagerVO;
+import blservice.Login_blservice;
 import blservice.UserInfo_blservice;
+import blservice.impl.Login_bl;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Alert.AlertType;
 import main.Main;
 
 public class SystemManagerPasswordModifyController {
@@ -39,13 +46,15 @@ public class SystemManagerPasswordModifyController {
 	private Main mainScene;
 	private UserInfo_blservice blservice;
 	private SystemManagerVO systemManager;
+	private Login_blservice login_blservice;
 
 	public SystemManagerPasswordModifyController() {
 		blservice = new UserInfo_bl();
+		login_blservice = new Login_bl();
 	}
 
 	public void initialize(Main main, SystemManagerVO systemManager2) {
-		// TODO Auto-generated method stub
+
 		this.mainScene = main;
 		this.systemManager = systemManager2;
 		this.SystemManagerPasswordModifyShow();
@@ -63,21 +72,35 @@ public class SystemManagerPasswordModifyController {
 	}
 
 	public void handleSave() {
-		String passwordInField = this.passWord.getText();
-		String newPasswordInField = this.newPassword.getText();
-		String comfirmPasswordInField = this.confirmPassword.getText();
-		String originalPassword = this.systemManager.getPassword();
+		String passwordInField = this.passWord.getText();//输入原密码
+		String newPasswordInField = this.newPassword.getText();//输入新密码
+		String comfirmPasswordInField = this.confirmPassword.getText();//确认新密码
+		String id = this.systemManager.getId();
 
-		boolean isPasswordOK = passwordInField.equals( originalPassword);
+		boolean isPasswordOK = login_blservice.comfirm(id, passwordInField);//判断输入原密码是否正确
+		
 		boolean isNewPasswordOK = newPasswordInField .equals(comfirmPasswordInField);
 		if (isPasswordOK && isNewPasswordOK) {
-			this.systemManager.setPassword(newPasswordInField);
-
 			// bl层方法，修改密码
-			this.blservice.modifyPassword(this.systemManager.getId(), comfirmPasswordInField);
+		boolean isModify = 	this.blservice.modifyPassword(this.systemManager.getId(), comfirmPasswordInField);
+		
+		if (isModify) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("恭喜");
+			alert.setContentText("您已成功修改您的密码！");
+			
+			Optional<ButtonType> btn = alert.showAndWait();
+			if (btn.get() == ButtonType.OK) {
+				this.mainScene.showSystemManagerInfoScene(systemManager);
+			}
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("抱歉");
+			alert.setContentText("不好意思，修改密码失败！");
+			alert.showAndWait();
+		}
 
-			this.mainScene.showSystemManagerInfoScene(systemManager);
-		} else if (!isPasswordOK) {
+		} else if (!isPasswordOK) {//判断输入原密码是否正确
 			this.passwordRightLabel.setVisible(true);
 			this.passwordRightLabel.setText("原密码错误！");
 		} else if (!isNewPasswordOK) {
