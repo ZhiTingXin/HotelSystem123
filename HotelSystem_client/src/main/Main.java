@@ -1521,7 +1521,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO, HotelStaffVO hotelStaffVO) {
 		try {
-			this.initRootLayout();
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
