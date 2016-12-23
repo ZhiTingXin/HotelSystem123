@@ -4,7 +4,7 @@ public class MyDistricts {
 
 	public final static String[] cities = { "北京", "南京", "上海", "重庆", "郑州", "武汉", "运城", "长沙", "广州", "台北", "香港" };
 
-	final  String[] districtsBJ = { "王府井", "崇文门", "公主坟", "三里屯" };
+	final static String[] districtsBJ = { "王府井", "崇文门", "公主坟", "三里屯" };
 	final static String[] districtsNJ = { "新街口", "鼓楼", "仙林", "应天大街" };
 	final static String[] districtsSH = { "徐家汇", "陆家嘴", "南京西路", "淮海路" };
 	final static String[] districtsCQ = { "解放碑", "观音桥", "沙坪坝", "杨家坪" };
@@ -21,37 +21,37 @@ public class MyDistricts {
 		switch (city) {
 		case "北京":
 			return districtsBJ;
-			
+
 		case "南京":
 			return districtsNJ;
-			
+
 		case "上海":
 			return districtsSH;
-			
+
 		case "重庆":
 			return districtsCQ;
-			
+
 		case "郑州":
 			return districtsZZ;
-			
+
 		case "武汉":
 			return districtsWH;
-			
+
 		case "运城":
 			return districtsYC;
-			
+
 		case "长沙":
 			return districtsCS;
-			
+
 		case "广州":
 			return districtsGZ;
-			
+
 		case "台北":
 			return districtsTB;
-			
+
 		case "香港":
 			return districtsXG;
-			
+
 		default:
 			return null;
 		}
