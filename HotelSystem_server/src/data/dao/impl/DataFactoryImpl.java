@@ -8,6 +8,7 @@ import data.dao.HotelDao;
 import data.dao.HotelStaffDao;
 import data.dao.HotelStrategyDao;
 import data.dao.LabelDao;
+import data.dao.LogOfUserDao;
 import data.dao.LoginDao;
 import data.dao.OrderDao;
 import data.dao.RoomDao;
@@ -77,6 +78,10 @@ public class DataFactoryImpl implements DataFactory{
 
 	public SuperVipDao getSuovipdao() {
 		return new SupVipDaoImpl();
+	}
+
+	public LogOfUserDao getLogOfUserDao() {
+		return new LogOfUserDaoImpl();
 	}
 
 }
