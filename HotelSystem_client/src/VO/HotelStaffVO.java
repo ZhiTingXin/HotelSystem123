@@ -14,14 +14,7 @@ public class HotelStaffVO {
     private String phone;
 	private String password;
 	private String image;
-	
-	public String getImage() {
-		return image;
-	}
 
-	public void setImage(String image) {
-		this.image = image;
-	}
 
 
 	public HotelStaffVO() {
@@ -37,11 +30,14 @@ public class HotelStaffVO {
 		this.hotelName = userPO.getHotelName();
 	}
 	
-	public HotelStaffVO(String id,String name,String hotelID,String hotelName){
-		this.id = id;
-		this.username = name;
-		this.hotelId = hotelID;
-		this.hotelName = hotelName;
+	
+	public String getImage() {
+		return image;
+	}
+	   
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getPhone(){

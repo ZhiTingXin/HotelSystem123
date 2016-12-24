@@ -16,11 +16,8 @@ public class SystemStaffPO implements Serializable{
 
 	@Id
 	private String id;
-
 	private String staffName;
-
 	private String phone;
-	
 	private String businessDistrict;
     private String image;
     

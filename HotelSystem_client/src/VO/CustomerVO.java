@@ -3,8 +3,6 @@ package VO;
 import java.time.LocalDate;
 
 import PO.CustomerPO;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
@@ -22,20 +20,12 @@ public class CustomerVO {
 	private int memberGrade;
 	private memberState memberState;
 	private String image;
-	
-	public String getImage() {
-		return image;
-	}
 
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public CustomerVO(){
+	public CustomerVO() {
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();
 	}
-	
+
 	public CustomerVO(CustomerPO customerPO) {
 		super();
 		this.id = customerPO.getId();
@@ -46,23 +36,37 @@ public class CustomerVO {
 		this.memberGrade = customerPO.getMemberGrade();
 		this.memberState = customerPO.getState();
 		this.companyName = customerPO.getCompanyName();
+		this.image = customerPO.getImage();
 	}
-	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public void setMemberState(memberState memberState) {
 		this.memberState = memberState;
 	}
+
 	public String getUsername() {
 		return userName;
 	}
+
 	public void setUsername(String userName) {
 		this.userName = userName;
 	}
+
 	public String getPhone() {
 		return phone;
 	}
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -70,7 +74,7 @@ public class CustomerVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public int getCredit() {
 		return credit;
 	}
@@ -114,17 +118,20 @@ public class CustomerVO {
 	public String getPassword() {
 		return this.password;
 	}
-	public StringProperty getIDstringProperty(){
+
+	public StringProperty getIDstringProperty() {
 		return new SimpleStringProperty(id);
 	}
-	
-	public StringProperty getUserNamePriperty(){
+
+	public StringProperty getUserNamePriperty() {
 		return new SimpleStringProperty(userName);
 	}
-	public StringProperty getUserTypePriperty(){
+
+	public StringProperty getUserTypePriperty() {
 		return new SimpleStringProperty("¿Í»§");
 	}
-	public StringProperty getCreditProperty(){
+
+	public StringProperty getCreditProperty() {
 		return new SimpleStringProperty(String.valueOf(credit));
 	}
 }
