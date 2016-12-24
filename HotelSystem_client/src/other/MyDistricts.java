@@ -16,7 +16,7 @@ public class MyDistricts {
 	final static String[] districtsTB = { "西门町", "五分埔", "台北东区", "信义" };
 	final static String[] districtsXG = { "中环", "尖沙咀", "旺角", "铜锣湾" };
 
-	public String[] getDistricts(String city) {
+	public static String[] getDistricts(String city) {
 
 		switch (city) {
 		case "北京":
