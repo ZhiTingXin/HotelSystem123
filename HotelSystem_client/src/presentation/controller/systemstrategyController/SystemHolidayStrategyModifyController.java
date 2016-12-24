@@ -104,7 +104,7 @@ public class SystemHolidayStrategyModifyController {
 		endDate.setDayCellFactory(dayCellFactory);
 		endDate.setValue(startDate.getValue().plusDays(1));
 		// 设置时间选择器结束
-		discountForCustomer.setText(String.valueOf(systemStrategyVO.getDiscount() * 10));
+		discountForCustomer.setText(String.valueOf(systemStrategyVO.getDiscount()));
 		StrategyState strategyState = systemStrategyVO.getStrategyState();
 		if (strategyState == StrategyState.open) {
 			open.setSelected(true);

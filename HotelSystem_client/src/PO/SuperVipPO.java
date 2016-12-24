@@ -1,9 +1,15 @@
 package PO;
 
+import java.io.Serializable;
+
 import VO.VipVO;
 
-public class SuperVipPO {
+public class SuperVipPO implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private int Vipgrade;//
 	private double discount;

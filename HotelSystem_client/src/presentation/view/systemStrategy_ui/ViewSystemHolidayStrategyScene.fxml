@@ -21,7 +21,7 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
-                  <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="修改策略" />
+                  <Button fx:id="modify" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleModify" prefHeight="39.0" prefWidth="200.0" text="修改策略" />
                   <Button fx:id="back" layoutX="11.0" layoutY="542.0" mnemonicParsing="false" onAction="#handleCancel" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
@@ -55,7 +55,7 @@
                         <Blend mode="RED" opacity="0.43" />
                      </effect>
                   </Label>
-                  <TextField fx:id="nameOfStrategy" layoutX="181.0" layoutY="108.0" prefHeight="27.0" prefWidth="210.0" promptText="优惠策略的名称">
+                  <TextField fx:id="nameOfStrategy" editable="false" layoutX="181.0" layoutY="108.0" prefHeight="27.0" prefWidth="210.0" promptText="优惠策略的名称">
                      <effect>
                         <Blend mode="RED" opacity="0.43" />
                      </effect></TextField>
@@ -75,7 +75,7 @@
                         <Blend mode="RED" opacity="0.43" />
                      </effect>
                   </Label>
-                  <TextArea fx:id="descriptionOfStrategy" layoutX="181.0" layoutY="141.0" prefHeight="80.0" prefWidth="292.0" promptText="优惠策略的详细信息" wrapText="true" />
+                  <TextArea fx:id="descriptionOfStrategy" editable="false" layoutX="181.0" layoutY="141.0" prefHeight="80.0" prefWidth="292.0" promptText="优惠策略的详细信息" wrapText="true" />
                   <Label layoutX="81.0" layoutY="336.0" text="策略状态">
                      <font>
                         <Font size="14.0" />
@@ -103,8 +103,8 @@
                   </Label>
                   <Label fx:id="startDate" layoutX="181.0" layoutY="239.0" prefHeight="17.0" prefWidth="92.0" text="优惠开始时间" />
                   <Label fx:id="endDate" layoutX="180.0" layoutY="272.0" text="优惠结束时间" />
-                  <Label layoutX="181.0" layoutY="337.0" text="策略状态" />
-                  <Label layoutX="182.0" layoutY="304.0" prefHeight="18.0" prefWidth="40.0" text="1.0 折">
+                  <Label fx:id="state" layoutX="181.0" layoutY="337.0" text="策略状态" />
+                  <Label fx:id="discountForCustomer" layoutX="182.0" layoutY="304.0" prefHeight="18.0" prefWidth="40.0" text="1.0 折">
                      <effect>
                         <Blend mode="RED" opacity="0.43" />
                      </effect>
