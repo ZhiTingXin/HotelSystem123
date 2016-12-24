@@ -11,6 +11,7 @@ public class HotelStrategyVO {
 	private String id;
 	private String strategyInfo;
 	private String strategyName;
+
 	public HotelStrategyVO(HotelStrategyPO hotelStrategy) {
 		super();
 		strategyName = hotelStrategy.getStrategyName();
@@ -56,7 +57,7 @@ public class HotelStrategyVO {
 	}
 
 	public StringProperty getNameProperty() {
-		return new SimpleStringProperty(this.id);
+		return new SimpleStringProperty(this.strategyName);
 	}
 
 	public StringProperty getInfoProperty() {
