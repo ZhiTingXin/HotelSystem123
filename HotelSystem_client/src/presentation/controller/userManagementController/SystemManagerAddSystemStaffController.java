@@ -43,28 +43,8 @@ public class SystemManagerAddSystemStaffController {
 
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
-	private MyDistricts myDistricts;
 	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
 	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
-
-	public void initialize() {
-
-		for (String city : MyDistricts.cities) {
-			cityList.add(city);
-		}
-		city.setItems(cityList);
-		city.getSelectionModel().selectedItemProperty()
-				.addListener((Observable, oldvalue, newvalue) -> setDistrictChoiceBox((String) newvalue));
-	}
-
-	private void setDistrictChoiceBox(String city) {
-		String[] districts = myDistricts.getDistricts(city);
-		for (String dist : districts) {
-			districtList.add(dist);
-		}
-		System.out.println(districtList.size());
-		district.setItems(districtList);
-	}
 
 	public SystemManagerAddSystemStaffController() {
 		
@@ -73,7 +53,36 @@ public class SystemManagerAddSystemStaffController {
 	public void showSystemManagerAddSystemStaff(Main mainScene, SystemManagerVO systemManagerVO) {
 		this.mainScene = mainScene;
 		this.systemManagerVO = systemManagerVO;
+		
+		//左栏
+		leftIdLabel.setText(this.systemManagerVO.getId());
+		leftNameLabel.setText(this.systemManagerVO.getUserName());
 		initialize();
+	}
+	
+	private void initialize() {
+
+		for (String city : MyDistricts.cities) {
+			cityList.add(city);
+		}
+		city.setItems(cityList);
+		city.getSelectionModel().selectedItemProperty()
+				.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
+	}
+
+	private void setDistrictChoiceBox(String city) {
+		districtList.clear();
+		String[] districts = MyDistricts.getDistricts(city);
+		for (String dist : districts) {
+			districtList.add(dist);
+		}
+		System.out.println(districtList.size());
+		district.setItems(districtList);
+	}
+
+	@FXML
+	private void handleChangePicture(){
+		
 	}
 	
 	@FXML
