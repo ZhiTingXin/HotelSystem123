@@ -10,6 +10,7 @@ import data.service.HotelStaffDataService;
 import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
 import data.service.LabelDataService;
+import data.service.LogOfUserDataService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.RoomDataService;
@@ -85,5 +86,9 @@ public class RemoteHelper {
     
     public SuperVipDataService getSuperVipDataServce(){
     	return (SuperVipDataService)remote;
+    }
+    
+    public LogOfUserDataService getLogOfUserDataService(){
+    	return (LogOfUserDataService)remote;
     }
 }

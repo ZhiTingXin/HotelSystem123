@@ -16,4 +16,5 @@ public interface DataFactory {
 	public AssessmentDao getAssessmentDao();
 	public LabelDao getlabelDao();
 	public SuperVipDao getSuovipdao();
+	public LogOfUserDao getLogOfUserDao();
 }
