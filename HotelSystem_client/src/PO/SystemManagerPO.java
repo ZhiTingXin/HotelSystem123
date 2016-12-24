@@ -12,23 +12,24 @@ public class SystemManagerPO implements Serializable{
 	private String managerID;
 	private String managerName;
     private String image;
+    private String phone;
     
-    public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	
 	public SystemManagerPO(){}
 	public SystemManagerPO(SystemManagerVO systemManagerVO){
 		super();
 		this.managerID = systemManagerVO.getId();
 		this.managerName = systemManagerVO.getUserName();
+		this.image = systemManagerVO.getImage();
+		this.phone = systemManagerVO.getPhone();
 	}
 	
+    public String getImage() {
+         return image;
+    }
+	
+	public void setImage(String image) {
+	    this.image = image;
+	}
 	public String getManagerId() {
 		return managerID;
 	}
@@ -43,6 +44,14 @@ public class SystemManagerPO implements Serializable{
 
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	

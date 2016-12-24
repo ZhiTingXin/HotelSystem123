@@ -93,20 +93,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("HotelSystem");
-		// this.showCustomerInfoScene(new CustomerVO());
-		// this.showHotelStaffInfoScene(new HotelStaffVO());
-		// this.showSystemStaffInfoScene(new SystemStaffVO());
-		// this.showSystemManagerInfoScene(new SystemManagerVO());
-		// this.showCustomerBookHotelScene(new CustomerVO(), new HotelInfoVO());
-		// this.showCustomerHotelViewScene(new CustomerVO());
-		// this.showCustomerMainScene(new CustomerVO());
 		this.showLoginScene();
-		// this.showHotelStaffMainScene(new HotelStaffVO());
-		// this.showHotelStaffHotelInfoViewScene(new HotelStaffVO(), new
-		// HotelInfoVO());
-		// this.showHotelStaffHotelInfoModifyScene(new HotelStaffVO(), new
-		// HotelInfoVO());
-		// this.showHotelStaffOrderViewScene(new HotelStaffVO());
 	}
 
 	public void Exit() {

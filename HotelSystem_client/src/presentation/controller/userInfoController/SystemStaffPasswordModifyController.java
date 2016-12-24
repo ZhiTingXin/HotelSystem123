@@ -1,12 +1,16 @@
 package presentation.controller.userInfoController;
 
 import VO.SystemStaffVO;
+import blservice.Login_blservice;
 import blservice.UserInfo_blservice;
+import blservice.impl.Login_bl;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.Alert.AlertType;
 import main.Main;
 
 public class SystemStaffPasswordModifyController {
@@ -39,13 +43,14 @@ public class SystemStaffPasswordModifyController {
 	private Main mainScene;
 	private UserInfo_blservice blservice;
 	private SystemStaffVO systemStaff;
+	private Login_blservice login_blservice;
 
 	public SystemStaffPasswordModifyController() {
 		blservice = new UserInfo_bl();
+		login_blservice = new Login_bl();
 	}
 
 	public void initialize(Main mainScene, SystemStaffVO systemStaff2) {
-		// TODO Auto-generated method stub
 		this.mainScene = mainScene;
 		this.systemStaff = systemStaff2;
 		this.SystemStaffPasswordModifyShow();
@@ -66,16 +71,18 @@ public class SystemStaffPasswordModifyController {
 		String passwordInField = this.passWord.getText();
 		String newPasswordInField = this.newPassword.getText();
 		String comfirmPasswordInField = this.confirmPassword.getText();
-		String originalPassword = this.systemStaff.getPassword();
 
-		boolean isPasswordOK = passwordInField == originalPassword;
-		boolean isNewPasswordOK = newPasswordInField == comfirmPasswordInField;
+		boolean isPasswordOK = login_blservice.comfirm(systemStaff.getId(), passwordInField);
+		boolean isNewPasswordOK = (newPasswordInField.equals(comfirmPasswordInField));
 		if (isPasswordOK && isNewPasswordOK) {
 			this.systemStaff.setPassword(newPasswordInField);
 
 			// bl层方法，修改密码
 			this.blservice.modifyPassword(systemStaff.getId(), comfirmPasswordInField);
-
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("恭喜");
+			alert.setContentText("修改成功");
+			alert.showAndWait();
 			this.mainScene.showSystemStaffInfoScene(systemStaff);
 		} else if (!isPasswordOK) {
 			this.passwordRightLabel.setVisible(true);

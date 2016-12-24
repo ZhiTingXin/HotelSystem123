@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import VO.SystemStaffVO;
 
-public class SystemStaffPO implements Serializable{
+public class SystemStaffPO implements Serializable {
 	/**
 	 * 
 	 */
@@ -15,31 +15,33 @@ public class SystemStaffPO implements Serializable{
 	private String staffName;
 
 	private String phone;
-	
+
 	private String businessDistrict;
+
+	private String image;
 	
-    private String image;
-    
-    public String getImage() {
+	private String city;
+
+	public SystemStaffPO() {
+	}
+
+	public SystemStaffPO(SystemStaffVO systemStaffVO) {
+		super();
+		this.city = systemStaffVO.getCity();
+		this.id = systemStaffVO.getId();
+		this.image = systemStaffVO.getImage();
+		this.staffName = systemStaffVO.getUsername();
+		this.phone = systemStaffVO.getPhone();
+		this.businessDistrict = systemStaffVO.getBusinessDistrict();
+	}
+
+	public String getImage() {
 		return image;
 	}
 
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-
-	public SystemStaffPO() {
-	}
-
-	public SystemStaffPO(SystemStaffVO systemStaffVO){
-		super();
-		this.id = systemStaffVO.getId();
-		this.staffName = systemStaffVO.getUsername();
-		this.phone = systemStaffVO.getPhone();
-		this.businessDistrict = systemStaffVO.getBusinessDistrict();
-	}
-
 
 	public String getId() {
 		return id;
@@ -71,5 +73,13 @@ public class SystemStaffPO implements Serializable{
 
 	public void setBusinessDistrict(String businessDistrict) {
 		this.businessDistrict = businessDistrict;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

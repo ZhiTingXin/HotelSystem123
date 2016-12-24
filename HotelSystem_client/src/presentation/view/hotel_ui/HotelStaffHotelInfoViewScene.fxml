@@ -64,11 +64,6 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="酒店标签" visible="false" GridPane.rowIndex="6">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
                         <Label text="房间价格" GridPane.rowIndex="8">
                            <font>
                               <Font size="14.0" />
@@ -104,11 +99,6 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="tag" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
                         <Label fx:id="restRoomNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <font>
                               <Font size="14.0" />
@@ -120,6 +110,16 @@
                            </font>
                         </Label>
                         <Label fx:id="price" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label text="客房总数概况" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="RoomNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <font>
                               <Font size="14.0" />
                            </font>

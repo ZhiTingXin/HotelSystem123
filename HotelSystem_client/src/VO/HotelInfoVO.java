@@ -14,20 +14,10 @@ public class HotelInfoVO {
 	private String hotelDiscription;
 	private String rank;
 	private String image;
-	
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	
 
 	public HotelInfoVO() {
-       super();
-       this.hotelID = IdGernerateServiceImpl.gernerateId();
+		super();
+		this.hotelID = IdGernerateServiceImpl.gernerateId();
 	}
 
 	// 构造方法
@@ -41,7 +31,16 @@ public class HotelInfoVO {
 		this.hotelID = hotelInfo.getHotelId();
 		this.hotelStaffId = hotelInfo.getHotelStaffId();
 		this.hotelName = hotelInfo.getHotelName();
-	    this.rank = hotelInfo.getGrade();
+		this.rank = hotelInfo.getGrade();
+		this.image = hotelInfo.getImage();
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getRank() {
@@ -99,7 +98,7 @@ public class HotelInfoVO {
 	public void setHotelDiscription(String hotelDiscription) {
 		this.hotelDiscription = hotelDiscription;
 	}
-	
+
 	// 界面表格方法
 	public StringProperty getHotelNameProperty() {
 		return new SimpleStringProperty(this.hotelName);

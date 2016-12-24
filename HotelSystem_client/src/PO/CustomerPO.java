@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import VO.CustomerVO;
 import other.memberState;
 
-public class CustomerPO implements Serializable{
+public class CustomerPO implements Serializable {
 	/**
 	 * 
 	 */
@@ -20,9 +20,26 @@ public class CustomerPO implements Serializable{
 	private LocalDate birthday;
 	public String companyName;
 	private memberState state;
-    private String image;
-    
-    public String getImage() {
+	private String image;
+
+	public CustomerPO() {
+	}
+
+	public CustomerPO(CustomerVO customerVO) {
+		super();
+		this.birthday = customerVO.getBirthday();
+		this.id = customerVO.getId();
+		this.userName = customerVO.getUsername();
+		// 是否需要电话号码
+		this.phone = customerVO.getPhone();
+		this.companyName = customerVO.getCompanyName();
+		this.credit = customerVO.getCredit();
+		this.memberGrade = customerVO.getMemberGrade();
+		this.state = customerVO.getMemberState();
+		this.image = customerVO.getImage();
+	}
+
+	public String getImage() {
 		return image;
 	}
 
@@ -30,23 +47,6 @@ public class CustomerPO implements Serializable{
 		this.image = image;
 	}
 
-	
-	public CustomerPO() {
-	}
-
-	public CustomerPO(CustomerVO customerVO){
-		super();
-		this.birthday = customerVO.getBirthday();
-		this.id = customerVO.getId();
-		this.userName = customerVO.getUsername();
-		//是否需要电话号码
-		this.phone = customerVO.getPhone();
-		this.companyName = customerVO.getCompanyName();
-		this.credit = customerVO.getCredit();
-		this.memberGrade = customerVO.getMemberGrade();
-		this.state = customerVO.getMemberState();
-	}
-	
 	public String getId() {
 		return id;
 	}
@@ -110,5 +110,5 @@ public class CustomerPO implements Serializable{
 	public void setState(memberState state) {
 		this.state = state;
 	}
-	
+
 }

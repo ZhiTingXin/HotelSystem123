@@ -4,6 +4,7 @@ import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.HotelStrategyVO;
 import blservice.HotelStrategy_blservice;
+import blservice.impl.HotelStrategy_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,6 +26,8 @@ public class HotelStrategyNewController {
 	private Button back;
 	@FXML
 	private Label hotelName;
+	@FXML
+	private Label StateLabel;
 	@FXML
 	private TextArea InputStrategyInfo;
 	@FXML
@@ -54,16 +57,22 @@ public class HotelStrategyNewController {
 		this.hotel = hotel;
 		this.hotelStaff = hotelStaff;
 		this.hotelStrategy = new HotelStrategyVO();
+		this.hotelStrategy.setHotelId(this.hotel.getHotelID());
+		this.hotelStrategy.setStrategyInfo("");
+		this.hotelStrategy.setStrategyName("");
+		this.service = new HotelStrategy_bl();
 		this.HotelStrategyNewShow();
 	}
 
 	public void handleSave() {
-		if (InputStrategyInfo.getText() != "" && InputStrategyName.getText() != "") {
+		if (!InputStrategyInfo.getText().equals("") && !InputStrategyName.getText().equals("")) {
 			this.hotelStrategy.setStrategyInfo(this.InputStrategyInfo.getText());
-			this.hotelStrategy.setId(this.InputStrategyName.getText());
+			this.hotelStrategy.setStrategyName(this.InputStrategyName.getText());
 			// bl层方法
 			this.service.makeHotelStrategy(this.hotelStrategy);
 			this.mainscene.showHotelStrategyViewScene(this.hotelStaff, hotel);
+		} else {
+			this.StateLabel.setText("请输入完整信息！");
 		}
 	}
 

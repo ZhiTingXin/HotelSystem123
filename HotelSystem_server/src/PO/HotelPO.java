@@ -28,14 +28,6 @@ public class HotelPO implements Serializable {
 	private String hotelDiscription;
 	private String hotelAddress;
     private String image;
-    
-    public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
 
 	//Hotel的构造方法
 	public HotelPO(){
@@ -56,6 +48,13 @@ public class HotelPO implements Serializable {
 	public String getHotelStrict() {
 		return hotelStrict;
 		
+	}
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	public void setHotelStrict(String hotelStrict) {
 		this.hotelStrict = hotelStrict;

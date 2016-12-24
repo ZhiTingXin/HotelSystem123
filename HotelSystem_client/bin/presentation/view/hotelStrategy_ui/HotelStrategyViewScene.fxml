@@ -33,7 +33,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <Label fx:id="StateLabel" layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
                   <Label layoutX="39.0" layoutY="71.0" text="酒店名称">
                      <font>
                         <Font size="14.0" />
