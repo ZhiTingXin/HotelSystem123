@@ -76,7 +76,7 @@ public class HotelStaffHotelInfoModifyController {
 	private HotelInfoVO hotel;
 	private ArrayList<HotelRoomInfoVO> roomInfo;
 	private Hotel_blservice service;
-	private Room_blService roomServcie;
+	private Room_blService roomService;
 	private RoomType roomType;
 
 	public HotelStaffHotelInfoModifyController() {
@@ -102,9 +102,9 @@ public class HotelStaffHotelInfoModifyController {
 		this.hotel = hotel;
 		this.hotelStaff = hotelStaff;
 		this.service = new Hotel_bl();
-		this.roomServcie = new Room_blServiceImpl();
+		this.roomService = new Room_blServiceImpl();
 
-		this.roomInfo = this.roomServcie.getAllRoom(this.hotel.getHotelID());
+		this.roomInfo = this.roomService.getAllRoom(this.hotel.getHotelID());
 		if (roomInfo.size() == 0 || roomInfo == null) {
 			this.roomInfo = new ArrayList<HotelRoomInfoVO>();
 			this.roomInfo.add(new HotelRoomInfoVO());
@@ -115,6 +115,14 @@ public class HotelStaffHotelInfoModifyController {
 			this.roomInfo.get(1).setHotelid(this.hotel.getHotelID());
 			this.roomInfo.get(2).setHotelid(this.hotel.getHotelID());
 			this.roomInfo.get(3).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(0).setRoomType(RoomType.doublePersonRoom);
+			this.roomInfo.get(1).setRoomType(RoomType.bigBedRoom);
+			this.roomInfo.get(2).setRoomType(RoomType.singlePersonRoom);
+			this.roomInfo.get(3).setRoomType(RoomType.multiPersonRoom);
+			this.roomService.addRoom(this.roomInfo.get(0));
+			this.roomService.addRoom(this.roomInfo.get(1));
+			this.roomService.addRoom(this.roomInfo.get(2));
+			this.roomService.addRoom(this.roomInfo.get(3));
 
 		}
 
@@ -139,11 +147,11 @@ public class HotelStaffHotelInfoModifyController {
 		this.hotel.setHotelName(this.hotelName.getText());
 		this.hotel.setHotelAddress(this.address.getText());
 		this.hotel.setHotelDiscription(this.description.getText());
+		this.roomService.modify(roomInfo.get(0));
+		this.roomService.modify(roomInfo.get(1));
+		this.roomService.modify(roomInfo.get(2));
+		this.roomService.modify(roomInfo.get(3));
 
-		this.roomServcie.modify(roomInfo.get(0));
-		this.roomServcie.modify(roomInfo.get(1));
-		this.roomServcie.modify(roomInfo.get(2));
-		this.roomServcie.modify(roomInfo.get(3));
 		this.service.modifyHotelInfo(hotel);
 		this.mainScene.showHotelStaffHotelInfoViewScene(hotelStaff, hotel);
 	}
@@ -244,18 +252,22 @@ public class HotelStaffHotelInfoModifyController {
 	public void handlePlus() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomNum(this.roomInfo.get(0).getRoomNum() + 1);
+			this.roomInfo.get(0).setRoomRemain(this.roomInfo.get(0).getRoomRemain() + 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(0).getRoomNum()));
 		}
 		if (this.roomType.equals(RoomType.singlePersonRoom)) {
 			this.roomInfo.get(2).setRoomNum(this.roomInfo.get(2).getRoomNum() + 1);
+			this.roomInfo.get(2).setRoomRemain(this.roomInfo.get(2).getRoomRemain() + 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(2).getRoomNum()));
 		}
 		if (this.roomType.equals(RoomType.bigBedRoom)) {
 			this.roomInfo.get(1).setRoomNum(this.roomInfo.get(1).getRoomNum() + 1);
+			this.roomInfo.get(1).setRoomRemain(this.roomInfo.get(1).getRoomRemain() + 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(1).getRoomNum()));
 		}
 		if (this.roomType.equals(RoomType.multiPersonRoom)) {
 			this.roomInfo.get(3).setRoomNum(this.roomInfo.get(3).getRoomNum() + 1);
+			this.roomInfo.get(3).setRoomRemain(this.roomInfo.get(3).getRoomRemain() + 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(3).getRoomNum()));
 		}
 	}
@@ -264,21 +276,24 @@ public class HotelStaffHotelInfoModifyController {
 
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomNum(this.roomInfo.get(0).getRoomNum() - 1);
+			this.roomInfo.get(0).setRoomRemain(this.roomInfo.get(0).getRoomRemain() - 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(0).getRoomNum()));
 		}
 		if (this.roomType.equals(RoomType.singlePersonRoom)) {
 			this.roomInfo.get(2).setRoomNum(this.roomInfo.get(2).getRoomNum() - 1);
+			this.roomInfo.get(2).setRoomRemain(this.roomInfo.get(2).getRoomRemain() - 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(2).getRoomNum()));
 		}
 		if (this.roomType.equals(RoomType.bigBedRoom)) {
 			this.roomInfo.get(1).setRoomNum(this.roomInfo.get(1).getRoomNum() - 1);
+			this.roomInfo.get(1).setRoomRemain(this.roomInfo.get(1).getRoomRemain() - 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(1).getRoomNum()));
 		}
 		if (this.roomType.equals(RoomType.multiPersonRoom)) {
 			this.roomInfo.get(3).setRoomNum(this.roomInfo.get(3).getRoomNum() - 1);
+			this.roomInfo.get(3).setRoomRemain(this.roomInfo.get(3).getRoomRemain() - 1);
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(3).getRoomNum()));
 		}
 
 	}
-
 }

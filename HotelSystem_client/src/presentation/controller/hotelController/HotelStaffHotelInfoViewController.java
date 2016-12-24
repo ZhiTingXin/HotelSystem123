@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
+import other.RoomType;
 
 //scene界面需要改 没连scene
 //***************************
@@ -49,7 +50,9 @@ public class HotelStaffHotelInfoViewController {
 	@FXML
 	private Label grade;// 酒店星级
 	@FXML
-	private Label tag;// 酒店标签
+	private Label RoomNumber;
+	// @FXML
+	// private Label tag;// 酒店标签
 	@FXML
 	private Label restRoomNumber;// 剩余客房数量
 	@FXML
@@ -95,6 +98,7 @@ public class HotelStaffHotelInfoViewController {
 		// 房间价格方法
 		this.price.setText(this.getRoomPrice());
 		this.restRoomNumber.setText(this.getRoomRemain());
+		this.RoomNumber.setText(this.getRoomNumber());
 
 	}
 
@@ -117,6 +121,14 @@ public class HotelStaffHotelInfoViewController {
 			this.roomInfo.get(1).setHotelid(this.hotel.getHotelID());
 			this.roomInfo.get(2).setHotelid(this.hotel.getHotelID());
 			this.roomInfo.get(3).setHotelid(this.hotel.getHotelID());
+			this.roomInfo.get(0).setRoomType(RoomType.doublePersonRoom);
+			this.roomInfo.get(1).setRoomType(RoomType.bigBedRoom);
+			this.roomInfo.get(2).setRoomType(RoomType.singlePersonRoom);
+			this.roomInfo.get(3).setRoomType(RoomType.multiPersonRoom);
+			this.roomService.addRoom(this.roomInfo.get(0));
+			this.roomService.addRoom(this.roomInfo.get(1));
+			this.roomService.addRoom(this.roomInfo.get(2));
+			this.roomService.addRoom(this.roomInfo.get(3));
 		}
 
 		this.HotelStaffHotelInfoViewShow();
@@ -145,15 +157,26 @@ public class HotelStaffHotelInfoViewController {
 		return "暂无策略";
 	}
 
-	// 酒店标签显示方法
-	private String getTagString() {
-		String tagInfo = "";
-		int count = 0;
-		while (count < this.labelService.getHotelLabels(this.hotel.getHotelID()).size()) {
-			tagInfo += this.labelService.getHotelLabels(this.hotel.getHotelID()).get(count).getLabel().toString();
-			count++;
-		}
-		return tagInfo;
+	// // 酒店标签显示方法
+	// private String getTagString() {
+	// String tagInfo = "";
+	// int count = 0;
+	// while (count <
+	// this.labelService.getHotelLabels(this.hotel.getHotelID()).size()) {
+	// tagInfo +=
+	// this.labelService.getHotelLabels(this.hotel.getHotelID()).get(count).getLabel().toString();
+	// count++;
+	// }
+	// return tagInfo;
+	// }
+
+	// 房间总数显示方法
+	private String getRoomNumber() {
+		String doubleRoomInfo = "双人间：" + String.valueOf(this.roomInfo.get(0).getRoomNum());
+		String bigRoomInfo = "大床房：" + String.valueOf(this.roomInfo.get(1).getRoomNum());
+		String singleRoomInfo = "单人间：" + String.valueOf(this.roomInfo.get(2).getRoomNum());
+		String multiRoomInfo = "多人间：" + String.valueOf(this.roomInfo.get(3).getRoomNum());
+		return doubleRoomInfo + ";" + bigRoomInfo + ";" + singleRoomInfo + ";" + multiRoomInfo;
 	}
 
 	// 房间价格显示方法
