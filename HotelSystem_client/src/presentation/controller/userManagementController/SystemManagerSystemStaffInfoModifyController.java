@@ -66,8 +66,10 @@ public class SystemManagerSystemStaffInfoModifyController {
 		String idString = idLabel.getText();
 		String name = nameField.getText();
 		String district = businessDistrictLabel.getText();
-		
-		systemStaffVO = new SystemStaffVO(idString, name,district);
+
+		systemStaffVO.setId(idString);
+		systemStaffVO.setBusinessDistrict(district);
+		systemStaffVO.setUsername(name);
 		boolean isModify = blservice.modifySystemStaff(systemStaffVO);
 		
 

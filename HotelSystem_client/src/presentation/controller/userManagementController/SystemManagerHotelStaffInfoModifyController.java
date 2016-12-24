@@ -75,7 +75,6 @@ public class SystemManagerHotelStaffInfoModifyController {
 		String hotelID = hotelId.getText();
 		String hotelNameString = hotelName.getText();
 		//构造新的hotel staff VO
-		hotelStaffVO = new HotelStaffVO();
         hotelStaffVO.setHotelId(hotelID);
         hotelStaffVO.setId(idString);
         hotelStaffVO.setHotelName(hotelNameString);

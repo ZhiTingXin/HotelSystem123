@@ -31,25 +31,7 @@ public class CustomerPO implements Serializable{
 	private LocalDate birthday;
 	
 	private memberState state;
-    private String image;
-    
- public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	
-	
-	public memberState getState() {
-		return state;
-	}
-
-	public void setState(memberState state) {
-		this.state = state;
-	}
+    private String image;	
 
 	public CustomerPO() {
 	}
@@ -59,10 +41,25 @@ public class CustomerPO implements Serializable{
 		return id;
 	}
 
+	
 	public void setId(String id) {
 		this.id = id;
 	}
 
+    public String getImage() {
+		return image;
+	}
+
+	public memberState getState() {
+		return state;
+	}
+
+	public void setState(memberState state) {
+		this.state = state;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public String getPhone() {
 		return phone;
 	}

@@ -1,12 +1,17 @@
 package presentation.controller.userInfoController;
 
+import java.util.Optional;
+
 import VO.SystemStaffVO;
 import blservice.UserInfo_blservice;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import main.Main;
 
 public class SystemStaffInfoModifyController {
@@ -57,7 +62,6 @@ public class SystemStaffInfoModifyController {
 	public void handleSave() {
 		if (!this.nameField.getText().equals("")) {
 			this.systemStaff.setUsername(this.nameField.getText());
-
 		}
 		if (!this.phoneTextField.getText().equals("")) {
 			 this.systemStaff.setPhone(this.phoneTextField.getText());
@@ -67,6 +71,21 @@ public class SystemStaffInfoModifyController {
 	}
 
 	public void handleBack() {
-		this.mainScene.showSystemStaffInfoScene(systemStaff);
+		if(!this.phoneTextField.getText().equals(systemStaff.getPhone())||
+				!this.nameField.getText().equals(systemStaff.getUsername())){
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("提醒");
+			alert.setHeaderText("退出我们将不会对你做出的修改进行保存");
+			alert.setContentText("是否退出");
+			ButtonType yes = new ButtonType("是");
+			ButtonType no = new ButtonType("否");
+			alert.getButtonTypes().setAll(yes,no);
+			Optional<ButtonType> btn = alert.showAndWait();
+			if(btn.get()==yes){
+				this.mainScene.showSystemStaffInfoScene(systemStaff);
+			}
+		}else{
+			this.mainScene.showSystemStaffInfoScene(systemStaff);
+		}
 	}
 }

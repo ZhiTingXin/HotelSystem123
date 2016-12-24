@@ -25,18 +25,19 @@ public class HotelStaffPO implements Serializable {
 	private String hotelId;
     private String image;
     
- public String getImage() {
+
+
+	public HotelStaffPO() {
+	}
+
+
+	public String getImage() {
 		return image;
 	}
 
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-
-	public HotelStaffPO() {
-	}
-
 
 	public String getId() {
 		return id;
