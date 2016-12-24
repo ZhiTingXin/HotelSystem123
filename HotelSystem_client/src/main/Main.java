@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import presentation.controller.adviceFeedBackController.CustomerAdviceInfoController;
 import presentation.controller.adviceFeedBackController.CustomerAdviceViewController;
 import presentation.controller.adviceFeedBackController.CustomerCreateAdviceController;
+import presentation.controller.adviceFeedBackController.SystemStaffAdviceViewController;
+import presentation.controller.adviceFeedBackController.SystemStaffAdviceViewSpecController;
 import presentation.controller.hotelController.BookHotelController;
 import presentation.controller.hotelController.HotelInfoController;
 import presentation.controller.hotelController.HotelStaffHotelInfoModifyController;
@@ -1600,6 +1602,47 @@ public class Main extends Application {
 			// get Controller
 			SystemManagerPasswordModifyController SystemManagerPasswordModifyController = loader.getController();
 			SystemManagerPasswordModifyController.initialize(this, systemManager);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param staffVO
+	 * 显示网站营销人员查看反馈信息界面
+	 */
+	public void showSystemStaffAdviceViewScene(SystemStaffVO staffVO) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/adviceFeedBack_ui/SystemStaffAdviceViewScene.fxml"));
+			AnchorPane SystemStaffAdviceViewScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemStaffAdviceViewScene);
+
+			SystemStaffAdviceViewController adviceViewController = loader.getController();
+			adviceViewController.initialize(this, staffVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 
+	 * @param staffVO
+	 * 网站管理人员查看反馈详细信息并回复
+	 */
+	public void showSystemStaffAdviceViewSpecScene(SystemStaffVO staffVO,AdviceFeedBackVO advice) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/adviceFeedBack_ui/SystemStaffAdviceViewSpecScene.fxml"));
+			AnchorPane SystemStaffAdviceViewSpecScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemStaffAdviceViewSpecScene);
+
+			SystemStaffAdviceViewSpecController adviceViewSpecController = loader.getController();
+			adviceViewSpecController.initialize(this,advice,staffVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
