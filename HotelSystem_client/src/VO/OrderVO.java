@@ -201,7 +201,10 @@ public class OrderVO {
 	}
 
 	public StringProperty getRoomInfoProperty() {
-		return new SimpleStringProperty(this.roomType.toString() + "*" + String.valueOf(this.getRoomNum()));
+		if (this.roomType != null) {
+			return new SimpleStringProperty(this.roomType.toString() + "*" + String.valueOf(this.getRoomNum()));
+		}
+		return new SimpleStringProperty("ÔÝÎÞ");
 	}
 
 	public StringProperty getHotelNameProperty() {

@@ -1,7 +1,6 @@
 package main;
 
 import java.io.IOException;
-
 import VO.AdviceFeedBackVO;
 import VO.CustomerVO;
 import VO.HotelInfoVO;
