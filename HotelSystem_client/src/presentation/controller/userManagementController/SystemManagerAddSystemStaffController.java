@@ -75,7 +75,7 @@ public class SystemManagerAddSystemStaffController {
 		// 左栏
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
-		
+
 		city.setTooltip(new Tooltip("请选择城市！"));
 		district.setTooltip(new Tooltip("请选择商圈！"));
 		initialize();
@@ -106,11 +106,11 @@ public class SystemManagerAddSystemStaffController {
 		File file = fileChooser.showOpenDialog(stage);
 		String string = file.getName();
 		path = file.getAbsolutePath();
-    
-		Image newImage = new Image("file:"+path, 200, 200, false, false);
+
+		Image newImage = new Image("file:" + path, 200, 200, false, false);
 		try {
-			File file1 = new File("src/Img/"+string);
-			ImageIO.write(SwingFXUtils.fromFXImage(newImage,null), "gif", file1);
+			File file1 = new File("src/Img/" + string);
+			ImageIO.write(SwingFXUtils.fromFXImage(newImage, null), "gif", file1);
 		} catch (IOException ex) {
 			System.out.println(ex.getMessage());
 		}
@@ -126,30 +126,30 @@ public class SystemManagerAddSystemStaffController {
 
 	@FXML
 	private void handleRegister() {
-		
-		SystemStaffVO systemStaffVO= new SystemStaffVO();
-		String systemStaffName = inputName.getText();//name
+
+		SystemStaffVO systemStaffVO = new SystemStaffVO();
+		String systemStaffName = inputName.getText();// name
 		systemStaffVO.setUsername(systemStaffName);
-		String myCity = city.getValue();//city
+		String myCity = city.getValue();// city
 		systemStaffVO.setCity(myCity);
 		String myDistrict = district.getValue();
 		systemStaffVO.setBusinessDistrict(myDistrict);
 		systemStaffVO.setImage(path);
-		systemStaffVO.setPassword(systemStaffVO.getId());//密码
-		
+		systemStaffVO.setPassword(systemStaffVO.getId());// 密码
+
 		boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
-		
+
 		if (isAdd) {
-      
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("成功");
 			alert.setHeaderText("注册成功！");
 			alert.setContentText("恭喜，您已成功注册一条网站营销人员信息！");
 
-			String info = "ID："+systemStaffVO.getId()+"\n"
-							+"用户名："+systemStaffName+"\n"
-							+"分管商圈："+myCity+" "+myDistrict+"\n"
-							+"密码："+"初始密码与ID相同.";
+			String info = "ID：" + systemStaffVO.getId() + "\n" 
+							+ "用户名：" + systemStaffName + "\n" 
+							+ "分管商圈：" + myCity+ " " + myDistrict + "\n"
+							+ "密码：" + "初始密码与ID相同.";
 
 			Label label = new Label("网站管理人员的详细信息如下：");
 
@@ -168,8 +168,7 @@ public class SystemManagerAddSystemStaffController {
 			expContent.add(textArea, 0, 1);
 			alert.getDialogPane().setExpandableContent(expContent);
 			alert.showAndWait();
-
-    }
+		}
 	}
 
 	@FXML
