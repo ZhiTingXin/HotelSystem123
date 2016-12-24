@@ -74,6 +74,7 @@ public class AddSystemVIPStrategyController {
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategy_blservice systemStrategy_blservice;
+	private VipStrategyVO vipStrategyVO;
 	private VipStrategy_blService vipStrategy_blService;
 	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();
 	
@@ -163,22 +164,13 @@ public class AddSystemVIPStrategyController {
 				vipVO.setDistrict(districtName.getText());// 获取商圈名称
 				newVipVO.add(vipVO);
 			}
-			VipStrategyVO vipStrategyVO = new VipStrategyVO();
+			vipStrategyVO = new VipStrategyVO();
 			vipStrategyVO.setVipStrategyVOList(newVipVO);
-			boolean isModifyTable = vipStrategy_blService.makeVipStrategy(vipStrategyVO);
-			if (isModifyTable) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("恭喜");
-				alert.setHeaderText("保存成功");
-				alert.setContentText("您已成功保存一条优惠信息！");
-				alert.showAndWait();
-			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("抱歉");
-				alert.setHeaderText("保存失败");
-				alert.setContentText("对不起，"+districtName.getText()+"商圈的VIP会员优惠保存失败！");
-				alert.showAndWait();
-			}
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("恭喜");
+			alert.setContentText("保存成功！");
+			alert.showAndWait();
 		}else{
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");
@@ -209,8 +201,8 @@ public class AddSystemVIPStrategyController {
 		newSystemStrategy.setSystemStrategyType(SystemStrategyType.VIPMEMBER);
 		
 		boolean isOK = systemStrategy_blservice.makeSystemStrategy(newSystemStrategy);
-		
-		if (isOK) {
+		boolean isModifyTable = vipStrategy_blService.makeSuperVipStrategy(vipStrategyVO);
+		if (isOK&&isModifyTable) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setHeaderText("保存成功");

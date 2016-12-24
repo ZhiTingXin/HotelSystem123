@@ -9,18 +9,20 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.HotelRoomInfoVO;
 import VO.OrderVO;
 import VO.VipVO;
 import blservice.Order_blservice;
+import blservice.Room_blService;
 import blservice.VipStrategy_blService;
 import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.OrderDataService;
 import other.OrderState;
+import other.RoomType;
 
 public class Order_bl implements Order_blservice {
-	
-	
+
 	OrderDataService dataService = RemoteHelper.getInstance().getOrderDataService();
 	HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
 	CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
@@ -83,7 +85,7 @@ public class Order_bl implements Order_blservice {
 		ArrayList<OrderVO> UnfinishedVoList = new ArrayList<OrderVO>();
 
 		for (OrderVO vo : voList) {
-			if (vo.getOrderState().equals(OrderState.UNFINISHED))
+			if (vo.getOrderState() != null && vo.getOrderState().equals(OrderState.UNFINISHED))
 				UnfinishedVoList.add(vo);
 		}
 		return UnfinishedVoList;
@@ -99,7 +101,7 @@ public class Order_bl implements Order_blservice {
 		ArrayList<OrderVO> abnomalVoList = new ArrayList<OrderVO>();
 
 		for (OrderVO vo : voList) {
-			if (vo.getOrderState().equals(OrderState.UNFINISHED))
+			if (vo.getOrderState() != null && vo.getOrderState().equals(OrderState.ABNOMAL))
 				abnomalVoList.add(vo);
 		}
 		return abnomalVoList;
@@ -123,25 +125,48 @@ public class Order_bl implements Order_blservice {
 	/**
 	 * @param 订单信息
 	 * 
-	 * @return 
-	 * 是否生成订单
+	 * @return 是否生成订单
 	 */
-	
-	//生成用户的订单
+
+	// 生成用户的订单
 	public boolean generateOrder(OrderVO order) {
 		try {
+			// 修改酒店剩余客房数量
+			{
+				Room_blService roomservice = new Room_blServiceImpl();
+				ArrayList<HotelRoomInfoVO> roominfo = roomservice.getAllRoom(order.getHotelID());
+				RoomType type = order.getRoomType();
+				int num = order.getRoomNum();
+				int index = 0;
+				if (type.equals(RoomType.doublePersonRoom)) {
+					index = 0;
+				}
+				if (type.equals(RoomType.bigBedRoom)) {
+					index = 1;
+				}
+				if (type.equals(RoomType.singlePersonRoom)) {
+					index = 2;
+				}
+				if (type.equals(RoomType.multiPersonRoom)) {
+					index = 3;
+				}
+				int remainBefore = roominfo.get(index).getRoomRemain();
+				int remainAfter = remainBefore - num;
+				roominfo.get(index).setRoomRemain(remainAfter);
+				roomservice.modify(roominfo.get(index));
+			}
 			return dataService.add(new OrderPO(order));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+	
 
 	/**
 	 * @param 通过输入订单中所属酒店的名称
 	 * 
-	 * @return 
-	 * 所有酒店中含有该字段的订单信息
+	 * @return 所有酒店中含有该字段的订单信息
 	 */
 	public ArrayList<OrderVO> getOrderFromInput(String text) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
@@ -163,7 +188,7 @@ public class Order_bl implements Order_blservice {
 	}
 
 	/**
-	 * @param 酒店id 
+	 * @param 酒店id
 	 * 
 	 * @return 今日的所有的订单信息
 	 */
@@ -186,16 +211,17 @@ public class Order_bl implements Order_blservice {
 	/**
 	 * @param 酒店id
 	 * 
-	 * @return 
-	 * 酒店中尚未执行的订单
+	 * @return 酒店中尚未执行的订单
 	 */
 	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
-				if (po.getStatus().equals(OrderState.UNFINISHED))
-					orderVOs.add(new OrderVO(po));
+				if (po.getStatus() != null && po.getStatus().equals(OrderState.UNFINISHED))
+					if (po.getHotelId().equals(hotelID)) {
+						orderVOs.add(new OrderVO(po));
+					}
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -213,8 +239,10 @@ public class Order_bl implements Order_blservice {
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
-				if (po.getStatus().equals(OrderState.ABNOMAL))
-					orderVOs.add(new OrderVO(po));
+				if (po.getStatus() != null && po.getStatus().equals(OrderState.ABNOMAL)) {
+					if (po.getHotelId().equals(hotelID))
+						orderVOs.add(new OrderVO(po));
+				}
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -225,15 +253,18 @@ public class Order_bl implements Order_blservice {
 	/**
 	 * @param 酒店id
 	 * 
-	 * @return  返回酒店已经完成的订单信息
+	 * @return 返回酒店已经完成的订单信息
 	 */
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
-				if (po.getStatus().equals(OrderState.FINISHED))
-					orderVOs.add(new OrderVO(po));
+				if (po.getStatus() != null && po.getStatus().equals(OrderState.FINISHED)) {
+					if (po.getHotelId().equals(hotelID))
+
+						orderVOs.add(new OrderVO(po));
+				}
 			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -241,7 +272,7 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	//TODO 还没用确定具体的方法
+	// TODO 还没用确定具体的方法
 	public boolean changeCredit(String userID, String orderID) {
 		CustomerPO customer = null;
 		OrderPO order = null;
@@ -252,7 +283,7 @@ public class Order_bl implements Order_blservice {
 			e.printStackTrace();
 		}
 		int credit = 0;
-		if (order.getStatus() == OrderState.ABNOMAL) {
+		if (order.getStatus() != null && order.getStatus() == OrderState.ABNOMAL) {
 			credit = customer.getCredit() - (int) (order.getPrice() * 0.5);
 		} else if (order.getStatus() == OrderState.FINISHED) {
 			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
@@ -291,7 +322,7 @@ public class Order_bl implements Order_blservice {
 		return price;
 	}
 
-	//TODO 
+	// TODO
 	/**
 	 * @param 订单信息
 	 * 
@@ -328,8 +359,7 @@ public class Order_bl implements Order_blservice {
 
 	/**
 	 * @param 酒店id
-	 * @return 
-	 * 返回酒店的所有的订单信息
+	 * @return 返回酒店的所有的订单信息
 	 */
 	public ArrayList<OrderVO> getAllOrders(String hotelId) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
@@ -344,7 +374,7 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-    //TODO 可以告诉我为什么方法的实现是一样的吗
+	// TODO 可以告诉我为什么方法的实现是一样的吗
 	public ArrayList<OrderVO> getAllHotelOrders(String hotelid) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {

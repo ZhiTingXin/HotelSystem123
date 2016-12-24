@@ -46,7 +46,7 @@ public class SystemManagerInfoController {
 		leftNameLabel.setText(systemManager.getUserName());
 		idLabel.setText(systemManager.getId());
 		nameLabel.setText(systemManager.getUserName());
-		// this.phone.setText(value);
+		this.phone.setText(systemManager.getPhone());
 
 	}
 

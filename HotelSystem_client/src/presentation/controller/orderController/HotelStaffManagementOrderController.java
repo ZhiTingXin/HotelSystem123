@@ -3,6 +3,7 @@ package presentation.controller.orderController;
 import VO.HotelStaffVO;
 import VO.OrderVO;
 import blservice.Order_blservice;
+import blservice.impl.Order_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +19,8 @@ public class HotelStaffManagementOrderController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private Label stateLabel;
 	@FXML
 	private Button setToException;// 设置为异常订单
 	@FXML
@@ -75,20 +78,25 @@ public class HotelStaffManagementOrderController {
 		this.mainScene = main;
 		this.hotelStaff = hotelStaff;
 		this.order = order;
+		this.orderServcie = new Order_bl();
 		this.HotelStaffManagementOrderShow();
 
 	}
 
 	// 设置为异常订单按钮监听方法
 	public void handleSetToException() {
-		this.order.setOrderState(OrderState.FINISHED);
+		this.order.setOrderState(OrderState.ABNOMAL);
 		this.orderServcie.changeState(order);
+		this.stateOfOrder.setText(this.order.getOrderState().toString());
+		this.stateLabel.setText("已更改！");
 	}
 
 	// 设置为已完成订单监听方法
 	public void handleSetToDone() {
 		this.order.setOrderState(OrderState.FINISHED);
 		this.orderServcie.changeState(order);
+		this.stateOfOrder.setText(this.order.getOrderState().toString());
+		this.stateLabel.setText("已更改！");
 	}
 
 	// 返回按钮监听方法
@@ -99,17 +107,17 @@ public class HotelStaffManagementOrderController {
 	// 订单状态设置按钮控制方法
 	private void controlSetOrderState() {
 		if (this.order.getOrderState().equals(OrderState.UNFINISHED)) {
+			this.setToDone.setDisable(false);
+			this.setToException.setDisable(false);
+		} else if (this.order.getOrderState().equals(OrderState.FINISHED)) {
 			this.setToDone.setDisable(true);
 			this.setToException.setDisable(true);
-		} else if (this.order.getOrderState().equals(OrderState.FINISHED)) {
-			this.setToDone.setDisable(false);
-			this.setToException.setDisable(false);
 		} else if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
-			this.setToDone.setDisable(false);
-			this.setToException.setDisable(false);
-		} else if (this.order.getOrderState().equals(OrderState.ABNOMAL)) {
 			this.setToDone.setDisable(true);
-			this.setToException.setDisable(false);
+			this.setToException.setDisable(true);
+		} else if (this.order.getOrderState().equals(OrderState.ABNOMAL)) {
+			this.setToDone.setDisable(false);
+			this.setToException.setDisable(true);
 		}
 	}
 }

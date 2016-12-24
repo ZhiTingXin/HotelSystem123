@@ -1,36 +1,25 @@
 package presentation.controller.systemstrategyController;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
-import VO.VipStrategyVO;
 import VO.VipVO;
-import blservice.SystemStrategy_blservice;
 import blservice.VipStrategy_blService;
-import blservice.impl.SystemStrategy_bl;
 import blservice.impl.VipStrategy_blServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import main.Main;
-import other.StrategyState;
 
 public class ViewSystemVIPStrategyController {
 
@@ -66,18 +55,17 @@ public class ViewSystemVIPStrategyController {
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategyVO systemStrategyVO;
-	private SystemStrategy_blservice systemStrategy_blservice;
 	private VipStrategy_blService vipStrategy_blService;
 	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();
 
 	public ViewSystemVIPStrategyController() {
-		
 	}
 
 	public void initilize(Main mainScene, SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 		this.systemStrategyVO = systemStrategyVO;
+		vipStrategy_blService = new VipStrategy_blServiceImpl();
 		// 左栏
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
@@ -96,6 +84,8 @@ public class ViewSystemVIPStrategyController {
 
 		// 初始化表格
 		String district = districtA.getText();
+		districtName.setText(district);
+		
 		vipVOData.clear();
 		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
 		for (VipVO vipVO : vipVOs) {
@@ -112,6 +102,8 @@ public class ViewSystemVIPStrategyController {
 	private void handleDistrictB() {
 		
 		String district = districtB.getText();
+		districtName.setText(district);
+		
 		vipVOData.clear();// 清空
 		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
 		for (VipVO vipVO : vipVOs) {

@@ -26,7 +26,7 @@ public class MemberEditDialogController {
 
     private Stage dialogStage;
     private VipVO vipVO;
-    private boolean okClicked = false;
+    private static  boolean okClicked = false;
 
     @FXML
     private void initialize() {
@@ -61,7 +61,7 @@ public class MemberEditDialogController {
      * 
      * @return
      */
-    public boolean isOkClicked() {
+    public static boolean isOkClicked() {
         return okClicked;
     }
 

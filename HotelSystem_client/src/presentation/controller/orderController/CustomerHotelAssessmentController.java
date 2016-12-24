@@ -1,8 +1,13 @@
 package presentation.controller.orderController;
 
+import VO.AssementVO;
 import VO.CustomerVO;
 import VO.HotelInfoVO;
 import VO.OrderVO;
+import blservice.Assessment_blService;
+import blservice.Order_blservice;
+import blservice.impl.Assessment_bl;
+import blservice.impl.Order_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +27,8 @@ public class CustomerHotelAssessmentController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private Label StateLabel;
 	@FXML
 	private Button save;
 	@FXML
@@ -45,19 +52,19 @@ public class CustomerHotelAssessmentController {
 	private MenuButton tagReviews;// 标签评价
 	@FXML
 	private MenuItem confortableTag;
-	@FXML
-	private MenuItem unConfortableTag;
-	@FXML
-	private MenuItem cheapTag;
-	@FXML
-	private MenuItem expensiveTag;
+	// @FXML
+	// private MenuItem unConfortableTag;
+	// @FXML
+	// private MenuItem cheapTag;
+	// @FXML
+	// private MenuItem expensiveTag;
 
-	@FXML
-	private Label Tag1;// 已添加标签
-	@FXML
-	private Label Tag2;
-	@FXML
-	private Label Tag3;
+	// @FXML
+	// private Label Tag1;// 已添加标签
+	// @FXML
+	// private Label Tag2;
+	// @FXML
+	// private Label Tag3;
 	@FXML
 	private TextArea assessmentTextArea;
 
@@ -66,6 +73,9 @@ public class CustomerHotelAssessmentController {
 	private HotelInfoVO hotel;
 	private OrderVO order;
 	private int starRank;
+	private AssementVO assement;
+	private Assessment_blService service;
+	private Order_blservice orderService;
 
 	public CustomerHotelAssessmentController() {
 
@@ -78,12 +88,35 @@ public class CustomerHotelAssessmentController {
 		this.hotel = hotel;
 		this.order = order;
 
+		this.assement = new AssementVO();
+		this.assement.setOrderId(this.order.getOrderID());
+		this.assement.setContent("");
+		this.assement.setHotelId(this.hotel.getHotelID());
+		this.assement.setUserId(this.customer.getId());
+
+		this.service = new Assessment_bl();
+		this.orderService = new Order_bl();
+
 		this.CustomerHotelAssessmentShow();
 	}
 
 	public void CustomerHotelAssessmentShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
+
+		if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
+			this.assement = this.service.getAss(this.order.getOrderID());
+			this.save.setDisable(true);
+			this.assessmentTextArea.setEditable(false);
+			this.assessmentTextArea.setText(this.assement.getContent());
+			String rank = "";
+			int count = 0;
+			while (count < this.assement.getRank()) {
+				rank += "★";
+				count++;
+			}
+			this.starRateReviews.setText(rank);
+		}
 	}
 
 	public void handleBack() {
@@ -92,11 +125,25 @@ public class CustomerHotelAssessmentController {
 	}
 
 	public void handleSave() {
-		// bl层方法
-		{
-			this.order.setOrderState(OrderState.ASSESSED);
+
+		boolean isRankReady = this.starRank != 0;
+		boolean isContentReady = !this.assessmentTextArea.getText().equals("");
+		if (isContentReady && isRankReady) {
+			if (this.order.getOrderState().equals(OrderState.FINISHED)) {
+				this.assement.setRank(this.starRank);
+				this.assement.setContent(this.assessmentTextArea.getText());
+				this.order.setOrderState(OrderState.ASSESSED);
+				// bl层方法
+				this.orderService.changeState(this.order);
+				this.service.addAssessment(assement);
+
+				this.mainScene.showCustomerOrderInfoViewScene(customer, order);
+			}
+		} else if (!isContentReady) {
+			this.StateLabel.setText("请输入评价信息！");
+		} else if (!isRankReady) {
+			this.StateLabel.setText("请给该酒店打分！");
 		}
-		this.mainScene.showCustomerOrderInfoViewScene(customer, order);
 	}
 
 	public void handleOneStar() {
@@ -124,18 +171,18 @@ public class CustomerHotelAssessmentController {
 		this.starRank = 5;
 	}
 
-	public void handleComfortableTag() {
-	}
-
-	public void handleUncomfortableTag() {
-
-	}
-
-	public void handleCheapTag() {
-
-	}
-
-	public void handleExpensiveTag() {
-
-	}
+	// public void handleComfortableTag() {
+	// }
+	//
+	// public void handleUncomfortableTag() {
+	//
+	// }
+	//
+	// public void handleCheapTag() {
+	//
+	// }
+	//
+	// public void handleExpensiveTag() {
+	//
+	// }
 }
