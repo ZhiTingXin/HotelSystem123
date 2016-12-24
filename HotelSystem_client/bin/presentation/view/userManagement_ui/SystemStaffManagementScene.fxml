@@ -28,7 +28,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="idLabel" layoutX="215.0" layoutY="26.0" text="用户列表" textAlignment="CENTER">
+                  <Label fx:id="idLabel" layoutX="165.0" layoutY="23.0" text="网站营销人员列表" textAlignment="CENTER">
                      <font>
                         <Font name="System Font" size="24.0" />
                      </font>
@@ -43,7 +43,7 @@
                     </columns>
                   </TableView>
                   <TextField fx:id="inputSearchText" layoutX="33.0" layoutY="72.0" prefHeight="23.0" prefWidth="403.0" promptText="输入要搜索的用户的ID" />
-                  <Button fx:id="searchButton" layoutX="454.0" layoutY="71.0" mnemonicParsing="false" text="搜索" />
+                  <Button fx:id="searchButton" layoutX="454.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
                   <Button fx:id="viewUserInfo" layoutX="347.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleViewInfo" prefHeight="39.0" prefWidth="129.0" text="查看用户详细信息" />
                </children>
             </AnchorPane>
