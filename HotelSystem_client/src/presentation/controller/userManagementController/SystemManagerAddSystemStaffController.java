@@ -2,6 +2,9 @@ package presentation.controller.userManagementController;
 
 import java.util.ArrayList;
 
+import PO.SystemManagerPO;
+import other.MyDistricts;
+import VO.SystemManagerVO;
 import VO.SystemStrategyVO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import main.Main;
 
 public class SystemManagerAddSystemStaffController {
 
@@ -36,26 +40,29 @@ public class SystemManagerAddSystemStaffController {
 	private ImageView image;
 	@FXML
 	private Button changePicture;
-	
-	ObservableList<String> cityList = FXCollections.observableArrayList();//城市列表
-	ObservableList<String> districtList = FXCollections.observableArrayList();//商圈列表
 
-	@FXML
-	private void initialize() {
-		ArrayList<String> cities = new ArrayList<>();	//TODO
-		for (String city : cities) {
+	private Main mainScene;
+	private SystemManagerVO systemManagerVO;
+	private MyDistricts myDistricts;
+	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
+	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
+
+	public void initialize() {
+
+		for (String city : MyDistricts.cities) {
 			cityList.add(city);
 		}
-		city.setItems(districtList);
+		city.setItems(cityList);
 		city.getSelectionModel().selectedItemProperty()
 				.addListener((Observable, oldvalue, newvalue) -> setDistrictChoiceBox((String) newvalue));
 	}
-	
+
 	private void setDistrictChoiceBox(String city) {
-		ArrayList<String> districts = new ArrayList<>(); //TODO
-		for (String district : districts) {
-			districtList.add(district);
+		String[] districts = myDistricts.getDistricts(city);
+		for (String dist : districts) {
+			districtList.add(dist);
 		}
+		System.out.println(districtList.size());
 		district.setItems(districtList);
 	}
 
@@ -63,4 +70,19 @@ public class SystemManagerAddSystemStaffController {
 		
 	}
 
+	public void showSystemManagerAddSystemStaff(Main mainScene, SystemManagerVO systemManagerVO) {
+		this.mainScene = mainScene;
+		this.systemManagerVO = systemManagerVO;
+		initialize();
+	}
+	
+	@FXML
+	private void handleRegister(){
+		
+	}
+	
+	@FXML
+	private void handleBack(){
+		mainScene.showSystemManagerMainScene(systemManagerVO);
+	}
 }

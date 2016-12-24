@@ -72,6 +72,7 @@ import presentation.controller.userInfoController.SystemStaffInfoModifyControlle
 import presentation.controller.userInfoController.SystemStaffPasswordModifyController;
 import presentation.controller.userManagementController.CustomerManagementController;
 import presentation.controller.userManagementController.HotelStaffManagementController;
+import presentation.controller.userManagementController.SystemManagerAddSystemStaffController;
 import presentation.controller.userManagementController.SystemManagerCustomerInfoModifyController;
 import presentation.controller.userManagementController.SystemManagerCustomerInfoViewController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoModifyController;
@@ -1473,11 +1474,11 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show 网站管理人员 修改system staff信息
+	 * show 网站管理人员 新增system staff信息
 	 * 
 	 * @param
 	 */
-	public void showSystemManagerAddSystemStaffInfoScene(SystemManagerVO systemManagerVO) {
+	public void showSystemManagerAddSystemStaffScene(SystemManagerVO systemManagerVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1486,10 +1487,9 @@ public class Main extends Application {
 			AnchorPane SystemManagerCustomerInfoViewScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemManagerCustomerInfoViewScene);
 
-			// TODO get Controller
-////			SystemManagerSystemStaffInfoModifyController systemManagerSystemStaffInfoViewController = loader
-//					.getController();
-//			systemManagerSystemStaffInfoViewController.initialize(this, systemManagerVO);
+			SystemManagerAddSystemStaffController systemManagerAddSystemStaffViewController = loader
+					.getController();
+			systemManagerAddSystemStaffViewController.showSystemManagerAddSystemStaff(this,systemManagerVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

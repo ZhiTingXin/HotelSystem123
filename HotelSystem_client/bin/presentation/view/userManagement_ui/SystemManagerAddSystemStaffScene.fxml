@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.userManagementController.SystemManagerSystemStaffInfoModifyController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.userManagementController.SystemManagerAddSystemStaffController">
    <children>
       <SplitPane dividerPositions="0.2994652406417112" prefHeight="600.0" prefWidth="750.0">
          <items>
