@@ -15,6 +15,10 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 
 	VipDataService vipDataService = RemoteHelper.getInstance().getVipDataService();
 	SuperVipDataService service = RemoteHelper.getInstance().getSuperVipDataServce();
+	
+	/**
+	 * 制定网站会员优惠策略
+	 */
 	public boolean makeVipStrategy(VipStrategyVO vipstrategy) {
 		try {
 			ArrayList<VipVO> vipVOs = vipstrategy.getVipStrategyVOList();
@@ -30,6 +34,9 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 		}
 	}
 
+	/**
+	 * 修改网站会员优惠策略
+	 */
 	public boolean modifyVipStrategy(VipStrategyVO vipstrategy) {
 		try {
 			ArrayList<VipVO> vipVOs = vipstrategy.getVipStrategyVOList();
@@ -46,6 +53,11 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 		}
 	}
 
+	/**
+	 * @param
+	 * @return 返回网站会员优惠策略
+	 * 
+	 */
 	public VipStrategyVO getVipStrategy() {
 		try {
 			ArrayList<VipVO> vipVOs = new ArrayList<VipVO>();
@@ -62,7 +74,11 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 		}
 	}
 
-	@Override
+	/**
+	 * @param 商圈
+	 * 
+	 */
+	//返回商圈会员优惠信息
 	public VipStrategyVO getVipstrategy(String district) {
 		VipStrategyVO vipStrategyVO = new VipStrategyVO();
 		try {
@@ -78,4 +94,60 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 		return vipStrategyVO;
 	}
 
+	/**
+	 * @param 商圈会员优惠策略
+	 * 
+	 */
+	//制定商圈会员优惠策略
+	public boolean makeSuperVipStrategy(VipStrategyVO vipStrategyVO) {
+		ArrayList<VipVO> list = vipStrategyVO.getVipStrategyVOList();
+		try {
+			for(VipVO vo:list){
+				service.addSupVip(new SuperVipPO(vo));
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * @param 商圈会员优惠策略
+	 * 
+	 */
+	//修改商圈会员策略
+	public boolean modifuSuperVipStrategy(VipStrategyVO vipStrategyVO) {
+		ArrayList<VipVO> list = vipStrategyVO.getVipStrategyVOList();
+		try {
+			for(VipVO vo:list){
+				service.modifySupVip(new SuperVipPO(vo));
+			}
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	/**
+	 * @param 通过商圈来删除对对应商圈会员信息
+	 * @return 
+	 * 返回是否删除成功
+	 */
+	//删除商圈会员优惠策略
+	public boolean deleteSuperVipStrategy(String district) {
+		VipStrategyVO vipStrategyVO = getVipstrategy(district);
+		ArrayList<VipVO> vipVOs = vipStrategyVO.getVipStrategyVOList();
+		try {
+			for(VipVO vo:vipVOs){
+				service.deleteSupVip(new SuperVipPO(vo));
+			}
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;               
+		}
+	}
+
+
+    
 }

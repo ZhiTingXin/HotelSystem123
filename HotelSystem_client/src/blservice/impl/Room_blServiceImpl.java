@@ -11,7 +11,12 @@ import data.service.RoomDataService;
 public class Room_blServiceImpl implements Room_blService{
 
 	RoomDataService roomDataService = RemoteHelper.getInstance().getRoomDataService();
-	@Override
+
+	/**
+	 * @param 酒店id
+	 * 
+	 * @return 返回旧电脑的所有房间信息
+	 */
 	public ArrayList<HotelRoomInfoVO> getAllRoom(String hotelid) {
 		ArrayList<HotelRoomInfoVO> roomInfoVOs = new ArrayList<HotelRoomInfoVO>();
 		try{
@@ -25,7 +30,12 @@ public class Room_blServiceImpl implements Room_blService{
 		return roomInfoVOs;
 	}
 
-	@Override
+	/**
+	 * @param 房间id
+	 * 
+	 * @return 
+	 * 返回对应的房间的信息
+	 */
 	public HotelRoomInfoVO findRoom(String roomID) {
 		try{
 			RoomPO roomPO = roomDataService.findRoomPO(roomID);
@@ -36,7 +46,12 @@ public class Room_blServiceImpl implements Room_blService{
 		}
 	}
 
-	@Override
+	/**
+	 * @param 房间的信息
+	 * 
+	 * @return 
+	 * 修改房间信息
+	 */
 	public boolean modify(HotelRoomInfoVO room) {
 	    try{
 	    	RoomPO roomPO = new RoomPO(room);
@@ -48,7 +63,12 @@ public class Room_blServiceImpl implements Room_blService{
 		}
 	}
 
-	@Override
+	/**
+	 * @param 房间信息
+	 * 
+	 * @return 
+	 * 添加房间
+	 */
 	public boolean addRoom(HotelRoomInfoVO room) {
 		try{
 	    	RoomPO roomPO = new RoomPO(room);

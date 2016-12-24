@@ -1,6 +1,8 @@
 package VO;
 
 import PO.SystemStaffPO;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
 
 public class SystemStaffVO {
@@ -10,6 +12,16 @@ public class SystemStaffVO {
 	private String businessDistrict;
 	private String password;
 	private String phone;
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 
 	public SystemStaffVO() {
 		super();
@@ -67,4 +79,19 @@ public class SystemStaffVO {
 		this.phone = phone;
 	}
 
+	/**
+	 * UI 
+	 */
+	public StringProperty getSystemStaffIDProperty() {
+		return new SimpleStringProperty(this.id);
+	}
+	public StringProperty getSystemSatffNameProperty() {
+		return new SimpleStringProperty(this.username);
+	}
+	public StringProperty getSystemStaffIdentity() {
+		return new SimpleStringProperty("网站营销人员");
+	}
+	public StringProperty getSystemStaffDistrict() {
+		return new SimpleStringProperty(this.businessDistrict);
+	}
 }

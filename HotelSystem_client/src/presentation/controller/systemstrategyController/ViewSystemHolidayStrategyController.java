@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
+import other.StrategyState;
 
 public class ViewSystemHolidayStrategyController {
 
@@ -60,7 +61,11 @@ public class ViewSystemHolidayStrategyController {
 		startDate.setText(util.DateUtil.format(systemStrategyVO.getBegin_date()));
 		endDate.setText(util.DateUtil.format(systemStrategyVO.getEnd_date()));
 		discountForCustomer.setText(String.valueOf(systemStrategyVO.getDiscount()));
-		state.setText(String.valueOf(systemStrategyVO.getStrategyState()));
+		if (systemStrategyVO.getStrategyState()==StrategyState.open) {
+			state.setText("∆Ù”√");
+		} else {
+			state.setText("πÿ±’");
+		}
 	}
 
 	@FXML 

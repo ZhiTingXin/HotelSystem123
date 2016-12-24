@@ -1,5 +1,7 @@
 package presentation.controller.systemstrategyController;
 
+import java.util.Optional;
+
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import blservice.SystemStrategy_blservice;
@@ -8,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
@@ -90,8 +93,10 @@ public class AddSystemOtherStrategyController {
 			alert.setTitle("恭喜");
 			alert.setHeaderText("新增成功");
 			alert.setContentText("您已成功新增一条优惠信息！");
-			alert.showAndWait();
-			// TODO 返回到查看界面
+			Optional<ButtonType> aOptional = alert.showAndWait();
+			if(aOptional.get()==ButtonType.OK){
+				mainScene.showSystemStrategyViewScene(systemStaffVO);
+			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");

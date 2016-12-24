@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import presentation.controller.adviceFeedBackController.CustomerAdviceInfoController;
 import presentation.controller.adviceFeedBackController.CustomerAdviceViewController;
 import presentation.controller.adviceFeedBackController.CustomerCreateAdviceController;
+import presentation.controller.adviceFeedBackController.SystemStaffAdviceViewController;
+import presentation.controller.adviceFeedBackController.SystemStaffAdviceViewSpecController;
 import presentation.controller.hotelController.BookHotelController;
 import presentation.controller.hotelController.HotelInfoController;
 import presentation.controller.hotelController.HotelStaffHotelInfoModifyController;
@@ -53,6 +55,8 @@ import presentation.controller.systemstrategyController.SystemStrategyViewContro
 import presentation.controller.systemstrategyController.SystemVIPStrategyModifyController;
 import presentation.controller.systemstrategyController.ViewSystemHolidayStrategyController;
 import presentation.controller.systemstrategyController.ViewSystemMemberStrategyController;
+import presentation.controller.systemstrategyController.ViewSystemOtherStrategyController;
+import presentation.controller.systemstrategyController.ViewSystemVIPStrategyController;
 import presentation.controller.userInfoController.CustomerInfoController;
 import presentation.controller.userInfoController.CustomerInfoModifyController;
 import presentation.controller.userInfoController.CustomerMemberModifyController;
@@ -68,6 +72,7 @@ import presentation.controller.userInfoController.SystemStaffInfoModifyControlle
 import presentation.controller.userInfoController.SystemStaffPasswordModifyController;
 import presentation.controller.userManagementController.CustomerManagementController;
 import presentation.controller.userManagementController.HotelStaffManagementController;
+import presentation.controller.userManagementController.SystemManagerAddSystemStaffController;
 import presentation.controller.userManagementController.SystemManagerCustomerInfoModifyController;
 import presentation.controller.userManagementController.SystemManagerCustomerInfoViewController;
 import presentation.controller.userManagementController.SystemManagerHotelStaffInfoModifyController;
@@ -1045,6 +1050,29 @@ public class Main extends Application {
 	 * @param systemStaffVO
 	 * 
 	 */
+	public void showViewSystemVIPStrategyScene(SystemStaffVO systemStaffVO,SystemStrategyVO systemStrategyVO) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/systemStrategy_ui/ViewSystemVIPStrategyScene.fxml"));
+			AnchorPane ViewSystemVIPStrategyScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(ViewSystemVIPStrategyScene);
+
+			// get Controller
+			ViewSystemVIPStrategyController viewSystemVIPStrategyController = loader.getController();
+			viewSystemVIPStrategyController.initilize(this, systemStaffVO,systemStrategyVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * show 网站营销人员 新增VIP会员系统促销策略界面
+	 * 
+	 * @param systemStaffVO
+	 * 
+	 */
 	public void showAddSystemVIPStrategyScene(SystemStaffVO systemStaffVO) {
 		try {
 			this.initRootLayout();
@@ -1085,6 +1113,28 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * show 网站营销人员 查看其他系统促销策略界面
+	 * 
+	 * @param systemStaffVO,systemStrategyVO
+	 */
+	public void showViewSystemOtherStrategyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/systemStrategy_ui/ViewSystemOtherStrategyScene.fxml"));
+			AnchorPane SystemOtherStrategyModifyScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemOtherStrategyModifyScene);
+
+			// get Controller
+			ViewSystemOtherStrategyController ViewSystemOtherStrategyController = loader.getController();
+			ViewSystemOtherStrategyController.initilize(this, systemStaffVO, systemStrategyVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * show 网站营销人员 修改其他系统促销策略界面
 	 * 
@@ -1400,7 +1450,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * show 网站管理人员 查看system staff信息
+	 * show 网站管理人员 修改system staff信息
 	 * 
 	 * @param
 	 */
@@ -1423,6 +1473,27 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * show 网站管理人员 新增system staff信息
+	 * 
+	 * @param
+	 */
+	public void showSystemManagerAddSystemStaffScene(SystemManagerVO systemManagerVO) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class
+					.getResource("/presentation/view/userManagement_ui/SystemManagerAddSystemStaffScene.fxml"));
+			AnchorPane SystemManagerCustomerInfoViewScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemManagerCustomerInfoViewScene);
+
+			SystemManagerAddSystemStaffController systemManagerAddSystemStaffViewController = loader
+					.getController();
+			systemManagerAddSystemStaffViewController.showSystemManagerAddSystemStaff(this,systemManagerVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	/**
 	 * show 网站管理人员 注册酒店
 	 * 
@@ -1452,7 +1523,7 @@ public class Main extends Application {
 	 */
 	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO, HotelStaffVO hotelStaffVO) {
 		try {
-			this.initRootLayout();
+			
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class
 					.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
@@ -1531,6 +1602,47 @@ public class Main extends Application {
 			// get Controller
 			SystemManagerPasswordModifyController SystemManagerPasswordModifyController = loader.getController();
 			SystemManagerPasswordModifyController.initialize(this, systemManager);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param staffVO
+	 * 显示网站营销人员查看反馈信息界面
+	 */
+	public void showSystemStaffAdviceViewScene(SystemStaffVO staffVO) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/adviceFeedBack_ui/SystemStaffAdviceViewScene.fxml"));
+			AnchorPane SystemStaffAdviceViewScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemStaffAdviceViewScene);
+
+			SystemStaffAdviceViewController adviceViewController = loader.getController();
+			adviceViewController.initialize(this, staffVO);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 
+	 * @param staffVO
+	 * 网站管理人员查看反馈详细信息并回复
+	 */
+	public void showSystemStaffAdviceViewSpecScene(SystemStaffVO staffVO,AdviceFeedBackVO advice) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/adviceFeedBack_ui/SystemStaffAdviceViewSpecScene.fxml"));
+			AnchorPane SystemStaffAdviceViewSpecScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemStaffAdviceViewSpecScene);
+
+			SystemStaffAdviceViewSpecController adviceViewSpecController = loader.getController();
+			adviceViewSpecController.initialize(this,advice,staffVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

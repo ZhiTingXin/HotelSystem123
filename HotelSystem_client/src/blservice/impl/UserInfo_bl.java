@@ -15,6 +15,11 @@ import other.PassWordMd5;
 
 public class UserInfo_bl implements UserInfo_blservice{
 
+	/**
+	 * @param 客户信息
+	 * 
+	 * @return 修改客户信息
+	 */
 	public boolean modifyCustomer(CustomerVO customerVO) {
 		CustomerPO customerPO = new CustomerPO(customerVO);
 		try{
@@ -25,6 +30,11 @@ public class UserInfo_bl implements UserInfo_blservice{
 		}
 	}
 
+	/**
+	 * @param 酒店工作人员信息
+	 * 
+	 * @return 修改酒店工作人员信息
+	 */
 	public boolean modifyHotelStaff(HotelStaffVO hotelStaffVO) {
 		try{
 		HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO);
@@ -35,6 +45,11 @@ public class UserInfo_bl implements UserInfo_blservice{
 		}
 	}
 
+	/**
+	 * @param 网站营销人员信息 
+	 * 
+	 * @return 修改网站营销人员信息
+	 */
 	public boolean modifySystemStaff(SystemStaffVO systemStaffVO) {
 		try{
 			SystemStaffPO systemStaffPO = new SystemStaffPO(systemStaffVO);
@@ -45,6 +60,11 @@ public class UserInfo_bl implements UserInfo_blservice{
 		}
 	}
 
+	/**
+	 * @param 网站管理人员信息
+	 * 
+	 * @return 修改网站管理人员信息
+	 */
 	public boolean modifySystemManager(SystemManagerVO systemManagerVO) {
 		try {
 			SystemManagerPO systemManagerPO = new SystemManagerPO(systemManagerVO);
@@ -55,6 +75,11 @@ public class UserInfo_bl implements UserInfo_blservice{
 		}
 	}
 
+	/**
+	 * @param id 和密码
+	 * 
+	 * @return 修改用户的密码
+	 */
 	public boolean modifyPassword(String userId, String password) {
 		try {
 			LoginPO loginPO1 = RemoteHelper.getInstance().getLoginDataService().findByID(userId);

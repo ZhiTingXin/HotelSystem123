@@ -1,17 +1,9 @@
 package Test;
 
-import java.util.ArrayList;
-
-import PO.RoomPO;
-import RMI.RemoteHelper;
 import VO.SystemStaffVO;
-import blservice.Login_blservice;
-import blservice.impl.Login_bl;
+import blservice.UserManagement_blservice;
 import blservice.impl.UserManagement_bl;
-import data.service.RoomDataService;
 import main.ClientRunner;
-import other.PassWordMd5;
-import other.UserType;
 
 //import other.AdviceFeedBackState;
 //import util.DateUtil;
@@ -21,7 +13,7 @@ public class gernerateID {
 //	   /*
 //	    * 注册的测试代码
 //	    */
-//	   ClientRunner clientRunner = new ClientRunner();
+	   ClientRunner clientRunner = new ClientRunner();
 //	   Login_blservice login_blservice = new Login_bl();
 //	   /*
 //	    * 测试修改密码
@@ -80,8 +72,15 @@ public class gernerateID {
 //	   staffVO.setBusinessDistrict("新街口");
 //	   UserManagement_bl userManagement_bl = new UserManagement_bl();
 //	   userManagement_bl.addSystemStaff(staffVO);
-	   String string = "12345";
-	   String  string2 = PassWordMd5.EncryptionStr16(string,PassWordMd5.MD5,PassWordMd5.UTF8);
-	   System.out.println(string2);
+//	   String string = "12345";
+//	   String  string2 = PassWordMd5.EncryptionStr16(string,PassWordMd5.MD5,PassWordMd5.UTF8);
+//	   System.out.println(string2);
+	   SystemStaffVO staffVO = new SystemStaffVO();
+	   staffVO.setBusinessDistrict("南京");
+	   staffVO.setPassword("a");
+	   staffVO.setPhone("12345");
+	   staffVO.setUsername("chen");
+	   UserManagement_blservice userManagement_blservice  = new  UserManagement_bl();
+	   userManagement_blservice.addSystemStaff(staffVO);
    }
 }

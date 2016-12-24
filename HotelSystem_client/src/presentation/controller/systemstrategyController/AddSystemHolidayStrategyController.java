@@ -2,13 +2,17 @@ package presentation.controller.systemstrategyController;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import blservice.SystemStrategy_blservice;
 import blservice.impl.SystemStrategy_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -20,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import main.Main;
 import other.StrategyState;
+import other.SystemStrategyType;
 
 public class AddSystemHolidayStrategyController {
 
@@ -118,6 +123,7 @@ public class AddSystemHolidayStrategyController {
 
 	@FXML // 修改按钮 TODO 判断输入合法+提示框
 	private void handleSave() {
+		
 		String systemStaffId = systemStaffVO.getId();
 		String strategyName = nameOfStrategy.getText();
 		String strategyDescription = descriptionOfStrategy.getText();
@@ -132,6 +138,7 @@ public class AddSystemHolidayStrategyController {
 		}
 		// 构造函数
 		SystemStrategyVO newSystemStrategyVO = new SystemStrategyVO();
+		newSystemStrategyVO.setSystemStrategyType(SystemStrategyType.HOLIDAY);
 		newSystemStrategyVO.setBegin_date(big_Date);
 		newSystemStrategyVO.setDiscount(discount);
 		newSystemStrategyVO.setEnd_date(end_Date);
@@ -139,7 +146,21 @@ public class AddSystemHolidayStrategyController {
 		newSystemStrategyVO.setSystemStrategyDescription(strategyDescription);
 		newSystemStrategyVO.setSystemStrategyName(strategyName);
 		newSystemStrategyVO.setStrategyState(strategyState);
-		systemStrategy_blservice.makeSystemStrategy(newSystemStrategyVO);
+		boolean isSuc = systemStrategy_blservice.makeSystemStrategy(newSystemStrategyVO);
+		if(isSuc){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("恭喜");
+			alert.setContentText("您已成功新增了一个节日优惠策略");
+			Optional<ButtonType> ok = alert.showAndWait();
+			if(ok.get()==ButtonType.OK){
+				mainScene.showSystemStrategyViewScene(systemStaffVO);
+			}
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("抱歉");
+			alert.setContentText("对不起，新增失败");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML // 取消修改并返回

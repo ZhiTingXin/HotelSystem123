@@ -6,11 +6,16 @@ import PO.SystemStrategyPO;
 import RMI.RemoteHelper;
 import VO.SystemStrategyVO;
 import blservice.SystemStrategy_blservice;
-import data.service.SystemStrategyDataService;
 import other.SystemStrategyType;
 
 public class SystemStrategy_bl implements SystemStrategy_blservice{
 
+	/**
+	 * @param 
+	 * 
+	 * @return 
+	 * 返回所有的网站营销策略
+	 */
 	public ArrayList<SystemStrategyVO> getAllSystemStrategys() {
 		ArrayList<SystemStrategyVO> list = new ArrayList<SystemStrategyVO>();
 		try{
@@ -26,6 +31,12 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 		return list;
 	}
 
+	/**
+	 * @param 网站营销策略的信息
+	 * 
+	 * @return 
+	 * 修改网站营销策略
+	 */
 	public boolean modifySystemStrategy(SystemStrategyVO systemstrategyvo) {
 		try {
 			SystemStrategyPO systemStrategyPO = new SystemStrategyPO(systemstrategyvo);
@@ -36,6 +47,12 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 		}
 	}
 
+	/**
+	 * @param 网站营销策略信息
+	 * 
+	 * @return 
+	 * 添加网站营销策略
+	 */
 	public boolean makeSystemStrategy(SystemStrategyVO systemstrategyvo) {
 		try {
 			SystemStrategyPO systemStrategyPO = new SystemStrategyPO(systemstrategyvo);
@@ -46,6 +63,12 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 		}
 	}
 
+	/**
+	 * @param 网站营销策略信息
+	 * 
+	 * @return 
+	 * 删除网站营销策略
+	 */
 	public boolean deleteSystemStrategy(SystemStrategyVO systemStrategyVO) {
 		try {
 			SystemStrategyPO strategyPO = new SystemStrategyPO(systemStrategyVO);
@@ -56,6 +79,11 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 		}
 	}
 
+	/**
+	 * @param 网站营销策略的类型
+	 * 
+	 * @return 类型对应的所有的网站营销策略
+	 */
 	public ArrayList<SystemStrategyVO> getSystemStrategys(SystemStrategyType systemStrategyType) {
 		ArrayList<SystemStrategyVO> strategyVOs = new ArrayList<SystemStrategyVO>();
 	    try{
@@ -68,21 +96,6 @@ public class SystemStrategy_bl implements SystemStrategy_blservice{
 		    e.printStackTrace();
 		}
 	    return strategyVOs;
-	}
 
-	@Override
-	public ArrayList<SystemStrategyVO> getSystemStrategy(SystemStrategyType systemStrategyType) {
-		SystemStrategyDataService service = RemoteHelper.getInstance().getSystemStrategyDataService();
-		ArrayList<SystemStrategyVO> strategyVOs = new ArrayList<SystemStrategyVO>();
-		try {
-			ArrayList<SystemStrategyPO> systemStrategyPOs = service.getSystemStrategys(systemStrategyType);
-			for(SystemStrategyPO po:systemStrategyPOs){
-				strategyVOs.add(new SystemStrategyVO(po));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return strategyVOs;
 	}
-
 }

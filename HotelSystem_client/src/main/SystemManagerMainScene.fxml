@@ -24,7 +24,7 @@
                   <Button fx:id="newHotel" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleRegisteNewHotel" prefHeight="39.0" prefWidth="200.0" text="新酒店注册" />
                   <Button fx:id="exit" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleExit" prefHeight="39.0" prefWidth="200.0" text="注销" />
                   <Button fx:id="maintainPersonalInfo" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleMaintainMyInfo" prefHeight="39.0" prefWidth="200.0" text="维护个人信息" />
-                  <Button fx:id="newHotel1" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleRegisteNewHotel" prefHeight="39.0" prefWidth="200.0" text="网站营销人员注册" />
+                  <Button fx:id="newSystemStaff" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleRegisterNewSystemStaff" prefHeight="39.0" prefWidth="200.0" text="网站营销人员注册" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -56,7 +56,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="userAmount" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="userNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -66,7 +66,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="onlineUser" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="hotelNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -76,7 +76,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="hotelAmount" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label fx:id="hotelStaffNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -86,16 +86,16 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="orderDone" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Label fx:id="todayOrderNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
                         <Label text="网站营销人员数量" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Label fx:id="systemStaffNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label fx:id="orderNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <Label text="当前日期" />
-                        <Label text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="dateTime" text="Label" GridPane.columnIndex="1" />
                         <Label text="今日订单数量" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>

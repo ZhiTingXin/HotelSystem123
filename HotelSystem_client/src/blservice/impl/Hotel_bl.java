@@ -25,7 +25,7 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param hotelId
 	 * @return 通过hotel的id来检索酒店
 	 */
-	@Override
+
 	public HotelInfoVO getHotelInfo(String hotelId) {
 		try {
 			/*
@@ -45,7 +45,6 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param hotelInfo
 	 * @return 修改酒店的信息，返回是否成功修改酒店的信息
 	 */
-	@Override
 	public boolean modifyHotelInfo(HotelInfoVO hotelInfo) {
 		HotelPO hotelPO = new HotelPO(hotelInfo);
 		try {
@@ -62,7 +61,6 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param strict
 	 * @return 返回商圈内的全部酒店
 	 */
-	@Override
 	public ArrayList<HotelInfoVO> getListOfHotel(String strict) {
 
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
@@ -100,7 +98,6 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param hotel
 	 * @return 添加酒店信息，返回是否添加成功
 	 */
-	@Override
 	public boolean addHotel(HotelInfoVO hotel) {
 		HotelPO hotelPO = new HotelPO(hotel);
 		try {
@@ -117,7 +114,6 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param userId用户id
 	 * @return 之前用户完成入住的酒店
 	 */
-	@Override
 	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
@@ -142,7 +138,6 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @return 返回所有酒店名称中含有该字段的酒店
 	 */
 
-	@Override
 	public ArrayList<HotelInfoVO> getHotelFromName(String text) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
@@ -163,7 +158,6 @@ public class Hotel_bl implements Hotel_blservice {
 		Hotel_bl hotel_bl = new Hotel_bl();
 		HotelInfoVO hotel = hotel_bl.getHotelInfo(hotelID);
 		return hotel.getHotelName();
-
 	}
 
 	/**
@@ -171,7 +165,6 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param 酒店的星级
 	 * @return 所有符合条件的酒店
 	 */
-	@Override
 	public ArrayList<HotelInfoVO> getHotelFromGrade(double grade) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
@@ -193,7 +186,6 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param maxPrice
 	 * @return 存在价位在这个范围内的所有酒店
 	 */
-	@Override
 	public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
@@ -214,16 +206,21 @@ public class Hotel_bl implements Hotel_blservice {
 		return hotelInfoVOs;
 	}
 
+	/**
+	 * @param 判断信息是否完整
+	 * @return
+	 * 返回是或者否
+	 */
 	public boolean HotelInfoCompletedComfirm(HotelInfoVO hotel) {
 
 		Room_blService roomService = new Room_blServiceImpl();
 		ArrayList<HotelRoomInfoVO> roomData = roomService.getAllRoom(hotel.getHotelID());
 
-		boolean isAddaressComplete = hotel.getHotelAddress() != null && !hotel.getHotelAddress().equals("");
-		boolean isDescriptionComplete = hotel.getHotelDiscription() != null && !hotel.getHotelDiscription().equals("");
+		boolean isAddaressComplete =  !hotel.getHotelAddress().equals("");
+		boolean isDescriptionComplete = !hotel.getHotelDiscription().equals("");
 		boolean isRoomInfoOK = true;
 
-		if (roomData == null || roomData.size() == 0) {
+		if (roomData.size() == 0) {
 			isRoomInfoOK = false;
 		} else {
 			int count = 0;

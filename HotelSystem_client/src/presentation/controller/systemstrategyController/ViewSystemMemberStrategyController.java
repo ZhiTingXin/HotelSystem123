@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
+import other.SystemStrategyType;
 
 public class ViewSystemMemberStrategyController {
 
@@ -74,10 +75,10 @@ public class ViewSystemMemberStrategyController {
 		// 左栏
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
-		SystemHolidayStrategyModifyShow(mainScene);
+		ViewSystemHolidayStrategyShow(mainScene);
 	}
 
-	public void SystemHolidayStrategyModifyShow(Main mainScene) {
+	public void ViewSystemHolidayStrategyShow(Main mainScene) {
 		// 右栏
 		nameOfStrategy.setText(systemStrategyVO.getSystemStrategyName());
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
@@ -96,17 +97,21 @@ public class ViewSystemMemberStrategyController {
 		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
 
 		memberStrategyTable.setItems(vipVOData);
-
+		// 策略的状态
+		if (systemStrategyVO.getStrategyState() == StrategyState.open) {
+			state.setText("启用");
+		} else {
+			state.setText("关闭");
+		}
 	}
 
 	@FXML // 保存修改信息
 	private void handleModify() {
-
+		mainScene.showSystemMemberStrategyModifyScene(systemStaffVO, systemStrategyVO);
 	}
 
 	@FXML // 取消修改并返回
 	private void handleCancel() {
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
 	}
-
 }

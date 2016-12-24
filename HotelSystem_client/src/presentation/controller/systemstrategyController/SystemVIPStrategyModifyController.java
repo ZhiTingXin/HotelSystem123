@@ -114,6 +114,7 @@ public class SystemVIPStrategyModifyController {
 
 		// 初始化表格
 		String district = districtA.getText();
+		districtName.setText(district);
 		vipVOData.clear();
 		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
 		for (VipVO vipVO : vipVOs) {
@@ -137,6 +138,7 @@ public class SystemVIPStrategyModifyController {
 	private void handleDistrictB() {
 		
 		String district = districtB.getText();
+		districtName.setText(district);
 		vipVOData.clear();// 清空
 		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
 		for (VipVO vipVO : vipVOs) {

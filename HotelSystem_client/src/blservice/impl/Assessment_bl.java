@@ -11,7 +11,11 @@ public class Assessment_bl implements Assessment_blService {
 
 	AssessmentDataService dataService = RemoteHelper.getInstance().getAssessmentDataService();
 
-	@Override
+	/**
+	 * @param assementVO
+	 * @return
+	 * 添加评价信息 
+	 */
 	public boolean addAssessment(AssementVO assementVO) {
 		try {
 			AssessmentPO assessmentPO = new AssessmentPO(assementVO);
@@ -23,7 +27,11 @@ public class Assessment_bl implements Assessment_blService {
 		}
 	}
 
-	@Override
+	/**
+	 * @param  酒店id
+	 * @return 
+	 * 返回对于酒店的所有评价
+	 */
 	public ArrayList<AssementVO> getAllHotelAss(String hotelid) {
 		ArrayList<AssementVO> assementVOs = new ArrayList<AssementVO>();
 		try {
@@ -37,7 +45,11 @@ public class Assessment_bl implements Assessment_blService {
 		return assementVOs;
 	}
 
-	@Override
+	/**
+	 * @param  客户id
+	 * @return 
+	 * 返回客户的所有评价
+	 */
 	public ArrayList<AssementVO> getUserAss(String userId) {
 		ArrayList<AssementVO> arrayList = new ArrayList<AssementVO>();
 		try{
@@ -51,7 +63,11 @@ public class Assessment_bl implements Assessment_blService {
 		return arrayList;
 	}
 
-	@Override
+	/**
+	 * @param  
+	 * @return 
+	 * 删除评价
+	 */
 	public boolean delAss(AssementVO assementVO) {
 		try {
 			AssessmentPO assessmentPO = new AssessmentPO(assementVO);
@@ -63,7 +79,11 @@ public class Assessment_bl implements Assessment_blService {
 		}
 	}
 
-	@Override
+	/**
+	 * @param  订单号
+	 * @return 
+	 * 获得订单对应的评价
+	 */
 	public AssementVO getAss(String orderid) {
 		try{
 			AssessmentPO assessmentPO = dataService.getAssessment(orderid);
