@@ -78,10 +78,11 @@ public class RegisterController {
 		} else if (!isPasswordRight) {
 			this.errorLabel.setVisible(true);
 			this.errorLabel.setText("请输入密码！");
-		}	if (!isPasswordReady) {
+		}
+		if (!isPasswordReady) {
 			this.errorLabel.setVisible(true);
 			this.errorLabel.setText("两次输入的密码不一致！");
-		} 
+		}
 		if (isPasswordReady && isNameReady && isPasswordRight == true) {
 			// bl层创建新用户
 			{
@@ -89,6 +90,7 @@ public class RegisterController {
 				customer.setUsername(userNameInField);
 				customer.setPassword(userPasswordConfirmInField);
 				customer.setPhone(phone);
+				customer.setCredit(300);
 				if (userBirthday != null) {
 					customer.setBirthday(userBirthday);
 				}

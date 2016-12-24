@@ -26,6 +26,8 @@ public class HotelStaffOrderViewController {
 	@FXML
 	private Label leftNameLabel;
 	@FXML
+	private Label stateLabel;
+	@FXML
 	private Button viewOrderInfo;// 查看订单详情
 	@FXML
 	private Button Undo;// 未执行
@@ -77,7 +79,7 @@ public class HotelStaffOrderViewController {
 		this.hotelStaff = hotelStaff;
 		this.orderService = new Order_bl();
 
-		this.orderList = this.orderService.getUnfinishedOrders(this.hotelStaff.getHotelId());
+		this.orderList = this.orderService.getHotelUndoOrderList(this.hotelStaff.getHotelId());
 		this.refreshTable();
 
 		this.orderType.setText("未执行订单列表");
@@ -91,14 +93,18 @@ public class HotelStaffOrderViewController {
 
 	// 订单详细信息按钮监听方法
 	public void handleViewOrderInfo() {
-		int focus = 0;
-		focus = this.orderTable.getSelectionModel().getFocusedIndex();
-		this.mainScene.showHotelStaffManagementOrderScene(hotelStaff, this.orderList.get(focus));
+		try {
+			int focus = 0;
+			focus = this.orderTable.getSelectionModel().getFocusedIndex();
+			this.mainScene.showHotelStaffManagementOrderScene(hotelStaff, this.orderList.get(focus));
+		} catch (Exception e) {
+			this.stateLabel.setText("未选择任何订单！");;
+		}
 	}
 
 	// 未完成订单列表按钮监听方法
 	public void handleUndo() {
-		this.orderList = this.orderService.getUnfinishedOrders(this.hotelStaff.getHotelId());
+		this.orderList = this.orderService.getHotelUndoOrderList(this.hotelStaff.getHotelId());
 		this.refreshTable();
 		this.orderType.setText("未执行订单列表");
 	}
@@ -113,7 +119,7 @@ public class HotelStaffOrderViewController {
 
 	// 异常订单列表按钮监听方法
 	public void handleException() {
-		this.orderList = this.orderService.getAbnomalOrders(this.hotelStaff.getHotelId());
+		this.orderList = this.orderService.getHotelAbnormalOrderList(this.hotelStaff.getHotelId());
 		this.refreshTable();
 		this.orderType.setText("异常订单列表");
 	}
@@ -124,6 +130,7 @@ public class HotelStaffOrderViewController {
 		int count = 0;
 		while (count < this.orderList.size()) {
 			this.orderData.add(this.orderList.get(count));
+			count++;
 		}
 		this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
 		this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIDProperty());

@@ -45,19 +45,19 @@ public class CustomerHotelAssessmentController {
 	private MenuButton tagReviews;// 标签评价
 	@FXML
 	private MenuItem confortableTag;
-	@FXML
-	private MenuItem unConfortableTag;
-	@FXML
-	private MenuItem cheapTag;
-	@FXML
-	private MenuItem expensiveTag;
+//	@FXML
+//	private MenuItem unConfortableTag;
+//	@FXML
+//	private MenuItem cheapTag;
+//	@FXML
+//	private MenuItem expensiveTag;
 
-	@FXML
-	private Label Tag1;// 已添加标签
-	@FXML
-	private Label Tag2;
-	@FXML
-	private Label Tag3;
+//	@FXML
+//	private Label Tag1;// 已添加标签
+//	@FXML
+//	private Label Tag2;
+//	@FXML
+//	private Label Tag3;
 	@FXML
 	private TextArea assessmentTextArea;
 
@@ -124,18 +124,18 @@ public class CustomerHotelAssessmentController {
 		this.starRank = 5;
 	}
 
-	public void handleComfortableTag() {
-	}
-
-	public void handleUncomfortableTag() {
-
-	}
-
-	public void handleCheapTag() {
-
-	}
-
-	public void handleExpensiveTag() {
-
-	}
+	// public void handleComfortableTag() {
+	// }
+	//
+	// public void handleUncomfortableTag() {
+	//
+	// }
+	//
+	// public void handleCheapTag() {
+	//
+	// }
+	//
+	// public void handleExpensiveTag() {
+	//
+	// }
 }
