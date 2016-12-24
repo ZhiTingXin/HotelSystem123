@@ -89,6 +89,7 @@ public class Main extends Application {
 	private BorderPane loginLayout;
 	private BorderPane registerLayout;
 
+	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("HotelSystem");
@@ -114,7 +115,7 @@ public class Main extends Application {
 			LoginController LoginController = loader.getController();
 			LoginController.initialize(this);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -134,7 +135,7 @@ public class Main extends Application {
 			RegisterController RegisterController = loader.getController();
 			RegisterController.initialize(this);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -146,7 +147,7 @@ public class Main extends Application {
 	 *            接受从其他界面传过来的CustomerVO 对象作为参数
 	 */
 	public void showCustomerInfoScene(CustomerVO customer) {
-		
+
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -158,7 +159,7 @@ public class Main extends Application {
 			CustomerInfoController customerInfoController = loader.getController();
 			customerInfoController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -181,7 +182,7 @@ public class Main extends Application {
 			CustomerInfoModifyController customerInfoModifyController = loader.getController();
 			customerInfoModifyController.initialize(this, customer);
 		} catch (IOException e) {
-		
+
 			e.printStackTrace();
 		}
 	}
@@ -205,7 +206,7 @@ public class Main extends Application {
 			CustomerPasswordModifyController customerPasswordModifyController = loader.getController();
 			customerPasswordModifyController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -228,7 +229,7 @@ public class Main extends Application {
 			CustomerMemberModifyController customerMemberModifyController = loader.getController();
 			customerMemberModifyController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -252,7 +253,7 @@ public class Main extends Application {
 			HotelStaffInfoController HotelStaffInfoController = loader.getController();
 			HotelStaffInfoController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -275,7 +276,7 @@ public class Main extends Application {
 			HotelStaffInfoModifyController HotelStaffInfoModifyController = loader.getController();
 			HotelStaffInfoModifyController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -299,7 +300,7 @@ public class Main extends Application {
 			HotelStaffPasswordModifyController HotelStaffPasswordModifyController = loader.getController();
 			HotelStaffPasswordModifyController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -321,7 +322,7 @@ public class Main extends Application {
 			CustomerMainController CustomerMainController = loader.getController();
 			CustomerMainController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -346,7 +347,7 @@ public class Main extends Application {
 			BookHotelController BookHotelController = loader.getController();
 			BookHotelController.initialize(this, customer, hotel);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -369,7 +370,7 @@ public class Main extends Application {
 			HotelInfoController HotelInfoController = loader.getController();
 			HotelInfoController.initialize(this, customer, hotel);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -391,7 +392,7 @@ public class Main extends Application {
 			HotelViewController HotelViewController = loader.getController();
 			HotelViewController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -413,7 +414,7 @@ public class Main extends Application {
 			CustomerOrderViewController CustomerOrderViewController = loader.getController();
 			CustomerOrderViewController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -425,7 +426,7 @@ public class Main extends Application {
 	 * @param orderVO
 	 */
 	public void showCustomerOrderInfoViewScene(CustomerVO customer, OrderVO orderVO) {
-		
+
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -437,7 +438,7 @@ public class Main extends Application {
 			CustomerOrderInfoViewController CustomerOrderInfoViewController = loader.getController();
 			CustomerOrderInfoViewController.initialize(this, customer, orderVO);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -450,7 +451,7 @@ public class Main extends Application {
 	 * @param order
 	 */
 	public void showHotelAssessmentScene(CustomerVO customer, HotelInfoVO hotel, OrderVO order) {
-		
+
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -462,7 +463,7 @@ public class Main extends Application {
 			CustomerHotelAssessmentController CustomerHotelAssessmentController = loader.getController();
 			CustomerHotelAssessmentController.initialize(this, customer, hotel, order);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -473,7 +474,7 @@ public class Main extends Application {
 	 * @param customer
 	 */
 	public void showCustomerAdviceViewScene(CustomerVO customer) {
-		
+
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -486,7 +487,7 @@ public class Main extends Application {
 			CustomerAdviceViewController CustomerAdviceViewController = loader.getController();
 			CustomerAdviceViewController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -497,7 +498,7 @@ public class Main extends Application {
 	 * @param customer
 	 */
 	public void showCustomerAdviceInfoScene(CustomerVO customer, AdviceFeedBackVO advice) {
-		
+
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -510,7 +511,7 @@ public class Main extends Application {
 			CustomerAdviceInfoController CustomerAdviceInfoController = loader.getController();
 			CustomerAdviceInfoController.initialize(this, customer, advice);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -521,7 +522,7 @@ public class Main extends Application {
 	 * @param customer
 	 */
 	public void showCustomerCreateAdviceScene(CustomerVO customer) {
-		
+
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -534,7 +535,7 @@ public class Main extends Application {
 			CustomerCreateAdviceController CustomerCreateAdviceController = loader.getController();
 			CustomerCreateAdviceController.initialize(this, customer);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -556,7 +557,7 @@ public class Main extends Application {
 			HotelStaffMainController HotelStaffMainController = loader.getController();
 			HotelStaffMainController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -578,7 +579,7 @@ public class Main extends Application {
 			HotelStaffOrderViewController HotelStaffOrderViewController = loader.getController();
 			HotelStaffOrderViewController.initialize(this, hotelStaff);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -602,7 +603,7 @@ public class Main extends Application {
 			HotelStaffManagementOrderController HotelStaffManagementOrderController = loader.getController();
 			HotelStaffManagementOrderController.initialize(this, hotelStaff, order);
 		} catch (IOException e) {
-		
+
 			e.printStackTrace();
 		}
 	}
@@ -624,7 +625,7 @@ public class Main extends Application {
 			HotelStaffHotelInfoViewController HotelStaffHotelInfoViewController = loader.getController();
 			HotelStaffHotelInfoViewController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -647,7 +648,7 @@ public class Main extends Application {
 			HotelStaffHotelInfoModifyController HotelStaffHotelInfoModifyController = loader.getController();
 			HotelStaffHotelInfoModifyController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -670,7 +671,7 @@ public class Main extends Application {
 			HotelStrategyViewController HotelStrategyViewController = loader.getController();
 			HotelStrategyViewController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -694,7 +695,7 @@ public class Main extends Application {
 			HotelStrategyModifyController HotelStrategyModifyController = loader.getController();
 			HotelStrategyModifyController.initialize(this, hotelStaff, hotelStrategy, hotel);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -717,7 +718,7 @@ public class Main extends Application {
 			HotelStrategyNewController HotelStrategyNewController = loader.getController();
 			HotelStrategyNewController.initialize(this, hotelStaff, hotel);
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
@@ -740,7 +741,7 @@ public class Main extends Application {
 			SystemStaffMainController SystemStaffMainController = loader.getController();
 			SystemStaffMainController.initialize(this, systemStaffVO);
 		} catch (IOException e) {
-	
+
 			e.printStackTrace();
 		}
 	}
@@ -835,9 +836,7 @@ public class Main extends Application {
 	}
 
 	/**
-<<<<<<< HEAD
-=======
-	 * show 网站营销人员 查看系统促销策略界面
+	 * <<<<<<< HEAD ======= show 网站营销人员 查看系统促销策略界面
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -869,8 +868,8 @@ public class Main extends Application {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class
-					.getResource("/presentation/view/systemStrategy_ui/ViewSystemHolidayStrategyScene.fxml"));
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/systemStrategy_ui/ViewSystemHolidayStrategyScene.fxml"));
 			AnchorPane ViewSystemHolidayStrategyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(ViewSystemHolidayStrategyScene);
 
@@ -881,6 +880,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * show 网站营销人员 修改节日系统促销策略界面
 	 * 
@@ -914,8 +914,8 @@ public class Main extends Application {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class
-					.getResource("/presentation/view/systemStrategy_ui/AddSystemHolidayStrategyScene.fxml"));
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/systemStrategy_ui/AddSystemHolidayStrategyScene.fxml"));
 			AnchorPane AddSystemHolidayStrategyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(AddSystemHolidayStrategyScene);
 
@@ -933,23 +933,23 @@ public class Main extends Application {
 	 * @param systemStaffVO
 	 * 
 	 */
-	public void showViewSystemMemberStrategyScene(SystemStaffVO systemStaffVO,SystemStrategyVO systemStrategyVO) {
+	public void showViewSystemMemberStrategyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class
-					.getResource("/presentation/view/systemStrategy_ui/ViewSystemMemberStrategyScene.fxml"));
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/systemStrategy_ui/ViewSystemMemberStrategyScene.fxml"));
 			AnchorPane SystemMemberStrategyModifyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemMemberStrategyModifyScene);
 
 			// get Controller
 			ViewSystemMemberStrategyController viewSystemMemberStrategyController = loader.getController();
-			viewSystemMemberStrategyController.initilize(this, systemStaffVO,systemStrategyVO);
+			viewSystemMemberStrategyController.initilize(this, systemStaffVO, systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * show 网站营销人员 新增会员系统促销策略界面
 	 * 
@@ -960,8 +960,8 @@ public class Main extends Application {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class
-					.getResource("/presentation/view/systemStrategy_ui/AddSystemMemberStrategyScene.fxml"));
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/systemStrategy_ui/AddSystemMemberStrategyScene.fxml"));
 			AnchorPane SystemMemberStrategyModifyScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemMemberStrategyModifyScene);
 
@@ -1037,7 +1037,7 @@ public class Main extends Application {
 	 * @param systemStaffVO
 	 * 
 	 */
-	public void showViewSystemVIPStrategyScene(SystemStaffVO systemStaffVO,SystemStrategyVO systemStrategyVO) {
+	public void showViewSystemVIPStrategyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1048,12 +1048,12 @@ public class Main extends Application {
 
 			// get Controller
 			ViewSystemVIPStrategyController viewSystemVIPStrategyController = loader.getController();
-			viewSystemVIPStrategyController.initilize(this, systemStaffVO,systemStrategyVO);
+			viewSystemVIPStrategyController.initilize(this, systemStaffVO, systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * show 网站营销人员 新增VIP会员系统促销策略界面
 	 * 
@@ -1121,7 +1121,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * show 网站营销人员 修改其他系统促销策略界面
 	 * 
@@ -1249,7 +1249,7 @@ public class Main extends Application {
 
 			// get Controller
 			SystemManagerMainController SystemManagerMainController = loader.getController();
-			SystemManagerMainController.initilize(this,systemManagerVO);
+			SystemManagerMainController.initilize(this, systemManagerVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1474,13 +1474,13 @@ public class Main extends Application {
 			AnchorPane SystemManagerCustomerInfoViewScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemManagerCustomerInfoViewScene);
 
-			SystemManagerAddSystemStaffController systemManagerAddSystemStaffViewController = loader
-					.getController();
-			systemManagerAddSystemStaffViewController.showSystemManagerAddSystemStaff(this,systemManagerVO);
+			SystemManagerAddSystemStaffController systemManagerAddSystemStaffViewController = loader.getController();
+			systemManagerAddSystemStaffViewController.showSystemManagerAddSystemStaff(this, systemManagerVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * show 网站管理人员 注册酒店
 	 * 
@@ -1497,7 +1497,7 @@ public class Main extends Application {
 
 			// get Controller
 			SystemManagerHotelRegisterController SystemManagerHotelRegisterController = loader.getController();
-			SystemManagerHotelRegisterController.initialize(this,systemManagerVO);
+			SystemManagerHotelRegisterController.initialize(this, systemManagerVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1508,19 +1508,21 @@ public class Main extends Application {
 	 * 
 	 * @param
 	 */
-	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO, HotelStaffVO hotelStaffVO) {
+	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO, HotelInfoVO hotelInfoVO,
+			HotelStaffVO hotelStaffVO) {
 		try {
-			
+
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class
-					.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
 			AnchorPane SystemManagerHotelRegisterShowIDScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemManagerHotelRegisterShowIDScene);
 
 			// get Controller
 			SystemManagerHotelRegisterShowIDController SystemManagerHotelRegisterShowIDController = loader
 					.getController();
-			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this,systemManagerVO,hotelInfoVO,hotelStaffVO);
+			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this, systemManagerVO,
+					hotelInfoVO, hotelStaffVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1593,11 +1595,11 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * @param staffVO
-	 * 显示网站营销人员查看反馈信息界面
+	 *            显示网站营销人员查看反馈信息界面
 	 */
 	public void showSystemStaffAdviceViewScene(SystemStaffVO staffVO) {
 		try {
@@ -1614,12 +1616,13 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 
 	 * @param staffVO
-	 * 网站管理人员查看反馈详细信息并回复
+	 *            网站管理人员查看反馈详细信息并回复
 	 */
-	public void showSystemStaffAdviceViewSpecScene(SystemStaffVO staffVO,AdviceFeedBackVO advice) {
+	public void showSystemStaffAdviceViewSpecScene(SystemStaffVO staffVO, AdviceFeedBackVO advice) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1629,7 +1632,7 @@ public class Main extends Application {
 			rootLayout.setCenter(SystemStaffAdviceViewSpecScene);
 
 			SystemStaffAdviceViewSpecController adviceViewSpecController = loader.getController();
-			adviceViewSpecController.initialize(this,advice,staffVO);
+			adviceViewSpecController.initialize(this, advice, staffVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1637,7 +1640,7 @@ public class Main extends Application {
 
 	private void initRootLayout() {
 		try {
-			
+
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("RootLayout.fxml"));
 			rootLayout = (BorderPane) loader.load();

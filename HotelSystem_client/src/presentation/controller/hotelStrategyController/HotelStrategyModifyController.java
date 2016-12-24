@@ -4,6 +4,7 @@ import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.HotelStrategyVO;
 import blservice.HotelStrategy_blservice;
+import blservice.impl.HotelStrategy_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -45,7 +46,7 @@ public class HotelStrategyModifyController {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
-		this.InputStrategyName.setText(this.hotelStrategy.getStrategyInfo());
+		this.InputStrategyName.setText(this.hotelStrategy.getStrategyName());
 		this.InputStrategyInfo.setText(this.hotelStrategy.getStrategyInfo());
 	}
 
@@ -55,13 +56,14 @@ public class HotelStrategyModifyController {
 		this.hotelStaff = hotelStaff;
 		this.hotel = hotel;
 		this.hotelStrategy = hotelStrategy;
-
+		this.service = new HotelStrategy_bl();
+		this.service.getHotelStrategy("a").setHotelId("186");
 		this.HotelStrategyModifyShow();
 	}
 
 	public void handleSave() {
 		this.hotelStrategy.setStrategyInfo(this.InputStrategyInfo.getText());
-		this.hotelStrategy.setId(this.InputStrategyName.getText());
+		this.hotelStrategy.setStrategyName(this.InputStrategyName.getText());
 		// bl²ã·½·¨
 		this.service.modifyHotelStrategy(this.hotelStrategy);
 		this.mainscene.showHotelStrategyViewScene(this.hotelStaff, hotel);
