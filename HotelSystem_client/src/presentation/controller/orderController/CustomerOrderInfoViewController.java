@@ -108,14 +108,15 @@ public class CustomerOrderInfoViewController {
 		} else if (this.order.getOrderState().equals(OrderState.ABNOMAL)) {
 			this.stateOfOrder.setText("异常");
 			this.recallOrAssessment.setText("撤销订单");
-			this.recallOrAssessment.setDisable(false);
+			this.recallOrAssessment.setDisable(true);
 		} else if (this.order.getOrderState().equals(OrderState.REVACATION)) {
 			this.stateOfOrder.setText("已撤销");
 			this.recallOrAssessment.setText("撤销订单");
-			this.recallOrAssessment.setDisable(false);
+			this.recallOrAssessment.setDisable(true);
 		} else if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
 			this.stateOfOrder.setText("已评价");
-			this.recallOrAssessment.setText("修改评价");
+			this.recallOrAssessment.setText("查看评价");
+			this.recallOrAssessment.setDisable(false);
 		}
 	}
 
@@ -135,6 +136,9 @@ public class CustomerOrderInfoViewController {
 			// bl层方法
 			this.OrderService.changeState(this.order);
 
+		} else if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
+			this.mainScene.showHotelAssessmentScene(customer, this.hotelService.getHotelInfo(this.order.getHotelID()),
+					order);
 		}
 	}
 

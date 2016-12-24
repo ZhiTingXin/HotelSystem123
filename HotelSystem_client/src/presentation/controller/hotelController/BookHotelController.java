@@ -7,8 +7,10 @@ import VO.CustomerVO;
 import VO.HotelInfoVO;
 import VO.OrderVO;
 import blservice.Order_blservice;
+import blservice.Room_blService;
 import blservice.UserInfo_blservice;
 import blservice.impl.Order_bl;
+import blservice.impl.Room_blServiceImpl;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -88,6 +90,7 @@ public class BookHotelController {
 	private CustomerVO customer;
 	private HotelInfoVO hotel;
 	private OrderVO order;
+	private Room_blService roomService;
 
 	private int days;
 	private RoomType roomtype;
@@ -105,6 +108,7 @@ public class BookHotelController {
 		this.mainScene = mainScene;
 		userService = new UserInfo_bl();
 		this.orderService = new Order_bl();
+		this.roomService = new Room_blServiceImpl();
 		// order的初始设定
 		this.order = new OrderVO();
 		this.order.setHotelID(this.hotel.getHotelID());
@@ -232,18 +236,20 @@ public class BookHotelController {
 	public void handleSave() {
 		boolean isRoomTypeOK = !this.typeOfRoom.getText().equals("请选择房间类型");
 		boolean isRoomNumOK = !this.numberOfRoom.getText().equals("请选择房间数量");
-
 		// 待完成的日期确认
 		boolean isDateOK = this.dateOfCheckIn.getValue() != null
 				&& this.dateOfCheckIn.getValue().isAfter(LocalDate.now());
+		boolean isRoomRemainOK = this.roomRemainPermitComfirm() == -1;
 
-		if (isRoomTypeOK && isRoomNumOK && isDateOK) {
+		if (isRoomTypeOK && isRoomNumOK && isDateOK && isRoomRemainOK) {
 
 			this.order.setOriginalPrice(Double.parseDouble(this.orderTotal.getText()));
 			this.order.setPrice(Double.parseDouble(this.actualPayment.getText()));
-			
+
 			this.orderService.generateOrder(this.order);
 			this.mainScene.showCustomerHotelInfoScene(customer, hotel);
+		} else if (!isRoomRemainOK) {
+			this.stateField.setText("该类型房间剩余数量为" + this.roomRemainPermitComfirm() + "，请修改预定房间数量！");
 		} else if (!isRoomTypeOK) {
 			this.stateField.setText("请选择房间类型");
 		} else if (!isRoomNumOK) {
@@ -273,5 +279,27 @@ public class BookHotelController {
 	// 刷新实际价格
 	private void refreshActualPayment() {
 		this.actualPayment.setText(String.valueOf(this.orderService.getOrderPrice(order)));
+	}
+
+	private int roomRemainPermitComfirm() {
+		int doubleRemain = this.roomService.getAllRoom(this.hotel.getHotelID()).get(0).getRoomRemain();
+		int bigRemain = this.roomService.getAllRoom(this.hotel.getHotelID()).get(1).getRoomRemain();
+		int singleRemain = this.roomService.getAllRoom(this.hotel.getHotelID()).get(2).getRoomRemain();
+		int multiRemain = this.roomService.getAllRoom(this.hotel.getHotelID()).get(3).getRoomRemain();
+
+		if (this.roomtype.equals(RoomType.doublePersonRoom) && doubleRemain < this.roomNum) {
+			return doubleRemain;
+		}
+		if (this.roomtype.equals(RoomType.bigBedRoom) && bigRemain < this.roomNum) {
+			return bigRemain;
+		}
+		if (this.roomtype.equals(RoomType.singlePersonRoom) && singleRemain < this.roomNum) {
+			return singleRemain;
+		}
+		if (this.roomtype.equals(RoomType.multiPersonRoom) && multiRemain < this.roomNum) {
+			return multiRemain;
+		}
+		return -1;
+
 	}
 }
