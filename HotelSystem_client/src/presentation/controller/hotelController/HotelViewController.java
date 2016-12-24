@@ -49,48 +49,50 @@ public class HotelViewController {
 	private Hotel_blservice service;
 	private Main mainScene;
 	private CustomerVO customer;
-
 	// 表格属性
 	private ArrayList<HotelInfoVO> hotelList;
 	private ObservableList<HotelInfoVO> hotelData = FXCollections.observableArrayList();
 
-	public HotelViewController() {
-
-	}
-
 	public void initialize(Main main, CustomerVO customer) {
-		// TODO Auto-generated method stub
 		this.service = new Hotel_bl();
 		this.customer = customer;
 		this.mainScene = main;
-
-		// 获取所有酒店的ID
 		this.hotelList = this.service.getAllHotel();
 		this.refreshTabel();
 		this.HotelViewShow();
 	}
 
-	public void HotelViewShow() {
+	/**
+	 * 显示信息
+	 */
+	private void HotelViewShow() {
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
 	}
 
-	public void handleViewHotelInfo() {
+	/**
+	 * 查看详情按钮响应
+	 */
+	@FXML
+	private void handleViewHotelInfo() {
 		int focusOn = this.hotelTable.getSelectionModel().getFocusedIndex();
 		this.mainScene.showCustomerHotelInfoScene(customer, this.hotelList.get(focusOn));
 	}
 
-	public void handleGuess() {
+	@FXML
+	private void handleGuess() {
 		this.hotelList = this.service.getListOfHotelPrefer(this.customer.getId());
 		this.refreshTabel();
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showCustomerMainScene(customer);
 
 	}
 
-	public void handleSearch() {
+	@FXML
+	private void handleSearch() {
 		this.hotelList = this.service.getHotelFromName(this.searchInput.getText());
 		if (hotelList != null && hotelList.size() > 0) {
 			this.refreshTabel();
@@ -114,6 +116,8 @@ public class HotelViewController {
 		this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
 		this.address.setCellValueFactory(cellData -> cellData.getValue().getHotelAddressProperty());
 		this.description.setCellValueFactory(cellData -> cellData.getValue().getHotelDiscriptionProperty());
+		
+		
 		this.hotelTable.setItems(this.hotelData);
 	}
 }
