@@ -20,15 +20,7 @@ public class SystemStaffPO implements Serializable{
 	private String phone;
 	private String businessDistrict;
     private String image;
-    
- public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
+    private String city;
 
 	public SystemStaffPO() {
 	}
@@ -43,6 +35,14 @@ public class SystemStaffPO implements Serializable{
 
 	public String getStaffName() {
 		return staffName;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setUsername(String staffName) {
@@ -63,5 +63,13 @@ public class SystemStaffPO implements Serializable{
 
 	public void setBusinessDistrict(String businessDistrict) {
 		this.businessDistrict = businessDistrict;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

@@ -43,11 +43,10 @@ public class SystemStaffInfoController {
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
 		this.districtName.setText(this.systemStaff.getBusinessDistrict());
-		// this.phone.setText(value);
+		this.phone.setText(this.systemStaff.getPhone());
 	}
 
 	public void initialize(Main mainScene, SystemStaffVO systemStaff) {
-		// TODO Auto-generated method stub
 		this.mainScene = mainScene;
 		this.systemStaff = systemStaff;
 		this.SystemStaffInfoShow();

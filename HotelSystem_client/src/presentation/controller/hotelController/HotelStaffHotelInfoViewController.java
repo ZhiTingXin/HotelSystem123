@@ -10,7 +10,6 @@ import blservice.Hotel_blservice;
 import blservice.Label_blService;
 import blservice.Room_blService;
 import blservice.impl.HotelStrategy_bl;
-import blservice.impl.Label_blServiceImpl;
 import blservice.impl.Room_blServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -103,7 +102,7 @@ public class HotelStaffHotelInfoViewController {
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff, HotelInfoVO hotel) {
-		// TODO Auto-generated method stub
+		
 		this.mainScene = main;
 		this.hotel = hotel;
 		this.hotelStaff = hotelStaff;

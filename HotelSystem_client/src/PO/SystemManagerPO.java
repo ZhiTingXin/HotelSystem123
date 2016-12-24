@@ -14,15 +14,6 @@ public class SystemManagerPO implements Serializable{
     private String image;
     private String phone;
     
-    public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	
 	public SystemManagerPO(){}
 	public SystemManagerPO(SystemManagerVO systemManagerVO){
 		super();
@@ -32,6 +23,13 @@ public class SystemManagerPO implements Serializable{
 		this.phone = systemManagerVO.getPhone();
 	}
 	
+    public String getImage() {
+         return image;
+    }
+	
+	public void setImage(String image) {
+	    this.image = image;
+	}
 	public String getManagerId() {
 		return managerID;
 	}

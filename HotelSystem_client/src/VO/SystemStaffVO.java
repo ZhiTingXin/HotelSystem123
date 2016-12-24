@@ -12,15 +12,9 @@ public class SystemStaffVO {
 	private String businessDistrict;
 	private String password;
 	private String phone;
+	private String city;
 	private String image;
 	
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
 
 
 	public SystemStaffVO() {
@@ -31,17 +25,21 @@ public class SystemStaffVO {
 	public SystemStaffVO(SystemStaffPO userPO) {
 		super();
 		this.id = userPO.getId();
+		this.city = userPO.getCity();
 		this.username = userPO.getStaffName();
 		this.businessDistrict = userPO.getBusinessDistrict();
 		this.phone = userPO.getPhone();
-	}
-
-	public SystemStaffVO(String id,String name, String district){
-		this.id = id;
-		this.username = name;
-		this.businessDistrict = district;
+		this.image = userPO.getImage();
 	}
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -93,5 +91,13 @@ public class SystemStaffVO {
 	}
 	public StringProperty getSystemStaffDistrict() {
 		return new SimpleStringProperty(this.businessDistrict);
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

@@ -19,12 +19,15 @@ public class SystemStaffPO implements Serializable {
 	private String businessDistrict;
 
 	private String image;
+	
+	private String city;
 
 	public SystemStaffPO() {
 	}
 
 	public SystemStaffPO(SystemStaffVO systemStaffVO) {
 		super();
+		this.city = systemStaffVO.getCity();
 		this.id = systemStaffVO.getId();
 		this.image = systemStaffVO.getImage();
 		this.staffName = systemStaffVO.getUsername();
@@ -70,5 +73,13 @@ public class SystemStaffPO implements Serializable {
 
 	public void setBusinessDistrict(String businessDistrict) {
 		this.businessDistrict = businessDistrict;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }
