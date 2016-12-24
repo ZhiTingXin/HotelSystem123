@@ -10,6 +10,16 @@ public class SystemStaffVO {
 	private String businessDistrict;
 	private String password;
 	private String phone;
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 
 	public SystemStaffVO() {
 		super();

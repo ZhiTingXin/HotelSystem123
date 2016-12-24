@@ -21,6 +21,16 @@ public class CustomerVO {
 	private String phone;
 	private int memberGrade;
 	private memberState memberState;
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public CustomerVO(){
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();

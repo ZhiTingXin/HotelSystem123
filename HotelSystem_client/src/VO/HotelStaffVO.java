@@ -13,6 +13,16 @@ public class HotelStaffVO {
 	private String hotelName;
     private String phone;
 	private String password;
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 
 	public HotelStaffVO() {
 	   id = IdGernerateServiceImpl.gernerateId();
