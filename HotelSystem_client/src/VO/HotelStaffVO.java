@@ -28,6 +28,7 @@ public class HotelStaffVO {
 		this.hotelId = userPO.getHotelId();
 		this.phone = userPO.getPhone();
 		this.hotelName = userPO.getHotelName();
+		this.image = userPO.getImage();
 	}
 	
 	

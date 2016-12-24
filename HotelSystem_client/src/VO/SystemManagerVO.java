@@ -11,15 +11,6 @@ public class SystemManagerVO {
 	private String phone;
 	private String image;
 	
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	
 	public SystemManagerVO() {
 		super();
 		this.systemmanager_Id = IdGernerateServiceImpl.gernerateId();
@@ -32,6 +23,14 @@ public class SystemManagerVO {
 		this.phone = systemManagerPO.getPhone();
 	}
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	public String getUserName() {
 		return systemmanager_Name;
 	}

@@ -36,6 +36,7 @@ public class CustomerPO implements Serializable {
 		this.credit = customerVO.getCredit();
 		this.memberGrade = customerVO.getMemberGrade();
 		this.state = customerVO.getMemberState();
+		this.image = customerVO.getImage();
 	}
 
 	public String getImage() {
