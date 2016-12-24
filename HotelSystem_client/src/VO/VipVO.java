@@ -33,6 +33,7 @@ public class VipVO {
 		this.district = superVipPO.getDistrict();
 		this.Vipgrade = superVipPO.getVipgrade();
 		this.discount =superVipPO.getDiscount();
+		this.id = superVipPO.getId();
 	}
 	
 	public VipVO(VipPO vipPO) {

@@ -1001,7 +1001,7 @@ public class Main extends Application {
 	 * @param vipVO
 	 * 
 	 */
-	public boolean showMemberEditDialog(VipVO vipVO) {
+	public void showMemberEditDialog(VipVO vipVO) {
 		try {
 			// Load the fxml file and create a new stage for the popup dialog.
 			FXMLLoader loader = new FXMLLoader();
@@ -1022,11 +1022,8 @@ public class Main extends Application {
 
 			// Show the dialog and wait until the user closes it
 			dialogStage.showAndWait();
-
-			return controller.isOkClicked();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return false;
 		}
 	}
 
