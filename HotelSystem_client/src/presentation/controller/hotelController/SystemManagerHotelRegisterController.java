@@ -61,12 +61,14 @@ public class SystemManagerHotelRegisterController {
 		String districtName = district.getText();
 		
 		HotelInfoVO newHotel = new HotelInfoVO();
+		HotelStaffVO hotelStaffVO = new HotelStaffVO();
+		
 		newHotel.setHotelName(name);
 		newHotel.setHotelDistrict(districtName);
+		newHotel.setHotelStaffId(hotelStaffVO.getId());
 		
 		boolean isModify = hotel_blservice.addHotel(newHotel);
-
-		HotelStaffVO hotelStaffVO = new HotelStaffVO();
+		
 		hotelStaffVO.setHotelName(name);
 		newHotel.setHotelStaffId(hotelStaffVO.getId());
 		hotelStaffVO.setPassword(hotelStaffVO.getId());

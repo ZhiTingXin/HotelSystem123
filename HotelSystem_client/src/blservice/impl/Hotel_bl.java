@@ -216,11 +216,11 @@ public class Hotel_bl implements Hotel_blservice {
 		Room_blService roomService = new Room_blServiceImpl();
 		ArrayList<HotelRoomInfoVO> roomData = roomService.getAllRoom(hotel.getHotelID());
 
-		boolean isAddaressComplete = hotel.getHotelAddress() != null && !hotel.getHotelAddress().equals("");
-		boolean isDescriptionComplete = hotel.getHotelDiscription() != null && !hotel.getHotelDiscription().equals("");
+		boolean isAddaressComplete =  !hotel.getHotelAddress().equals("");
+		boolean isDescriptionComplete = !hotel.getHotelDiscription().equals("");
 		boolean isRoomInfoOK = true;
 
-		if (roomData == null || roomData.size() == 0) {
+		if (roomData.size() == 0) {
 			isRoomInfoOK = false;
 		} else {
 			int count = 0;
