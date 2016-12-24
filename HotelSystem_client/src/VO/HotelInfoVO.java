@@ -13,6 +13,17 @@ public class HotelInfoVO {
 	private String hotelAddress;
 	private String hotelDiscription;
 	private String rank;
+	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	
 
 	public HotelInfoVO() {
        super();

@@ -20,6 +20,16 @@ public class CustomerPO implements Serializable{
 	private LocalDate birthday;
 	public String companyName;
 	private memberState state;
+    private String image;
+    
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	
 	public CustomerPO() {
 	}

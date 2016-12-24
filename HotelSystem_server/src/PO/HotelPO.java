@@ -27,7 +27,16 @@ public class HotelPO implements Serializable {
 	private String hotelName;
 	private String hotelDiscription;
 	private String hotelAddress;
-	
+    private String image;
+    
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	//Hotel的构造方法
 	public HotelPO(){
 	}
