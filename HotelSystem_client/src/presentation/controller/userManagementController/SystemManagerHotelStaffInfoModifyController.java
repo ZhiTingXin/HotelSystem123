@@ -2,19 +2,17 @@ package presentation.controller.userManagementController;
 
 import java.util.Optional;
 
-import com.sun.javafx.image.impl.ByteIndexed.Getter;
-
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import blservice.UserInfo_blservice;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import main.Main;
 
 public class SystemManagerHotelStaffInfoModifyController {
@@ -32,7 +30,7 @@ public class SystemManagerHotelStaffInfoModifyController {
 	@FXML
 	private TextField name;
 	@FXML
-	private Label hotelId;
+	private TextField hotelId;
 	@FXML
 	private Label hotelName;
 	@FXML

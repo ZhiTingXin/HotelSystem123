@@ -28,7 +28,7 @@
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="idLabel" layoutX="215.0" layoutY="26.0" text="用户列表" textAlignment="CENTER">
+                  <Label fx:id="idLabel" layoutX="165.0" layoutY="23.0" text="网站营销人员列表" textAlignment="CENTER">
                      <font>
                         <Font name="System Font" size="24.0" />
                      </font>
@@ -37,13 +37,13 @@
                   <TableView fx:id="userTable" layoutX="32.0" layoutY="114.0" prefHeight="388.0" prefWidth="462.0">
                     <columns>
                       <TableColumn fx:id="idColumn" prefWidth="133.81341552734375" text="用户ID" />
-                      <TableColumn fx:id="nameColumn" prefWidth="135.18658447265625" text="用户名" />
-                        <TableColumn fx:id="identityColumn" minWidth="3.7308349609375" prefWidth="95.73583984375" text="用户身份" />
+                      <TableColumn fx:id="nameColumn" prefWidth="105.0" text="用户名" />
+                        <TableColumn fx:id="identityColumn" minWidth="3.7308349609375" prefWidth="127.0" text="用户身份" />
                         <TableColumn fx:id="districtColumn" minWidth="0.0" prefWidth="96.83935546875" text="商圈名称" />
                     </columns>
                   </TableView>
                   <TextField fx:id="inputSearchText" layoutX="33.0" layoutY="72.0" prefHeight="23.0" prefWidth="403.0" promptText="输入要搜索的用户的ID" />
-                  <Button fx:id="searchButton" layoutX="454.0" layoutY="71.0" mnemonicParsing="false" text="搜索" />
+                  <Button fx:id="searchButton" layoutX="454.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
                   <Button fx:id="viewUserInfo" layoutX="347.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleViewInfo" prefHeight="39.0" prefWidth="129.0" text="查看用户详细信息" />
                </children>
             </AnchorPane>

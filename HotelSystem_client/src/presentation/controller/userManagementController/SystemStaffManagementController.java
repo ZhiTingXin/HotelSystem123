@@ -70,18 +70,44 @@ public class SystemStaffManagementController {
 		SystemStaffManagementShow(this.mainScene);
 	}
 	public void SystemStaffManagementShow(Main mainScene) {
-		idLabel.setText("网站营销人员列表");
 		ArrayList<SystemStaffVO> systemStaffList = userManagement_blservice.getAllSystemStaff();
 		for(SystemStaffVO systemStaff : systemStaffList){
 			systemStaffData.add(systemStaff);
 		}
 
-		idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());//TODO
+		idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());
 		nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
 		identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
 		districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffDistrict());
 		
 		userTable.setItems(systemStaffData);
+	}
+	@FXML
+	private void handleSearch(){
+		if(!inputSearchText.getText().equals("")){
+			SystemStaffVO staffVO = userManagement_blservice.getSystemStaff(inputSearchText.getText());
+			if(staffVO==null){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("抱歉");
+				alert.setContentText("未查询到对应的网站营销人员");
+				alert.showAndWait();
+			}else{
+			    systemStaffData.clear();
+				systemStaffData.add(staffVO);
+				
+				idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());//TODO
+				nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
+				identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
+				districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffDistrict());
+				
+				userTable.setItems(systemStaffData);
+			}
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("提醒");
+			alert.setContentText("请先输入酒店工作人员id后再进行搜索");
+			alert.showAndWait();
+		}
 	}
 	@FXML//查看客户列表
 	private void handleCustomerList(){

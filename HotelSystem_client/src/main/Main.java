@@ -88,6 +88,7 @@ public class Main extends Application {
 	private BorderPane loginLayout;
 	private BorderPane registerLayout;
 
+	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("HotelSystem");
