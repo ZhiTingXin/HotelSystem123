@@ -208,16 +208,15 @@ public class Hotel_bl implements Hotel_blservice {
 
 	/**
 	 * @param 判断信息是否完整
-	 * @return
-	 * 返回是或者否
+	 * @return 返回是或者否
 	 */
 	public boolean HotelInfoCompletedComfirm(HotelInfoVO hotel) {
 
 		Room_blService roomService = new Room_blServiceImpl();
 		ArrayList<HotelRoomInfoVO> roomData = roomService.getAllRoom(hotel.getHotelID());
 
-		boolean isAddaressComplete =  !hotel.getHotelAddress().equals("");
-		boolean isDescriptionComplete = !hotel.getHotelDiscription().equals("");
+		boolean isAddaressComplete = hotel.getHotelAddress() != null && !hotel.getHotelAddress().equals("");
+		boolean isDescriptionComplete = hotel.getHotelDiscription() != null && !hotel.getHotelDiscription().equals("");
 		boolean isRoomInfoOK = true;
 
 		if (roomData.size() == 0) {

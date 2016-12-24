@@ -6,6 +6,7 @@ import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.HotelStrategyVO;
 import blservice.HotelStrategy_blservice;
+import blservice.impl.HotelStrategy_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,6 +25,8 @@ public class HotelStrategyViewController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private Label StateLabel;
 	@FXML
 	private Button modifyHotelStrategy;
 	@FXML
@@ -65,14 +68,9 @@ public class HotelStrategyViewController {
 		this.mainscene = main;
 		this.hotelStaff = staff;
 		this.hotel = hotel;
-		int count = 0;
+		this.service = new HotelStrategy_bl();
 		this.hotelStrategyList = this.service.getListOfHotelStrategys(this.hotel.getHotelID());
-		while (count < this.hotelStrategyList.size()) {
-			this.hotelStrategyData.add(this.hotelStrategyList.get(count));
-			count++;
-		}
-		this.strategyName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-		this.strategyInfo.setCellValueFactory(cellData -> cellData.getValue().getInfoProperty());
+		this.refreshTable();
 		this.HotelStrategyViewShow();
 	}
 
@@ -93,7 +91,25 @@ public class HotelStrategyViewController {
 
 	@FXML
 	private void handleDelete() {
+	
 		int foucus = this.strategyTable.getSelectionModel().getFocusedIndex();
+		this.StateLabel.setText("ÒÑÉ¾³ý" + "²ßÂÔ¡°" + this.hotelStrategyList.get(foucus).getStrategyName() + "¡±");
 		this.service.deleteHotelStrategy(this.hotelStrategyList.get(foucus).getId());
+		this.refreshTable();
+
+	}
+
+	private void refreshTable() {
+		this.hotelStrategyList = this.service.getListOfHotelStrategys(this.hotel.getHotelID());
+		this.hotelStrategyData.clear();
+		int count = 0;
+		if (this.hotelStrategyList.size() > 0 || this.hotelStrategyList != null) {
+			while (count < this.hotelStrategyList.size()) {
+				this.hotelStrategyData.add(this.hotelStrategyList.get(count));
+				count++;
+			}
+			this.strategyName.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+			this.strategyInfo.setCellValueFactory(cellData -> cellData.getValue().getInfoProperty());
+		}
 	}
 }
