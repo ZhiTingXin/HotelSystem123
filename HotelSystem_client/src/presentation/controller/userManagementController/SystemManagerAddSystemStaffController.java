@@ -4,6 +4,8 @@ import java.awt.Desktop;
 import java.io.File;
 
 import VO.SystemManagerVO;
+import VO.SystemStaffVO;
+import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,7 +34,7 @@ public class SystemManagerAddSystemStaffController {
 	@FXML
 	private Button back;
 	@FXML
-	private TextField inputID;
+	private TextField inputName;
 	@FXML
 	private ChoiceBox<String> city;
 	@FXML
@@ -45,13 +47,13 @@ public class SystemManagerAddSystemStaffController {
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
 	private Stage stage;
+	private UserManagement_bl userManagement_bl;
 	private FileChooser fileChooser = new FileChooser();
-	private final Desktop desktop = Desktop.getDesktop();
 	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
 	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
 
 	public SystemManagerAddSystemStaffController() {
-
+		userManagement_bl = new UserManagement_bl();
 	}
 
 	public void showSystemManagerAddSystemStaff(Main mainScene, SystemManagerVO systemManagerVO) {
@@ -90,7 +92,6 @@ public class SystemManagerAddSystemStaffController {
 
 		configureFileChooser(fileChooser);
 		File file = fileChooser.showOpenDialog(stage);
-//		openFile(file);
 		String path = file.getAbsolutePath();
 		Image newImage = new Image("file:"+path, 200, 200, false, false);
 		image.setImage(newImage);
@@ -103,26 +104,19 @@ public class SystemManagerAddSystemStaffController {
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
 	}
 
-//	private void openFile(File file) {
-//		EventQueue.invokeLater(() -> {
-//			try {
-//				desktop.open(file);
-//				String path = file.getAbsolutePath();
-//				System.out.println(path);
-//				Image my  = new Image(is)
-//				Image newImage = new Image(path);
-//				image.setImage(newImage);
-//			} catch (IOException ex) {
-//				Logger.getLogger(SystemManagerAddSystemStaffController.class.getName()).log(Level.SEVERE, null, ex);
-//			}
-//		});
-//	}
-
 	@FXML
 	private void handleRegister() {
 		
+		SystemStaffVO systemStaffVO= new SystemStaffVO();
+		String systemStaffName = inputName.getText();
+		systemStaffVO.setUsername(systemStaffName);
+		String myCity = city.getValue();
+//		systemStaffVO.s
 		
-		
+		boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
+		if (isAdd) {
+			mainScene.
+		}
 	}
 
 	@FXML
