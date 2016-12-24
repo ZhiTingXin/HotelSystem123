@@ -9,14 +9,17 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.HotelRoomInfoVO;
 import VO.OrderVO;
 import VO.VipVO;
 import blservice.Order_blservice;
+import blservice.Room_blService;
 import blservice.VipStrategy_blService;
 import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.OrderDataService;
 import other.OrderState;
+import other.RoomType;
 
 public class Order_bl implements Order_blservice {
 
@@ -128,12 +131,37 @@ public class Order_bl implements Order_blservice {
 	// 生成用户的订单
 	public boolean generateOrder(OrderVO order) {
 		try {
+			// 修改酒店剩余客房数量
+			{
+				Room_blService roomservice = new Room_blServiceImpl();
+				ArrayList<HotelRoomInfoVO> roominfo = roomservice.getAllRoom(order.getHotelID());
+				RoomType type = order.getRoomType();
+				int num = order.getRoomNum();
+				int index = 0;
+				if (type.equals(RoomType.doublePersonRoom)) {
+					index = 0;
+				}
+				if (type.equals(RoomType.bigBedRoom)) {
+					index = 1;
+				}
+				if (type.equals(RoomType.singlePersonRoom)) {
+					index = 2;
+				}
+				if (type.equals(RoomType.multiPersonRoom)) {
+					index = 3;
+				}
+				int remainBefore = roominfo.get(index).getRoomRemain();
+				int remainAfter = remainBefore - num;
+				roominfo.get(index).setRoomRemain(remainAfter);
+				roomservice.modify(roominfo.get(index));
+			}
 			return dataService.add(new OrderPO(order));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+	
 
 	/**
 	 * @param 通过输入订单中所属酒店的名称
