@@ -5,7 +5,7 @@ public class MyDistricts {
 	public final static String[] cities = { "北京", "南京", "上海", "重庆", "郑州", "武汉", "运城", "长沙", "广州", "台北", "香港" };
 
 	final static String[] districtsBJ = { "王府井", "崇文门", "公主坟", "三里屯" };
-	final static String[] districtsNJ = { "新街口", "鼓楼", "仙林", "应天大街" };
+	final static String[] districtsNJ = { "新街口", "鼓楼", "仙林中心", "应天大街" };
 	final static String[] districtsSH = { "徐家汇", "陆家嘴", "南京西路", "淮海路" };
 	final static String[] districtsCQ = { "解放碑", "观音桥", "沙坪坝", "杨家坪" };
 	final static String[] districtsZZ = { "二七", "花园路", "北环", "碧沙岗" };
