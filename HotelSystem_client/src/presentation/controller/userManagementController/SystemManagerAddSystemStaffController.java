@@ -2,12 +2,16 @@ package presentation.controller.userManagementController;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -92,8 +96,15 @@ public class SystemManagerAddSystemStaffController {
 
 		configureFileChooser(fileChooser);
 		File file = fileChooser.showOpenDialog(stage);
+		String string = file.getName();
 		String path = file.getAbsolutePath();
 		Image newImage = new Image("file:"+path, 200, 200, false, false);
+		try {
+			File file1 = new File("src/Img/"+string);
+			ImageIO.write(SwingFXUtils.fromFXImage(newImage,null), "gif", file1);
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 		image.setImage(newImage);
 	}
 
@@ -115,7 +126,7 @@ public class SystemManagerAddSystemStaffController {
 		
 		boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
 		if (isAdd) {
-			mainScene.
+//			mainScene.
 		}
 	}
 
