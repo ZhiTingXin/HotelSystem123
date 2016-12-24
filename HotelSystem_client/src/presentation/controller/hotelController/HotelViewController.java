@@ -77,7 +77,7 @@ public class HotelViewController {
 
 	public void handleViewHotelInfo() {
 		int focusOn = this.hotelTable.getSelectionModel().getFocusedIndex();
-		this.mainScene.showCustomerHotelInfoScene(customer, this.hotelList.get(focusOn));
+		this.mainScene.showCustomerHotelInfoScene(customer, this.hotelData.get(focusOn));
 	}
 
 	public void handleGuess() {
