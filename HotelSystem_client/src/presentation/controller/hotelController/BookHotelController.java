@@ -239,6 +239,9 @@ public class BookHotelController {
 
 		if (isRoomTypeOK && isRoomNumOK && isDateOK) {
 
+			this.order.setOriginalPrice(Double.parseDouble(this.orderTotal.getText()));
+			this.order.setPrice(Double.parseDouble(this.actualPayment.getText()));
+			
 			this.orderService.generateOrder(this.order);
 			this.mainScene.showCustomerHotelInfoScene(customer, hotel);
 		} else if (!isRoomTypeOK) {
