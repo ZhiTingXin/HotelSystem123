@@ -31,7 +31,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <Label fx:id="StateLabel" layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
                   <Label layoutX="26.0" layoutY="240.0" text="添加文字评价">
                      <font>
                         <Font size="14.0" />
@@ -52,18 +52,18 @@
                         <MenuItem fx:id="fiveStar" mnemonicParsing="false" onAction="#handleFiveStar" text="5星" />
                     </items>
                   </MenuButton>
-                  <Label layoutX="26.0" layoutY="160.0" text="添加标签评价">
+                  <Label layoutX="26.0" layoutY="160.0" text="添加标签评价" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="tagReviews" layoutX="137.0" layoutY="158.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="144.0" text="选择标签">
+                  <MenuButton fx:id="tagReviews" layoutX="137.0" layoutY="158.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="144.0" text="选择标签" visible="false">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Action 1" />
                       <MenuItem mnemonicParsing="false" text="Action 2" />
                     </items>
                   </MenuButton>
-                  <Label layoutX="26.0" layoutY="200.0" text="已添加的标签">
+                  <Label layoutX="26.0" layoutY="200.0" text="已添加的标签" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -79,16 +79,6 @@
                      </font>
                   </Label>
                   <Label fx:id="Tag3" layoutX="398.0" layoutY="200.0" text="Label" visible="false">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="309.0" layoutY="160.0" text="*最多只能添加三个标签">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="309.0" layoutY="119.0" text="Label">
                      <font>
                         <Font size="14.0" />
                      </font>
