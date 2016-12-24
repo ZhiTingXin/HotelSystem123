@@ -115,7 +115,7 @@ public class SystemStaffMainController {
 	// 意见反馈
 	@FXML
 	private void handleSystemStaffAdviceFeedBack() {
-
+        mainScene.showSystemStaffAdviceViewScene(systemStaffVO);
 	}
 
 	// 维护个人信息

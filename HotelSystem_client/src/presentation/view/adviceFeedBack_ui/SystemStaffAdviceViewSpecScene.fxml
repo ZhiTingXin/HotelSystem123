@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.adviceFeedBackController.CustomerAdviceInfoController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.adviceFeedBackController.SystemStaffAdviceViewSpecController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0">
          <items>
@@ -15,12 +15,12 @@
                <children>
                   <ImageView fx:id="leftMenuImage" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="33.0" layoutY="180.0" text="ID" />
-                  <Label fx:id="leftIDLabel" layoutX="95.0" layoutY="180.0" text="Label" />
+                  <Label fx:id="idLabel" layoutX="95.0" layoutY="180.0" text="Label" />
                   <Label layoutX="33.0" layoutY="210.0" text="姓名" />
-                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
+                  <Label fx:id="nameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
-                  <Button fx:id="reply" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleReply" prefHeight="39.0" prefWidth="200.0" text="确定" />
+                  <Button fx:id="yes" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleYes" prefHeight="39.0" prefWidth="200.0" text="确定" />
                   <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
@@ -31,7 +31,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <Label fx:id="state" layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
                   <Label layoutX="49.0" layoutY="80.0" text="发送时间">
                      <font>
                         <Font size="14.0" />
@@ -52,7 +52,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="replyInfo" layoutX="133.0" layoutY="361.0" prefHeight="197.0" prefWidth="356.0" promptText="暂无信息" />
+                  <TextArea fx:id="reply" layoutX="133.0" layoutY="361.0" prefHeight="197.0" prefWidth="356.0" promptText="暂无信息" />
                   <Label fx:id="sendTime" layoutX="133.0" layoutY="80.0" text="Label">
                      <font>
                         <Font size="14.0" />
@@ -63,8 +63,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextField editable="false" layoutX="133.0" layoutY="179.0" prefHeight="118.0" prefWidth="356.0" />
-                  <Label fx:id="sendTime1" layoutX="133.0" layoutY="102.0" text="Label">
+                  <TextField fx:id="adviceInfo" editable="false" layoutX="133.0" layoutY="179.0" prefHeight="118.0" prefWidth="356.0" />
+                  <Label fx:id="customerId" layoutX="133.0" layoutY="102.0" text="Label">
                      <font>
                         <Font size="14.0" />
                      </font>

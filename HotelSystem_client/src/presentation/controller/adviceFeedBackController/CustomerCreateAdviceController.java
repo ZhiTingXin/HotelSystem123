@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import main.Main;
+import other.AdviceFeedBackState;
 
 public class CustomerCreateAdviceController {
 	@FXML
@@ -50,6 +51,7 @@ public class CustomerCreateAdviceController {
 			LocalDate today = LocalDate.now();
 			this.advice.setUserID(this.customer.getId());
 			this.advice.setSendTime(today);
+			this.advice.setState(AdviceFeedBackState.UNPROCESSED);
 			this.service.addAdviceFeedBack(advice);
 			this.mainScene.showCustomerAdviceViewScene(customer);
 		}
