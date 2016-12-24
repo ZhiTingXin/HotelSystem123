@@ -17,6 +17,17 @@ public class SystemStaffPO implements Serializable{
 	private String phone;
 	
 	private String businessDistrict;
+	
+    private String image;
+    
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 
 	public SystemStaffPO() {
 	}

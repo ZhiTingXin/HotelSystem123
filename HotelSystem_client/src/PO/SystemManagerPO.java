@@ -11,6 +11,16 @@ public class SystemManagerPO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String managerID;
 	private String managerName;
+    private String image;
+    
+    public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	
 	public SystemManagerPO(){}
 	public SystemManagerPO(SystemManagerVO systemManagerVO){
