@@ -1,6 +1,7 @@
 package presentation.controller.adviceFeedBackController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import VO.AdviceFeedBackVO;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import main.Main;
+import other.AdviceFeedBackState;
 import util.DateUtil;
 
 public class SystemStaffAdviceViewSpecController {
@@ -59,6 +61,7 @@ public class SystemStaffAdviceViewSpecController {
 	public void initialize(Main main,AdviceFeedBackVO advice,SystemStaffVO staffVO) {
 		clicked = false;
 		this.mainScene = main;
+		this.advice = advice;
 		this.service = new AdviceFeedBack_bl();
 		this.staffVO = staffVO;
 		this.setInfo();
@@ -73,7 +76,8 @@ public class SystemStaffAdviceViewSpecController {
 		sendTime.setText(DateUtil.format(advice.getSendTime()));
 		customerId.setText(advice.getUserID());
 		adviceInfo.setText(advice.getAdviceFeedBack_content());
-		replyTime.setText(DateUtil.format(LocalDate.now()));
+		LocalDate date = LocalDate.now();
+		replyTime.setText(DateUtil.format(date));
 	}
 	
 	/**
@@ -85,6 +89,7 @@ public class SystemStaffAdviceViewSpecController {
 		if(this.reply.getText()!=""){
 			clicked = true;
 			advice.setReplyContent(reply.getText());
+			advice.setState(AdviceFeedBackState.PROCESSED);
 			advice.setReplyTime(DateUtil.parse_1(replyTime.getText()));
 			boolean isOk = service.modifyAdviceFeedBack(advice);
 			if(isOk){

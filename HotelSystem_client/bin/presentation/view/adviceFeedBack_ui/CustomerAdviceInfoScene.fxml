@@ -20,7 +20,7 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="客户" />
-                  <Button fx:id="reply" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleReply" prefHeight="39.0" prefWidth="200.0" text="回复答复" />
+                  <Button fx:id="reply" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleReply" prefHeight="39.0" prefWidth="200.0" text="新增反馈" />
                   <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
