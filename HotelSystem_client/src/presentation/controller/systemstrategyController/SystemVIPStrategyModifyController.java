@@ -69,6 +69,7 @@ public class SystemVIPStrategyModifyController {
 	@FXML
 	private RadioButton close;
 
+	private VipStrategyVO vipStrategyVO;
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategyVO systemStrategyVO;
@@ -163,35 +164,20 @@ public class SystemVIPStrategyModifyController {
 	private void handleSaveTable() {
 
 		ObservableList<VipVO> getVipVO = systemStrategyTable.getItems();
-		if (getVipVO != null) {
-			ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
-			for (VipVO vipVO : getVipVO) {
-				newVipVO.add(vipVO);
-			}
 			
-			VipStrategyVO vipStrategyVO = new VipStrategyVO();
-			vipStrategyVO.setVipStrategyVOList(newVipVO);
-			boolean isModifyTable = vipStrategy_blService.modifyVipStrategy(vipStrategyVO);
-			if (isModifyTable) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("恭喜");
-				alert.setHeaderText("保存成功");
-				alert.setContentText("您已成功修改一条优惠信息！");
-				alert.showAndWait();
-			} else {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("抱歉");
-				alert.setHeaderText("保存失败");
-				alert.setContentText("对不起，"+districtName.getText()+"商圈的VIP会员优惠保存失败！");
-				alert.showAndWait();
-			}
-		}else{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("抱歉");
-			alert.setHeaderText("保存失败");
-			alert.setContentText("对不起，您尚未作出修改！");
-			alert.showAndWait();
+		ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
+		for (VipVO vipVO : getVipVO) {
+			newVipVO.add(vipVO);
 		}
+			
+		vipStrategyVO = new VipStrategyVO();
+		vipStrategyVO.setVipStrategyVOList(newVipVO);
+			
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("恭喜");
+		alert.setContentText("保存成功");
+		alert.showAndWait();
+		
 	}
 
 	@FXML // save the strategy.
@@ -207,13 +193,13 @@ public class SystemVIPStrategyModifyController {
 			strategyState = StrategyState.close;
 		}
 		
-		SystemStrategyVO newSystemStrategy = new SystemStrategyVO();
-		newSystemStrategy.setSystemStrategyName(strategyName);
-		newSystemStrategy.setSystemStrategyDescription(strategyDescription);
-		newSystemStrategy.setStrategyState(strategyState);
-		boolean isOK = systemStrategy_blservice.modifySystemStrategy(newSystemStrategy);
+		systemStrategyVO.setSystemStrategyName(strategyName);
+		systemStrategyVO.setSystemStrategyDescription(strategyDescription);
+		systemStrategyVO.setStrategyState(strategyState);
+		boolean isOK = systemStrategy_blservice.modifySystemStrategy(systemStrategyVO);
+		boolean isModifyTable = vipStrategy_blService.modifuSuperVipStrategy(vipStrategyVO);
 		
-		if (isOK) {
+		if (isOK&&isModifyTable) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setHeaderText("保存成功");
