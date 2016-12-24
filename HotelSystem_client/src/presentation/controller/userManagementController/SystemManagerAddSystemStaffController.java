@@ -1,16 +1,18 @@
 package presentation.controller.userManagementController;
 
 import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Optional;
-
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -59,8 +61,8 @@ public class SystemManagerAddSystemStaffController {
 	private UserManagement_bl userManagement_bl;
 	private FileChooser fileChooser = new FileChooser();
 	private String path = "";
-	ObservableList<String> cityList = FXCollections.observableArrayList();// ³ÇÊĞÁĞ±í
-	ObservableList<String> districtList = FXCollections.observableArrayList();// ÉÌÈ¦ÁĞ±í
+	ObservableList<String> cityList = FXCollections.observableArrayList();// åŸå¸‚åˆ—è¡¨
+	ObservableList<String> districtList = FXCollections.observableArrayList();// å•†åœˆåˆ—è¡¨
 
 	public SystemManagerAddSystemStaffController() {
 		userManagement_bl = new UserManagement_bl();
@@ -70,12 +72,12 @@ public class SystemManagerAddSystemStaffController {
 		this.mainScene = mainScene;
 		this.systemManagerVO = systemManagerVO;
 
-		// ×óÀ¸
+		// å·¦æ 
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
 		
-		city.setTooltip(new Tooltip("ÇëÑ¡Ôñ³ÇÊĞ£¡"));
-		district.setTooltip(new Tooltip("ÇëÑ¡ÔñÉÌÈ¦£¡"));
+		city.setTooltip(new Tooltip("è¯·é€‰æ‹©åŸå¸‚ï¼"));
+		district.setTooltip(new Tooltip("è¯·é€‰æ‹©å•†åœˆï¼"));
 		initialize();
 	}
 
@@ -102,8 +104,16 @@ public class SystemManagerAddSystemStaffController {
 
 		configureFileChooser(fileChooser);
 		File file = fileChooser.showOpenDialog(stage);
+		String string = file.getName();
 		path = file.getAbsolutePath();
+    
 		Image newImage = new Image("file:"+path, 200, 200, false, false);
+		try {
+			File file1 = new File("src/Img/"+string);
+			ImageIO.write(SwingFXUtils.fromFXImage(newImage,null), "gif", file1);
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 		image.setImage(newImage);
 	}
 
@@ -125,22 +135,23 @@ public class SystemManagerAddSystemStaffController {
 		String myDistrict = district.getValue();
 		systemStaffVO.setBusinessDistrict(myDistrict);
 		systemStaffVO.setImage(path);
-		systemStaffVO.setPassword(systemStaffVO.getId());//ÃÜÂë
+		systemStaffVO.setPassword(systemStaffVO.getId());//å¯†ç 
 		
 		boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
 		
 		if (isAdd) {
+      
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("³É¹¦");
-			alert.setHeaderText("×¢²á³É¹¦£¡");
-			alert.setContentText("¹§Ï²£¬ÄúÒÑ³É¹¦×¢²áÒ»ÌõÍøÕ¾ÓªÏúÈËÔ±ĞÅÏ¢£¡");
+			alert.setTitle("æˆåŠŸ");
+			alert.setHeaderText("æ³¨å†ŒæˆåŠŸï¼");
+			alert.setContentText("æ­å–œï¼Œæ‚¨å·²æˆåŠŸæ³¨å†Œä¸€æ¡ç½‘ç«™è¥é”€äººå‘˜ä¿¡æ¯ï¼");
 
-			String info = "ID£º"+systemStaffVO.getId()+"\n"
-							+"ÓÃ»§Ãû£º"+systemStaffName+"\n"
-							+"·Ö¹ÜÉÌÈ¦£º"+myCity+" "+myDistrict+"\n"
-							+"ÃÜÂë£º"+"³õÊ¼ÃÜÂëÓëIDÏàÍ¬.";
+			String info = "IDï¼š"+systemStaffVO.getId()+"\n"
+							+"ç”¨æˆ·åï¼š"+systemStaffName+"\n"
+							+"åˆ†ç®¡å•†åœˆï¼š"+myCity+" "+myDistrict+"\n"
+							+"å¯†ç ï¼š"+"åˆå§‹å¯†ç ä¸IDç›¸åŒ.";
 
-			Label label = new Label("ÍøÕ¾¹ÜÀíÈËÔ±µÄÏêÏ¸ĞÅÏ¢ÈçÏÂ£º");
+			Label label = new Label("ç½‘ç«™ç®¡ç†äººå‘˜çš„è¯¦ç»†ä¿¡æ¯å¦‚ä¸‹ï¼š");
 
 			TextArea textArea = new TextArea(info);
 			textArea.setEditable(false);
@@ -157,7 +168,8 @@ public class SystemManagerAddSystemStaffController {
 			expContent.add(textArea, 0, 1);
 			alert.getDialogPane().setExpandableContent(expContent);
 			alert.showAndWait();
-		}
+
+    }
 	}
 
 	@FXML
