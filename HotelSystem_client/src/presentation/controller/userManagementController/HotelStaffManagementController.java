@@ -2,6 +2,7 @@ package presentation.controller.userManagementController;
 
 import java.util.ArrayList;
 
+import VO.CustomerVO;
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import blservice.UserManagement_blservice;
@@ -71,8 +72,6 @@ public class HotelStaffManagementController {
 	}
 	public void HotelStaffManagementShow(Main mainScene) {
 		
-		idLabel.setText("酒店工作人员列表");
-		
 		ArrayList<HotelStaffVO> hotelStaffList = userManagement_blservice.getAllHotelStaff();
 		for(HotelStaffVO hotelStaff : hotelStaffList){
 			hotelStaffData.add(hotelStaff);
@@ -110,6 +109,32 @@ public class HotelStaffManagementController {
 			alert.setTitle("抱歉");
 			alert.setHeaderText("操作失败");
 			alert.setContentText("不要着急，您应该先选择一个就当做人员再进行查看！");
+			alert.showAndWait();
+		}
+	}
+	@FXML
+	private void handleSearch(){
+		if(!inputSearchText.getText().equals("")){
+			HotelStaffVO hotelStaffVO = userManagement_blservice.getHotelStaff(inputSearchText.getText());
+			if(hotelStaffVO==null){
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("抱歉");
+				alert.setContentText("未查询到对应的酒店工作人员");
+				alert.showAndWait();
+			}else{
+			    hotelStaffData.clear();
+				hotelStaffData.add(hotelStaffVO);
+				idColumn.setCellValueFactory(cellData->cellData.getValue().getHotelStaffIdProperty());
+				nameColumn.setCellValueFactory(cellData->cellData.getValue().getHotelStaffNameProperty());
+				identityColumn.setCellValueFactory(cellData->cellData.getValue().getHotelStaffTypeProperty());//
+				stateColumn.setCellValueFactory(cellData->cellData.getValue().getHotelNameProperty());
+				
+				userTable.setItems(hotelStaffData);
+			}
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("提醒");
+			alert.setContentText("请先输入酒店工作人员id后再进行搜索");
 			alert.showAndWait();
 		}
 	}
