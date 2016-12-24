@@ -37,8 +37,8 @@
                   <TableView fx:id="userTable" layoutX="32.0" layoutY="114.0" prefHeight="388.0" prefWidth="462.0">
                     <columns>
                       <TableColumn fx:id="idColumn" prefWidth="133.81341552734375" text="用户ID" />
-                      <TableColumn fx:id="nameColumn" prefWidth="135.18658447265625" text="用户名" />
-                        <TableColumn fx:id="identityColumn" minWidth="3.7308349609375" prefWidth="95.73583984375" text="用户身份" />
+                      <TableColumn fx:id="nameColumn" prefWidth="105.0" text="用户名" />
+                        <TableColumn fx:id="identityColumn" minWidth="3.7308349609375" prefWidth="127.0" text="用户身份" />
                         <TableColumn fx:id="districtColumn" minWidth="0.0" prefWidth="96.83935546875" text="商圈名称" />
                     </columns>
                   </TableView>
