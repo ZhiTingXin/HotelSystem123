@@ -67,7 +67,9 @@ public class CustomerMainController {
 		// ±í¸ñ²Ù×÷
 		int count = 0;
 		while (count < this.hotelList.size()) {
-			this.hotelData.add(this.hotelList.get(count));
+			if (this.hotelService.HotelInfoCompletedComfirm(this.hotelList.get(count))) {
+				this.hotelData.add(this.hotelList.get(count));
+			}
 			count++;
 		}
 		this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
