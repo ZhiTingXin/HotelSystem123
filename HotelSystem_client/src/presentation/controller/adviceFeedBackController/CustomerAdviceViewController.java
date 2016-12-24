@@ -44,7 +44,7 @@ public class CustomerAdviceViewController {
 	private AdviceFeedBack_blservice service;
 
 	public void initialize(Main main, CustomerVO customer2) {
-		// TODO Auto-generated method stub
+		
 		this.mainScene = main;
 		this.customer = customer2;
 		this.service = new AdviceFeedBack_bl();
@@ -81,7 +81,7 @@ public class CustomerAdviceViewController {
 
 	// 刷新表格方法
 	private void refreshtable() {
-		// TODO Auto-generated method stub
+		
 		int count = 0;
 		while (count < this.adviceList.size()) {
 			this.adviceData.add(this.adviceList.get(count));
