@@ -49,7 +49,7 @@ public class SystemStaffManagementController {
     @FXML
     private TableColumn<SystemStaffVO, String> identityColumn;//用户身份
     @FXML
-    private TableColumn<SystemStaffVO, String> stateColumn;//在线状况
+    private TableColumn<SystemStaffVO, String> districtColumn;
 	
     private Main mainScene;
 	private SystemManagerVO systemManagerVO;
@@ -75,11 +75,11 @@ public class SystemStaffManagementController {
 		for(SystemStaffVO systemStaff : systemStaffList){
 			systemStaffData.add(systemStaff);
 		}
-		//TODO
-//		idColumn.setCellValueFactory(cellData->cellData.getValue().getId());//TODO
-//		nameColumn.setCellValueFactory(cellData->cellData.getValue().getUsername());
-//		identityColumn.setCellValueFactory();
-//		stateColumn.setCellValueFactory(cellData->cellData.getValue().);
+
+		idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());//TODO
+		nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
+		identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
+		districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffDistrict());
 		
 		userTable.setItems(systemStaffData);
 	}

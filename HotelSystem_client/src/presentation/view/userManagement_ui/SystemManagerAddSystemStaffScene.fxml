@@ -65,8 +65,8 @@
                   </Label>
                   <Button fx:id="changePicture" layoutX="172.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleChangePicture" text="设置头像" />
                   <TextField fx:id="inputID" layoutX="189.0" layoutY="114.0" prefHeight="27.0" prefWidth="123.0" />
-                  <ChoiceBox fx:id="city" layoutX="188.0" layoutY="184.0" prefHeight="27.0" prefWidth="96.0" />
-                  <ChoiceBox fx:id="district" layoutX="188.0" layoutY="226.0" prefHeight="27.0" prefWidth="96.0" />
+                  <ChoiceBox id="12" fx:id="city" layoutX="188.0" layoutY="184.0" prefHeight="27.0" prefWidth="70.0" />
+                  <ChoiceBox fx:id="district" layoutX="188.0" layoutY="226.0" prefHeight="27.0" prefWidth="70.0" />
                   <Label layoutX="75.0" layoutY="230.0" text="选择商圈">
                      <font>
                         <Font size="16.0" />

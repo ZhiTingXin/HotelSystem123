@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -60,6 +61,9 @@ public class SystemManagerAddSystemStaffController {
 		// 左栏
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		
+		city.setTooltip(new Tooltip("请选择城市！"));
+		district.setTooltip(new Tooltip("请选择商圈！"));
 		initialize();
 	}
 
