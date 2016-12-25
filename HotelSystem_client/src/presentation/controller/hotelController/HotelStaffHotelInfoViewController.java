@@ -10,6 +10,7 @@ import blservice.Hotel_blservice;
 import blservice.Label_blService;
 import blservice.Room_blService;
 import blservice.impl.HotelStrategy_bl;
+import blservice.impl.Hotel_bl;
 import blservice.impl.Room_blServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -93,7 +94,7 @@ public class HotelStaffHotelInfoViewController {
 		// 标签方法
 		// this.tag.setText(getTagString());
 		this.strategy.setText(getStrategyString());
-		this.grade.setText(this.hotel.getRank());
+		this.grade.setText(this.hotelService.getHotelGrade(this.hotel.getHotelID()));
 		// 房间价格方法
 		this.price.setText(this.getRoomPrice());
 		this.restRoomNumber.setText(this.getRoomRemain());
@@ -102,13 +103,14 @@ public class HotelStaffHotelInfoViewController {
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff, HotelInfoVO hotel) {
-		
+
 		this.mainScene = main;
 		this.hotel = hotel;
 		this.hotelStaff = hotelStaff;
 		this.roomService = new Room_blServiceImpl();
 		// this.labelService = new Label_blServiceImpl();
 		this.hotelStrategyService = new HotelStrategy_bl();
+		this.hotelService = new Hotel_bl();
 		this.roomInfo = roomService.getAllRoom(this.hotel.getHotelID());
 		if (roomInfo.size() == 0 || roomInfo == null) {
 			this.roomInfo = new ArrayList<HotelRoomInfoVO>();

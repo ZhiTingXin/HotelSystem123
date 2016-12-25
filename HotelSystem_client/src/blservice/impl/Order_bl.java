@@ -114,12 +114,50 @@ public class Order_bl implements Order_blservice {
 	 */
 	public boolean changeState(OrderVO order_info) {
 		try {
-			return dataService.update(new OrderPO(order_info));
+			boolean b = dataService.update(new OrderPO(order_info));
+			this.changeCredit(order_info.getUserID(), order_info.getOrderID());
+			this.changeRoomRemain(order_info.getOrderID());
+			return b;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return false;
 		}
 
+	}
+
+	/**
+	 * 订单执行时修改酒店客房剩余数量方法
+	 * 
+	 * @param order_info
+	 */
+	public void changeRoomRemain(String orderID) {
+		// TODO Auto-generated method stub
+		OrderVO order = this.getOrder(orderID);
+		Room_blService roomService = new Room_blServiceImpl();
+		ArrayList<HotelRoomInfoVO> roomInfo = roomService.getAllRoom(order.getHotelID());
+		HotelRoomInfoVO roomVO = null;
+		RoomType type = order.getRoomType();
+		int num = order.getRoomNum();
+		int remain = 0;
+		if (type.equals(RoomType.doublePersonRoom)) {
+			roomVO = roomInfo.get(0);
+		} else if (type.equals(RoomType.bigBedRoom)) {
+			roomVO = roomInfo.get(1);
+		} else if (type.equals(RoomType.singlePersonRoom)) {
+			roomVO = roomInfo.get(2);
+		} else if (type.equals(RoomType.multiPersonRoom)) {
+			roomVO = roomInfo.get(3);
+		}
+		remain = roomVO.getRoomRemain() + num;
+		roomVO.setRoomRemain(remain);
+
+		if (order.getOrderState() != null && order.getOrderState() == OrderState.ABNOMAL) {
+			roomService.modify(roomVO);
+		} else if (order.getOrderState() == OrderState.FINISHED) {
+			roomService.modify(roomVO);
+		} else if (order.getOrderState() == OrderState.REVACATION) {
+			roomService.modify(roomVO);
+		}
 	}
 
 	/**
@@ -161,7 +199,6 @@ public class Order_bl implements Order_blservice {
 			return false;
 		}
 	}
-	
 
 	/**
 	 * @param 通过输入订单中所属酒店的名称
@@ -273,6 +310,11 @@ public class Order_bl implements Order_blservice {
 	}
 
 	// TODO 还没用确定具体的方法
+	/**
+	 * 修改用户信用值方法
+	 * 
+	 * @param
+	 */
 	public boolean changeCredit(String userID, String orderID) {
 		CustomerPO customer = null;
 		OrderPO order = null;
@@ -284,9 +326,13 @@ public class Order_bl implements Order_blservice {
 		}
 		int credit = 0;
 		if (order.getStatus() != null && order.getStatus() == OrderState.ABNOMAL) {
-			credit = customer.getCredit() - (int) (order.getPrice() * 0.5);
+			credit = customer.getCredit() - (int) (order.getPrice());
 		} else if (order.getStatus() == OrderState.FINISHED) {
 			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
+		} else if (order.getStatus() == OrderState.ASSESSED) {
+			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
+		} else if (order.getStatus() == OrderState.REVACATION) {
+			credit = customer.getCredit() - (int) (order.getPrice() * 0.5);
 		}
 		customer.setCredit(credit);
 		try {
