@@ -1,8 +1,6 @@
 package presentation.controller.userInfoController;
 
 import VO.SystemManagerVO;
-import blservice.UserInfo_blservice;
-import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,11 +27,6 @@ public class SystemManagerInfoController {
 
 	private Main mainScene;
 	private SystemManagerVO systemManager;
-	private UserInfo_blservice systemManagerInfoService;
-
-	public SystemManagerInfoController() {
-		systemManagerInfoService = new UserInfo_bl();
-	}
 
 	public void initialize(Main main, SystemManagerVO systemManager) {
 		this.mainScene = main;

@@ -5,19 +5,17 @@ import java.util.ArrayList;
 import VO.OrderVO;
 import VO.SystemStaffVO;
 import blservice.Order_blservice;
-import blservice.UserInfo_blservice;
 import blservice.impl.Order_bl;
-import blservice.impl.UserInfo_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
 
@@ -54,14 +52,12 @@ public class SystemStaffOrderManagementController {
 
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
-	private UserInfo_blservice systemStaffInfoService;
 	private Order_blservice order_blservice;
 
 	private ArrayList<OrderVO> abnormalOrderList;
 	private ObservableList<OrderVO> orderData = FXCollections.observableArrayList();// ÉùÃ÷
 
 	public SystemStaffOrderManagementController() {
-		systemStaffInfoService = new UserInfo_bl();
 		order_blservice = new Order_bl();
 	}
 

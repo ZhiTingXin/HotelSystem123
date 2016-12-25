@@ -2,8 +2,6 @@ package presentation.controller.userManagementController;
 
 import VO.CustomerVO;
 import VO.SystemManagerVO;
-import blservice.UserManagement_blservice;
-import blservice.impl.UserManagement_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,11 +42,7 @@ public class SystemManagerCustomerInfoViewController {
 	private Main mainsence;
 	private CustomerVO customerVO;
 	private SystemManagerVO systemManagerVO;
-	private UserManagement_blservice userManagement_blservice;
 
-	public SystemManagerCustomerInfoViewController() {
-		userManagement_blservice = new UserManagement_bl();
-	}
 
 	public void initialize(Main mainScene,SystemManagerVO systemManagerVO,CustomerVO customerVO) {
 		this.mainsence = mainScene;
@@ -64,7 +58,7 @@ public class SystemManagerCustomerInfoViewController {
 		idLabel.setText(customerVO.getId());
 		nameLabel.setText(customerVO.getUsername());
 		memberLabel.setText(String.valueOf(customerVO.getMemberGrade()));
-		birthdayLabel.setText(util.DateUtil.format(customerVO.getBirthday()));//TODO
+		birthdayLabel.setText(util.DateUtil.format(customerVO.getBirthday()));
 		companyLabel.setText(customerVO.getCompanyName());
 		creditLabel.setText(String.valueOf(customerVO.getCredit()));
 		image.setImage(null);

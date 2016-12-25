@@ -1,13 +1,18 @@
 package testAll;
 
+import java.time.LocalDateTime;
+
 import PO.ClassToGreId;
 import PO.LoginPO;
+import PO.LogofUserPO;
 import PO.RoomPO;
 import PO.SuperVipPO;
 import PO.SystemManagerPO;
 import PO.VipPO;
+import data.dao.LogOfUserDao;
 import data.service.LoginDataService;
 import data.service.impl.LoginDataServiceImpl;
+import other.DateUtil;
 import other.RoomType;
 import other.UserType;
 import other.hibernateUtil;
@@ -229,7 +234,7 @@ public class tes {
 //		superVipPO2.setId("2");
 //		hibernateUtil.add(superVipPO2);
 //        hibernateUtil.add(superVipPO);
-//		LoginPO loginPO = new LoginPO("ad", "12", UserType.CUSTOMER);
+//		LoginPO loginPO = new LoginPO("a", "12", UserType.CUSTOMER);
 //		hibernateUtil.add(loginPO);
 //		SystemManagerPO systemManagerPO = new SystemManagerPO();
 //		systemManagerPO.setManagerID("12345");
@@ -237,8 +242,17 @@ public class tes {
 //		systemManagerPO.setPhone("15951926228");
 //		hibernateUtil.add(systemManagerPO);
 //		ClassToGreId classToGreId = new ClassToGreId();
-//		classToGreId.setId("151250001");
+//		classToGreId.setId("151252001");
 //		classToGreId.setNeverChanged("1");
-//		hibernateUtil.add(classToGreId);
+//		hibernateUtil.update(classToGreId);
+//		LogofUserPO logofUserPO = new LogofUserPO();
+//		logofUserPO.setId("12");
+////		LocalDateTime time = LocalDateTime.now();
+////		String string = DateUtil.format(time);
+//		logofUserPO.setDateTime1("123");
+//		logofUserPO.setUserid("123");
+//		logofUserPO.setChange1(300);
+//		logofUserPO.setContent("зЂВс");
+//		hibernateUtil.add(logofUserPO);
 	}
 }
