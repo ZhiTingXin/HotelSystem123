@@ -84,15 +84,20 @@ public class AddSystemMemberStrategyController {
 			AddSystemMemberStrategyShow(mainScene);
 		}
 
-		public void AddSystemMemberStrategyShow(Main mainScene) {
+		private void AddSystemMemberStrategyShow(Main mainScene) {
 			// ”“¿∏
 			// ≥ı ºªØ table
-			VipStrategy_blService vipStrategy_blService = new VipStrategy_blServiceImpl();
-			ArrayList<VipVO> vips = vipStrategy_blService.getVipStrategy().getVipStrategyVOList();
-			
-			for (VipVO vipVO:vips) {
-				vipVOData.add(vipVO);
-			}
+			vipStrategy_blService = new VipStrategy_blServiceImpl();
+		    VipVO vip1 = new VipVO(0, 0, 1, 10);
+		    VipVO vip2 = new VipVO(0, 0, 2, 10);
+		    VipVO vip3 = new VipVO(0, 0, 3, 10);
+		    VipVO vip4 = new VipVO(0, 0, 4, 10);
+		    VipVO vip5 = new VipVO(0, 0, 5, 10);
+			vipVOData.add(vip1);
+			vipVOData.add(vip2);
+			vipVOData.add(vip3);
+			vipVOData.add(vip4);
+			vipVOData.add(vip5);
 			
 			memberStrategyTable.setEditable(true);// ø…±‡º≠
 

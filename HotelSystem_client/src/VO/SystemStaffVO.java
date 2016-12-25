@@ -9,10 +9,8 @@ public class SystemStaffVO {
 
 	private String id;
 	private String username;
-	private String businessDistrict;
 	private String password;
 	private String phone;
-	private String city;
 	private String image;
 	
 
@@ -25,9 +23,7 @@ public class SystemStaffVO {
 	public SystemStaffVO(SystemStaffPO userPO) {
 		super();
 		this.id = userPO.getId();
-		this.city = userPO.getCity();
 		this.username = userPO.getStaffName();
-		this.businessDistrict = userPO.getBusinessDistrict();
 		this.phone = userPO.getPhone();
 		this.image = userPO.getImage();
 	}
@@ -56,13 +52,6 @@ public class SystemStaffVO {
 		this.username = username;
 	}
 
-	public String getBusinessDistrict() {
-		return businessDistrict;
-	}
-
-	public void setBusinessDistrict(String businessDistrict) {
-		this.businessDistrict = businessDistrict;
-	}
 	public String getPassword() {
 		return password;
 	}
@@ -89,15 +78,8 @@ public class SystemStaffVO {
 	public StringProperty getSystemStaffIdentity() {
 		return new SimpleStringProperty("网站营销人员");
 	}
-	public StringProperty getSystemStaffDistrict() {
-		return new SimpleStringProperty(this.businessDistrict);
+	public StringProperty getSystemStaffPhone(){
+		return new SimpleStringProperty(phone);
 	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
+	
 }

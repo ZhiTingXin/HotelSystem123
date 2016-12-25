@@ -1033,7 +1033,7 @@ public class Main extends Application {
 	 * @param systemStaffVO
 	 * 
 	 */
-	public void showViewSystemVIPStrategyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+	public void showViewSystemVIPStrategyScene(SystemStaffVO systemStaffVO,String city,String district, SystemStrategyVO systemStrategyVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1044,7 +1044,7 @@ public class Main extends Application {
 
 			// get Controller
 			ViewSystemVIPStrategyController viewSystemVIPStrategyController = loader.getController();
-			viewSystemVIPStrategyController.initilize(this, systemStaffVO, systemStrategyVO);
+			viewSystemVIPStrategyController.initilize(this,city,district,systemStaffVO, systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1079,7 +1079,7 @@ public class Main extends Application {
 	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
-	public void showSystemVIPStrategyModifyScene(SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+	public void showSystemVIPStrategyModifyScene(SystemStaffVO systemStaffVO,String city,String district,SystemStrategyVO systemStrategyVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1090,7 +1090,7 @@ public class Main extends Application {
 
 			// get Controller
 			SystemVIPStrategyModifyController SystemVIPStrategyModifyController = loader.getController();
-			SystemVIPStrategyModifyController.initilize(this, systemStaffVO, systemStrategyVO);
+			SystemVIPStrategyModifyController.initilize(this,city,district, systemStaffVO, systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -17,6 +17,7 @@ public class SuperVipPO implements Serializable{
 	private String id;
 	private int Vipgrade;//
 	private double discount;
+	private String city;
 	private String district;// …Ã»¶
 	
 	public int getVipgrade() {
@@ -48,5 +49,13 @@ public class SuperVipPO implements Serializable{
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

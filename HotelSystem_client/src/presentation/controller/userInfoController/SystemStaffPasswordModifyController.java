@@ -1,5 +1,7 @@
 package presentation.controller.userInfoController;
 
+import java.util.Optional;
+
 import VO.SystemStaffVO;
 import blservice.Login_blservice;
 import blservice.UserInfo_blservice;
@@ -8,6 +10,7 @@ import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert.AlertType;
@@ -71,29 +74,55 @@ public class SystemStaffPasswordModifyController {
 		String passwordInField = this.passWord.getText();
 		String newPasswordInField = this.newPassword.getText();
 		String comfirmPasswordInField = this.confirmPassword.getText();
-
-		boolean isPasswordOK = login_blservice.comfirm(systemStaff.getId(), passwordInField);
-		boolean isNewPasswordOK = (newPasswordInField.equals(comfirmPasswordInField));
-		if (isPasswordOK && isNewPasswordOK) {
-			this.systemStaff.setPassword(newPasswordInField);
-
-			// bl层方法，修改密码
-			this.blservice.modifyPassword(systemStaff.getId(), comfirmPasswordInField);
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("恭喜");
-			alert.setContentText("修改成功");
+		if (passwordInField.equals("")) {
+			Alert alert = new  Alert(AlertType.INFORMATION);
+			alert.setTitle("提示");
+			alert.setContentText("请先输入原密码");
 			alert.showAndWait();
-			this.mainScene.showSystemStaffInfoScene(systemStaff);
-		} else if (!isPasswordOK) {
-			this.passwordRightLabel.setVisible(true);
-			this.passwordRightLabel.setText("原密码错误！");
-		} else if (!isNewPasswordOK) {
-			this.confirmPasswordRightLabel.setVisible(true);
-			this.confirmPasswordRightLabel.setText("两次输入的密码不一致！");
 		}
+		boolean isPasswordOK = login_blservice.comfirm(systemStaff.getId(), passwordInField);
+		if(!newPasswordInField.equals("")){
+			boolean isNewPasswordOK = (newPasswordInField.equals(comfirmPasswordInField));
+			if (isPasswordOK && isNewPasswordOK) {
+				this.systemStaff.setPassword(newPasswordInField);
+
+				// bl层方法，修改密码
+				this.blservice.modifyPassword(systemStaff.getId(), comfirmPasswordInField);
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("恭喜");
+				alert.setContentText("修改成功");
+				alert.showAndWait();
+				this.mainScene.showSystemStaffInfoScene(systemStaff);
+			} else if (!isPasswordOK) {
+				this.passwordRightLabel.setVisible(true);
+				this.passwordRightLabel.setText("原密码错误！");
+			} else if (!isNewPasswordOK) {
+				this.confirmPasswordRightLabel.setVisible(true);
+				this.confirmPasswordRightLabel.setText("两次输入的密码不一致！");
+			}
+		}else{
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("抱歉");
+			alert.setContentText("请先输入新密码");
+			alert.showAndWait();
+		}
+	
 	}
 
 	public void handleBack() {
-		this.mainScene.showSystemStaffInfoScene(systemStaff);
+		if (!newPassword.getText().equals("")||!passWord.getText().equals("")||!confirmPassword.getText().equals("")) {
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("提示");
+			alert.setContentText("退出将不会保存您做出的修改，是否退出？");
+			ButtonType yes = new ButtonType("是");
+			ButtonType  no = new ButtonType("否");
+			alert.getButtonTypes().setAll(yes,no);
+			Optional<ButtonType> btn = alert.showAndWait();
+			if (btn.get() == yes) {
+				this.mainScene.showSystemStaffInfoScene(systemStaff);
+			}
+		}else {
+			this.mainScene.showSystemStaffInfoScene(systemStaff);
+		}
 	}
 }

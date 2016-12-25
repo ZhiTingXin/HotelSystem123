@@ -25,8 +25,8 @@ public class SupVipDataServiceImpl implements SuperVipDataService {
 		return dao.modifySupVip(po);
 	}
 
-	public ArrayList<SuperVipPO> getStrict(String disstrict) throws RemoteException {
-		return dao.getStrict(disstrict);
+	public ArrayList<SuperVipPO> getStrict(String city,String disstrict) throws RemoteException {
+		return dao.getStrict(city,disstrict);
 	}
 	public boolean deleteSupVip(SuperVipPO po) throws RemoteException {
 		return dao.delSupVip(po);

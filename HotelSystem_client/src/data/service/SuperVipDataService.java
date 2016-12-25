@@ -14,5 +14,5 @@ public interface SuperVipDataService extends Remote{
 	
 	public boolean deleteSupVip(SuperVipPO po)throws RemoteException;
 	
-	public ArrayList<SuperVipPO> getStrict(String disstrict)throws RemoteException;
+	public ArrayList<SuperVipPO> getStrict(String city,String disstrict)throws RemoteException;
 }
