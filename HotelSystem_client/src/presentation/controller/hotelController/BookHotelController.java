@@ -135,9 +135,9 @@ public class BookHotelController {
 		this.days = 1;
 		this.duration.setText(String.valueOf(days) + "Ìì");
 
-		// this.holidayDeals.setText();
-		// his.memberDeals.setText(value);
-		// this.otherDeals.setText(value);
+		this.holidayDeals.setText(null);
+		this.memberDeals.setText(null);
+		this.otherDeals.setText(null);
 
 	}
 
