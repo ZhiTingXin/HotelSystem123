@@ -297,7 +297,8 @@ public class Order_bl implements Order_blservice {
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
 			for (OrderPO po : orderPOs) {
-				if (po.getStatus() != null && po.getStatus().equals(OrderState.FINISHED)) {
+				if (po.getStatus() != null
+						&& (po.getStatus().equals(OrderState.FINISHED) || po.getStatus().equals(OrderState.ASSESSED))) {
 					if (po.getHotelId().equals(hotelID))
 
 						orderVOs.add(new OrderVO(po));
@@ -357,7 +358,7 @@ public class Order_bl implements Order_blservice {
 			ArrayList<RoomPO> roomPOs = RemoteHelper.getInstance().getRoomDataService().getAllRoomPO(hotelId);
 			for (RoomPO po : roomPOs) {
 				if (po.getType() == order.getRoomType()) {
-					oprice = po.getPrice() * order.getRoomNum();
+					oprice = po.getPrice() * order.getRoomNum() * order.getLastime();
 				}
 			}
 			price = String.valueOf(oprice);
@@ -382,13 +383,13 @@ public class Order_bl implements Order_blservice {
 			ArrayList<RoomPO> roomPOs = RemoteHelper.getInstance().getRoomDataService().getAllRoomPO(hotelId);
 			for (RoomPO po : roomPOs) {
 				if (po.getType() == order.getRoomType()) {
-					oprice = po.getPrice() * order.getRoomNum();
+					oprice = po.getPrice() * order.getRoomNum()*order.getLastime();
 				}
 			}
 
 			ArrayList<VipVO> vipVOs = vipService.getVipStrategy().getVipStrategyVOList();
 			int credit = customerDataService.findCustomer(order.getUserID()).getCredit();
-			double discount_vip = 0;
+			double discount_vip = 1;
 			for (VipVO vipvo : vipVOs) {
 				if (credit <= vipvo.getMaxcredit() && credit > vipvo.getMincredit()) {
 					discount_vip = vipvo.getDiscount();
