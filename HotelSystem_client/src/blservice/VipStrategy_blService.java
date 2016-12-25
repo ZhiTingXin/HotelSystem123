@@ -11,12 +11,12 @@ public interface VipStrategy_blService {
 	public VipStrategyVO getVipStrategy();
 
 	//返回4级，5级的会员
-	public VipStrategyVO getVipstrategy(String district);
+	public VipStrategyVO getVipstrategy(String city,String district);
 	
 	public boolean makeSuperVipStrategy(VipStrategyVO vipStrategyVO);
 
 	public boolean modifuSuperVipStrategy(VipStrategyVO vipStrategyVO);
 	
-	public boolean deleteSuperVipStrategy(String district);
+	public boolean deleteSuperVipStrategy(String city,String district);
 	
 }

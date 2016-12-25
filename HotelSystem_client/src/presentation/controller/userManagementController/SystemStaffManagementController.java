@@ -78,7 +78,7 @@ public class SystemStaffManagementController {
 		idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());
 		nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
 		identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
-		districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffDistrict());
+		districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffPhone());
 		
 		userTable.setItems(systemStaffData);
 	}
@@ -95,10 +95,10 @@ public class SystemStaffManagementController {
 			    systemStaffData.clear();
 				systemStaffData.add(staffVO);
 				
-				idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());//TODO
+				idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());
 				nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
 				identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
-				districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffDistrict());
+				districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffPhone());
 				
 				userTable.setItems(systemStaffData);
 			}

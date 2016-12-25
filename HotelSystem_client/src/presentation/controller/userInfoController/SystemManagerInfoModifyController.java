@@ -92,6 +92,8 @@ public class SystemManagerInfoModifyController {
 			if(btn.get()== yes ){
 				this.mainScene.showSystemManagerInfoScene(systemManager);
 			}
+		}else{
+			this.mainScene.showSystemManagerInfoScene(systemManager);
 		}
 	}
 }

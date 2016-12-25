@@ -1,9 +1,16 @@
 package Test;
 
+import PO.LoginPO;
+import RMI.RemoteHelper;
 import VO.SystemStaffVO;
+import blservice.Login_blservice;
 import blservice.UserManagement_blservice;
+import blservice.impl.Login_bl;
 import blservice.impl.UserManagement_bl;
+import data.service.LoginDataService;
 import main.ClientRunner;
+import other.PassWordMd5;
+import other.UserType;
 
 //import other.AdviceFeedBackState;
 //import util.DateUtil;
@@ -75,12 +82,18 @@ public class gernerateID {
 //	   String string = "12345";
 //	   String  string2 = PassWordMd5.EncryptionStr16(string,PassWordMd5.MD5,PassWordMd5.UTF8);
 //	   System.out.println(string2);
-	   SystemStaffVO staffVO = new SystemStaffVO();
-	   staffVO.setBusinessDistrict("南京");
-	   staffVO.setPassword("a");
-	   staffVO.setPhone("12345");
-	   staffVO.setUsername("chen");
-	   UserManagement_blservice userManagement_blservice  = new  UserManagement_bl();
-	   userManagement_blservice.addSystemStaff(staffVO);
+//	   SystemStaffVO staffVO = new SystemStaffVO();
+//	   staffVO.setBusinessDistrict("南京");
+//	   staffVO.setPassword("a");
+//	   staffVO.setPhone("12345");
+//	   staffVO.setUsername("chen");
+//	   UserManagement_blservice userManagement_blservice  = new  UserManagement_bl();
+//	   userManagement_blservice.addSystemStaff(staffVO);
+	   LoginPO loginPO = new LoginPO();
+	   loginPO.setId("12345");
+	   loginPO.setUserPassword(PassWordMd5.EncryptionStr16("123", PassWordMd5.MD5, PassWordMd5.UTF8));
+	   loginPO.setUserType(UserType.SYSTEMMANAGER);
+	   LoginDataService loginDataService = RemoteHelper.getInstance().getLoginDataService();
+	   loginDataService.add(loginPO);
    }
 }

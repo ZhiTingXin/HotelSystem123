@@ -6,6 +6,8 @@ import VO.HotelInfoVO;
 public interface Hotel_blservice {
 	public HotelInfoVO getHotelInfo(String hotelId);
 
+	public String getHotelGrade(String hotelID);
+
 	public boolean modifyHotelInfo(HotelInfoVO hotelInfo);
 
 	public ArrayList<HotelInfoVO> getListOfHotel(String strict);
@@ -17,10 +19,10 @@ public interface Hotel_blservice {
 	public ArrayList<HotelInfoVO> getListOfHotelPrefer(String userId);
 
 	public ArrayList<HotelInfoVO> getHotelFromName(String text);
-	
-    public ArrayList<HotelInfoVO> getHotelFromGrade(double grade);
-    
-    public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice);
-    
-    public boolean HotelInfoCompletedComfirm(HotelInfoVO hotel);
+
+	public ArrayList<HotelInfoVO> getHotelFromGrade(double grade);
+
+	public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice);
+
+	public boolean HotelInfoCompletedComfirm(HotelInfoVO hotel);
 }

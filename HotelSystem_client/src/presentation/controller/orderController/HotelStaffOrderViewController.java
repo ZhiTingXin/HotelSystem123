@@ -2,7 +2,6 @@ package presentation.controller.orderController;
 
 import java.util.ArrayList;
 
-import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.OrderVO;
 import blservice.Order_blservice;
@@ -74,7 +73,6 @@ public class HotelStaffOrderViewController {
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff) {
-		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.hotelStaff = hotelStaff;
 		this.orderService = new Order_bl();

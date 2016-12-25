@@ -79,10 +79,10 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * 
 	 */
 	//返回商圈会员优惠信息
-	public VipStrategyVO getVipstrategy(String district) {
+	public VipStrategyVO getVipstrategy(String city,String district) {
 		VipStrategyVO vipStrategyVO = new VipStrategyVO();
 		try {
-			ArrayList<SuperVipPO> superVipPOs = service.getStrict(district);
+			ArrayList<SuperVipPO> superVipPOs = service.getStrict(city,district);
 			ArrayList<VipVO> vipVOs = new ArrayList<VipVO>();
 			for(SuperVipPO po : superVipPOs){
 				vipVOs.add(new VipVO(po));
@@ -134,8 +134,8 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * 返回是否删除成功
 	 */
 	//删除商圈会员优惠策略
-	public boolean deleteSuperVipStrategy(String district) {
-		VipStrategyVO vipStrategyVO = getVipstrategy(district);
+	public boolean deleteSuperVipStrategy(String city,String district) {
+		VipStrategyVO vipStrategyVO = getVipstrategy(city,district);
 		ArrayList<VipVO> vipVOs = vipStrategyVO.getVipStrategyVOList();
 		try {
 			for(VipVO vo:vipVOs){

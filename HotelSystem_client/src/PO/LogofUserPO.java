@@ -14,6 +14,7 @@ public class LogofUserPO implements Serializable {
 
 	private String id;
 	private LocalDateTime dateTime;
+	private int chang;
 	private String content;
 	private String userid;
 
@@ -24,6 +25,7 @@ public class LogofUserPO implements Serializable {
 		this.content = vo.getContent();
 		this.dateTime = vo.getDateTime();
 		this.userid = vo.getUserid();
+		this.chang = vo.getChange();
 	}
 
 	public String getId() {
@@ -56,6 +58,15 @@ public class LogofUserPO implements Serializable {
 	public void setUserid(String userid) {
 		this.userid = userid;
 	}
+
+	public int getChang() {
+		return chang;
+	}
+
+	public void setChang(int chang) {
+		this.chang = chang;
+	}
+
 	
 	
 }

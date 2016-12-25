@@ -316,8 +316,8 @@ public class DataRemoteObject extends UnicastRemoteObject implements LogOfUserDa
 	public boolean modifySupVip(SuperVipPO po) throws RemoteException {
 		return vipDataService2.modifySupVip(po);
 	}
-	public ArrayList<SuperVipPO> getStrict(String disstrict) throws RemoteException {
-		return vipDataService2.getStrict(disstrict);
+	public ArrayList<SuperVipPO> getStrict(String city,String disstrict) throws RemoteException {
+		return vipDataService2.getStrict(city,disstrict);
 	}
 	public boolean deleteSupVip(SuperVipPO po) throws RemoteException {
 		return vipDataService2.deleteSupVip(po);

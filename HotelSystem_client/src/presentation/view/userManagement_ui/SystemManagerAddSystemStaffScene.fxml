@@ -21,7 +21,7 @@
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站管理人员" />
                   <Button fx:id="register" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="39.0" prefWidth="200.0" text="注册" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -31,47 +31,41 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="75.0" layoutY="80.0" text="ID">
+                  <Label layoutX="75.0" layoutY="105.0" text="ID">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="75.0" layoutY="115.0" text="用户名">
+                  <Label layoutX="75.0" layoutY="140.0" text="用户名">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="75.0" layoutY="154.0" prefHeight="20.0" prefWidth="32.0" text="身份">
+                  <Label layoutX="75.0" layoutY="179.0" prefHeight="20.0" prefWidth="32.0" text="身份">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="idLabel" layoutX="189.0" layoutY="80.0" text="系统自动分配哦:)">
+                  <Label fx:id="idLabel" layoutX="189.0" layoutY="105.0" text="系统自动分配哦:)">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="189.0" layoutY="154.0" text="网站营销人员">
+                  <Label layoutX="189.0" layoutY="179.0" text="网站营销人员">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="image" fitHeight="200.0" fitWidth="200.0" focusTraversable="true" layoutX="107.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <Label layoutX="75.0" layoutY="187.0" text="选择城市">
+                  <Label layoutX="75.0" layoutY="212.0" text="联系方式">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                   <Button fx:id="changePicture" layoutX="172.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleChangePicture" text="设置头像" />
-                  <TextField fx:id="inputName" layoutX="189.0" layoutY="114.0" prefHeight="27.0" prefWidth="123.0" />
-                  <ChoiceBox id="12" fx:id="city" layoutX="188.0" layoutY="184.0" prefHeight="27.0" prefWidth="70.0" />
-                  <ChoiceBox fx:id="district" layoutX="188.0" layoutY="226.0" prefHeight="27.0" prefWidth="70.0" />
-                  <Label layoutX="75.0" layoutY="230.0" text="选择商圈">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
+                  <TextField fx:id="inputName" layoutX="189.0" layoutY="139.0" prefHeight="27.0" prefWidth="123.0" />
+                  <TextField fx:id="phoneNum" layoutX="189.0" layoutY="210.0" prefHeight="27.0" prefWidth="123.0" />
                </children>
             </AnchorPane>
          </items>

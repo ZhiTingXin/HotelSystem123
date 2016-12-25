@@ -1,8 +1,6 @@
 package presentation.controller.userInfoController;
 
 import VO.HotelStaffVO;
-import blservice.UserInfo_blservice;
-import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,12 +30,7 @@ public class HotelStaffInfoController {
 	private Label phone;
 
 	private Main mainScene;
-	private UserInfo_blservice blservice;
 	private HotelStaffVO hotelStaff;
-
-	public HotelStaffInfoController() {
-		blservice = new UserInfo_bl();
-	}
 
 	public void initialize(Main mainScene, HotelStaffVO hotelStaff) {
 		this.mainScene = mainScene;

@@ -1,13 +1,10 @@
 package main;
 
 import java.util.ArrayList;
-
 import VO.OrderVO;
 import VO.SystemStaffVO;
 import blservice.Order_blservice;
-import blservice.UserInfo_blservice;
 import blservice.impl.Order_bl;
-import blservice.impl.UserInfo_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -38,8 +35,6 @@ public class SystemStaffMainController {
 	@FXML
 	private Button exit;
 	@FXML
-	private Label districtName;
-	@FXML
 	private TableView<OrderVO> orderTable;
 	@FXML
 	private TableColumn<OrderVO, String> customerId;
@@ -54,14 +49,12 @@ public class SystemStaffMainController {
 
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
-	private UserInfo_blservice systemStaffInfoService;
 	private Order_blservice order_blservice;
 
 	private ArrayList<OrderVO> abnormalOrderList;
 	private ObservableList<OrderVO> orderData = FXCollections.observableArrayList();
 	//在这些集合中, 我们需要的是ObservableList. 创建一个新的ObservableList. 
 	public SystemStaffMainController() {
-		systemStaffInfoService = new UserInfo_bl();
 		order_blservice = new Order_bl();
 	}
 
@@ -87,9 +80,9 @@ public class SystemStaffMainController {
 	}
 
 	public void SystemStaffMainShow(Main m) {
+		
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
-		districtName.setText(systemStaffVO.getBusinessDistrict());
 		orderTable.setItems(orderData);//显示table
 	}
 

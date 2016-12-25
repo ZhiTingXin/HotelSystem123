@@ -28,6 +28,7 @@ public class HotelPO implements Serializable {
 	private String hotelDiscription;
 	private String hotelAddress;
     private String image;
+    private String city;
 
 	//Hotel的构造方法
 	public HotelPO(){
@@ -83,5 +84,11 @@ public class HotelPO implements Serializable {
 	}
 	public void setHotelAddress(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

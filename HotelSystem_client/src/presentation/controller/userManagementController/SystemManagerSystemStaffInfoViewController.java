@@ -2,8 +2,6 @@ package presentation.controller.userManagementController;
 
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
-import blservice.UserInfo_blservice;
-import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,7 +23,7 @@ public class SystemManagerSystemStaffInfoViewController {
 	@FXML
 	private Label nameLabel;
 	@FXML
-	private Label districtName;
+	private Label phoneNum;
 	@FXML
 	private Label myPicture;
 	@FXML
@@ -34,10 +32,8 @@ public class SystemManagerSystemStaffInfoViewController {
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
 	private SystemStaffVO systemStaffVO;
-	private UserInfo_blservice systemStaffInfoService;
 	
 	public SystemManagerSystemStaffInfoViewController(){
-		systemStaffInfoService = new UserInfo_bl();
 	}
 	
 	public void initialize(Main mainScene,SystemManagerVO systemManagerVO,SystemStaffVO systemStaffVO) {
@@ -54,8 +50,7 @@ public class SystemManagerSystemStaffInfoViewController {
 		
 		idLabel.setText(systemStaffVO.getId());
 		nameLabel.setText(systemStaffVO.getUsername());
-		districtName.setText(systemStaffVO.getBusinessDistrict());
-		
+		phoneNum.setText(systemStaffVO.getPhone());
 	}
 	
 	@FXML//modify

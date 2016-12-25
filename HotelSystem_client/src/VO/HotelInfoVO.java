@@ -9,6 +9,7 @@ public class HotelInfoVO {
 	private String hotelID;
 	private String hotelName;
 	private String hotelDistrict;
+	private String city;
 	private String hotelStaffId;
 	private String hotelAddress;
 	private String hotelDiscription;
@@ -25,6 +26,7 @@ public class HotelInfoVO {
 	// *********used
 	public HotelInfoVO(HotelPO hotelInfo) {
 		super();
+		this.city = hotelInfo.getCity();
 		this.hotelAddress = hotelInfo.getHotelAddress();
 		this.hotelDiscription = hotelInfo.getHotelDiscription();
 		this.hotelDistrict = hotelInfo.getHotelStrict();
@@ -97,6 +99,14 @@ public class HotelInfoVO {
 
 	public void setHotelDiscription(String hotelDiscription) {
 		this.hotelDiscription = hotelDiscription;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	// 界面表格方法

@@ -2,7 +2,6 @@ package presentation.controller.userManagementController;
 
 import java.util.ArrayList;
 
-import VO.CustomerVO;
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import blservice.UserManagement_blservice;
