@@ -7,8 +7,10 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.AssementVO;
 import VO.HotelInfoVO;
 import VO.HotelRoomInfoVO;
+import blservice.Assessment_blService;
 import blservice.Hotel_blservice;
 import blservice.Room_blService;
 import data.service.HotelDataService;
@@ -234,5 +236,24 @@ public class Hotel_bl implements Hotel_blservice {
 			}
 		}
 		return isAddaressComplete && isDescriptionComplete && isRoomInfoOK;
+	}
+
+	public String getHotelGrade(String hotelID) {
+		// TODO Auto-generated method stub
+		Assessment_blService assessmentService = new Assessment_bl();
+		ArrayList<AssementVO> assList = assessmentService.getAllHotelAss(hotelID);
+		if (assList == null || assList.size() == 0) {
+			return "ÔÝÎÞÆÀ·Ö";
+		} else {
+			double rank = 0;
+			int sum = 0;
+			int count = 0;
+			while (count < assList.size()) {
+				sum += assList.get(count).getRank();
+				count++;
+			}
+			rank = sum / assList.size();
+			return String.valueOf(rank);
+		}
 	}
 }

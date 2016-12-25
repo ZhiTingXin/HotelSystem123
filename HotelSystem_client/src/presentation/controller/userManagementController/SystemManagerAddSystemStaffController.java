@@ -61,7 +61,6 @@ public class SystemManagerAddSystemStaffController {
 		// 左栏
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
-		
 	}
 
 	@FXML
@@ -71,11 +70,11 @@ public class SystemManagerAddSystemStaffController {
 		File file = fileChooser.showOpenDialog(stage);
 		String string = file.getName();
 		path = file.getAbsolutePath();
-    
-		Image newImage = new Image("file:"+path, 200, 200, false, false);
+
+		Image newImage = new Image("file:" + path, 200, 200, false, false);
 		try {
-			File file1 = new File("src/Img/"+string);
-			ImageIO.write(SwingFXUtils.fromFXImage(newImage,null), "gif", file1);
+			File file1 = new File("src/Img/" + string);
+			ImageIO.write(SwingFXUtils.fromFXImage(newImage, null), "gif", file1);
 		} catch (IOException ex) {
 			System.out.println(ex.getMessage());
 		}
@@ -91,7 +90,7 @@ public class SystemManagerAddSystemStaffController {
 
 	@FXML
 	private void handleRegister() {
-		
+    
 		if (!inputName.getText().equals("")&&!phoneNum.getText().equals("")) {
 			SystemStaffVO systemStaffVO= new SystemStaffVO();
 			String systemStaffName = inputName.getText();//name
@@ -136,7 +135,6 @@ public class SystemManagerAddSystemStaffController {
 			alert.setContentText("请您先完善网站营销人员的信息后，再注册");
 			alert.showAndWait();
 		}
-	
 	}
 
 	@FXML
