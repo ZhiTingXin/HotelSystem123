@@ -2,8 +2,6 @@ package presentation.controller.userManagementController;
 
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
-import blservice.UserInfo_blservice;
-import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,13 +30,8 @@ public class SystemManagerHotelStaffInfoViewController {
 	private ImageView image;
 
 	private Main mainScene;
-	private UserInfo_blservice blservice;
 	private SystemManagerVO systemManagerVO;
 	private HotelStaffVO hotelStaffVO;
-	
-	public SystemManagerHotelStaffInfoViewController() {
-		blservice = new UserInfo_bl();
-	}
 	
 	public void initialize(Main mainScene ,SystemManagerVO systemManagerVO,HotelStaffVO hotelStaffVO) {
 		//left

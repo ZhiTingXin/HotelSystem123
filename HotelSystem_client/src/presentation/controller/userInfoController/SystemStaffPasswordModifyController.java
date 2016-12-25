@@ -79,33 +79,35 @@ public class SystemStaffPasswordModifyController {
 			alert.setTitle("提示");
 			alert.setContentText("请先输入原密码");
 			alert.showAndWait();
-		}
-		boolean isPasswordOK = login_blservice.comfirm(systemStaff.getId(), passwordInField);
-		if(!newPasswordInField.equals("")){
-			boolean isNewPasswordOK = (newPasswordInField.equals(comfirmPasswordInField));
-			if (isPasswordOK && isNewPasswordOK) {
-				this.systemStaff.setPassword(newPasswordInField);
+		}else {
+			boolean isPasswordOK = login_blservice.comfirm(systemStaff.getId(), passwordInField);
+			if(!newPasswordInField.equals("")){
+				boolean isNewPasswordOK = (newPasswordInField.equals(comfirmPasswordInField));
+				if (isPasswordOK && isNewPasswordOK) {
+					this.systemStaff.setPassword(newPasswordInField);
 
-				// bl层方法，修改密码
-				this.blservice.modifyPassword(systemStaff.getId(), comfirmPasswordInField);
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("恭喜");
-				alert.setContentText("修改成功");
+					// bl层方法，修改密码
+					this.blservice.modifyPassword(systemStaff.getId(), comfirmPasswordInField);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("恭喜");
+					alert.setContentText("修改成功");
+					alert.showAndWait();
+					this.mainScene.showSystemStaffInfoScene(systemStaff);
+				} else if (!isPasswordOK) {
+					this.passwordRightLabel.setVisible(true);
+					this.passwordRightLabel.setText("原密码错误！");
+				} else if (!isNewPasswordOK) {
+					this.confirmPasswordRightLabel.setVisible(true);
+					this.confirmPasswordRightLabel.setText("两次输入的密码不一致！");
+				}
+			}else{
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("抱歉");
+				alert.setContentText("请先输入新密码");
 				alert.showAndWait();
-				this.mainScene.showSystemStaffInfoScene(systemStaff);
-			} else if (!isPasswordOK) {
-				this.passwordRightLabel.setVisible(true);
-				this.passwordRightLabel.setText("原密码错误！");
-			} else if (!isNewPasswordOK) {
-				this.confirmPasswordRightLabel.setVisible(true);
-				this.confirmPasswordRightLabel.setText("两次输入的密码不一致！");
 			}
-		}else{
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("抱歉");
-			alert.setContentText("请先输入新密码");
-			alert.showAndWait();
 		}
+		
 	
 	}
 

@@ -61,10 +61,7 @@ public class SystemManagerAddSystemStaffController {
 		// 左栏
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
-<<<<<<< HEAD
 		
-=======
->>>>>>> origin/zhiting
 	}
 
 	@FXML
@@ -94,11 +91,7 @@ public class SystemManagerAddSystemStaffController {
 
 	@FXML
 	private void handleRegister() {
-<<<<<<< HEAD
 		
-=======
-    
->>>>>>> origin/zhiting
 		if (!inputName.getText().equals("")&&!phoneNum.getText().equals("")) {
 			SystemStaffVO systemStaffVO= new SystemStaffVO();
 			String systemStaffName = inputName.getText();//name
@@ -143,10 +136,7 @@ public class SystemManagerAddSystemStaffController {
 			alert.setContentText("请您先完善网站营销人员的信息后，再注册");
 			alert.showAndWait();
 		}
-<<<<<<< HEAD
 	
-=======
->>>>>>> origin/zhiting
 	}
 
 	@FXML

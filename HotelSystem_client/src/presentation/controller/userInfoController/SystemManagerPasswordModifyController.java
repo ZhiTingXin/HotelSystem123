@@ -81,43 +81,45 @@ public class SystemManagerPasswordModifyController {
 			alert.setTitle("提示");
 			alert.setContentText("请先输入原密码");
 			alert.showAndWait();
-		}
-		boolean isPasswordOK = login_blservice.comfirm(id, passwordInField);//判断输入原密码是否正确
-		if(!newPasswordInField.equals("")){
-			boolean isNewPasswordOK = newPasswordInField .equals(comfirmPasswordInField);
-			if (isPasswordOK && isNewPasswordOK) {
-				// bl层方法，修改密码
-			boolean isModify = 	this.blservice.modifyPassword(this.systemManager.getId(), comfirmPasswordInField);
-			
-			if (isModify) {
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("恭喜");
-				alert.setContentText("您已成功修改您的密码！");
+		}else{
+			boolean isPasswordOK = login_blservice.comfirm(id, passwordInField);//判断输入原密码是否正确
+			if(!newPasswordInField.equals("")){
+				boolean isNewPasswordOK = newPasswordInField .equals(comfirmPasswordInField);
+				if (isPasswordOK && isNewPasswordOK) {
+					// bl层方法，修改密码
+				boolean isModify = 	this.blservice.modifyPassword(this.systemManager.getId(), comfirmPasswordInField);
 				
-				Optional<ButtonType> btn = alert.showAndWait();
-				if (btn.get() == ButtonType.OK) {
-					this.mainScene.showSystemManagerInfoScene(systemManager);
+				if (isModify) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("恭喜");
+					alert.setContentText("您已成功修改您的密码！");
+					
+					Optional<ButtonType> btn = alert.showAndWait();
+					if (btn.get() == ButtonType.OK) {
+						this.mainScene.showSystemManagerInfoScene(systemManager);
+					}
+				} else {
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("抱歉");
+					alert.setContentText("不好意思，修改密码失败！");
+					alert.showAndWait();
 				}
-			} else {
-				Alert alert = new Alert(AlertType.INFORMATION);
+
+				} else if (!isPasswordOK) {//判断输入原密码是否正确
+					this.passwordRightLabel.setVisible(true);
+					this.passwordRightLabel.setText("原密码错误！");
+				} else if (!isNewPasswordOK) {
+					this.confirmPasswordRightLabel.setVisible(true);
+					this.confirmPasswordRightLabel.setText("两次输入的密码不一致！");
+				}
+			}else{
+				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("抱歉");
-				alert.setContentText("不好意思，修改密码失败！");
+				alert.setContentText("请先输入新密码");
 				alert.showAndWait();
 			}
-
-			} else if (!isPasswordOK) {//判断输入原密码是否正确
-				this.passwordRightLabel.setVisible(true);
-				this.passwordRightLabel.setText("原密码错误！");
-			} else if (!isNewPasswordOK) {
-				this.confirmPasswordRightLabel.setVisible(true);
-				this.confirmPasswordRightLabel.setText("两次输入的密码不一致！");
-			}
-		}else{
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("抱歉");
-			alert.setContentText("请先输入新密码");
-			alert.showAndWait();
 		}
+		
 	}
 
 	public void handleBack() {

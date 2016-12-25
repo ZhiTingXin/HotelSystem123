@@ -62,7 +62,6 @@ public class AddSystemVIPStrategyController {
 	private RadioButton open;
 	@FXML
 	private RadioButton close;
-	//TODO
 	@FXML
 	private ChoiceBox<String> city;
 	@FXML

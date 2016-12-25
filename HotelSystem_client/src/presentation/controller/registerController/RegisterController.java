@@ -1,12 +1,14 @@
 package presentation.controller.registerController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import VO.CustomerVO;
+import VO.LogofUserVO;
+import blservice.LogOfUser_blServce;
 import blservice.Register_blservice;
-import blservice.UserInfo_blservice;
+import blservice.impl.LogOfUser_blServceImpl;
 import blservice.impl.Register_bl;
-import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -42,18 +44,13 @@ public class RegisterController {
 	private TextField phoneTextField;
 
 	private Main mainScene;
-	private UserInfo_blservice user_blservice;
 	private Register_blservice registerService;
 	private CustomerVO customer;
-
-	public RegisterController() {
-
-	}
+    private LogOfUser_blServce logOfUser_blServce;
 
 	public void initialize(Main main) {
-		// TODO Auto-generated method stub
-		user_blservice = new UserInfo_bl();
 		registerService = new Register_bl();
+		logOfUser_blServce = new LogOfUser_blServceImpl();
 		this.mainScene = main;
 	}
 
@@ -91,10 +88,17 @@ public class RegisterController {
 				customer.setPassword(userPasswordConfirmInField);
 				customer.setPhone(phone);
 				customer.setCredit(300);
+				LogofUserVO logofUserVO = new LogofUserVO();
+				logofUserVO.setChange(300);
+				logofUserVO.setContent("×¢²áÊ±");
+				logofUserVO.setDateTime(LocalDateTime.now());
+				
+				logofUserVO.setUserid(customer.getId());
 				if (userBirthday != null) {
 					customer.setBirthday(userBirthday);
 				}
 				this.registerService.addRegister(customer);
+				this.logOfUser_blServce.addLogOfUser(logofUserVO);
 			}
 			this.mainScene.showCustomerMainScene(customer);
 		}
