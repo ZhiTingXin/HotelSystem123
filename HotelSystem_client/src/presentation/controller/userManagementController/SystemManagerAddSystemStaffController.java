@@ -1,21 +1,32 @@
 package presentation.controller.userManagementController;
 
-import java.awt.Desktop;
 import java.io.File;
-
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Optional;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import main.Main;
@@ -49,8 +60,9 @@ public class SystemManagerAddSystemStaffController {
 	private Stage stage;
 	private UserManagement_bl userManagement_bl;
 	private FileChooser fileChooser = new FileChooser();
-	ObservableList<String> cityList = FXCollections.observableArrayList();// �����б�
-	ObservableList<String> districtList = FXCollections.observableArrayList();// ��Ȧ�б�
+	private String path = "";
+	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
+	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
 
 	public SystemManagerAddSystemStaffController() {
 		userManagement_bl = new UserManagement_bl();
@@ -60,12 +72,12 @@ public class SystemManagerAddSystemStaffController {
 		this.mainScene = mainScene;
 		this.systemManagerVO = systemManagerVO;
 
-		// ����
+		// 左栏
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
-		
-		city.setTooltip(new Tooltip("��ѡ����У�"));
-		district.setTooltip(new Tooltip("��ѡ����Ȧ��"));
+
+		city.setTooltip(new Tooltip("请选择城市！"));
+		district.setTooltip(new Tooltip("请选择商圈！"));
 		initialize();
 	}
 
@@ -92,8 +104,16 @@ public class SystemManagerAddSystemStaffController {
 
 		configureFileChooser(fileChooser);
 		File file = fileChooser.showOpenDialog(stage);
-		String path = file.getAbsolutePath();
-		Image newImage = new Image("file:"+path, 200, 200, false, false);
+		String string = file.getName();
+		path = file.getAbsolutePath();
+
+		Image newImage = new Image("file:" + path, 200, 200, false, false);
+		try {
+			File file1 = new File("src/Img/" + string);
+			ImageIO.write(SwingFXUtils.fromFXImage(newImage, null), "gif", file1);
+		} catch (IOException ex) {
+			System.out.println(ex.getMessage());
+		}
 		image.setImage(newImage);
 	}
 
@@ -106,16 +126,48 @@ public class SystemManagerAddSystemStaffController {
 
 	@FXML
 	private void handleRegister() {
-		
-		SystemStaffVO systemStaffVO= new SystemStaffVO();
-		String systemStaffName = inputName.getText();
+
+		SystemStaffVO systemStaffVO = new SystemStaffVO();
+		String systemStaffName = inputName.getText();// name
 		systemStaffVO.setUsername(systemStaffName);
-		String myCity = city.getValue();
-//		systemStaffVO.s
-		
+		String myCity = city.getValue();// city
+		systemStaffVO.setCity(myCity);
+		String myDistrict = district.getValue();
+		systemStaffVO.setBusinessDistrict(myDistrict);
+		systemStaffVO.setImage(path);
+		systemStaffVO.setPassword(systemStaffVO.getId());// 密码
+
 		boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
+
 		if (isAdd) {
-			mainScene.
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("成功");
+			alert.setHeaderText("注册成功！");
+			alert.setContentText("恭喜，您已成功注册一条网站营销人员信息！");
+
+			String info = "ID：" + systemStaffVO.getId() + "\n" 
+							+ "用户名：" + systemStaffName + "\n" 
+							+ "分管商圈：" + myCity+ " " + myDistrict + "\n"
+							+ "密码：" + "初始密码与ID相同.";
+
+			Label label = new Label("网站管理人员的详细信息如下：");
+
+			TextArea textArea = new TextArea(info);
+			textArea.setEditable(false);
+			textArea.setWrapText(true);
+
+			textArea.setMaxWidth(360);
+			textArea.setMaxHeight(120);
+			GridPane.setVgrow(textArea, Priority.ALWAYS);
+			GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+			GridPane expContent = new GridPane();
+			expContent.setMaxWidth(120);
+			expContent.add(label, 0, 0);
+			expContent.add(textArea, 0, 1);
+			alert.getDialogPane().setExpandableContent(expContent);
+			alert.showAndWait();
 		}
 	}
 

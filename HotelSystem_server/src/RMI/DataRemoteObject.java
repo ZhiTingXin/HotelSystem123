@@ -12,6 +12,7 @@ import PO.HotelStaffPO;
 import PO.HotelStrategyPO;
 import PO.Label;
 import PO.LoginPO;
+import PO.LogofUserPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import PO.SuperVipPO;
@@ -27,6 +28,7 @@ import data.service.HotelStaffDataService;
 import data.service.HotelStrategyDataService;
 import data.service.IdGernerateService;
 import data.service.LabelDataService;
+import data.service.LogOfUserDataService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.RoomDataService;
@@ -43,6 +45,7 @@ import data.service.impl.HotelStaffDataServiceImpl;
 import data.service.impl.HotelStrategyDataServiceImpl;
 import data.service.impl.IdGernerateServiceImpl;
 import data.service.impl.LabelDataServiceImpl;
+import data.service.impl.LogOfUserDataServiceImpl;
 import data.service.impl.LoginDataServiceImpl;
 import data.service.impl.OrderDataServiceImpl;
 import data.service.impl.RoomDataServiceImpl;
@@ -53,7 +56,7 @@ import data.service.impl.SystemStrategyDataServiceImpl;
 import data.service.impl.VipDataServiceImpl;
 import other.SystemStrategyType;
 
-public class DataRemoteObject extends UnicastRemoteObject implements LoginDataService
+public class DataRemoteObject extends UnicastRemoteObject implements LogOfUserDataService,LoginDataService
 ,OrderDataService,HotelStrategyDataService,SystemStrategyDataService,HotelDataService,AdviceFeedBackDataService
 ,HotelStaffDataService,SystemStaffDataService,SystemManagerDataService
 ,RoomDataService,CustomerDataService,VipDataService,SuperVipDataService,IdGernerateService,AssessmentDataService,LabelDataService{
@@ -78,6 +81,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	private AssessmentDataService assessmentDataService;
 	private LabelDataService labelDataService;
 	private SuperVipDataService vipDataService2;
+	private LogOfUserDataService logOfUserDataService;
 	protected DataRemoteObject() throws RemoteException {
 		labelDataService = new LabelDataServiceImpl();
 		assessmentDataService = new AssemmentDataServiceImpl();
@@ -95,6 +99,7 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 		advice = new AdviceFeedBackDataServiceImpl();
 		roomDataService = new RoomDataServiceImpl();
 		vipDataService2 = new SupVipDataServiceImpl();
+		logOfUserDataService = new LogOfUserDataServiceImpl();
 	}
 	public boolean addAdvice(AdviceFeedBackPO advicefeedback) throws RemoteException {
 		return advice.addAdvice(advicefeedback);
@@ -316,6 +321,12 @@ public class DataRemoteObject extends UnicastRemoteObject implements LoginDataSe
 	}
 	public boolean deleteSupVip(SuperVipPO po) throws RemoteException {
 		return vipDataService2.deleteSupVip(po);
+	}
+	public boolean add(LogofUserPO log) throws RemoteException {
+		return logOfUserDataService.add(log);
+	}
+	public ArrayList<LogofUserPO> getAllLogsOfUser(String userid) throws RemoteException {
+		return logOfUserDataService.getAllLogsOfUser(userid);
 	}
 	
 }
