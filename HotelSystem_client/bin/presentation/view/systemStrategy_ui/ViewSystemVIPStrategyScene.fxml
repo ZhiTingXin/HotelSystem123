@@ -102,13 +102,23 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="districtName" layoutX="182.0" layoutY="219.0" mnemonicParsing="false" text="选择商圈">
-                    <items>
-                      <MenuItem fx:id="districtA" mnemonicParsing="false" onAction="#handleDistrictA" text="新街口" />
-                      <MenuItem fx:id="districtB" mnemonicParsing="false" onAction="#handleDistrictB" text="仙林中心" />
-                    </items>
-                  </MenuButton>
                   <Label fx:id="state" layoutX="182.0" layoutY="443.0" text="启用" />
+                  <Label fx:id="district" layoutX="249.0" layoutY="223.0" text="商圈">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="city" layoutX="181.0" layoutY="222.0" text="城市">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </items>

@@ -1,8 +1,6 @@
 package presentation.controller.userInfoController;
 
 import VO.SystemStaffVO;
-import blservice.UserInfo_blservice;
-import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,16 +23,12 @@ public class SystemStaffInfoController {
 	@FXML
 	private Label nameLabel;
 	@FXML
-	private Label districtName;
-	@FXML
 	private Label phone;
 
 	private Main mainScene;
 	private SystemStaffVO systemStaff;
-	private UserInfo_blservice systemStaffInfoService;
 
 	public SystemStaffInfoController() {
-		systemStaffInfoService = new UserInfo_bl();
 	}
 
 	public void SystemStaffInfoShow() {
@@ -42,7 +36,6 @@ public class SystemStaffInfoController {
 		this.nameLabel.setText(this.systemStaff.getUsername());
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
-		this.districtName.setText(this.systemStaff.getBusinessDistrict());
 		this.phone.setText(this.systemStaff.getPhone());
 	}
 

@@ -29,8 +29,6 @@ public class SystemStaffInfoModifyController {
 	@FXML
 	private TextField nameField;
 	@FXML
-	private Label businessDistrictLabel;
-	@FXML
 	private Button changePicture;
 	@FXML
 	private TextField phoneTextField;
@@ -48,7 +46,6 @@ public class SystemStaffInfoModifyController {
 		this.nameField.setText(this.systemStaff.getUsername());
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
-		this.businessDistrictLabel.setText(this.systemStaff.getBusinessDistrict());
 	    this.phoneTextField.setText(this.systemStaff.getPhone());
 
 	}

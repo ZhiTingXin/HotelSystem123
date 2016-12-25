@@ -64,12 +64,12 @@ public class SystemStrategyViewController {
 
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
-	private SystemStrategyVO systemStrategyVO;
 	private SystemStrategy_blservice systemStrategy_blservice;
 	private VipStrategy_blService vipStrategy_blService;
 	private ArrayList<SystemStrategyVO> systemStrategyVOList;
 	private ObservableList<SystemStrategyVO> systemStrategyData = FXCollections.observableArrayList();
-
+	private String cs;
+	private String sq;
 	public SystemStrategyViewController() {
 		systemStrategy_blservice = new SystemStrategy_bl();
 		vipStrategy_blService = new VipStrategy_blServiceImpl();
@@ -193,8 +193,11 @@ public class SystemStrategyViewController {
 				mainScene.showViewSystemMemberStrategyScene(systemStaffVO, selected);
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
+				
+				//TODO 需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
+//				Alert
 
-				mainScene.showViewSystemVIPStrategyScene(systemStaffVO, selected);
+//				mainScene.showViewSystemVIPStrategyScene(systemStaffVO, selected);
 
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
@@ -278,8 +281,8 @@ public class SystemStrategyViewController {
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
 
-				mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, selected);
-
+//				mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, selected);
+//TODO
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
 				mainScene.showSystemOtherStrategyModifyScene(systemStaffVO, selected);
@@ -317,7 +320,8 @@ public class SystemStrategyViewController {
 				} else if (selected.getSystemStrategyType() == SystemStrategyType.VIPMEMBER) {
 					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
 					isDelete = isDelete
-							&& vipStrategy_blService.deleteSuperVipStrategy(systemStaffVO.getBusinessDistrict());
+							&& vipStrategy_blService.deleteSuperVipStrategy(cs,sq);//TODO
+//					需要获得城市和商圈信息
 				} else {
 					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
 				}

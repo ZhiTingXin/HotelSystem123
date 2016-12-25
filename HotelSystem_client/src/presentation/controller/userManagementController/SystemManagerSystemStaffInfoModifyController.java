@@ -31,7 +31,7 @@ public class SystemManagerSystemStaffInfoModifyController {
 	@FXML
 	private TextField nameField;
 	@FXML
-	private Label businessDistrictLabel;
+	private TextField phoneNum;
 	@FXML
 	private Button changePicture;
 	@FXML
@@ -58,17 +58,17 @@ public class SystemManagerSystemStaffInfoModifyController {
 	public void SystemManagerSystemStaffInfoModifyShow(Main mainScene) {
 		idLabel.setText(systemStaffVO.getId());
 		nameField.setText(systemStaffVO.getUsername());
-		businessDistrictLabel.setText(systemStaffVO.getBusinessDistrict());
+		phoneNum.setText(systemStaffVO.getPhone());
 		
 	}
 	@FXML
 	private void handleSave(){
 		String idString = idLabel.getText();
 		String name = nameField.getText();
-		String district = businessDistrictLabel.getText();
+		String phone = phoneNum.getText();
 
 		systemStaffVO.setId(idString);
-		systemStaffVO.setBusinessDistrict(district);
+		systemStaffVO.setPhone(phone);
 		systemStaffVO.setUsername(name);
 		boolean isModify = blservice.modifySystemStaff(systemStaffVO);
 		

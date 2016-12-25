@@ -36,22 +36,12 @@
                      </font>
                   </Label>
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <Label layoutX="44.0" layoutY="80.0" text="您当前分管的商圈是">
+                  <Label layoutX="44.0" layoutY="97.0" text="最新待处理异常订单（更多请见异常订单处理）">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="districtName" layoutX="243.0" layoutY="80.0" text="Label">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="44.0" layoutY="110.0" text="最新待处理异常订单（更多请见异常订单处理）">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="orderTable" layoutX="44.0" layoutY="140.0" prefHeight="390.0" prefWidth="454.0">
+                  <TableView fx:id="orderTable" layoutX="44.0" layoutY="146.0" prefHeight="412.0" prefWidth="443.0">
                      <columns>
                         <TableColumn fx:id="customerId" prefWidth="75.0" text="客户ID" />
                         <TableColumn fx:id="hotelId" prefWidth="87.0" text="酒店ID" />
@@ -59,6 +49,9 @@
                         <TableColumn fx:id="arriveTime" prefWidth="112.0" text="到达时间" />
                         <TableColumn fx:id="orderDuration" prefWidth="99.0" text="订单时长" />
                      </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                </children>
             </AnchorPane>

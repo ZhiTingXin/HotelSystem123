@@ -2,7 +2,6 @@ package presentation.controller.systemstrategyController;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import VO.VipStrategyVO;
@@ -15,21 +14,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import main.Main;
+import other.MyDistricts;
 import other.StrategyState;
 import other.SystemStrategyType;
 
@@ -52,12 +51,6 @@ public class AddSystemVIPStrategyController {
 	@FXML
 	private TextArea descriptionOfStrategy;
 	@FXML
-	private MenuButton districtName;
-	@FXML
-	private MenuItem districtA;
-	@FXML
-	private MenuItem districtB;
-	@FXML
 	private TableView<VipVO> systemStrategyTable;
 	@FXML
 	private TableColumn<VipVO, String> memberGrade;
@@ -69,8 +62,14 @@ public class AddSystemVIPStrategyController {
 	private RadioButton open;
 	@FXML
 	private RadioButton close;
-
+	//TODO
+	@FXML
+	private ChoiceBox<String> city;
+	@FXML
+	private ChoiceBox<String> district;
 	
+	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
+	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategy_blservice systemStrategy_blservice;
@@ -90,70 +89,50 @@ public class AddSystemVIPStrategyController {
 		//左栏
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
+		initializeChoiceBox();
+        vipVOData.clear();
+		
+		VipVO vipVO1 = new VipVO();
+		vipVO1.setDiscount(0);
+		vipVO1.setVipgrade(4);
+		VipVO vipVO = new VipVO();
+		vipVO.setDiscount(0);
+		vipVO.setVipgrade(5);
+		
+		vipVOData.add(vipVO1);
+		vipVOData.add(vipVO);
+		
+		systemStrategyTable.setEditable(true);// 可编辑
+
+		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+
+		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
+		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
+			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+					.setDiscount(Double.parseDouble(t.getNewValue()));
+		});// setNewValue
+		systemStrategyTable.setItems(vipVOData);
 	}
 	
-	@FXML // 选择商圈
-	private void handleDistrictA() {
-
-		// 初始化表格
-		String district = districtA.getText();
-		districtName.setText(district);
-		vipVOData.clear();
-		
-		VipVO vipVO1 = new VipVO();
-		vipVO1.setDiscount(0);
-		vipVO1.setVipgrade(4);
-		VipVO vipVO = new VipVO();
-		vipVO.setDiscount(0);
-		vipVO.setVipgrade(5);
-		
-		vipVOData.add(vipVO1);
-		vipVOData.add(vipVO);
-		
-		systemStrategyTable.setEditable(true);// 可编辑
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
-		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
-			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-					.setDiscount(Double.parseDouble(t.getNewValue()));
-		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);
-		
+	private void initializeChoiceBox() {
+		for (String city : MyDistricts.cities) {
+			cityList.add(city);
+		}
+		city.setItems(cityList);
+		city.getSelectionModel().selectedItemProperty()
+				.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
 	}
-
-	@FXML
-	private void handleDistrictB() {
-		String district = districtB.getText();
-		districtName.setText(district);
-		vipVOData.clear();// 清空
-		
-		VipVO vipVO1 = new VipVO();
-		vipVO1.setDiscount(0);
-		vipVO1.setVipgrade(4);
-		VipVO vipVO = new VipVO();
-		vipVO.setDiscount(0);
-		vipVO.setVipgrade(5);
-		
-		vipVOData.add(vipVO1);
-		vipVOData.add(vipVO);
-
-		systemStrategyTable.setEditable(true);// 可编辑
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
-		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
-			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-					.setDiscount(Double.parseDouble(t.getNewValue()));
-		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);
-
+	
+	private void setDistrictChoiceBox(String city) {
+		districtList.clear();
+		String[] districts = MyDistricts.getDistricts(city);
+		for (String dist : districts) {
+			districtList.add(dist);
+		}
+		district.setItems(districtList);
 	}
-
+	
 	@FXML
 	private void handleSaveTable() {
 
@@ -161,7 +140,8 @@ public class AddSystemVIPStrategyController {
 		if (getVipVO.size()!=0) {
 			ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
 			for (VipVO vipVO : getVipVO) {
-				vipVO.setDistrict(districtName.getText());// 获取商圈名称
+				vipVO.setCity(city.getValue());
+				vipVO.setDistrict(district.getValue());// 获取商圈名称
 				newVipVO.add(vipVO);
 			}
 			vipStrategyVO = new VipStrategyVO();

@@ -229,7 +229,16 @@ public class tes {
 //		superVipPO2.setId("2");
 //		hibernateUtil.add(superVipPO2);
 //        hibernateUtil.add(superVipPO);
-		LoginPO loginPO = new LoginPO("ad", "12", UserType.CUSTOMER);
-		hibernateUtil.add(loginPO);
+//		LoginPO loginPO = new LoginPO("ad", "12", UserType.CUSTOMER);
+//		hibernateUtil.add(loginPO);
+//		SystemManagerPO systemManagerPO = new SystemManagerPO();
+//		systemManagerPO.setManagerID("12345");
+//		systemManagerPO.setManagerName("паж╬м╔");
+//		systemManagerPO.setPhone("15951926228");
+//		hibernateUtil.add(systemManagerPO);
+//		ClassToGreId classToGreId = new ClassToGreId();
+//		classToGreId.setId("151250001");
+//		classToGreId.setNeverChanged("1");
+//		hibernateUtil.add(classToGreId);
 	}
 }

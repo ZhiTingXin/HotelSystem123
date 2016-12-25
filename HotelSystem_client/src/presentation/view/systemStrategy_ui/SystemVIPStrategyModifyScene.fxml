@@ -108,13 +108,23 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <MenuButton fx:id="districtName" layoutX="182.0" layoutY="219.0" mnemonicParsing="false" text="商圈名称">
-                    <items>
-                      <MenuItem fx:id="districtA" mnemonicParsing="false" onAction="#handleDistrictA" text="新街口" />
-                      <MenuItem fx:id="districtB" mnemonicParsing="false" onAction="#handleDistrictB" text="仙林中心" />
-                    </items>
-                  </MenuButton>
                   <Button fx:id="saveTable" layoutX="286.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleSaveTable" text="保存表格" />
+                  <Label fx:id="district" layoutX="254.0" layoutY="223.0" text="商圈">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="city" layoutX="177.0" layoutY="223.0" text="城市">
+                     <effect>
+                        <Blend />
+                     </effect>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </items>

@@ -16,23 +16,17 @@ public class SystemStaffPO implements Serializable {
 
 	private String phone;
 
-	private String businessDistrict;
-
 	private String image;
 	
-	private String city;
-
 	public SystemStaffPO() {
 	}
 
 	public SystemStaffPO(SystemStaffVO systemStaffVO) {
 		super();
-		this.city = systemStaffVO.getCity();
 		this.id = systemStaffVO.getId();
 		this.image = systemStaffVO.getImage();
 		this.staffName = systemStaffVO.getUsername();
 		this.phone = systemStaffVO.getPhone();
-		this.businessDistrict = systemStaffVO.getBusinessDistrict();
 	}
 
 	public String getImage() {
@@ -67,19 +61,4 @@ public class SystemStaffPO implements Serializable {
 		this.phone = phone;
 	}
 
-	public String getBusinessDistrict() {
-		return businessDistrict;
-	}
-
-	public void setBusinessDistrict(String businessDistrict) {
-		this.businessDistrict = businessDistrict;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
 }

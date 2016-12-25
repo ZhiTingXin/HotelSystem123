@@ -21,7 +21,7 @@
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
                   <Button fx:id="save" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSave" prefHeight="39.0" prefWidth="200.0" text="保存" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="取消并返回" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -58,24 +58,14 @@
                   </Label>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <Label layoutX="75.0" layoutY="170.0" text="商圈名称">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="businessDistrictLabel" layoutX="189.0" layoutY="170.0" text="Label">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
                   <Button fx:id="changePicture" layoutX="143.0" layoutY="502.0" mnemonicParsing="false" text="修改头像" />
                   <TextField fx:id="nameField" layoutX="189.0" layoutY="109.0" />
-                  <Label layoutX="75.0" layoutY="200.0" text="联系方式">
+                  <Label layoutX="75.0" layoutY="177.0" text="联系方式">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="phoneTextField" layoutX="189.0" layoutY="200.0" />
+                  <TextField fx:id="phoneTextField" layoutX="189.0" layoutY="177.0" />
                </children>
             </AnchorPane>
          </items>

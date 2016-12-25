@@ -28,12 +28,12 @@ public class SupVipDaoImpl implements SuperVipDao {
 		}
 	}
 
-	public ArrayList<SuperVipPO> getStrict(String disstrict) {
+	public ArrayList<SuperVipPO> getStrict(String city,String disstrict) {
 		try {
 			ArrayList<SuperVipPO> arrayList = new ArrayList<SuperVipPO>();
 			ArrayList<SuperVipPO> superVipPOs = (ArrayList<SuperVipPO>)hibernateUtil.getAll("supervip", SuperVipPO.class);
 			for(SuperVipPO po:superVipPOs){
-				if(po.getDistrict().equals(disstrict)){
+				if(po.getDistrict().equals(disstrict)&&po.getCity().equals(city)){
 					arrayList.add(po);
 				}
 			}

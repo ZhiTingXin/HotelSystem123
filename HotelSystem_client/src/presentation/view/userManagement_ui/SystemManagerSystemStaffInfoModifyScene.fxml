@@ -58,18 +58,14 @@
                   </Label>
                   <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <Label layoutX="75.0" layoutY="170.0" text="商圈名称">
+                  <Label layoutX="75.0" layoutY="170.0" text="联系方式">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
                   <Button fx:id="changePicture" layoutX="143.0" layoutY="502.0" mnemonicParsing="false" text="修改头像" />
                   <TextField fx:id="nameField" layoutX="189.0" layoutY="109.0" />
-                  <Label fx:id="businessDistrictLabel" layoutX="189.0" layoutY="170.0" text="Label">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
+                  <TextField fx:id="phoneNum" layoutX="183.0" layoutY="170.0" />
                </children>
             </AnchorPane>
          </items>
