@@ -68,8 +68,6 @@ public class CustomerInfoController {
 		this.idLabel.setText(Customer.getId());
 		if (!this.Customer.getUsername().equals("")) {
 			this.nameLabel.setText(Customer.getUsername());
-		} else {
-			this.nameLabel.setText("ÔÝÈ±");
 		}
 
 		if (this.Customer.getBirthday() != null) {

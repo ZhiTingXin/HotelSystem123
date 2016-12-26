@@ -12,6 +12,8 @@ public interface Order_blservice {
 	public ArrayList<OrderVO> getOrdersOfUsers(String userID);
 
 	public boolean changeState(OrderVO order_info);
+	
+	public boolean addHalfOfOrginalCredit(String userID, String orderID);
 
 	public ArrayList<OrderVO> getUnfinishedOrders(String userID);
 
@@ -27,8 +29,6 @@ public interface Order_blservice {
 
 	public String getOrderPrice(OrderVO order);
 	
-	public ArrayList<OrderVO> getAllOrders(String hotelId);
-
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId);
 
 	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID);
@@ -37,5 +37,6 @@ public interface Order_blservice {
 	
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID);
 	
-	public ArrayList<OrderVO> getAllHotelOrders(String hotelid);
+	public ArrayList<OrderVO> getAllAbnormalOrders();
+	
 }

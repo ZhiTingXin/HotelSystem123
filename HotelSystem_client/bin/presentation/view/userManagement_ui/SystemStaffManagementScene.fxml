@@ -39,12 +39,16 @@
                       <TableColumn fx:id="idColumn" prefWidth="133.81341552734375" text="用户ID" />
                       <TableColumn fx:id="nameColumn" prefWidth="105.0" text="用户名" />
                         <TableColumn fx:id="identityColumn" minWidth="3.7308349609375" prefWidth="127.0" text="用户身份" />
-                        <TableColumn fx:id="districtColumn" minWidth="0.0" prefWidth="96.83935546875" text="商圈名称" />
+                        <TableColumn fx:id="phoneColumn" minWidth="0.0" prefWidth="96.83935546875" text="联系方式" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <TextField fx:id="inputSearchText" layoutX="33.0" layoutY="72.0" prefHeight="23.0" prefWidth="403.0" promptText="输入要搜索的用户的ID" />
                   <Button fx:id="searchButton" layoutX="454.0" layoutY="71.0" mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
                   <Button fx:id="viewUserInfo" layoutX="347.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleViewInfo" prefHeight="39.0" prefWidth="129.0" text="查看用户详细信息" />
+                  <Button fx:id="deleteBu" layoutX="197.0" layoutY="514.0" mnemonicParsing="false" onAction="#handleDelete" prefHeight="39.0" prefWidth="129.0" text="删除该用户" />
                </children>
             </AnchorPane>
          </items>

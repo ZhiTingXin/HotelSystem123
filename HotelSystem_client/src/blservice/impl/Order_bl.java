@@ -2,6 +2,7 @@ package blservice.impl;
 
 import java.rmi.RemoteException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import PO.CustomerPO;
@@ -9,9 +10,12 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.CustomerVO;
 import VO.HotelRoomInfoVO;
+import VO.LogofUserVO;
 import VO.OrderVO;
 import VO.VipVO;
+import blservice.LogOfUser_blServce;
 import blservice.Order_blservice;
 import blservice.Room_blService;
 import blservice.VipStrategy_blService;
@@ -27,7 +31,7 @@ public class Order_bl implements Order_blservice {
 	HotelDataService hotelDataService = RemoteHelper.getInstance().getHotelDataService();
 	CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
 	VipStrategy_blService vipService = new VipStrategy_blServiceImpl();
-
+	LogOfUser_blServce logOfUser_blServce = new LogOfUser_blServceImpl();
 	/**
 	 * @param 订单的id
 	 * @return 订单的状态
@@ -51,7 +55,7 @@ public class Order_bl implements Order_blservice {
 			OrderPO orderPO = dataService.findorder(orderID);
 			OrderVO orderVO = new OrderVO(orderPO);
 			return orderVO;
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -131,7 +135,7 @@ public class Order_bl implements Order_blservice {
 	 * @param order_info
 	 */
 	public void changeRoomRemain(String orderID) {
-		// TODO Auto-generated method stub
+
 		OrderVO order = this.getOrder(orderID);
 		Room_blService roomService = new Room_blServiceImpl();
 		ArrayList<HotelRoomInfoVO> roomInfo = roomService.getAllRoom(order.getHotelID());
@@ -310,7 +314,6 @@ public class Order_bl implements Order_blservice {
 		return orderVOs;
 	}
 
-	// TODO 还没用确定具体的方法
 	/**
 	 * 修改用户信用值方法
 	 * 
@@ -326,25 +329,58 @@ public class Order_bl implements Order_blservice {
 			e.printStackTrace();
 		}
 		int credit = 0;
-		if (order.getStatus() != null && order.getStatus() == OrderState.ABNOMAL) {
-			credit = customer.getCredit() - (int) (order.getPrice());
+		if (order.getStatus() == OrderState.ABNOMAL) {
+			credit = customer.getCredit() - (int) (order.getPrice()/2);
 		} else if (order.getStatus() == OrderState.FINISHED) {
 			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
-		} else if (order.getStatus() == OrderState.ASSESSED) {
-			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
 		} else if (order.getStatus() == OrderState.REVACATION) {
-			credit = customer.getCredit() - (int) (order.getPrice() * 0.5);
+			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
+		}else {
+			credit = customer.getCredit();
 		}
 		customer.setCredit(credit);
+		try {
+			customerDataService.updateCustomer(customer);
+			
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param userID
+	 * @param orderID
+	 * @return
+	 * 恢复用户订单信用值的一半
+	 */
+	public boolean addHalfOfOrginalCredit(String userID, String orderID){
+		
+		OrderPO order = null;
+		CustomerPO customer = null;
+		try {
+			customer = customerDataService.findCustomer(userID);
+			order = dataService.findorder(orderID);
+			order = dataService.findorder(orderID);
+			LogofUserVO logofUserVO = new LogofUserVO();
+			logofUserVO.setChange((int)(order.getPrice()/4));
+			logofUserVO.setContent("成功撤销订单号为 "+orderID+" 的订单");
+			logofUserVO.setUserid(userID);
+			logofUserVO.setDateTime(LocalDateTime.now());
+			logOfUser_blServce.addLogOfUser(logofUserVO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		int a = (int)(order.getPrice()/4);
+		customer.setCredit(customer.getCredit()+a);
 		try {
 			customerDataService.updateCustomer(customer);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
 		return true;
 	}
-
 	/**
 	 * @param 订单的信息
 	 * 
@@ -403,36 +439,22 @@ public class Order_bl implements Order_blservice {
 
 		return price;
 	}
-
+	
 	/**
-	 * @param 酒店id
-	 * @return 返回酒店的所有的订单信息
+	 * 为网站营销人员实现获得全部的异常订单
 	 */
-	public ArrayList<OrderVO> getAllOrders(String hotelId) {
-		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+	public ArrayList<OrderVO> getAllAbnormalOrders(){
+		ArrayList<OrderVO> abnormalOrders = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllHotelOrders(hotelId);
-			for (OrderPO po : orderPOs) {
-				orderVOs.add(new OrderVO(po));
+			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			for(OrderPO po: orderPOs){
+				if (po.getStatus()==OrderState.ABNOMAL) {
+					abnormalOrders.add(new OrderVO(po));
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return orderVOs;
+		return abnormalOrders;
 	}
-
-	// TODO 可以告诉我为什么方法的实现是一样的吗
-	public ArrayList<OrderVO> getAllHotelOrders(String hotelid) {
-		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
-		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllHotelOrders(hotelid);
-			for (OrderPO po : orderPOs) {
-				orderVOs.add(new OrderVO(po));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return orderVOs;
-	}
-
 }

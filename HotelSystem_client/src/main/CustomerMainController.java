@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import VO.CustomerVO;
 import VO.HotelInfoVO;
 import blservice.Hotel_blservice;
-import blservice.UserInfo_blservice;
+import blservice.UserManagement_blservice;
 import blservice.impl.Hotel_bl;
+import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -35,8 +36,6 @@ public class CustomerMainController {
 	@FXML
 	private Button exit;
 	@FXML
-	private Label districtName;
-	@FXML
 	private TableView<HotelInfoVO> hotelTable;
 	@FXML
 	private TableColumn<HotelInfoVO, String> hotelName;
@@ -47,9 +46,9 @@ public class CustomerMainController {
 
 	// ui层属性
 	private Hotel_blservice hotelService;
-	private UserInfo_blservice userService;
 	private CustomerVO customer;
 	private Main mainScene;
+	private UserManagement_blservice userservice;
 
 	// 表格属性
 	private ArrayList<HotelInfoVO> hotelList;
@@ -59,10 +58,10 @@ public class CustomerMainController {
 	}
 
 	public void initialize(Main main, CustomerVO customer) {
-		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.customer = customer;
 		this.hotelService = new Hotel_bl();
+		userservice = new UserManagement_bl();
 		this.hotelList = this.hotelService.getAllHotel();
 		// 表格操作
 		int count = 0;
@@ -96,7 +95,10 @@ public class CustomerMainController {
 	}
 
 	public void handlePersonal() {
-		this.mainScene.showCustomerInfoScene(customer);
+		/**
+		 * 解决维护个人信息时的没有 刷新问题
+		 */
+		this.mainScene.showCustomerInfoScene(userservice.getCustomer(customer.getId()));
 	}
 
 	public void handleAdviceFeedback() {
@@ -107,7 +109,6 @@ public class CustomerMainController {
 		try {
 			this.mainScene.showLoginScene();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

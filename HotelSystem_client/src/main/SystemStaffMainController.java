@@ -63,8 +63,7 @@ public class SystemStaffMainController {
 		this.systemStaffVO = systemStaff;
 		// 初始化异常订单列表
 		//*************未完成的是显示的异常订单是（*天）之内的（新增）的处理的****************//
-		String systemStaffID = this.systemStaffVO.getId();
-		abnormalOrderList = order_blservice.getAbnomalOrders(systemStaffID);// bl层调用getAbnoemalOrders方法
+		abnormalOrderList = order_blservice.getAllAbnormalOrders();// bl层调用getAbnoemalOrders方法
 		for (OrderVO abnormalOrderVO : abnormalOrderList) {
 			orderData.add(abnormalOrderVO);
 		}

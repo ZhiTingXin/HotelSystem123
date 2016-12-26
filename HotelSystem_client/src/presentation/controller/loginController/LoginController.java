@@ -31,7 +31,6 @@ public class LoginController {
 	}
 
 	public void initialize(Main main) {
-		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.loginService = new Login_bl();
 		this.usermanagementService = new UserManagement_bl();

@@ -75,8 +75,8 @@ public class HotelViewController {
 	 */
 	@FXML
 	private void handleViewHotelInfo() {
-		int focusOn = this.hotelTable.getSelectionModel().getFocusedIndex();
-		this.mainScene.showCustomerHotelInfoScene(customer, this.hotelData.get(focusOn));
+		HotelInfoVO hotelin = this.hotelTable.getSelectionModel().getSelectedItem();
+		this.mainScene.showCustomerHotelInfoScene(customer, hotelin);
 	}
 
 	@FXML

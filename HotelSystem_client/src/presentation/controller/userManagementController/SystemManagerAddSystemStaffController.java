@@ -98,6 +98,7 @@ public class SystemManagerAddSystemStaffController {
 			systemStaffVO.setUsername(systemStaffName);
 			systemStaffVO.setImage(path);
 			systemStaffVO.setPassword(systemStaffVO.getId());//密码
+			systemStaffVO.setPhone(phoneNum.getText());
 			
 			boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
 			
