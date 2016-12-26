@@ -4,10 +4,14 @@ import blservice.Login_blservice;
 import blservice.UserManagement_blservice;
 import blservice.impl.Login_bl;
 import blservice.impl.UserManagement_bl;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import main.Main;
 import other.UserType;
 
@@ -40,6 +44,7 @@ public class LoginController {
 	public void LoginShow() {
 		this.userId.setPromptText("请输入您的ID");
 		this.userPassword.setPromptText("请输入您的密码");
+
 	}
 
 	public void handleLogin() {
@@ -50,20 +55,21 @@ public class LoginController {
 
 			// 待修改方法
 			UserType loginType = this.loginService.assertUserType(userIdInField);
-			if (loginType==UserType.CUSTOMER) {
+			if (loginType == UserType.CUSTOMER) {
 				this.mainScene.showCustomerMainScene(this.usermanagementService.getCustomer(userIdInField));
 			}
-			if (loginType==UserType.HOTELSTAFF) {
+			if (loginType == UserType.HOTELSTAFF) {
 				this.mainScene.showHotelStaffMainScene(this.usermanagementService.getHotelStaff(userIdInField));
 			}
-			if (loginType==UserType.SYSTEMSTAFF) {
+			if (loginType == UserType.SYSTEMSTAFF) {
 				this.mainScene.showSystemStaffMainScene(this.usermanagementService.getSystemStaff(userIdInField));
 			}
-			if (loginType==UserType.SYSTEMMANAGER) {
+			if (loginType == UserType.SYSTEMMANAGER) {
 				this.mainScene.showSystemManagerMainScene(this.usermanagementService.getSystemManager(userIdInField));
 			}
 
-		}else System.out.println("Error");
+		} else
+			System.out.println("Error");
 	}
 
 	public void handleRegister() {
