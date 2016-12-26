@@ -19,4 +19,6 @@ public interface VipStrategy_blService {
 	
 	public boolean deleteSuperVipStrategy(String city,String district);
 	
+	public int getSuperVipNum();
+	
 }
