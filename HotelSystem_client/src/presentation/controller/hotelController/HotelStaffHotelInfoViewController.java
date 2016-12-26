@@ -67,25 +67,25 @@ public class HotelStaffHotelInfoViewController {
 	private HotelStrategy_blservice hotelStrategyService;
 	private ArrayList<HotelRoomInfoVO> roomInfo;
 
-	public HotelStaffHotelInfoViewController() {
-	}
-
+	
 	public void HotelStaffHotelInfoViewShow() {
+		
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.hotelName.setText(this.hotel.getHotelName());
 
-		if (this.hotel.getHotelAddress() != null || this.hotel.getHotelAddress().equals("")) {
+		
+		if (this.hotel.getHotelAddress() != null && !this.hotel.getHotelAddress().equals("")) {
 			this.address.setText(this.hotel.getHotelAddress());
 		} else {
 			this.address.setText("ÔÝÈ±");
 		}
-		if (this.hotel.getHotelDistrict() != null || this.hotel.getHotelDistrict().equals("")) {
+		if (this.hotel.getHotelDistrict() != null && !this.hotel.getHotelDistrict().equals("")) {
 			this.district.setText(this.hotel.getHotelDistrict());
 		} else {
 			this.district.setText("ÔÝÈ±");
 		}
-		if (this.hotel.getHotelDiscription() != null || this.hotel.getHotelDiscription().equals("")) {
+		if (this.hotel.getHotelDiscription() != null && !this.hotel.getHotelDiscription().equals("")) {
 			this.description.setText(this.hotel.getHotelDiscription());
 		} else {
 			this.description.setText("ÔÝÈ±");
