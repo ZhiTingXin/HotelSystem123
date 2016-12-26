@@ -30,9 +30,9 @@ public class SystemManagerHotelStaffInfoModifyController {
 	@FXML
 	private TextField name;
 	@FXML
-	private TextField hotelId;
+	private TextField hotelName;
 	@FXML
-	private Label hotelName;
+	private Label hotelId;
 	@FXML
 	private Button changePicture;
 

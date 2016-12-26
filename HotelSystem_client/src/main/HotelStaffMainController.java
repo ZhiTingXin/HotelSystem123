@@ -60,12 +60,12 @@ public class HotelStaffMainController {
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff) {
-		// TODO Auto-generated method stub
 		this.mainScene = main;
 		this.hotelStaff = hotelStaff;
 		this.orderService = new Order_bl();
 		this.hotelService=new Hotel_bl();
 		this.orderList = this.orderService.getOrderOfToday(this.hotelStaff.getHotelId());
+
 		if (this.orderList != null) {
 			int count = 0;
 

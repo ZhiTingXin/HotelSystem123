@@ -68,12 +68,12 @@
                      </font>
                   </Label>
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <Label layoutX="75.0" layoutY="170.0" text="商圈名称">
+                  <Label layoutX="75.0" layoutY="170.0" text="联系方式">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="districtName" layoutX="189.0" layoutY="170.0" text="Label">
+                  <Label fx:id="phoneNum" layoutX="189.0" layoutY="170.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>

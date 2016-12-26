@@ -2,7 +2,6 @@ package presentation.controller.systemstrategyController;
 
 import java.util.ArrayList;
 import java.util.Optional;
-
 import VO.SystemStaffVO;
 import VO.SystemStrategyVO;
 import VO.VipStrategyVO;
@@ -19,8 +18,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
@@ -51,11 +48,9 @@ public class SystemVIPStrategyModifyController {
 	@FXML
 	private TextArea descriptionOfStrategy;
 	@FXML
-	private MenuButton districtName;
+	private Label city;
 	@FXML
-	private MenuItem districtA;
-	@FXML
-	private MenuItem districtB;
+	private Label district;
 	@FXML
 	private TableView<VipVO> systemStrategyTable;
 	@FXML
@@ -82,7 +77,7 @@ public class SystemVIPStrategyModifyController {
 		vipStrategy_blService = new VipStrategy_blServiceImpl();
 	}
 
-	public void initilize(Main mainScene, SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+	public void initilize(Main mainScene,String city,String district,SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 		this.systemStrategyVO = systemStrategyVO;
@@ -90,6 +85,26 @@ public class SystemVIPStrategyModifyController {
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
 		SystemVIPStrategyModifyShow(mainScene);
+		this.city.setText(city);
+		this.district.setText(district);
+		vipVOData.clear();
+		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(this.city.getText(),this.district.getText()).getVipStrategyVOList();
+		for (VipVO vipVO : vipVOs) {
+			vipVOData.add(vipVO);
+		}
+
+		systemStrategyTable.setEditable(true);// 可编辑
+
+		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+
+		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
+		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
+			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+					.setDiscount(Double.parseDouble(t.getNewValue()));
+		});// setNewValue
+		systemStrategyTable.setItems(vipVOData);	
+		
 	}
 
 	public void SystemVIPStrategyModifyShow(Main mainScene) {
@@ -109,57 +124,7 @@ public class SystemVIPStrategyModifyController {
 
 		vipVOData.clear();
 	}
-
-	@FXML // 选择商圈
-	private void handleDistrictA() {
-
-		// 初始化表格
-		String district = districtA.getText();
-		districtName.setText(district);
-		vipVOData.clear();
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
-		for (VipVO vipVO : vipVOs) {
-			vipVOData.add(vipVO);
-		}
-
-		systemStrategyTable.setEditable(true);// 可编辑
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
-		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
-			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-					.setDiscount(Double.parseDouble(t.getNewValue()));
-		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);	
-	}
-
-	@FXML
-	private void handleDistrictB() {
-		
-		String district = districtB.getText();
-		districtName.setText(district);
-		vipVOData.clear();// 清空
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
-		for (VipVO vipVO : vipVOs) {
-			vipVOData.add(vipVO);
-		}
-
-		systemStrategyTable.setEditable(true);// 可编辑
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
-		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
-			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-					.setDiscount(Double.parseDouble(t.getNewValue()));
-		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);
-
-	}
-
+	
 	@FXML
 	private void handleSaveTable() {
 

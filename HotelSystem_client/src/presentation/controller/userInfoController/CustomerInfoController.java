@@ -21,6 +21,8 @@ public class CustomerInfoController {
 	@FXML
 	private Button backTOSuper;
 	@FXML
+	private Button creditview;
+	@FXML
 	private Button back;
 	@FXML
 	private Label idLabel;
@@ -66,8 +68,6 @@ public class CustomerInfoController {
 		this.idLabel.setText(Customer.getId());
 		if (!this.Customer.getUsername().equals("")) {
 			this.nameLabel.setText(Customer.getUsername());
-		} else {
-			this.nameLabel.setText("暂缺");
 		}
 
 		if (this.Customer.getBirthday() != null) {
@@ -110,6 +110,13 @@ public class CustomerInfoController {
 		this.mainsence.showCustomerMemberModifyScene(this.Customer);
 	}
 
+	/**
+	 * 查看用户的信用记录
+	 */
+	@FXML
+	private void handleCreditView(){
+		this.mainsence.showCustomerCreditView(Customer);
+	}
 	public void handleBack() {
 		this.mainsence.showCustomerMainScene(Customer);
 	}

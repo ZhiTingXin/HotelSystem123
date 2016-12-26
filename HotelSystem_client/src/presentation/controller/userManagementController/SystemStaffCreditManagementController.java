@@ -1,12 +1,14 @@
 package presentation.controller.userManagementController;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import VO.CustomerVO;
+import VO.LogofUserVO;
 import VO.SystemStaffVO;
-import blservice.UserInfo_blservice;
+import blservice.LogOfUser_blServce;
 import blservice.UserManagement_blservice;
-import blservice.impl.UserInfo_bl;
+import blservice.impl.LogOfUser_blServceImpl;
 import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,12 +52,12 @@ public class SystemStaffCreditManagementController {
 	private SystemStaffVO systemStaffVO;
 	private CustomerVO customerVO;
 	private UserManagement_blservice userManagement_blservice;
-	private UserInfo_blservice userInfo_blservice;
+	private LogOfUser_blServce logOfUser_blServce;
 	private ObservableList<CustomerVO> customerData = FXCollections.observableArrayList();// 声明
 	
 	public SystemStaffCreditManagementController(){
 		userManagement_blservice = new UserManagement_bl();//充值信用值
-		userInfo_blservice = new UserInfo_bl();//获取用户信息
+		logOfUser_blServce = new LogOfUser_blServceImpl();
 	}
 	public void initialize(Main mainScene,SystemStaffVO systemStaffVO) {
 		this.mainScene = mainScene;
@@ -111,7 +113,13 @@ public class SystemStaffCreditManagementController {
 				int nowCridet = customer.getCredit()+Integer.valueOf(crditNum);
 				customer.setCredit(nowCridet);
 				boolean isOK = userManagement_blservice.modifyCustomer(customer);
-				if (isOK) {
+				LogofUserVO logofUserVO = new LogofUserVO();
+				logofUserVO.setDateTime(LocalDateTime.now());
+				logofUserVO.setChange(Integer.valueOf(crditNum));
+				logofUserVO.setContent("充值");
+				logofUserVO.setUserid(customer.getId());
+				boolean iscre = logOfUser_blServce.addLogOfUser(logofUserVO);
+				if (isOK&&iscre) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setHeaderText("充值成功");
 					alert.setContentText("您成功为用户"+"\""+customer.getUsername()+"\""+"充值信用值："+crditNum+"点");

@@ -1,6 +1,7 @@
 package presentation.controller.userManagementController;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,7 +51,9 @@ public class SystemStaffManagementController {
     @FXML
     private TableColumn<SystemStaffVO, String> identityColumn;//用户身份
     @FXML
-    private TableColumn<SystemStaffVO, String> districtColumn;
+    private TableColumn<SystemStaffVO, String> phoneColumn;
+    @FXML
+    private Button deleBu;
 	
     private Main mainScene;
 	private SystemManagerVO systemManagerVO;
@@ -78,7 +82,7 @@ public class SystemStaffManagementController {
 		idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());
 		nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
 		identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
-		districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffDistrict());
+		phoneColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffPhone());
 		
 		userTable.setItems(systemStaffData);
 	}
@@ -95,10 +99,10 @@ public class SystemStaffManagementController {
 			    systemStaffData.clear();
 				systemStaffData.add(staffVO);
 				
-				idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());//TODO
+				idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());
 				nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
 				identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
-				districtColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffDistrict());
+				phoneColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffPhone());
 				
 				userTable.setItems(systemStaffData);
 			}
@@ -138,7 +142,55 @@ public class SystemStaffManagementController {
 		}
 	}
 	@FXML
+	private void handleDelete() {
+		SystemStaffVO selected = userTable.getSelectionModel().getSelectedItem();
+		if (selected!=null) {
+			Alert alert1 = new Alert(AlertType.CONFIRMATION);
+			alert1.setTitle("提醒");
+			alert1.setContentText("确定要删除该用户吗？删除后将无法撤销 ，请选择是或否");
+			ButtonType yes = new ButtonType("是");
+			ButtonType no = new ButtonType("否");
+			alert1.getButtonTypes().setAll(yes,no);
+			Optional<ButtonType> btn = alert1.showAndWait();
+			if (btn.get() == yes) {
+				if(userManagement_blservice.deleSystemStaff(selected)){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("恭喜");
+					alert.setContentText("您已经成功删除了一个网站营销人员");
+					alert.showAndWait();
+					freshTable();
+				}else{
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("抱歉");
+					alert.setContentText("删除失败，请稍后再试");
+					alert.showAndWait();
+				}
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("抱歉");
+			alert.setHeaderText("操作失败");
+			alert.setContentText("不要着急，请先选择一个网站营销人员");
+			alert.showAndWait();
+		}
+	}
+	@FXML
 	private void handleBack(){
 		mainScene.showSystemManagerMainScene(systemManagerVO);
+	}
+	
+	private void freshTable(){
+		systemStaffData.clear();
+		ArrayList<SystemStaffVO> systemStaffList = userManagement_blservice.getAllSystemStaff();
+		for(SystemStaffVO systemStaff : systemStaffList){
+			systemStaffData.add(systemStaff);
+		}
+
+		idColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIDProperty());
+		nameColumn.setCellValueFactory(cellData->cellData.getValue().getSystemSatffNameProperty());
+		identityColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffIdentity());
+		phoneColumn.setCellValueFactory(cellData->cellData.getValue().getSystemStaffPhone());
+		
+		userTable.setItems(systemStaffData);
 	}
 }

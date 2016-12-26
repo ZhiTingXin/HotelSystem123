@@ -85,7 +85,6 @@ public class BookHotelController {
 	private Label stateField;
 
 	private Main mainScene;
-	private UserInfo_blservice userService;
 	private Order_blservice orderService;
 	private CustomerVO customer;
 	private HotelInfoVO hotel;
@@ -102,11 +101,9 @@ public class BookHotelController {
 	}
 
 	public void initialize(Main mainScene, CustomerVO customer, HotelInfoVO hotel) {
-		// TODO Auto-generated method stub
 		this.customer = customer;
 		this.hotel = hotel;
 		this.mainScene = mainScene;
-		userService = new UserInfo_bl();
 		this.orderService = new Order_bl();
 		this.roomService = new Room_blServiceImpl();
 		// order的初始设定

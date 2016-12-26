@@ -20,10 +20,12 @@ public class HotelPO implements Serializable {
 	private String hotelDiscription;
 	private String hotelAddress;
 	private String image;
+	private String city;
 
 	// VO > PO structure
 	public HotelPO(HotelInfoVO hotelInfoVO) {
 		super();
+		this.city = hotelInfoVO.getCity();
 		this.hotelId = hotelInfoVO.getHotelID();
 		this.hotelStaffId = hotelInfoVO.getHotelStaffId();
 		this.hotelStrict = hotelInfoVO.getHotelDistrict();
@@ -97,5 +99,13 @@ public class HotelPO implements Serializable {
 
 	public void setHotelAddress(String hotelAddress) {
 		this.hotelAddress = hotelAddress;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 }

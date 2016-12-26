@@ -12,8 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -38,11 +36,9 @@ public class ViewSystemVIPStrategyController {
 	@FXML
 	private TextArea descriptionOfStrategy;
 	@FXML
-	private MenuButton districtName;
+	private Label city;
 	@FXML
-	private MenuItem districtA;
-	@FXML
-	private MenuItem districtB;
+	private Label district;
 	@FXML
 	private TableView<VipVO> systemStrategyTable;
 	@FXML
@@ -57,11 +53,13 @@ public class ViewSystemVIPStrategyController {
 	private SystemStrategyVO systemStrategyVO;
 	private VipStrategy_blService vipStrategy_blService;
 	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();
+	private String cs;
+	private String sq;
 
 	public ViewSystemVIPStrategyController() {
 	}
 
-	public void initilize(Main mainScene, SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+	public void initilize(Main mainScene,String city,String district,SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 		this.systemStrategyVO = systemStrategyVO;
@@ -70,6 +68,22 @@ public class ViewSystemVIPStrategyController {
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
 		SystemVIPStrategyModifyShow(mainScene);
+		this.cs = city;
+		this.sq = district;
+		this.city.setText(city);
+		this.district.setText(district);
+		/**
+		 * 初始化表格
+		 */
+		vipVOData.clear();
+		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(city,district).getVipStrategyVOList();
+		for (VipVO vipVO : vipVOs) {
+			vipVOData.add(vipVO);
+		}
+
+		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+		systemStrategyTable.setItems(vipVOData);
 	}
 
 	public void SystemVIPStrategyModifyShow(Main mainScene) {
@@ -79,46 +93,10 @@ public class ViewSystemVIPStrategyController {
 		vipVOData.clear();
 	}
 
-	@FXML // 选择商圈
-	private void handleDistrictA() {
-
-		// 初始化表格
-		String district = districtA.getText();
-		districtName.setText(district);
-		
-		vipVOData.clear();
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
-		for (VipVO vipVO : vipVOs) {
-			vipVOData.add(vipVO);
-		}
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		systemStrategyTable.setItems(vipVOData);	
-		
-	}
-
-	@FXML
-	private void handleDistrictB() {
-		
-		String district = districtB.getText();
-		districtName.setText(district);
-		
-		vipVOData.clear();// 清空
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(district).getVipStrategyVOList();
-		for (VipVO vipVO : vipVOs) {
-			vipVOData.add(vipVO);
-		}
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		systemStrategyTable.setItems(vipVOData);
-
-	}
 
 	@FXML
 	private void handleModify() {
-		mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, systemStrategyVO);
+		mainScene.showSystemVIPStrategyModifyScene(systemStaffVO,cs,sq, systemStrategyVO);
 	}
 
 	@FXML // cancel and back to the former view.

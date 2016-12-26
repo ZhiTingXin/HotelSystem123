@@ -76,7 +76,7 @@ public class HotelInfoController {
 	}
 
 	public void initialize(Main main, CustomerVO customer, HotelInfoVO hotel) {
-		// TODO Auto-generated method stub
+
 		this.mainScene = main;
 		this.service = new Hotel_bl();
 		this.roomService = new Room_blServiceImpl();
@@ -85,7 +85,9 @@ public class HotelInfoController {
 		this.customer = customer;
 		this.hotel = hotel;
 		this.hotelRoomInfo = roomService.getAllRoom(this.hotel.getHotelID());
+		
 		this.refreshTable();
+		
 		this.HotelInfoShow();
 
 	}
@@ -148,9 +150,8 @@ public class HotelInfoController {
 		while (count < this.hotelRoomInfo.size()) {
 			if (this.hotelRoomInfo.get(count).getRoomNum() > 0) {
 				this.roomData.add(this.hotelRoomInfo.get(count));
-				count++;
 			}
-
+			count++;
 		}
 		this.roomType.setCellValueFactory(cellData -> cellData.getValue().getRoomTypeProperty());
 		this.roomRemain.setCellValueFactory(cellData -> cellData.getValue().getRoomRemainProperty());
