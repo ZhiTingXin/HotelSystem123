@@ -89,29 +89,9 @@ public class AddSystemVIPStrategyController {
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
 		initializeChoiceBox();
-        vipVOData.clear();
+        
+		freshTable();
 		
-		VipVO vipVO1 = new VipVO();
-		vipVO1.setDiscount(0);
-		vipVO1.setVipgrade(4);
-		VipVO vipVO = new VipVO();
-		vipVO.setDiscount(0);
-		vipVO.setVipgrade(5);
-		
-		vipVOData.add(vipVO1);
-		vipVOData.add(vipVO);
-		
-		systemStrategyTable.setEditable(true);// 可编辑
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
-		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
-			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-					.setDiscount(Double.parseDouble(t.getNewValue()));
-		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);
 	}
 	
 	private void initializeChoiceBox() {
@@ -135,8 +115,26 @@ public class AddSystemVIPStrategyController {
 	@FXML
 	private void handleSaveTable() {
 
-		ObservableList<VipVO> getVipVO = systemStrategyTable.getItems();
-		if (getVipVO.size()!=0) {
+		VipStrategyVO vipStrategyVO = vipStrategy_blService.getVipstrategy(city.getValue(), district.getValue());
+		if (vipStrategyVO.getVipStrategyVOList().size()!=0) {
+			vipVOData.clear();
+			ArrayList<VipVO> vipVOs = vipStrategyVO.getVipStrategyVOList();
+			for (VipVO vipVO : vipVOs) {
+				vipVOData.add(vipVO);
+			}
+
+			memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+			discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+			systemStrategyTable.setItems(vipVOData);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("提醒");
+			alert.setContentText("该商圈的VIP会员策略已经存在，请选择修改");
+			Optional<ButtonType> btn = alert.showAndWait();
+			if (btn.get() == ButtonType.OK) {
+				freshTable();
+			}
+		}else{
+			ObservableList<VipVO> getVipVO = systemStrategyTable.getItems();
 			ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
 			for (VipVO vipVO : getVipVO) {
 				vipVO.setCity(city.getValue());
@@ -145,18 +143,14 @@ public class AddSystemVIPStrategyController {
 			}
 			vipStrategyVO = new VipStrategyVO();
 			vipStrategyVO.setVipStrategyVOList(newVipVO);
+			vipStrategy_blService.makeSuperVipStrategy(vipStrategyVO);
 			
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setContentText("保存成功！");
 			alert.showAndWait();
-		}else{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("抱歉");
-			alert.setHeaderText("保存失败");
-			alert.setContentText("对不起，您尚未输入策略信息！");
-			alert.showAndWait();
 		}
+		
 	}
 
 	@FXML // save the strategy.
@@ -180,8 +174,7 @@ public class AddSystemVIPStrategyController {
 		newSystemStrategy.setSystemStrategyType(SystemStrategyType.VIPMEMBER);
 		
 		boolean isOK = systemStrategy_blservice.makeSystemStrategy(newSystemStrategy);
-		boolean isModifyTable = vipStrategy_blService.makeSuperVipStrategy(vipStrategyVO);
-		if (isOK&&isModifyTable) {
+		if (isOK) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setHeaderText("保存成功");
@@ -203,5 +196,31 @@ public class AddSystemVIPStrategyController {
 	@FXML // cancel and back to the former view.
 	private void handleCancel() {
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
+	}
+	private void freshTable(){
+		vipVOData.clear();
+		
+		VipVO vipVO1 = new VipVO();
+		vipVO1.setDiscount(0);
+		vipVO1.setVipgrade(4);
+		VipVO vipVO = new VipVO();
+		vipVO.setDiscount(0);
+		vipVO.setVipgrade(5);
+		
+		vipVOData.add(vipVO1);
+		vipVOData.add(vipVO);
+		
+		systemStrategyTable.setEditable(true);// 可编辑
+
+		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+
+		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
+		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
+			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+					.setDiscount(Double.parseDouble(t.getNewValue()));
+		});// setNewValue
+		systemStrategyTable.setItems(vipVOData);
+		
 	}
 }

@@ -1,5 +1,6 @@
 package blservice.impl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import PO.SuperVipPO;
@@ -148,6 +149,14 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 		}
 	}
 
-
-    
+	@Override
+	public int getSuperVipNum() {
+		try {
+			return service.getSuperNum();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+  
 }

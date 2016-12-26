@@ -31,5 +31,9 @@ public class SupVipDataServiceImpl implements SuperVipDataService {
 	public boolean deleteSupVip(SuperVipPO po) throws RemoteException {
 		return dao.delSupVip(po);
 	}
+	@Override
+	public int getSuperNum() throws RemoteException {
+		return dao.getSuperNum();
+	}
 
 }

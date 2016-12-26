@@ -33,6 +33,9 @@ public class SupVipDaoImpl implements SuperVipDao {
 			ArrayList<SuperVipPO> arrayList = new ArrayList<SuperVipPO>();
 			ArrayList<SuperVipPO> superVipPOs = (ArrayList<SuperVipPO>)hibernateUtil.getAll("supervip", SuperVipPO.class);
 			for(SuperVipPO po:superVipPOs){
+				if (po.getDistrict()==null||po.getCity()==null) {
+					continue;
+				}
 				if(po.getDistrict().equals(disstrict)&&po.getCity().equals(city)){
 					arrayList.add(po);
 				}
@@ -51,6 +54,16 @@ public class SupVipDaoImpl implements SuperVipDao {
 		} catch (Exception e) {
 		  e.printStackTrace();
 		  return false;
+		}
+	}
+
+	@Override
+	public int getSuperNum() {
+		try {
+			ArrayList<SuperVipPO> superVipPOs = (ArrayList<SuperVipPO>)hibernateUtil.getAll("supervip", SuperVipPO.class);
+			return superVipPOs.size();
+		} catch (Exception e) {
+			return 0;
 		}
 	}
 
