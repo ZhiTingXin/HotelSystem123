@@ -45,9 +45,7 @@ public class SystemManagerAddSystemStaffController {
 
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
-	private Stage stage;
 	private UserManagement_bl userManagement_bl;
-	private FileChooser fileChooser = new FileChooser();
 	private String path = "";
 
 	public SystemManagerAddSystemStaffController() {
@@ -67,28 +65,12 @@ public class SystemManagerAddSystemStaffController {
 	@FXML
 	private void handleChangePicture() {
 
-		configureFileChooser(fileChooser);
-		File file = fileChooser.showOpenDialog(stage);
-		String string = file.getName();
-		path = file.getAbsolutePath();
-    
-		Image newImage = new Image("file:"+path, 200, 200, false, false);
-		try {
-			File file1 = new File("src/Img/"+string);
-			ImageIO.write(SwingFXUtils.fromFXImage(newImage,null), "gif", file1);
-		} catch (IOException ex) {
-			System.out.println(ex.getMessage());
-		}
-		image.setImage(newImage);
+		path = util.ImageUtil.setImagePath(image);
+		
+		
 	}
 
-	private static void configureFileChooser(final FileChooser fileChooser) {
-		fileChooser.setTitle("View Pictures");
-		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
-				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
-	}
-
+	
 	@FXML
 	private void handleRegister() {
 		

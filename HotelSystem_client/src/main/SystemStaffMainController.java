@@ -1,5 +1,9 @@
 package main;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import VO.OrderVO;
 import VO.SystemStaffVO;
@@ -12,7 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import util.ImageUtil;
 
 public class SystemStaffMainController {
 
@@ -82,6 +88,8 @@ public class SystemStaffMainController {
 		
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
+		
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		orderTable.setItems(orderData);//œ‘ ætable
 	}
 
