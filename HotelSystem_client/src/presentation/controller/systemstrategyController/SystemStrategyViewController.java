@@ -357,8 +357,63 @@ public class SystemStrategyViewController {
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
 
-//				mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, selected);
-//TODO
+				//需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
+				Dialog<Pair<String, String>> dialog = new Dialog<>();
+				dialog.setTitle("提示");
+				dialog.setHeaderText("请选择城市和商圈！");
+				//添加图片
+				dialog.setGraphic(new ImageView(this.getClass().getResource("district.png").toString()));
+				
+				ButtonType ok = new ButtonType("确认",ButtonData.OK_DONE);
+				ButtonType cancel = new ButtonType("取消",ButtonData.CANCEL_CLOSE);
+				dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
+				//建立choice box
+				GridPane gridPane = new GridPane();
+				gridPane.setHgap(10);
+				gridPane.setVgap(10);
+				gridPane.setPadding(new Insets(20,150,10,10));
+				
+				cityBox.setMaxWidth(85);
+				cityBox.setMinWidth(85);
+				districtBox.setMaxWidth(85);
+				districtBox.setMinWidth(85);
+				for (String city : MyDistricts.cities) {
+					cityList.add(city);
+				}
+				cityBox.setItems(cityList);
+				cityBox.getSelectionModel().selectedItemProperty()
+						.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
+				
+				gridPane.add(new Label("选择城市："), 0, 0);
+				gridPane.add(cityBox, 1, 0);
+				gridPane.add(new Label("选择商圈："), 0, 1);
+				gridPane.add(districtBox, 1, 1);
+				// Enable/Disable login button depending on whether a city was choosed.
+				Node okButton = dialog.getDialogPane().lookupButton(ok);
+				okButton.setDisable(true);
+
+				cityBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+				    okButton.setDisable(newValue.trim().isEmpty());
+				});
+				
+				dialog.getDialogPane().setContent(gridPane);
+				
+				// Request focus on the cityBox by default.
+				Platform.runLater(() -> cityBox.requestFocus());
+
+				dialog.setResultConverter(dialogButton -> {
+				    if (dialogButton == ok) {
+				        return new Pair<>(cityBox.getValue(), districtBox.getValue());
+				    }
+				    return null;
+				});
+
+				Optional<Pair<String, String>> result = dialog.showAndWait();
+
+				result.ifPresent(CityDistict -> {
+				    mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, CityDistict.getKey(), CityDistict.getValue(), selected);
+				});
+				
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
 				mainScene.showSystemOtherStrategyModifyScene(systemStaffVO, selected);
