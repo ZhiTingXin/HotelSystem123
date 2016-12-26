@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import VO.CustomerVO;
 import VO.LogofUserVO;
 import blservice.LogOfUser_blServce;
+import blservice.UserManagement_blservice;
 import blservice.impl.LogOfUser_blServceImpl;
+import blservice.impl.UserManagement_bl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,12 +39,14 @@ public class CustomerCreditViewController {
 	private TableColumn<LogofUserVO, String> change;
 	
 	private LogOfUser_blServce logOfUser_blServce;
+	private UserManagement_blservice management_blservice;
 	private CustomerVO customerVO;
 	private ObservableList<LogofUserVO> logsData = FXCollections.observableArrayList();
 	private Main mainScene;
 	
 	public void innitialize(CustomerVO customerVO,Main mainScene){
 		logOfUser_blServce = new LogOfUser_blServceImpl();
+		management_blservice = new UserManagement_bl();
 		this.customerVO = customerVO;
 		this.mainScene =mainScene;
 		leftbegin();
@@ -92,7 +96,8 @@ public class CustomerCreditViewController {
      */
     @FXML
     private void handleExit(){
-    	mainScene.showCustomerInfoScene(customerVO);
+    	//需要对VO进行刷新，因为对于信息做出了修改
+    	mainScene.showCustomerInfoScene(management_blservice.getCustomer(customerVO.getId()));
     }
     
     

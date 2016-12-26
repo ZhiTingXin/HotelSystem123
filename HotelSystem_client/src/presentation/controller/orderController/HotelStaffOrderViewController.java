@@ -96,7 +96,7 @@ public class HotelStaffOrderViewController {
 			focus = this.orderTable.getSelectionModel().getFocusedIndex();
 			this.mainScene.showHotelStaffManagementOrderScene(hotelStaff, this.orderList.get(focus));
 		} catch (Exception e) {
-			this.stateLabel.setText("未选择任何订单！");;
+			this.stateLabel.setText("未选择任何订单！");
 		}
 	}
 

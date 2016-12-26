@@ -17,7 +17,9 @@ import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.UserManagement_blservice;
+import data.service.CustomerDataService;
 import data.service.HotelStaffDataService;
+import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.SystemStaffDataService;
 import other.PassWordMd5;
@@ -328,6 +330,41 @@ public class UserManagement_bl implements UserManagement_blservice {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
+		}
+	}
+	
+	public boolean deleSystemStaff(SystemStaffVO vo){
+		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
+		LoginDataService loginDataService = RemoteHelper.getInstance().getLoginDataService();
+		try {
+			SystemStaffPO staffPO = new SystemStaffPO(vo);
+			LoginPO loginPO = new LoginPO();
+			loginPO.setId(vo.getId());
+			service.deleteStaff(staffPO);
+			loginDataService.delete(loginPO);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * É¾³ýÓÃ»§
+	 */
+	public boolean deleCustomer(CustomerVO vo) {
+	    CustomerDataService service = RemoteHelper.getInstance().getCustomerDataService();
+		LoginDataService loginDataService = RemoteHelper.getInstance().getLoginDataService();
+		try {
+			CustomerPO customerPO = new CustomerPO(vo);
+			LoginPO loginPO = new LoginPO();
+			loginPO.setId(vo.getId());
+			service.deleteCustomer(customerPO);
+			loginDataService.delete(loginPO);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 	
