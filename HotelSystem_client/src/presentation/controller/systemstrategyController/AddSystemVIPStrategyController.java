@@ -31,6 +31,7 @@ import main.Main;
 import other.MyDistricts;
 import other.StrategyState;
 import other.SystemStrategyType;
+import util.ImageUtil;
 
 public class AddSystemVIPStrategyController {
 	
@@ -88,6 +89,7 @@ public class AddSystemVIPStrategyController {
 		//×óÀ¸
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		initializeChoiceBox();
         
 		freshTable();

@@ -18,6 +18,7 @@ public class SystemStaffVO {
 	public SystemStaffVO() {
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();
+		this.image = "src/Img/default.png";
 	}
 
 	public SystemStaffVO(SystemStaffPO userPO) {

@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
 import other.SystemStrategyType;
+import util.ImageUtil;
 
 public class AddSystemOtherStrategyController {
 	
@@ -64,6 +65,7 @@ public class AddSystemOtherStrategyController {
 	public void SystemHolidayStrategyModifyShow(Main mainScene) {
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());//初始化
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 	}
 	
 	@FXML//保存修改

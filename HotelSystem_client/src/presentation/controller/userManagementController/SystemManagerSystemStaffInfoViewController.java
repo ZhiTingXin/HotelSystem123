@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerSystemStaffInfoViewController {
 
@@ -25,9 +26,9 @@ public class SystemManagerSystemStaffInfoViewController {
 	@FXML
 	private Label phoneNum;
 	@FXML
-	private Label myPicture;
-	@FXML
 	private ImageView image;
+	@FXML
+	private ImageView myPicture;
 	
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
@@ -43,6 +44,8 @@ public class SystemManagerSystemStaffInfoViewController {
 		//left
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
+		image.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
 		SystemManagerSystemStaffInfoViewShow(mainScene);
 	}
 	
@@ -57,6 +60,7 @@ public class SystemManagerSystemStaffInfoViewController {
 	private void handleModify(){
 		mainScene.showSystemManagerSystemStaffInfoModfyScene(systemManagerVO, systemStaffVO);
 	}
+	
 	@FXML
 	private void handleBack(){
 		mainScene.showSystemStaffManagementScene(systemManagerVO);

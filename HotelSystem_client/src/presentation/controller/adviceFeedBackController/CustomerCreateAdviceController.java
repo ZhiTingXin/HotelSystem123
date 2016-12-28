@@ -10,18 +10,22 @@ import blservice.impl.AdviceFeedBack_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import main.Main;
 import other.AdviceFeedBackState;
+import util.ImageUtil;
 
 public class CustomerCreateAdviceController {
 	@FXML
 	private Label leftIDLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView leftMenuImage;
 	@FXML
 	private Button send;
 	@FXML
@@ -48,6 +52,7 @@ public class CustomerCreateAdviceController {
 	private void showCreateAdvice() {
 		this.leftIDLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
+		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
 	}
 
 	@FXML

@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
+import util.ImageUtil;
 
 public class HotelStaffManagementOrderController {
 
@@ -62,6 +63,7 @@ public class HotelStaffManagementOrderController {
 	public void HotelStaffManagementOrderShow() {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.IdLabel.setText(this.order.getUserID());
 		this.nameLabel.setText(this.order.getUserName());
 		this.hotelName.setText(this.hotelStaff.getHotelName());

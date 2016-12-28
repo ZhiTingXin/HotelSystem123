@@ -104,7 +104,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="90.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" layoutX="90.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="158.0" layoutY="240.0" text="当前头像">
                      <font>
                         <Font size="16.0" />

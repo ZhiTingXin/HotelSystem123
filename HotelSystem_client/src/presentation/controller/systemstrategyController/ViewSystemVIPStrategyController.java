@@ -18,6 +18,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class ViewSystemVIPStrategyController {
 
@@ -67,6 +68,7 @@ public class ViewSystemVIPStrategyController {
 		// ×óÀ¸
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		SystemVIPStrategyModifyShow(mainScene);
 		this.cs = city;
 		this.sq = district;

@@ -14,7 +14,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemStaffPasswordModifyController {
 
@@ -22,6 +24,8 @@ public class SystemStaffPasswordModifyController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
 	@FXML
 	private Button save;
 	@FXML
@@ -62,6 +66,7 @@ public class SystemStaffPasswordModifyController {
 	public void SystemStaffPasswordModifyShow() {
 		this.idLabel.setText(this.systemStaff.getId());
 		this.nameLabel.setText(this.systemStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.systemStaff.getImage()));
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
 		this.passwordRightLabel.setVisible(false);

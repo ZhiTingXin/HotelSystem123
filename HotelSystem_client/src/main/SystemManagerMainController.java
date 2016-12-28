@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import util.ImageUtil;
 
 public class SystemManagerMainController {
 
@@ -61,6 +62,7 @@ public class SystemManagerMainController {
 		// ◊Û¿∏
 		leftIdLabel.setText(systemManagerVO.getId());
 		leftNameLabel.setText(systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(systemManagerVO.getImage()));;
 		// ”“¿∏
 		LocalDate nowDate = LocalDate.now();
 		dateTime.setText(util.DateUtil.format(nowDate));

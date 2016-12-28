@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class HotelStrategyNewController {
 	@FXML
@@ -46,6 +47,7 @@ public class HotelStrategyNewController {
 	public void HotelStrategyNewShow() {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.InputStrategyName.setText(this.hotelStrategy.getStrategyInfo());
 		this.InputStrategyInfo.setText(this.hotelStrategy.getStrategyInfo());

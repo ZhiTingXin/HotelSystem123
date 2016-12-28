@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerHotelStaffInfoViewController {
 
@@ -14,6 +15,8 @@ public class SystemManagerHotelStaffInfoViewController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
 	@FXML
 	private Button modifyInfo;
 	@FXML
@@ -41,6 +44,7 @@ public class SystemManagerHotelStaffInfoViewController {
 		
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
 		
 		SystemManagerHotelStaffInfoViewShow(this.mainScene);
 	}
