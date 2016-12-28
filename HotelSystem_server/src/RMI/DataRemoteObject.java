@@ -328,5 +328,9 @@ public class DataRemoteObject extends UnicastRemoteObject implements LogOfUserDa
 	public ArrayList<LogofUserPO> getAllLogsOfUser(String userid) throws RemoteException {
 		return logOfUserDataService.getAllLogsOfUser(userid);
 	}
+	@Override
+	public int getSuperNum() throws RemoteException {
+		return vipDataService2.getSuperNum();
+	}
 	
 }
