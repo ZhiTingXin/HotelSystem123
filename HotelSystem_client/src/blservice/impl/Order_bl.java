@@ -31,6 +31,7 @@ public class Order_bl implements Order_blservice {
 	CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
 	VipStrategy_blService vipService = new VipStrategy_blServiceImpl();
 	LogOfUser_blServce logOfUser_blServce = new LogOfUser_blServceImpl();
+
 	/**
 	 * @param 订单的id
 	 * @return 订单的状态
@@ -38,6 +39,7 @@ public class Order_bl implements Order_blservice {
 	public OrderState getState(String orderID) {
 		try {
 			OrderPO orderPO = dataService.findorder(orderID);
+			this.orderManagementHook();
 			return orderPO.getStatus();
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -52,6 +54,7 @@ public class Order_bl implements Order_blservice {
 	public OrderVO getOrder(String orderID) {
 		try {
 			OrderPO orderPO = dataService.findorder(orderID);
+			this.orderManagementHook();
 			OrderVO orderVO = new OrderVO(orderPO);
 			return orderVO;
 		} catch (Exception e) {
@@ -66,6 +69,7 @@ public class Order_bl implements Order_blservice {
 	 */
 	public ArrayList<OrderVO> getOrdersOfUsers(String userID) {
 		ArrayList<OrderVO> voList = new ArrayList<OrderVO>();
+		this.orderManagementHook();
 		try {
 			ArrayList<OrderPO> poList = (ArrayList<OrderPO>) dataService.findOrders(userID, "customer");
 
@@ -133,7 +137,7 @@ public class Order_bl implements Order_blservice {
 	 * 
 	 * @param order_info
 	 */
-	public void changeRoomRemain(String orderID) {
+	private void changeRoomRemain(String orderID) {
 
 		OrderVO order = this.getOrder(orderID);
 		Room_blService roomService = new Room_blServiceImpl();
@@ -211,7 +215,7 @@ public class Order_bl implements Order_blservice {
 	public ArrayList<OrderVO> getOrderFromInput(String text) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) this.getAllOrders();
 			for (OrderPO po : orderPOs) {
 				String hotelID = po.getHotelId();
 				HotelPO hotelPO = hotelDataService.find(hotelID);
@@ -235,14 +239,14 @@ public class Order_bl implements Order_blservice {
 	public ArrayList<OrderVO> getOrderOfToday(String hotelId) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> allOrders = (ArrayList<OrderPO>) dataService.getAllOrders();
+			ArrayList<OrderPO> allOrders = (ArrayList<OrderPO>) this.getAllOrders();
 			for (OrderPO po : allOrders) {
 				LocalDate date = LocalDate.now();
 				if (po.getHotelId().equals(hotelId) && po.getEntryTime().equals(date)) {
 					orderVOs.add(new OrderVO(po));
 				}
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return orderVOs;
@@ -256,14 +260,14 @@ public class Order_bl implements Order_blservice {
 	public ArrayList<OrderVO> getHotelUndoOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) this.getAllOrders();
 			for (OrderPO po : orderPOs) {
 				if (po.getStatus() != null && po.getStatus().equals(OrderState.UNFINISHED))
 					if (po.getHotelId().equals(hotelID)) {
 						orderVOs.add(new OrderVO(po));
 					}
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return orderVOs;
@@ -277,14 +281,14 @@ public class Order_bl implements Order_blservice {
 	public ArrayList<OrderVO> getHotelAbnormalOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) this.getAllOrders();
 			for (OrderPO po : orderPOs) {
 				if (po.getStatus() != null && po.getStatus().equals(OrderState.ABNOMAL)) {
 					if (po.getHotelId().equals(hotelID))
 						orderVOs.add(new OrderVO(po));
 				}
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return orderVOs;
@@ -298,7 +302,7 @@ public class Order_bl implements Order_blservice {
 	public ArrayList<OrderVO> getHotelFinishedOrderList(String hotelID) {
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) dataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) this.getAllOrders();
 			for (OrderPO po : orderPOs) {
 				if (po.getStatus() != null
 						&& (po.getStatus().equals(OrderState.FINISHED) || po.getStatus().equals(OrderState.ASSESSED))) {
@@ -307,7 +311,7 @@ public class Order_bl implements Order_blservice {
 						orderVOs.add(new OrderVO(po));
 				}
 			}
-		} catch (RemoteException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return orderVOs;
@@ -329,18 +333,18 @@ public class Order_bl implements Order_blservice {
 		}
 		int credit = 0;
 		if (order.getStatus() == OrderState.ABNOMAL) {
-			credit = customer.getCredit() - (int) (order.getPrice()/2);
+			credit = customer.getCredit() - (int) (order.getPrice() / 2);
 		} else if (order.getStatus() == OrderState.FINISHED) {
 			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
 		} else if (order.getStatus() == OrderState.REVACATION) {
 			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
-		}else {
+		} else {
 			credit = customer.getCredit();
 		}
 		customer.setCredit(credit);
 		try {
 			customerDataService.updateCustomer(customer);
-			
+
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -351,11 +355,10 @@ public class Order_bl implements Order_blservice {
 	 * 
 	 * @param userID
 	 * @param orderID
-	 * @return
-	 * 恢复用户订单信用值的一半
+	 * @return 恢复用户订单信用值的一半
 	 */
-	public boolean addHalfOfOrginalCredit(String userID, String orderID){
-		
+	public boolean addHalfOfOrginalCredit(String userID, String orderID) {
+
 		OrderPO order = null;
 		CustomerPO customer = null;
 		try {
@@ -363,16 +366,16 @@ public class Order_bl implements Order_blservice {
 			order = dataService.findorder(orderID);
 			order = dataService.findorder(orderID);
 			LogofUserVO logofUserVO = new LogofUserVO();
-			logofUserVO.setChange((int)(order.getPrice()/4));
-			logofUserVO.setContent("成功撤销订单号为 "+orderID+" 的订单");
+			logofUserVO.setChange((int) (order.getPrice() / 4));
+			logofUserVO.setContent("成功撤销订单号为 " + orderID + " 的订单");
 			logofUserVO.setUserid(userID);
 			logofUserVO.setDateTime(LocalDateTime.now());
 			logOfUser_blServce.addLogOfUser(logofUserVO);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		int a = (int)(order.getPrice()/4);
-		customer.setCredit(customer.getCredit()+a);
+		int a = (int) (order.getPrice() / 4);
+		customer.setCredit(customer.getCredit() + a);
 		try {
 			customerDataService.updateCustomer(customer);
 		} catch (RemoteException e) {
@@ -380,6 +383,7 @@ public class Order_bl implements Order_blservice {
 		}
 		return true;
 	}
+
 	/**
 	 * @param 订单的信息
 	 * 
@@ -418,7 +422,7 @@ public class Order_bl implements Order_blservice {
 			ArrayList<RoomPO> roomPOs = RemoteHelper.getInstance().getRoomDataService().getAllRoomPO(hotelId);
 			for (RoomPO po : roomPOs) {
 				if (po.getType() == order.getRoomType()) {
-					oprice = po.getPrice() * order.getRoomNum()*order.getLastime();
+					oprice = po.getPrice() * order.getRoomNum() * order.getLastime();
 				}
 			}
 
@@ -438,16 +442,16 @@ public class Order_bl implements Order_blservice {
 
 		return price;
 	}
-	
+
 	/**
 	 * 为网站营销人员实现获得全部的异常订单
 	 */
-	public ArrayList<OrderVO> getAllAbnormalOrders(){
+	public ArrayList<OrderVO> getAllAbnormalOrders() {
 		ArrayList<OrderVO> abnormalOrders = new ArrayList<OrderVO>();
 		try {
-			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
-			for(OrderPO po: orderPOs){
-				if (po.getStatus()==OrderState.ABNOMAL) {
+			ArrayList<OrderPO> orderPOs = this.getAllOrders();
+			for (OrderPO po : orderPOs) {
+				if (po.getStatus() == OrderState.ABNOMAL) {
 					abnormalOrders.add(new OrderVO(po));
 				}
 			}
@@ -455,5 +459,52 @@ public class Order_bl implements Order_blservice {
 			e.printStackTrace();
 		}
 		return abnormalOrders;
+	}
+
+	/**
+	 * 封装了hook的getAll方法
+	 * 
+	 * @return
+	 */
+	private ArrayList<OrderPO> getAllOrders() {
+		ArrayList<OrderPO> list = null;
+		try {
+			list = dataService.getAllOrders();
+			this.orderManagementHook();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	/**
+	 * hook方法，每当调用order数据库的时候检查当天订单的完成情况，将本来昨天应当执行却未被执行的订单设置为异常
+	 */
+	private void orderManagementHook() {
+		ArrayList<OrderPO> list = null;
+		try {
+			list = dataService.getAllOrders();
+			LocalDate entryTime = null;
+			LocalDate today = LocalDate.now();
+			OrderPO order = null;
+			for (int i = 0; i < list.size(); i++) {
+				order = list.get(i);
+				entryTime = order.getEntryTime();
+				// 到达日期在今天之前的订单
+				if (entryTime != null && entryTime.isBefore(today)) {
+					// 且还未被执行的订单
+					if (order.getStatus() != null && order.getStatus().equals(OrderState.UNFINISHED)) {
+						// 调用更改订单状态的方法，修改为异常订单
+						OrderVO VO = new OrderVO(order);
+						VO.setOrderState(OrderState.ABNOMAL);
+						this.changeState(VO);
+					}
+				}
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
