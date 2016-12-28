@@ -46,6 +46,8 @@ public class CustomerOrderInfoViewController {
 	private Label actualPayment;
 	@FXML
 	private Label stateOfOrder;
+	@FXML
+	private Label StateLabel;
 
 	private Main mainScene;
 	private CustomerVO customer;
@@ -131,8 +133,8 @@ public class CustomerOrderInfoViewController {
 		} else if (this.order.getOrderState().equals(OrderState.UNFINISHED)) {
 			this.order.setOrderState(OrderState.REVACATION);
 			this.stateOfOrder.setText("已撤销");
-			this.recallOrAssessment.setDisable(false);
-
+			this.recallOrAssessment.setDisable(true);
+			this.StateLabel.setText("已完成当前订单的撤销，信用值已扣除！");
 			// bl层方法
 			this.OrderService.changeState(this.order);
 
