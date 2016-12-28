@@ -37,7 +37,7 @@ public class RegisterController {
 	private Main mainScene;
 	private Register_blservice registerService;
 	private CustomerVO customer;
-    private LogOfUser_blServce logOfUser_blServce;
+	private LogOfUser_blServce logOfUser_blServce;
 
 	public void initialize(Main main) {
 		registerService = new Register_bl();
@@ -59,7 +59,8 @@ public class RegisterController {
 		boolean isPasswordReady = userPasswordInField.equals(userPasswordConfirmInField);
 		boolean isPasswordRight = !userPasswordInField.equals("");
 		boolean isNameReady = !userNameInField.equals("");
-        boolean isPhoneReady = !phone.equals("");
+		boolean isPasswordIllegal = this.isPasswordIllegal(userPasswordInField);
+		boolean isPhoneReady = !phone.equals("");
 		if (!isNameReady) {
 			this.errorLabel.setVisible(true);
 			this.errorLabel.setText("请输入用户名！");
@@ -67,11 +68,14 @@ public class RegisterController {
 			if (!isPasswordRight) {
 				this.errorLabel.setVisible(true);
 				this.errorLabel.setText("请输入密码！");
-			}else {
+			} else if (isPasswordIllegal) {
+				this.errorLabel.setVisible(true);
+				this.errorLabel.setText("不符规则的密码，请重新输入！");
+			} else {
 				if (!isPasswordReady) {
 					this.errorLabel.setVisible(true);
 					this.errorLabel.setText("两次输入的密码不一致！");
-				}else {
+				} else {
 					if (!isPhoneReady) {
 						this.errorLabel.setVisible(true);
 						this.errorLabel.setText("请输入您的联系方式");
@@ -79,7 +83,7 @@ public class RegisterController {
 				}
 			}
 		}
-		if (isPasswordReady && isNameReady && isPasswordRight&&isPhoneReady) {
+		if (isPasswordReady && isNameReady && isPasswordRight && isPhoneReady && !isPasswordIllegal) {
 			// bl层创建新用户
 			{
 				customer = new CustomerVO();
@@ -91,7 +95,7 @@ public class RegisterController {
 				logofUserVO.setChange(300);
 				logofUserVO.setContent("注册时");
 				logofUserVO.setDateTime(LocalDateTime.now());
-				
+
 				logofUserVO.setUserid(customer.getId());
 				if (userBirthday != null) {
 					customer.setBirthday(userBirthday);
@@ -105,6 +109,27 @@ public class RegisterController {
 
 	public void handleCancel() {
 		this.mainScene.showLoginScene();
+	}
+
+	/**
+	 * 注册时密码合法性的验证方法
+	 * 允许数字、字母和包括空格在内的符号
+	 * @param password
+	 * @return
+	 */
+	private boolean isPasswordIllegal(String password) {
+		char[] passwordArray = password.toCharArray();
+		if (passwordArray.length < 8 || passwordArray.length > 14)
+			return true;
+		int count = 0;
+		while (count < passwordArray.length) {
+			char ch = passwordArray[count];
+			if (ch < 32 || ch > 126) {
+				return true;
+			}
+			count++;
+		}
+		return false;
 	}
 
 }

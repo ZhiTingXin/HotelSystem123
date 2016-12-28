@@ -91,13 +91,13 @@ public class HotelStaffOrderViewController {
 
 	// 订单详细信息按钮监听方法
 	public void handleViewOrderInfo() {
-		try {
-			int focus = 0;
-			focus = this.orderTable.getSelectionModel().getFocusedIndex();
-			this.mainScene.showHotelStaffManagementOrderScene(hotelStaff, this.orderList.get(focus));
-		} catch (Exception e) {
+
+		OrderVO focus = this.orderTable.getSelectionModel().getSelectedItem();
+		if (focus != null)
+			this.mainScene.showHotelStaffManagementOrderScene(hotelStaff, focus);
+		else
 			this.stateLabel.setText("未选择任何订单！");
-		}
+
 	}
 
 	// 未完成订单列表按钮监听方法
