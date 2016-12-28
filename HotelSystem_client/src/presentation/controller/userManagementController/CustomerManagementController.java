@@ -11,12 +11,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import main.Main;
+import util.ImageUtil;
 
 public class CustomerManagementController {
 
@@ -24,6 +26,8 @@ public class CustomerManagementController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
 	@FXML
 	private Button viewUserInfo;
 	@FXML
@@ -67,6 +71,7 @@ public class CustomerManagementController {
 		// left
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
 
 		/**
 		 * 初始化为客户的列表

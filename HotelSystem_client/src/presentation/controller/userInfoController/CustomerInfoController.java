@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import main.Main;
 import other.memberState;
 import util.DateUtil;
+import util.ImageUtil;
 
 public class CustomerInfoController {
 	@FXML
@@ -66,6 +67,7 @@ public class CustomerInfoController {
 
 	public void CustomerinfoShow(Main mainScene) {
 		this.idLabel.setText(Customer.getId());
+		this.image.setImage(ImageUtil.setImage(Customer.getImage()));
 		if (!this.Customer.getUsername().equals("")) {
 			this.nameLabel.setText(Customer.getUsername());
 		}
@@ -93,9 +95,8 @@ public class CustomerInfoController {
 
 		this.leftMenuIdLabel.setText(Customer.getId());
 		this.leftMenuNameLabel.setText(Customer.getUsername());
-
+		this.leftMenuImage.setImage(ImageUtil.setImage(Customer.getImage()));
 		this.phoneLabel.setText(this.Customer.getPhone());
-		// this.leftMenuImage.setImage(new Image("D:/ÎÒµÄÎÄµµ/Pictures/as"));
 	}
 
 	public void handleCustomerInfoModify() {

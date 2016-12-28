@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class CustomerOrderViewController {
 
@@ -76,6 +77,7 @@ public class CustomerOrderViewController {
 	public void CustomerOrderViewShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
 	}
 
 	// 订单详细信息按钮监听方法

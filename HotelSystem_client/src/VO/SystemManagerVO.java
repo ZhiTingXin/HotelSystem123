@@ -14,6 +14,7 @@ public class SystemManagerVO {
 	public SystemManagerVO() {
 		super();
 		this.systemmanager_Id = IdGernerateServiceImpl.gernerateId();
+		this.image = "src/Img/default.png";
 	}
 
 	public SystemManagerVO(SystemManagerPO systemManagerPO) {

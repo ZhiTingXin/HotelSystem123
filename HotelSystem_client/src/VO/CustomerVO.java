@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
 import other.memberState;
+import util.ImageUtil;
 
 public class CustomerVO {
 
@@ -24,6 +25,9 @@ public class CustomerVO {
 	public CustomerVO() {
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();
+		
+		//为用户设定默认头像
+		this.image = "src/Img/default.png";
 	}
 
 	public CustomerVO(CustomerPO customerPO) {

@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class HotelInfoController {
 	@FXML
@@ -95,6 +96,7 @@ public class HotelInfoController {
 	public void HotelInfoShow() {
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
 		this.hotelName.setText(this.hotel.getHotelName());
 
 		this.address.setText(this.hotel.getHotelAddress());

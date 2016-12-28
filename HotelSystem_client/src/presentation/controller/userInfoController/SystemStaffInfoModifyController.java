@@ -12,7 +12,9 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemStaffInfoModifyController {
 
@@ -20,6 +22,10 @@ public class SystemStaffInfoModifyController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
+	@FXML
+	private ImageView changedPicture;
 	@FXML
 	private Button save;
 	@FXML
@@ -44,6 +50,8 @@ public class SystemStaffInfoModifyController {
 	public void SystemStaffInfoModifyShow() {
 		this.idLabel.setText(this.systemStaff.getId());
 		this.nameField.setText(this.systemStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.systemStaff.getImage()));
+		this.changedPicture.setImage(ImageUtil.setImage(this.systemStaff.getImage()));
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
 	    this.phoneTextField.setText(this.systemStaff.getPhone());
@@ -84,5 +92,10 @@ public class SystemStaffInfoModifyController {
 		}else{
 			this.mainScene.showSystemStaffInfoScene(systemStaff);
 		}
+	}
+	
+	@FXML
+	private void handleChange(){
+		this.systemStaff.setImage(ImageUtil.setImagePath(changedPicture));
 	}
 }

@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.RoomType;
+import util.ImageUtil;
 
 //ÐèÒª¸Ä***********************************
 //
@@ -86,6 +87,7 @@ public class HotelStaffHotelInfoModifyController {
 	public void HotelStaffHotelInfoModifyShow() {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.hotelName.setText(this.hotel.getHotelName());
 		this.address.setText(this.hotel.getHotelAddress());
 		this.description.setText(this.hotel.getHotelDiscription());

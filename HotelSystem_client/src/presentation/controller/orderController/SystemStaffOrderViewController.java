@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
 import util.DateUtil;
+import util.ImageUtil;
 
 public class SystemStaffOrderViewController {
 
@@ -79,6 +80,7 @@ public class SystemStaffOrderViewController {
 		// ×ó±ßÀ¸
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		// ÓÒ±ßÀ¸
 		orderIdLabel.setText(orderVO.getOrderID());
 		IdLabel.setText(orderVO.getUserID());// ¿Í»§id

@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class HotelStrategyModifyController {
 
@@ -45,13 +46,13 @@ public class HotelStrategyModifyController {
 	public void HotelStrategyModifyShow() {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.InputStrategyName.setText(this.hotelStrategy.getStrategyName());
 		this.InputStrategyInfo.setText(this.hotelStrategy.getStrategyInfo());
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff, HotelStrategyVO hotelStrategy, HotelInfoVO hotel) {
-		// TODO Auto-generated method stub
 		this.mainscene = main;
 		this.hotelStaff = hotelStaff;
 		this.hotel = hotel;
