@@ -76,7 +76,10 @@ public class HotelViewController {
 	@FXML
 	private void handleViewHotelInfo() {
 		HotelInfoVO hotelin = this.hotelTable.getSelectionModel().getSelectedItem();
-		this.mainScene.showCustomerHotelInfoScene(customer, hotelin);
+		if (hotelin != null)
+			this.mainScene.showCustomerHotelInfoScene(customer, hotelin);
+		else
+			this.StateField.setText("δѡ��Ƶ꣡");
 	}
 
 	@FXML
@@ -116,8 +119,7 @@ public class HotelViewController {
 		this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
 		this.address.setCellValueFactory(cellData -> cellData.getValue().getHotelAddressProperty());
 		this.description.setCellValueFactory(cellData -> cellData.getValue().getHotelDiscriptionProperty());
-		
-		
+
 		this.hotelTable.setItems(this.hotelData);
 	}
 }

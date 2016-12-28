@@ -80,8 +80,11 @@ public class CustomerOrderViewController {
 
 	// 订单详细信息按钮监听方法
 	public void handleOrderInfo() {
-		int focusOn = this.orderTable.getSelectionModel().getFocusedIndex();
-		this.mainScene.showCustomerOrderInfoViewScene(customer, this.orderList.get(focusOn));
+		OrderVO focusOn = this.orderTable.getSelectionModel().getSelectedItem();
+		if (focusOn != null)
+			this.mainScene.showCustomerOrderInfoViewScene(customer, focusOn);
+		else
+			this.StateField.setText("请选择要查看的订单！");
 	}
 
 	// 返回按钮监听方法

@@ -75,8 +75,11 @@ public class HotelStrategyViewController {
 	}
 
 	public void handleModify() {
-		int foucus = this.strategyTable.getSelectionModel().getFocusedIndex();
-		this.mainscene.showHotelStrategyModifyScene(hotelStaff, this.hotelStrategyList.get(foucus), hotel);
+		HotelStrategyVO foucusON = this.strategyTable.getSelectionModel().getSelectedItem();
+		if (foucusON != null)
+			this.mainscene.showHotelStrategyModifyScene(hotelStaff, foucusON, hotel);
+		else
+			this.StateLabel.setText("请选择要查看的策略！");
 	}
 
 	@FXML
@@ -91,7 +94,7 @@ public class HotelStrategyViewController {
 
 	@FXML
 	private void handleDelete() {
-	
+
 		int foucus = this.strategyTable.getSelectionModel().getFocusedIndex();
 		this.StateLabel.setText("已删除" + "策略“" + this.hotelStrategyList.get(foucus).getStrategyName() + "”");
 		this.service.deleteHotelStrategy(this.hotelStrategyList.get(foucus).getId());
