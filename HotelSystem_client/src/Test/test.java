@@ -1,13 +1,25 @@
 package Test;
 
-import VO.SystemStaffVO;
+import VO.HotelStaffVO;
+import VO.SystemManagerVO;
+import blservice.UserInfo_blservice;
+import blservice.UserManagement_blservice;
+import blservice.impl.UserInfo_bl;
+import blservice.impl.UserManagement_bl;
 import main.ClientRunner;
 
 public class test {
 
 	public static void main(String[] args) {
-		ClientRunner clientRunner = new ClientRunner();
-		SystemStaffVO staff = new SystemStaffVO();
+		ClientRunner c = new ClientRunner();
+		UserManagement_blservice userService = new UserManagement_bl();
+		UserInfo_blservice service = new UserInfo_bl();
+		HotelStaffVO hotelStaff = userService.getHotelStaff("187");
+		hotelStaff.setImage("src/Img/default.PNG");
+		service.modifyHotelStaff(hotelStaff);
+		SystemManagerVO manager = userService.getSystemManager("12345");
+		manager.setImage("src/Img/default.PNG");
+		service.modifySystemManager(manager);
 		// HotelRoomInfoVO roomInfoVO = new HotelRoomInfoVO();
 		// roomInfoVO.setHotelid("12345");
 		// roomInfoVO.setId("12");

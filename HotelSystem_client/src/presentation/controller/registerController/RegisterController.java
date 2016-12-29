@@ -91,6 +91,7 @@ public class RegisterController {
 				customer.setPassword(userPasswordConfirmInField);
 				customer.setPhone(phone);
 				customer.setCredit(300);
+				customer.setImage("src/Img/default.PNG");
 				LogofUserVO logofUserVO = new LogofUserVO();
 				logofUserVO.setChange(300);
 				logofUserVO.setContent("注册时");
@@ -112,8 +113,8 @@ public class RegisterController {
 	}
 
 	/**
-	 * 注册时密码合法性的验证方法
-	 * 允许数字、字母和包括空格在内的符号
+	 * 注册时密码合法性的验证方法 允许数字、字母和包括空格在内的符号
+	 * 
 	 * @param password
 	 * @return
 	 */

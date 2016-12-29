@@ -9,16 +9,18 @@
 
 <AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.loginController.LoginController">
    <children>
-      <Button fx:id="login" layoutX="142.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleLogin" text="登录" />
-      <TextField fx:id="userId" layoutX="169.0" layoutY="132.0" />
-      <PasswordField fx:id="userPassword" layoutX="169.0" layoutY="191.0" />
-      <Label layoutX="105.0" layoutY="136.0" text="用户ID" />
-      <Label layoutX="112.0" layoutY="195.0" text="密码" />
+      <Button fx:id="login" layoutX="125.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="23.0" prefWidth="53.0" text="登录" />
+      <TextField fx:id="userId" layoutX="151.0" layoutY="132.0" prefHeight="23.0" prefWidth="151.0" />
+      <PasswordField fx:id="userPassword" layoutX="151.0" layoutY="184.0" prefHeight="23.0" prefWidth="151.0" />
+      <Label layoutX="86.0" layoutY="136.0" text="用户ID" />
+      <Label layoutX="92.0" layoutY="188.0" text="密码" />
       <Text layoutX="104.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="欢迎使用网上酒店客房预定系统" textAlignment="CENTER" wrappingWidth="192.0">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button fx:id="register" layoutX="218.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleRegister" text="注册" />
+      <Button fx:id="register" layoutX="227.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="23.0" prefWidth="53.0" text="注册" />
+      <Label fx:id="errorLabel" layoutX="319.0" layoutY="188.0" text="Label" visible="false" />
+      <Label fx:id="errorLabel1" layoutX="319.0" layoutY="136.0" text="Label" visible="false" />
    </children>
 </AnchorPane>

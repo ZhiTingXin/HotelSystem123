@@ -54,7 +54,7 @@ public class CustomerMemberModifyController {
 		this.nameLabel.setText(this.customer.getUsername());
 		this.idLabel.setText(this.customer.getId());
 		this.CreditLabel.setText(String.valueOf(this.customer.getCredit()));
-		if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
+		if (customer.getMemberState() == memberState.BUSINESS_MEMBER) {
 			this.memberLabel.setText("企业会员");
 		} else if (customer.getMemberState() == memberState.NORMAL_MEMBER) {
 			this.memberLabel.setText("普通会员");

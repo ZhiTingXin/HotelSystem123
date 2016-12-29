@@ -1,5 +1,6 @@
 package presentation.controller.orderController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import VO.HotelStaffVO;
@@ -59,7 +60,6 @@ public class HotelStaffManagementOrderController {
 	private Order_blservice orderServcie;
 	private LogOfUser_blServce logOfUser_blServce;
 
-
 	public void HotelStaffManagementOrderShow() {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
@@ -93,39 +93,42 @@ public class HotelStaffManagementOrderController {
 	public void handleSetToException() {
 		this.order.setOrderState(OrderState.ABNOMAL);
 		this.orderServcie.changeState(order);
-		
+
 		/**
 		 * 置为异常订单时修改用户的信用值，并生成信用记录
 		 */
 		LogofUserVO logofUserVO = new LogofUserVO();
 		logofUserVO.setUserid(order.getUserID());
-		logofUserVO.setChange(-(int)(order.getPrice()/2));
+		logofUserVO.setChange(-(int) (order.getPrice() / 2));
 		logofUserVO.setDateTime(LocalDateTime.now());
-		logofUserVO.setContent("由于订单号为 "+order.getOrderID()+" 的订单异常");
+		logofUserVO.setContent("由于订单号为 " + order.getOrderID() + " 的订单异常");
 		logOfUser_blServce.addLogOfUser(logofUserVO);
-		
-		
+
 		this.stateOfOrder.setText(this.order.getOrderState().toString());
 		this.stateLabel.setText("已更改！");
 	}
 
 	// 设置为已完成订单监听方法
 	public void handleSetToDone() {
-		this.order.setOrderState(OrderState.FINISHED);
-		this.orderServcie.changeState(order);
-		
-		/**
-		 * 完成订单时，需要对于用户的信用值改变进行记录
-		 */
-		LogofUserVO logofUserVO = new LogofUserVO();
-		logofUserVO.setUserid(order.getUserID());
-		logofUserVO.setChange((int)(order.getPrice()/2));
-		logofUserVO.setDateTime(LocalDateTime.now());
-		logofUserVO.setContent("由于订单号为 "+order.getOrderID()+" 的订单完成");
-		logOfUser_blServce.addLogOfUser(logofUserVO);
-		
-		this.stateOfOrder.setText(this.order.getOrderState().toString());
-		this.stateLabel.setText("已更改！");
+		if (this.order.getEntryTime().equals(LocalDate.now())) {
+			this.order.setOrderState(OrderState.FINISHED);
+			this.orderServcie.changeState(order);
+
+			/**
+			 * 完成订单时，需要对于用户的信用值改变进行记录
+			 */
+			LogofUserVO logofUserVO = new LogofUserVO();
+			logofUserVO.setUserid(order.getUserID());
+			logofUserVO.setChange((int) (order.getPrice() / 2));
+			logofUserVO.setDateTime(LocalDateTime.now());
+			logofUserVO.setContent("由于订单号为 " + order.getOrderID() + " 的订单完成");
+			logOfUser_blServce.addLogOfUser(logofUserVO);
+
+			this.stateOfOrder.setText(this.order.getOrderState().toString());
+			this.stateLabel.setText("已更改！");
+		} else {
+			this.stateLabel.setText("只能执行当天的订单！");
+		}
 	}
 
 	// 返回按钮监听方法
