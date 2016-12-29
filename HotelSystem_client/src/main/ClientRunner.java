@@ -6,16 +6,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import RMI.RemoteHelper;
 
-
-
-
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
-	
+
 	public ClientRunner() {
 		linkToServer();
 	}
-	
+
 	private void linkToServer() {
 		try {
 			remoteHelper = RemoteHelper.getInstance();
@@ -24,13 +21,14 @@ public class ClientRunner {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
+			System.out.println("无法连接到连接服务器");
 			e.printStackTrace();
 		} catch (NotBoundException e) {
 			e.printStackTrace();
-		} 
+		}
 	}
-//	public static void main(String[] args){
-//		ClientRunner cr = new ClientRunner();
-//		cr.main.launch(args);
-//	}
+	// public static void main(String[] args){
+	// ClientRunner cr = new ClientRunner();
+	// cr.main.launch(args);
+	// }
 }

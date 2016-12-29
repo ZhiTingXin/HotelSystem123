@@ -167,8 +167,8 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param 酒店的星级
 	 * @return 所有符合条件的酒店
 	 */
-	public ArrayList<HotelInfoVO> getHotelFromGrade(double grade) {
-		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
+	public ArrayList<HotelInfoVO> getHotelFromGrade(ArrayList<HotelInfoVO> list, double grade) {
+		ArrayList<HotelInfoVO> hotelInfoVOs = list;
 		try {
 			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
 			for (HotelPO po : hotelPOs) {
@@ -188,8 +188,8 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param maxPrice
 	 * @return 存在价位在这个范围内的所有酒店
 	 */
-	public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice) {
-		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
+	public ArrayList<HotelInfoVO> getHotelFromPrice(ArrayList<HotelInfoVO> list, int minPrice, int maxPrice) {
+		ArrayList<HotelInfoVO> hotelInfoVOs = list;
 		try {
 			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
 			for (HotelPO po : hotelPOs) {

@@ -4,14 +4,11 @@ import blservice.Login_blservice;
 import blservice.UserManagement_blservice;
 import blservice.impl.Login_bl;
 import blservice.impl.UserManagement_bl;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBuilder;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import main.Main;
 import other.UserType;
 
@@ -25,6 +22,10 @@ public class LoginController {
 	private Button login;
 	@FXML
 	private Button register;
+	@FXML
+	private Label errorLabel;
+	@FXML
+	private Label errorLabel1;
 
 	private Main mainScene;
 	private Login_blservice loginService;
@@ -48,6 +49,8 @@ public class LoginController {
 	}
 
 	public void handleLogin() {
+		this.errorLabel.setVisible(false);
+		this.errorLabel1.setVisible(false);
 		String userIdInField = this.userId.getText();
 		String userPasswordInField = this.userPassword.getText();
 		boolean isComfirm = this.loginService.comfirm(userIdInField, userPasswordInField);
@@ -68,8 +71,14 @@ public class LoginController {
 				this.mainScene.showSystemManagerMainScene(this.usermanagementService.getSystemManager(userIdInField));
 			}
 
-		} else
-			System.out.println("Error");
+		} else if (userIdInField.equals("")) {
+			this.errorLabel1.setVisible(true);
+			this.errorLabel1.setText("请输入用户名");
+		} else if (!isComfirm) {
+			this.errorLabel.setVisible(true);
+			this.errorLabel.setText("密码错误！");
+		}
+
 	}
 
 	public void handleRegister() {
