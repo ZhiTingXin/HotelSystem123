@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
 import other.RoomType;
+import util.ImageUtil;
 
 public class CustomerOrderInfoViewController {
 
@@ -73,6 +74,7 @@ public class CustomerOrderInfoViewController {
 	public void CustomerOrderInfoViewShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
 		this.IdLabel.setText(this.customer.getId());
 		this.nameLabel.setText(customer.getUsername());
 		this.nameOfHotel.setText(this.hotelService.getHotelInfo(this.order.getHotelID()).getHotelName());

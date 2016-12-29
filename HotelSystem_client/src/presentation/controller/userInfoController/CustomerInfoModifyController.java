@@ -9,8 +9,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import main.Main;
 import other.memberState;
+import util.ImageUtil;
 
 public class CustomerInfoModifyController {
 	@FXML
@@ -18,9 +20,15 @@ public class CustomerInfoModifyController {
 	@FXML
 	private Button back;
 	@FXML
+	private Button changeImage;
+	@FXML
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView leftMenuImage;
+	@FXML
+	private ImageView image;
 	@FXML
 	private Label idLabel;
 	@FXML
@@ -54,10 +62,18 @@ public class CustomerInfoModifyController {
 	}
 
 	public void CustomerinfoShow(Main mainScene) {
+		
+		/**
+		 * ×óÀ¸³õÊ¼»¯
+		 */
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
+		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
+		
+		
 		this.idLabel.setText(this.customer.getId());
 		this.creditLabel.setText(String.valueOf(this.customer.getCredit()));
+		this.image.setImage(ImageUtil.setImage(customer.getImage()));
 		this.nameTextField.setText(this.customer.getUsername());
 		this.companyTextField.setText(this.customer.getCompanyName());
 		if (this.customer.getBirthday() != null) {
@@ -92,5 +108,10 @@ public class CustomerInfoModifyController {
 		this.customer.setBirthday(this.datePicker.getValue());
 		this.blservice.modifyCustomer(this.customer);
 		this.mainScene.showCustomerInfoScene(customer);
+	}
+	
+	@FXML
+	private void handleChangeImg(){
+		customer.setImage(ImageUtil.setImagePath(image));
 	}
 }

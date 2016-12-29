@@ -9,11 +9,13 @@ import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerHotelStaffInfoModifyController {
 
@@ -21,6 +23,10 @@ public class SystemManagerHotelStaffInfoModifyController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
+	@FXML
+	private ImageView changedPic;
 	@FXML
 	private Button save;
 	@FXML
@@ -52,6 +58,8 @@ public class SystemManagerHotelStaffInfoModifyController {
 		// 初始化
 		leftIdLabel.setText(systemManagerVO.getId());
 		leftNameLabel.setText(systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
+		changedPic.setImage(ImageUtil.setImage(this.hotelStaffVO.getImage()));
 		SystemManagerHotelStaffInfoModifyShow(mainScene);
 	}
 
@@ -97,6 +105,10 @@ public class SystemManagerHotelStaffInfoModifyController {
 			alert.setContentText("不好意思，您未能成功修改酒店工作人员信息！");
 			alert.showAndWait();
 		}
+	}
+	@FXML
+	private void handleChange(){
+		this.hotelStaffVO.setImage(ImageUtil.setImagePath(changedPic));
 	}
 	@FXML//返回
 	private void handleBack(){

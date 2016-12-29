@@ -14,13 +14,17 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class CustomerPasswordModifyController {
 	@FXML
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView leftMenuImage;
 	@FXML
 	private Button save;
 	@FXML
@@ -58,6 +62,7 @@ public class CustomerPasswordModifyController {
 
 		leftIdLabel.setText(customer.getId());
 		leftNameLabel.setText(customer.getUsername());
+		leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
 		idLabel.setText(customer.getId());
 		nameLabel.setText(customer.getUsername());
 

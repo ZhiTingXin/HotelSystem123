@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import util.ImageUtil;
 
 public class HotelStaffMainController {
 
@@ -83,6 +84,7 @@ public class HotelStaffMainController {
 
 	public void HotelStaffMainShow() {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
+		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.orderTable.setItems(orderData);

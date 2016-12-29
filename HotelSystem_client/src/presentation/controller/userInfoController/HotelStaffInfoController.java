@@ -4,7 +4,9 @@ import VO.HotelStaffVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class HotelStaffInfoController {
 
@@ -12,6 +14,8 @@ public class HotelStaffInfoController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
 	@FXML
 	private Button modifyInfo;
 	@FXML
@@ -28,6 +32,8 @@ public class HotelStaffInfoController {
 	private Label hotelName;
 	@FXML
 	private Label phone;
+	@FXML
+	private ImageView nowPic;
 
 	private Main mainScene;
 	private HotelStaffVO hotelStaff;
@@ -41,6 +47,8 @@ public class HotelStaffInfoController {
 	public void HotelStaffInfoShow() {
 		this.nameLabel.setText(this.hotelStaff.getUsername());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
+		this.nowPic.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.idLabel.setText(this.hotelStaff.getId());
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.hotelName.setText(this.hotelStaff.getHotelName());

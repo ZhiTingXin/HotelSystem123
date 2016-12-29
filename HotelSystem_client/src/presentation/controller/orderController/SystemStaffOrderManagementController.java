@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemStaffOrderManagementController {
 
@@ -86,6 +87,7 @@ public class SystemStaffOrderManagementController {
 	public void SystemStaffOrderManagementShow(Main mainScene) {
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
 		orderTable.setItems(orderData);
 	}
 

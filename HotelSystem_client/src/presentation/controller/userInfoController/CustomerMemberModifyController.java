@@ -6,14 +6,18 @@ import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import main.Main;
 import other.memberState;
+import util.ImageUtil;
 
 public class CustomerMemberModifyController {
 	@FXML
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView leftMenuImage;
 	@FXML
 	private Label idLabel;
 	@FXML
@@ -46,6 +50,7 @@ public class CustomerMemberModifyController {
 	public void CustomerinfoShow() {
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
+		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
 		this.nameLabel.setText(this.customer.getUsername());
 		this.idLabel.setText(this.customer.getId());
 		this.CreditLabel.setText(String.valueOf(this.customer.getCredit()));

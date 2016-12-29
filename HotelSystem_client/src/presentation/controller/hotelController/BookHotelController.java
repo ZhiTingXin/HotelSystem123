@@ -8,19 +8,19 @@ import VO.HotelInfoVO;
 import VO.OrderVO;
 import blservice.Order_blservice;
 import blservice.Room_blService;
-import blservice.UserInfo_blservice;
 import blservice.impl.Order_bl;
 import blservice.impl.Room_blServiceImpl;
-import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
 import other.RoomType;
+import util.ImageUtil;
 
 public class BookHotelController {
 
@@ -28,6 +28,8 @@ public class BookHotelController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView leftMenuImage;
 	@FXML
 	private Button save;
 	@FXML
@@ -123,6 +125,8 @@ public class BookHotelController {
 	public void SystemManagerSystemStaffInfoModifyShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
+		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
+		
 		this.customerName.setText(customer.getUsername());
 		this.customerId.setText(customer.getId());
 

@@ -3,6 +3,7 @@ package presentation.controller.hotelController;
 
 
 import java.util.Optional;
+
 import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
@@ -22,6 +23,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.MyDistricts;
+import util.ImageUtil;
 
 public class SystemManagerHotelRegisterController {
 
@@ -70,6 +72,7 @@ public class SystemManagerHotelRegisterController {
 		this.systemManagerVO = systemManagerVO;
 		leftIdLabel.setText(systemManagerVO.getId());
 		leftNameLabel.setText(systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
 		//初始化商圈
 		city.setTooltip(new Tooltip("请选择城市！"));
 		district.setTooltip(new Tooltip("请选择商圈！"));

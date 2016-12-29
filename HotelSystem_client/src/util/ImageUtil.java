@@ -21,12 +21,11 @@ public class ImageUtil {
 	private static String path = "";
 	
 	public static String setImagePath(ImageView image) {
-		
 		configureFileChooser(fileChooser);
 		File file = fileChooser.showOpenDialog(stage);
 		String imgName = "src/Img/"+file.getName();
 		path = file.getAbsolutePath();
-
+	
 		Image newImage = new Image("file:" + path, 200, 200, false, false);
 		try {
 			File file1 = new File(imgName);
@@ -35,7 +34,6 @@ public class ImageUtil {
 			System.out.println(ex.getMessage());
 		}
 		image.setImage(newImage);
-		
 		return imgName;
 	}
 

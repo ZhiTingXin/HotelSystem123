@@ -8,13 +8,14 @@ import blservice.UserInfo_blservice;
 import blservice.impl.UserInfo_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerSystemStaffInfoModifyController {
 
@@ -36,6 +37,8 @@ public class SystemManagerSystemStaffInfoModifyController {
 	private Button changePicture;
 	@FXML
 	private ImageView myPicture;
+	@FXML
+	private ImageView changedPic;
 	
 	private Main mainScene;
 	private UserInfo_blservice blservice;
@@ -52,6 +55,8 @@ public class SystemManagerSystemStaffInfoModifyController {
 		//left
 		leftIdLabel.setText(systemManagerVO.getId());
 		leftNameLabel.setText(systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
+		changedPic.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
 		SystemManagerSystemStaffInfoModifyShow(mainScene);
 	}
 	
@@ -91,6 +96,10 @@ public class SystemManagerSystemStaffInfoModifyController {
 			alert.setContentText("不好意思，您未能成功修改网站营销人员信息！");
 			alert.showAndWait();
 		}
+	}
+	@FXML
+	private void handleChange(){
+		this.systemStaffVO.setImage(ImageUtil.setImagePath(changedPic));
 	}
 	@FXML
 	private void handleBack(){

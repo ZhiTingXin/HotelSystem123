@@ -18,7 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemStaffManagementController {
 
@@ -26,6 +28,8 @@ public class SystemStaffManagementController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
 	@FXML
 	private Button viewUserInfo;
 	@FXML
@@ -71,6 +75,7 @@ public class SystemStaffManagementController {
 		//left
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
 		SystemStaffManagementShow(this.mainScene);
 	}
 	public void SystemStaffManagementShow(Main mainScene) {

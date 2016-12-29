@@ -12,7 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerInfoModifyController {
 
@@ -20,6 +22,10 @@ public class SystemManagerInfoModifyController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
+	@FXML
+	private ImageView nowPic;
 	@FXML
 	private Button save;
 	@FXML
@@ -51,6 +57,8 @@ public class SystemManagerInfoModifyController {
 	public void SystemManagerInfoModifyShow() {
 		leftIdLabel.setText(systemManager.getId());
 		leftNameLabel.setText(systemManager.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManager.getImage()));
+		nowPic.setImage(ImageUtil.setImage(this.systemManager.getImage()));
 		idLabel.setText(systemManager.getId());
 		nameLabel.setText(systemManager.getUserName());
 		phoneTextField.setText(systemManager.getPhone());
@@ -79,6 +87,10 @@ public class SystemManagerInfoModifyController {
 		}
 	}
 
+	@FXML
+	private void handleChange(){
+		this.systemManager.setImage(ImageUtil.setImagePath(nowPic));
+	}
 	public void handleBack() {
 		if(!nameLabel.getText().equals(systemManager.getUserName())||
 				(!phoneTextField.getText().equals(systemManager.getPhone()))){

@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.RoomType;
+import util.ImageUtil;
 
 //scene界面需要改 没连scene
 //***************************
@@ -72,6 +73,7 @@ public class HotelStaffHotelInfoViewController {
 		
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.hotelName.setText(this.hotel.getHotelName());
 
 		
