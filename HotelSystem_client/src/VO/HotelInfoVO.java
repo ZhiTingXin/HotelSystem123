@@ -1,6 +1,10 @@
 package VO;
 
+import java.util.ArrayList;
+
 import PO.HotelPO;
+import blservice.Hotel_blservice;
+import blservice.Room_blService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
@@ -120,6 +124,30 @@ public class HotelInfoVO {
 
 	public StringProperty getHotelDiscriptionProperty() {
 		return new SimpleStringProperty(this.hotelDiscription);
+	}
+
+	public StringProperty getHotelRankProperty(Hotel_blservice service) {
+		// TODO Auto-generated method stub
+		return new SimpleStringProperty(String.valueOf(service.getHotelGrade(hotelID)));
+	}
+
+	public StringProperty getHotelPriceProperty(Room_blService service) {
+		// TODO Auto-generated method stub
+		ArrayList<HotelRoomInfoVO> roomInfo = service.getAllRoom(this.getHotelID());
+		int count = 0;
+		int min = roomInfo.get(0).getRoomPrice();
+		int max = roomInfo.get(0).getRoomPrice();
+		while (count < roomInfo.size()) {
+			int price = roomInfo.get(count).getRoomPrice();
+			if (price < min) {
+				min = price;
+			}
+			if (price > max) {
+				max = price;
+			}
+			count++;
+		}
+		return new SimpleStringProperty(String.valueOf(min) + "~" + String.valueOf(max));
 	}
 
 }

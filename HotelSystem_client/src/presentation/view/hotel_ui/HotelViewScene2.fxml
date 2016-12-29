@@ -50,7 +50,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="minPrice" layoutX="104.0" layoutY="102.0" prefHeight="23.0" prefWidth="61.0" promptText="最低价格" />
-                  <TextField fx:id="maxPrice" layoutX="194.0" layoutY="102.0" prefHeight="23.0" prefWidth="61.0" promptText="最高价格" />
+                  <TextField fx:id="MaxPrice" layoutX="194.0" layoutY="102.0" prefHeight="23.0" prefWidth="61.0" promptText="最高价格" />
                   <Label layoutX="173.0" layoutY="104.0" text="至">
                      <font>
                         <Font size="14.0" />
