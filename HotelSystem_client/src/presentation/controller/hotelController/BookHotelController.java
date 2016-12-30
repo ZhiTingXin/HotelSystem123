@@ -8,8 +8,10 @@ import VO.HotelInfoVO;
 import VO.OrderVO;
 import blservice.Order_blservice;
 import blservice.Room_blService;
+import blservice.SystemStrategy_blservice;
 import blservice.impl.Order_bl;
 import blservice.impl.Room_blServiceImpl;
+import blservice.impl.SystemStrategy_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -92,6 +94,7 @@ public class BookHotelController {
 	private HotelInfoVO hotel;
 	private OrderVO order;
 	private Room_blService roomService;
+	private SystemStrategy_blservice strategyService;
 
 	private int days;
 	private RoomType roomtype;
@@ -108,6 +111,7 @@ public class BookHotelController {
 		this.mainScene = mainScene;
 		this.orderService = new Order_bl();
 		this.roomService = new Room_blServiceImpl();
+		this.strategyService = new SystemStrategy_bl();
 		// order的初始设定
 		this.order = new OrderVO();
 		this.order.setHotelID(this.hotel.getHotelID());
@@ -126,7 +130,7 @@ public class BookHotelController {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
 		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
-		
+
 		this.customerName.setText(customer.getUsername());
 		this.customerId.setText(customer.getId());
 
