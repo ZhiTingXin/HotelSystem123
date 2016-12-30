@@ -21,12 +21,13 @@ public class CustomerVO {
 	private int memberGrade;
 	private memberState memberState;
 	private String image;
+	private boolean loginState;
 
 	public CustomerVO() {
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();
-		
-		//为用户设定默认头像
+		this.loginState = true;
+		// 为用户设定默认头像
 		this.image = "src/Img/default.png";
 	}
 
@@ -41,6 +42,7 @@ public class CustomerVO {
 		this.memberState = customerPO.getState();
 		this.companyName = customerPO.getCompanyName();
 		this.image = customerPO.getImage();
+		this.loginState = customerPO.isOnline();
 	}
 
 	public String getImage() {
@@ -137,5 +139,14 @@ public class CustomerVO {
 
 	public StringProperty getCreditProperty() {
 		return new SimpleStringProperty(String.valueOf(credit));
+	}
+
+	public boolean isOnline() {
+		// TODO Auto-generated method stub
+		return this.loginState;
+	}
+
+	public void changeLoginState(boolean b) {
+		this.loginState = b;
 	}
 }

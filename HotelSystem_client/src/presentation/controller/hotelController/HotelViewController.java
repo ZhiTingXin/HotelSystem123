@@ -68,6 +68,8 @@ public class HotelViewController {
 	private TableColumn<HotelInfoVO, String> rank;
 	@FXML
 	private Label StateField;
+	@FXML
+	private Button clearButton;
 
 	// ui层属性
 	private Hotel_blservice service;
@@ -139,16 +141,22 @@ public class HotelViewController {
 			this.highPrice = Integer.MAX_VALUE;
 		}
 		// 三次筛选
-		this.hotelList = this.service.getHotelFromName(this.searchInput.getText());
-		this.hotelList = this.service.getHotelFromPrice(hotelList, lowPrice, highPrice);
-		this.hotelList = this.service.getHotelFromGrade(hotelList, hotelRank);
+		if (this.lowPrice != 0 || !this.searchInput.getText().equals("") || this.highPrice != Integer.MAX_VALUE
+				|| this.hotelRank != 0) {
+			this.hotelList = this.service.getHotelFromName(this.searchInput.getText());
+			this.hotelList = this.service.getHotelFromPrice(hotelList, lowPrice, highPrice);
+			this.hotelList = this.service.getHotelFromGrade(hotelList, hotelRank);
 
-		if (hotelList != null && hotelList.size() > 0) {
-			this.refreshTabel();
-			this.StateField.setText("已完成搜索");
+			if (hotelList != null && hotelList.size() > 0) {
+				this.refreshTabel();
+				this.StateField.setText("已完成搜索");
+			} else {
+				this.refreshTabel();
+				this.StateField.setText("未找到匹配的酒店！");
+			}
 		} else {
+			this.hotelList = this.service.getAllHotel();
 			this.refreshTabel();
-			this.StateField.setText("未找到匹配的酒店！");
 		}
 	}
 
@@ -203,4 +211,14 @@ public class HotelViewController {
 		this.rankButton.setText("★★★★★");
 	}
 
+	@FXML
+	private void handleClear() {
+		this.lowPrice = 0;
+		this.hotelRank = 0;
+		this.highPrice = 0;
+		this.rankButton.setText("选择评分");
+		this.searchInput.clear();
+		this.minPrice.clear();
+		this.maxPrice.clear();
+	}
 }
