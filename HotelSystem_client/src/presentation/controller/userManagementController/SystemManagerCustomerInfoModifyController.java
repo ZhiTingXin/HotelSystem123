@@ -13,12 +13,18 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerCustomerInfoModifyController {
 
 	@FXML
 	private Button save;
+	@FXML
+	private ImageView myPicture;
+	@FXML
+	private ImageView changedPic;
 	@FXML
 	private Button back;
 	@FXML
@@ -56,6 +62,8 @@ public class SystemManagerCustomerInfoModifyController {
 		// left
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
+		changedPic.setImage(ImageUtil.setImage(this.customerVO.getImage()));
 		SystemManagerCustomerInfoModifyShow(mainScene);
 	}
 
@@ -99,6 +107,10 @@ public class SystemManagerCustomerInfoModifyController {
 			alert.setContentText("不好意思，您未能成功修改客户信息！");
 			alert.showAndWait();
 		}
+	}
+	@FXML
+	private void handleChange() {
+		this.customerVO.setImage(ImageUtil.setImagePath(changedPic));
 	}
 	@FXML
 	private void handleBack(){

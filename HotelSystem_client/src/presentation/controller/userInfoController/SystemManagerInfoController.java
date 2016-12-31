@@ -4,7 +4,9 @@ import VO.SystemManagerVO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerInfoController {
 
@@ -12,6 +14,10 @@ public class SystemManagerInfoController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
+	@FXML
+	private ImageView nowPic;
 	@FXML
 	private Button modifyInfo;
 	@FXML
@@ -37,6 +43,8 @@ public class SystemManagerInfoController {
 	public void SystemManagerInfoShow() {
 		leftIdLabel.setText(systemManager.getId());
 		leftNameLabel.setText(systemManager.getUserName());
+		myPicture.setImage(ImageUtil.setImage(this.systemManager.getImage()));
+		nowPic.setImage(ImageUtil.setImage(this.systemManager.getImage()));
 		idLabel.setText(systemManager.getId());
 		nameLabel.setText(systemManager.getUserName());
 		this.phone.setText(systemManager.getPhone());

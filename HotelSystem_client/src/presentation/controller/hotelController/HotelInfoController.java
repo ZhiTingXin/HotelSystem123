@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class HotelInfoController {
 	@FXML
@@ -85,9 +86,9 @@ public class HotelInfoController {
 		this.customer = customer;
 		this.hotel = hotel;
 		this.hotelRoomInfo = roomService.getAllRoom(this.hotel.getHotelID());
-		
+
 		this.refreshTable();
-		
+
 		this.HotelInfoShow();
 
 	}
@@ -95,6 +96,7 @@ public class HotelInfoController {
 	public void HotelInfoShow() {
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
 		this.hotelName.setText(this.hotel.getHotelName());
 
 		this.address.setText(this.hotel.getHotelAddress());
@@ -126,7 +128,7 @@ public class HotelInfoController {
 		if (this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size() > 0) {
 			while (count < this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size()) {
 				strategyInfo += this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).get(count)
-						.getStrategyInfo();
+						.getStrategyName() + ";";
 				count++;
 			}
 			return strategyInfo;

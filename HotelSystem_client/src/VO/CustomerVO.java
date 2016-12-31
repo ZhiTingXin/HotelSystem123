@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
 import other.memberState;
+import util.ImageUtil;
 
 public class CustomerVO {
 
@@ -20,10 +21,14 @@ public class CustomerVO {
 	private int memberGrade;
 	private memberState memberState;
 	private String image;
+	private boolean loginState;
 
 	public CustomerVO() {
 		super();
 		this.id = IdGernerateServiceImpl.gernerateId();
+		this.loginState = true;
+		// 为用户设定默认头像
+		this.image = "src/Img/default.png";
 	}
 
 	public CustomerVO(CustomerPO customerPO) {
@@ -37,6 +42,7 @@ public class CustomerVO {
 		this.memberState = customerPO.getState();
 		this.companyName = customerPO.getCompanyName();
 		this.image = customerPO.getImage();
+		this.loginState = customerPO.isOnline();
 	}
 
 	public String getImage() {
@@ -133,5 +139,14 @@ public class CustomerVO {
 
 	public StringProperty getCreditProperty() {
 		return new SimpleStringProperty(String.valueOf(credit));
+	}
+
+	public boolean isOnline() {
+		// TODO Auto-generated method stub
+		return this.loginState;
+	}
+
+	public void changeLoginState(boolean b) {
+		this.loginState = b;
 	}
 }

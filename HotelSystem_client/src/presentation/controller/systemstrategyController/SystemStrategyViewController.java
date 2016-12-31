@@ -33,6 +33,7 @@ import javafx.util.Pair;
 import main.Main;
 import other.MyDistricts;
 import other.SystemStrategyType;
+import util.ImageUtil;
 
 public class SystemStrategyViewController {
 
@@ -101,6 +102,7 @@ public class SystemStrategyViewController {
 		// ×ó±ßÀ¸
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		// ÓÒ±ßÀ¸
 		discountListLabel.setText("ËùÓÐÓÅ»Ý");
 		systemStrategyVOList = systemStrategy_blservice.getAllSystemStrategys();

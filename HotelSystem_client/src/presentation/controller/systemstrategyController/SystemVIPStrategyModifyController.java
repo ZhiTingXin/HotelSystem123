@@ -28,6 +28,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
+import util.ImageUtil;
 
 public class SystemVIPStrategyModifyController {
 
@@ -84,6 +85,7 @@ public class SystemVIPStrategyModifyController {
 		// ×óÀ¸
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		SystemVIPStrategyModifyShow(mainScene);
 		this.city.setText(city);
 		this.district.setText(district);

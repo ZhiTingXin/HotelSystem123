@@ -17,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
+import util.ImageUtil;
 
 //待修改的界面
 public class CustomerHotelAssessmentController {
@@ -103,6 +104,7 @@ public class CustomerHotelAssessmentController {
 	public void CustomerHotelAssessmentShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
 
 		if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
 			this.assement = this.service.getAss(this.order.getOrderID());

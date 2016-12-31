@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class SystemManagerCustomerInfoViewController {
 
@@ -14,6 +15,8 @@ public class SystemManagerCustomerInfoViewController {
 	private Button modifyInfo;
 	@FXML
 	private Button modifyState;//更改用户状态（冻结/解冻）
+	@FXML
+	private ImageView leftMenuImage;
 	@FXML
 	private Button back;
 	@FXML
@@ -35,8 +38,6 @@ public class SystemManagerCustomerInfoViewController {
 	@FXML
 	private Label leftIdLabel;
 	@FXML
-	private ImageView leftImage;
-	@FXML
 	private ImageView image;
 	
 	private Main mainsence;
@@ -51,6 +52,8 @@ public class SystemManagerCustomerInfoViewController {
 		//left
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
+		leftMenuImage.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
+		
 		SystemManagerCustomerInfoViewShow(this.mainsence);
 	}
 	
@@ -61,7 +64,7 @@ public class SystemManagerCustomerInfoViewController {
 		birthdayLabel.setText(util.DateUtil.format(customerVO.getBirthday()));
 		companyLabel.setText(customerVO.getCompanyName());
 		creditLabel.setText(String.valueOf(customerVO.getCredit()));
-		image.setImage(null);
+		image.setImage(ImageUtil.setImage(this.customerVO.getImage()));
 	}
 	
 	@FXML//

@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
+import util.ImageUtil;
 
 public class ViewSystemMemberStrategyController {
 
@@ -67,6 +68,7 @@ public class ViewSystemMemberStrategyController {
 		// ×óÀ¸
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		ViewSystemHolidayStrategyShow(mainScene);
 	}
 

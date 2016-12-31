@@ -13,13 +13,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class CustomerAdviceViewController {
 	@FXML
 	private Label leftIDLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView leftMenuImage;
+	@FXML
+	private Label StateLabel;
 	@FXML
 	private TableColumn<AdviceFeedBackVO, String> sendTime;
 	@FXML
@@ -44,7 +50,7 @@ public class CustomerAdviceViewController {
 	private AdviceFeedBack_blservice service;
 
 	public void initialize(Main main, CustomerVO customer2) {
-		
+
 		this.mainScene = main;
 		this.customer = customer2;
 		this.service = new AdviceFeedBack_bl();
@@ -57,6 +63,7 @@ public class CustomerAdviceViewController {
 	public void showCustomerAdviceView() {
 		this.leftIDLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
+		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
 		this.adviceFeedBackTable.setItems(adviceData);
 	}
 
@@ -72,16 +79,17 @@ public class CustomerAdviceViewController {
 
 	@FXML
 	private void handleInfoShow() {
-		int foucus = this.adviceFeedBackTable.getSelectionModel().getFocusedIndex();
-		if (foucus >= 0) {
-			this.mainScene.showCustomerAdviceInfoScene(customer, this.adviceList.get(foucus));
-		}
+		AdviceFeedBackVO foucus = this.adviceFeedBackTable.getSelectionModel().getSelectedItem();
+		if (foucus != null) {
+			this.mainScene.showCustomerAdviceInfoScene(customer, foucus);
+		} else
+			this.StateLabel.setText("请选择要查看的反馈意见！");
 
 	}
 
 	// 刷新表格方法
 	private void refreshtable() {
-		
+
 		int count = 0;
 		while (count < this.adviceList.size()) {
 			this.adviceData.add(this.adviceList.get(count));

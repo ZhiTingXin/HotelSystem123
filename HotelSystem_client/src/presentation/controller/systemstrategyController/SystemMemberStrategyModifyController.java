@@ -27,6 +27,7 @@ import javafx.scene.image.ImageView;
 import main.Main;
 import other.StrategyState;
 import presentation.controller.systemstrategyController.MemberEditDialogController;
+import util.ImageUtil;
 
 public class SystemMemberStrategyModifyController {
 
@@ -83,6 +84,7 @@ public class SystemMemberStrategyModifyController {
 		// ×óÀ¸
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		SystemHolidayStrategyModifyShow(mainScene);
 	}
 

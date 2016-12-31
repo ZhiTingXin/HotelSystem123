@@ -1,7 +1,6 @@
 package presentation.controller.adviceFeedBackController;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import VO.AdviceFeedBackVO;
@@ -10,15 +9,17 @@ import blservice.AdviceFeedBack_blservice;
 import blservice.impl.AdviceFeedBack_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import main.Main;
 import other.AdviceFeedBackState;
 import util.DateUtil;
+import util.ImageUtil;
 
 public class SystemStaffAdviceViewSpecController {
 
@@ -31,6 +32,8 @@ public class SystemStaffAdviceViewSpecController {
 	@FXML
 	private Button yes;
 	
+	@FXML
+	private ImageView myPicture;
 	@FXML
 	private Button back;
 	
@@ -73,6 +76,7 @@ public class SystemStaffAdviceViewSpecController {
 	private void setInfo(){
 		idLabel.setText(staffVO.getId());
 		nameLabel.setText(staffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(this.staffVO.getImage()));
 		sendTime.setText(DateUtil.format(advice.getSendTime()));
 		customerId.setText(advice.getUserID());
 		adviceInfo.setText(advice.getAdviceFeedBack_content());

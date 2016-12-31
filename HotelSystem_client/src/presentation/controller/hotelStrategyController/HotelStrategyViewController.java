@@ -14,8 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class HotelStrategyViewController {
 
@@ -58,6 +60,7 @@ public class HotelStrategyViewController {
 	public void HotelStrategyViewShow() {
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.hotelName.setText(this.hotelStaff.getHotelName());
 		this.strategyTable.setItems(hotelStrategyData);
 
@@ -75,8 +78,11 @@ public class HotelStrategyViewController {
 	}
 
 	public void handleModify() {
-		int foucus = this.strategyTable.getSelectionModel().getFocusedIndex();
-		this.mainscene.showHotelStrategyModifyScene(hotelStaff, this.hotelStrategyList.get(foucus), hotel);
+		HotelStrategyVO foucusON = this.strategyTable.getSelectionModel().getSelectedItem();
+		if (foucusON != null)
+			this.mainscene.showHotelStrategyModifyScene(hotelStaff, foucusON, hotel);
+		else
+			this.StateLabel.setText("请选择要查看的策略！");
 	}
 
 	@FXML
@@ -91,7 +97,7 @@ public class HotelStrategyViewController {
 
 	@FXML
 	private void handleDelete() {
-	
+
 		int foucus = this.strategyTable.getSelectionModel().getFocusedIndex();
 		this.StateLabel.setText("已删除" + "策略“" + this.hotelStrategyList.get(foucus).getStrategyName() + "”");
 		this.service.deleteHotelStrategy(this.hotelStrategyList.get(foucus).getId());

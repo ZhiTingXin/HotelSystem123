@@ -19,6 +19,7 @@ public class HotelStaffVO {
 
 	public HotelStaffVO() {
 	   id = IdGernerateServiceImpl.gernerateId();
+	   this.image = "src/Img/default.png";
 	}
     
 	public HotelStaffVO(HotelStaffPO userPO) {

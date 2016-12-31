@@ -22,6 +22,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import main.Main;
 import other.StrategyState;
+import util.ImageUtil;
 
 public class SystemHolidayStrategyModifyController {
 
@@ -70,6 +71,7 @@ public class SystemHolidayStrategyModifyController {
 		// ×óÀ¸
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
+		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		SystemHolidayStrategyModifyShow(mainScene);
 	}
 

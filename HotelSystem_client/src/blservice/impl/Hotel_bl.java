@@ -144,10 +144,20 @@ public class Hotel_bl implements Hotel_blservice {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
 			ArrayList<HotelPO> hotelPOs = dataService.getAllHotels();
-			for (HotelPO po : hotelPOs) {
-				if (po.getHotelName().contains(text)) {
-					HotelInfoVO hotelInfoVO = getHotelInfo(po.getHotelId());
-					hotelInfoVOs.add(hotelInfoVO);
+			if (!text.equals("")) {
+				for (HotelPO po : hotelPOs) {
+					char[] ch = text.toCharArray();
+					for (char ch1 : ch) {
+						if (po.getHotelName().contains(String.valueOf(ch1))) {
+							HotelInfoVO hotelInfoVO = getHotelInfo(po.getHotelId());
+							hotelInfoVOs.add(hotelInfoVO);
+							break;
+						}
+					}
+				}
+			} else {
+				for (HotelPO po : hotelPOs) {
+					hotelInfoVOs.add(getHotelInfo(po.getHotelId()));
 				}
 			}
 		} catch (RemoteException e) {
@@ -167,14 +177,24 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param 酒店的星级
 	 * @return 所有符合条件的酒店
 	 */
-	public ArrayList<HotelInfoVO> getHotelFromGrade(double grade) {
+	public ArrayList<HotelInfoVO> getHotelFromGrade(ArrayList<HotelInfoVO> list, int grade) {
+		if (grade == 0) {
+			return list;
+		}
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
-			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
-			for (HotelPO po : hotelPOs) {
-				if (Double.valueOf(po.getGrade()) >= grade) {
-					hotelInfoVOs.add(new HotelInfoVO(po));
+			for (HotelInfoVO vo : list) {
+				String gradeText = this.getHotelGrade(vo.getHotelID());
+				if (!gradeText.equals("暂无评分")) {
+					if (grade == 5) {
+						if (Double.valueOf(gradeText) >= grade - 0.2) {
+							hotelInfoVOs.add(vo);
+						}
+					} else if (Double.valueOf(gradeText) >= grade) {
+						hotelInfoVOs.add(vo);
+					}
 				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,16 +208,15 @@ public class Hotel_bl implements Hotel_blservice {
 	 * @param maxPrice
 	 * @return 存在价位在这个范围内的所有酒店
 	 */
-	public ArrayList<HotelInfoVO> getHotelFromPrice(int minPrice, int maxPrice) {
+	public ArrayList<HotelInfoVO> getHotelFromPrice(ArrayList<HotelInfoVO> list, int minPrice, int maxPrice) {
 		ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
 		try {
-			ArrayList<HotelPO> hotelPOs = RemoteHelper.getInstance().getHotelDataService().getAllHotels();
-			for (HotelPO po : hotelPOs) {
-				ArrayList<RoomPO> roomPOs = RemoteHelper.getInstance().getRoomDataService()
-						.getAllRoomPO(po.getHotelId());
-				for (RoomPO roomPO : roomPOs) {
-					if (roomPO.getPrice() <= maxPrice && roomPO.getPrice() >= minPrice) {
-						hotelInfoVOs.add(new HotelInfoVO(po));
+			for (HotelInfoVO vo : list) {
+				ArrayList<RoomPO> roomInfo = RemoteHelper.getInstance().getRoomDataService()
+						.getAllRoomPO(vo.getHotelID());
+				for (RoomPO po : roomInfo) {
+					if (po.getPrice() <= maxPrice && po.getPrice() >= minPrice) {
+						hotelInfoVOs.add(vo);
 						break;
 					}
 				}

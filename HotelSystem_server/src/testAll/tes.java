@@ -254,5 +254,11 @@ public class tes {
 //		logofUserPO.setChange1(300);
 //		logofUserPO.setContent("×¢²á");
 //		hibernateUtil.add(logofUserPO);
+		SystemManagerPO systemManagerPO = new SystemManagerPO();
+		systemManagerPO.setImage("src/Img/default.png");
+		systemManagerPO.setManagerID("12345");
+		systemManagerPO.setManagerName("ÐÁÖ¾Í¥");
+		systemManagerPO.setPhone("15623623365");
+		hibernateUtil.update(systemManagerPO);
 	}
 }

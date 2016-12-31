@@ -22,6 +22,8 @@ public class CustomerPO implements Serializable {
 	private memberState state;
 	private String image;
 
+	private boolean loginState;
+
 	public CustomerPO() {
 	}
 
@@ -37,6 +39,7 @@ public class CustomerPO implements Serializable {
 		this.memberGrade = customerVO.getMemberGrade();
 		this.state = customerVO.getMemberState();
 		this.image = customerVO.getImage();
+		this.loginState = customerVO.isOnline();
 	}
 
 	public String getImage() {
@@ -109,6 +112,11 @@ public class CustomerPO implements Serializable {
 
 	public void setState(memberState state) {
 		this.state = state;
+	}
+
+	public boolean isOnline() {
+		// TODO Auto-generated method stub
+		return this.loginState;
 	}
 
 }

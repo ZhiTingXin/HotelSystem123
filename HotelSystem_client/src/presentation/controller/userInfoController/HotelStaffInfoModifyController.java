@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import main.Main;
+import util.ImageUtil;
 
 public class HotelStaffInfoModifyController {
 
@@ -15,6 +17,10 @@ public class HotelStaffInfoModifyController {
 	private Label leftIdLabel;
 	@FXML
 	private Label leftNameLabel;
+	@FXML
+	private ImageView myPicture;
+	@FXML
+	private ImageView changedPicture;
 	@FXML
 	private Button save;
 	@FXML
@@ -49,6 +55,8 @@ public class HotelStaffInfoModifyController {
 	public void HotelStaffInfoModifyShow() {
 		this.name.setText(this.hotelStaff.getUsername());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
+		this.changedPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.idLabel.setText(this.hotelStaff.getId());
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.hotelName.setText(this.hotelStaff.getHotelName());
@@ -71,5 +79,10 @@ public class HotelStaffInfoModifyController {
 
 	public void handleBacK() {
 		this.mainScene.showHotelStaffInfoScene(this.hotelStaff);
+	}
+	
+	@FXML
+	private void handleChange(){
+		this.hotelStaff.setImage(ImageUtil.setImagePath(changedPicture));
 	}
 }

@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import util.ImageUtil;
 
 public class CustomerMainController {
 
@@ -81,7 +82,7 @@ public class CustomerMainController {
 	public void CustomerMainShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
-
+		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
 		// ±í¸ñ²Ù×÷
 		this.hotelTable.setItems(this.hotelData);
 	}
@@ -107,6 +108,8 @@ public class CustomerMainController {
 
 	public void handleExit() {
 		try {
+			//this.customer.changeLoginState(false);
+			//this.userservice.modifyCustomer(customer);
 			this.mainScene.showLoginScene();
 		} catch (Exception e) {
 			e.printStackTrace();

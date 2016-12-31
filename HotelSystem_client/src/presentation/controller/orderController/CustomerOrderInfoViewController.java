@@ -1,5 +1,7 @@
 package presentation.controller.orderController;
 
+import java.time.LocalDate;
+
 import VO.CustomerVO;
 import VO.OrderVO;
 import blservice.Hotel_blservice;
@@ -13,6 +15,7 @@ import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
 import other.RoomType;
+import util.ImageUtil;
 
 public class CustomerOrderInfoViewController {
 
@@ -73,6 +76,7 @@ public class CustomerOrderInfoViewController {
 	public void CustomerOrderInfoViewShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
+		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
 		this.IdLabel.setText(this.customer.getId());
 		this.nameLabel.setText(customer.getUsername());
 		this.nameOfHotel.setText(this.hotelService.getHotelInfo(this.order.getHotelID()).getHotelName());
@@ -131,13 +135,16 @@ public class CustomerOrderInfoViewController {
 			this.mainScene.showHotelAssessmentScene(customer, this.hotelService.getHotelInfo(this.order.getHotelID()),
 					this.order);
 		} else if (this.order.getOrderState().equals(OrderState.UNFINISHED)) {
-			this.order.setOrderState(OrderState.REVACATION);
-			this.stateOfOrder.setText("已撤销");
-			this.recallOrAssessment.setDisable(true);
-			this.StateLabel.setText("已完成当前订单的撤销，信用值已扣除！");
-			// bl层方法
-			this.OrderService.changeState(this.order);
-
+			if (!this.order.getEntryTime().minusDays(1).isBefore(LocalDate.now())) {
+				this.order.setOrderState(OrderState.REVACATION);
+				this.stateOfOrder.setText("已撤销");
+				this.recallOrAssessment.setDisable(true);
+				this.StateLabel.setText("已完成当前订单的撤销，信用值已扣除！");
+				// bl层方法
+				this.OrderService.changeState(this.order);
+			} else {
+				this.StateLabel.setText("无法撤销即将执行的订单！");
+			}
 		} else if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
 			this.mainScene.showHotelAssessmentScene(customer, this.hotelService.getHotelInfo(this.order.getHotelID()),
 					order);
