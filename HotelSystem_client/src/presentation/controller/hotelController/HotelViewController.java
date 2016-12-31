@@ -1,6 +1,7 @@
 package presentation.controller.hotelController;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import VO.CustomerVO;
 import VO.HotelInfoVO;
@@ -11,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -19,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import main.Main;
+import other.MyDistricts;
 import util.ImageUtil;
 
 public class HotelViewController {
@@ -40,6 +43,10 @@ public class HotelViewController {
 	private TextField minPrice;
 	@FXML
 	private TextField maxPrice;
+	@FXML
+	private ChoiceBox<String> chooseCity;
+	@FXML
+	private ChoiceBox<String> chooseDistrict;
 	@FXML
 	private MenuButton rankButton;
 	@FXML
@@ -78,6 +85,8 @@ public class HotelViewController {
 	// 表格属性
 	private ArrayList<HotelInfoVO> hotelList;
 	private ObservableList<HotelInfoVO> hotelData = FXCollections.observableArrayList();
+	private ObservableList<String> cities = FXCollections.observableArrayList();
+	private ObservableList<String> districts = FXCollections.observableArrayList();
 
 	private int lowPrice = 0;
 	private int highPrice = Integer.MAX_VALUE;
@@ -90,6 +99,22 @@ public class HotelViewController {
 		this.hotelList = this.service.getAllHotel();
 		this.refreshTabel();
 		this.HotelViewShow();
+		//初始化城市和商圈
+		for (String city : MyDistricts.cities) {
+			cities.add(city);
+		}
+		chooseCity.setItems(cities);
+		//根据城市选择商圈
+		chooseCity.getSelectionModel().selectedItemProperty().addListener((Observable,oldValue,newValue)->setDistrictChoiceBox((String) newValue));
+	}
+
+	private void setDistrictChoiceBox(String city) {
+		districts.clear();
+		String[] allDistrict = MyDistricts.getDistricts(city);
+		for (String dist : allDistrict) {
+			districts.add(dist);
+		}
+		chooseDistrict.setItems(districts);
 	}
 
 	/**
