@@ -122,9 +122,20 @@ public class Hotel_bl implements Hotel_blservice {
 			ArrayList<OrderPO> orderPOList = (ArrayList<OrderPO>) orderDataService.findOrders(userId, "userId");
 			// 遍历完成的订单
 			for (OrderPO po : orderPOList) {
-				if (po.getStatus().equals(OrderState.FINISHED)) {
+				if (po.getStatus().equals(OrderState.FINISHED) || po.getStatus().equals(OrderState.ASSESSED)) {
+
 					HotelInfoVO hotelInfoVO = getHotelInfo(po.getHotelId());
-					hotelInfoVOs.add(hotelInfoVO);
+					boolean exist = false;
+					for (int count = 0; count < hotelInfoVOs.size(); count++) {
+						if (hotelInfoVOs.get(count).getHotelID().equals(hotelInfoVO.getHotelID())) {
+							exist = true;
+							break;
+						}
+
+					}
+					if (exist == false) {
+						hotelInfoVOs.add(hotelInfoVO);
+					}
 				}
 			}
 		} catch (RemoteException e) {
