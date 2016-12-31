@@ -86,9 +86,9 @@ public class HotelInfoController {
 		this.customer = customer;
 		this.hotel = hotel;
 		this.hotelRoomInfo = roomService.getAllRoom(this.hotel.getHotelID());
-		
+
 		this.refreshTable();
-		
+
 		this.HotelInfoShow();
 
 	}
@@ -128,7 +128,7 @@ public class HotelInfoController {
 		if (this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size() > 0) {
 			while (count < this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).size()) {
 				strategyInfo += this.hotelStrategyService.getListOfHotelStrategys(this.hotel.getHotelID()).get(count)
-						.getStrategyInfo();
+						.getStrategyName() + ";";
 				count++;
 			}
 			return strategyInfo;

@@ -48,6 +48,8 @@ public class HotelStaffMainController {
 	private TableColumn<OrderVO, String> arriveTime;// 简介
 	@FXML
 	private TableColumn<OrderVO, String> orderDuration;// 订单时长
+	@FXML
+	private TableColumn<OrderVO, String> orderState;// 订单状态
 
 	private Main mainScene;
 	private HotelStaffVO hotelStaff;
@@ -64,7 +66,7 @@ public class HotelStaffMainController {
 		this.mainScene = main;
 		this.hotelStaff = hotelStaff;
 		this.orderService = new Order_bl();
-		this.hotelService=new Hotel_bl();
+		this.hotelService = new Hotel_bl();
 		this.orderList = this.orderService.getOrderOfToday(this.hotelStaff.getHotelId());
 
 		if (this.orderList != null) {
@@ -78,6 +80,7 @@ public class HotelStaffMainController {
 			this.roomInfo.setCellValueFactory(cellData -> cellData.getValue().getRoomInfoProperty());
 			this.arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
 			this.orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
+			this.orderState.setCellValueFactory(cellData -> cellData.getValue().getOrderStateProperty());
 		}
 		this.HotelStaffMainShow();
 	}

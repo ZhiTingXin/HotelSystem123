@@ -32,7 +32,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+                  <Label fx:id="StateLabel" layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
                   <TableView fx:id="adviceFeedBackTable" layoutX="29.0" layoutY="72.0" prefHeight="454.0" prefWidth="468.0">
                     <columns>
                       <TableColumn fx:id="sendTime" prefWidth="75.0" text="发送时间" />
