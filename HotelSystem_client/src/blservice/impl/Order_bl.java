@@ -596,7 +596,7 @@ public class Order_bl implements Order_blservice {
 		try {
 			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
 			for (OrderPO po:orderPOs) {
-				if (po.getGretime()==LocalDate.now()&&po.getStatus()==OrderState.UNFINISHED) {
+				if (po.getGretime().equals(LocalDate.now())&&po.getStatus()==OrderState.UNFINISHED) {
 					todayOrders.add(new OrderVO(po));
 				}
 			}
