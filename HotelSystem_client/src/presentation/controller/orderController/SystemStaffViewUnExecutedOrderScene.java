@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
+import other.MyDistricts;
 import util.ImageUtil;
 
 public class SystemStaffViewUnExecutedOrderScene {
@@ -62,6 +63,8 @@ public class SystemStaffViewUnExecutedOrderScene {
 
 	private ArrayList<OrderVO> unExecutedOrderList;
 	private ObservableList<OrderVO> orderData = FXCollections.observableArrayList();// 声明
+	private ObservableList<String> cities = FXCollections.observableArrayList();
+	private ObservableList<String> districts = FXCollections.observableArrayList();
 
 	public SystemStaffViewUnExecutedOrderScene() {
 		order_blservice = new Order_bl();
@@ -84,6 +87,26 @@ public class SystemStaffViewUnExecutedOrderScene {
 		arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
 		orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
 		SystemStaffViewUnExecutedOrderShow(mainScene);// 调用show
+		
+		// 初始化城市和商圈
+				for (String city : MyDistricts.cities) {
+					cities.add(city);
+				}
+				chooseCity.setItems(cities);
+				// 根据城市选择商圈
+				chooseCity.getSelectionModel().selectedItemProperty()
+						.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
+	}
+	
+	private void setDistrictChoiceBox(String city) {
+		districts.clear();
+		if (city != null) {
+			String[] allDistrict = MyDistricts.getDistricts(city);
+			for (String dist : allDistrict) {
+				districts.add(dist);
+			}
+		}
+		chooseDistrict.setItems(districts);
 	}
 
 	// 显示
