@@ -16,13 +16,19 @@ import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
+import VO.SystemStrategyVO;
+import VO.VipVO;
+import blservice.SystemStrategy_blservice;
 import blservice.UserManagement_blservice;
+import blservice.VipStrategy_blService;
 import data.service.CustomerDataService;
 import data.service.HotelStaffDataService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.SystemStaffDataService;
 import other.PassWordMd5;
+import other.StrategyState;
+import other.SystemStrategyType;
 import other.UserType;
 
 public class UserManagement_bl implements UserManagement_blservice {
@@ -34,8 +40,21 @@ public class UserManagement_bl implements UserManagement_blservice {
 	 */
 	public CustomerVO getCustomer(String customerId) {
 		try {
+			SystemStrategy_blservice strategy_blservice = new SystemStrategy_bl();
+			VipStrategy_blService vipStrategy_blService = new VipStrategy_blServiceImpl();
 			CustomerPO customerPO = RemoteHelper.getInstance().getCustomerDataService().findCustomer(customerId);
 			CustomerVO customerVO = new CustomerVO(customerPO);
+			SystemStrategyVO strategyVO = strategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER).get(0);
+			if(strategyVO.getStrategyState()==StrategyState.open){
+				ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipStrategy().getVipStrategyVOList();
+				for(VipVO vo:vipVOs){
+					if(customerVO.getCredit()>=vo.getMincredit()&&customerVO.getCredit()<vo.getMaxcredit()){
+						customerVO.setMemberGrade(vo.getVipgrade());
+						break;
+					}
+				}
+				modifyCustomer(customerVO);
+			}
 			return customerVO;
 		} catch (Exception e) {
 			e.printStackTrace();
