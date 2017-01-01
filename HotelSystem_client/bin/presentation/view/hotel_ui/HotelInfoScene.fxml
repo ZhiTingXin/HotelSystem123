@@ -32,7 +32,7 @@
                      </font>
                   </Label>
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <GridPane layoutX="28.0" layoutY="191.0" prefHeight="349.0" prefWidth="469.0">
+                  <GridPane layoutX="29.0" layoutY="214.0" prefHeight="349.0" prefWidth="469.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="91.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="365.0" minWidth="10.0" prefWidth="365.0" />
@@ -44,7 +44,6 @@
                         <RowConstraints maxHeight="158.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="165.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="151.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
@@ -69,11 +68,6 @@
                            </font>
                         </Label>
                         <Label text="酒店评级" GridPane.rowIndex="5">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label text="酒店标签" visible="false" GridPane.rowIndex="6">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -103,33 +97,29 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="tag" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
                         <Label text="酒店优惠策略" GridPane.rowIndex="4">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
                         <TextArea fx:id="description" editable="false" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TableView fx:id="roomInfoTabel" prefHeight="80.0" prefWidth="357.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                        <TableView fx:id="roomInfoTabel" prefHeight="80.0" prefWidth="357.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                           <columns>
                             <TableColumn fx:id="roomType" prefWidth="98.0" text="客房类型" />
                             <TableColumn fx:id="roomRemain" prefWidth="150.0" text="客房数量" />
                               <TableColumn fx:id="roomPrice" prefWidth="116.0" text="单价" />
                           </columns>
                         </TableView>
-                        <Label text="酒店客房信息" GridPane.rowIndex="7">
+                        <Label text="酒店客房信息" GridPane.rowIndex="6">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </GridPane>
-                  <ImageView fx:id="hotelPicture1" fitHeight="123.0" fitWidth="188.0" layoutX="43.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="hotelPicture2" fitHeight="123.0" fitWidth="175.0" layoutX="259.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hotelPicture" fitHeight="150.0" fitWidth="150.0" layoutX="186.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="picLeftButton" layoutX="135.0" layoutY="115.0" mnemonicParsing="false" onAction="#handlePicLeft" prefHeight="49.0" prefWidth="36.0" text="&lt;" />
+                  <Button fx:id="picRightButon" layoutX="350.0" layoutY="115.0" mnemonicParsing="false" onAction="#handlePicRight" prefHeight="49.0" prefWidth="36.0" text="&gt;" />
                </children>
             </AnchorPane>
          </items>
