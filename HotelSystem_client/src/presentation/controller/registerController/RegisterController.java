@@ -3,6 +3,7 @@ package presentation.controller.registerController;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import VO.CustomerVO;
+import VO.HotelInfoVO;
 import VO.LogofUserVO;
 import blservice.LogOfUser_blServce;
 import blservice.Register_blservice;
@@ -91,7 +92,7 @@ public class RegisterController {
 				customer.setPassword(userPasswordConfirmInField);
 				customer.setPhone(phone);
 				customer.setCredit(300);
-				customer.setImage("src/Img/default.PNG");
+				customer.setImage("default.png");
 				LogofUserVO logofUserVO = new LogofUserVO();
 				logofUserVO.setChange(300);
 				logofUserVO.setContent("×¢²áÊ±");

@@ -113,7 +113,7 @@ public class SystemManagerHotelRegisterController {
 			hotelStaffVO.setPassword(hotelStaffVO.getId());
 			hotelStaffVO.setHotelId(newHotel.getHotelID());
 			hotelStaffVO.setUsername(hotelStaffName.getText());
-			hotelStaffVO.setImage("src/Img/default.PNG");
+			hotelStaffVO.setImage("default.png");
 			if (isModify) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("恭喜");
