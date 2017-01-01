@@ -45,4 +45,6 @@ public interface Order_blservice {
 
 	public boolean changeCreditBySystemStaff(String userID, String orderID);
 
+	public ArrayList<OrderVO> getRevocationOrder(String hotelId);
+
 }
