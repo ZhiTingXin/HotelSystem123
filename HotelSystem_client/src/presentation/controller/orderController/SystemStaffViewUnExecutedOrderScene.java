@@ -100,7 +100,7 @@ public class SystemStaffViewUnExecutedOrderScene {
 	// 搜索功能
 	private void handleSearch() {
 		String inputString = searchInput.getText();
-		if (!orderId.equals("")) {
+		if (!inputString.equals("")) {
 			// 该订单确实存在
 			OrderVO myOrder1 = order_blservice.getOrder(inputString);//订单id搜索
 			ArrayList<OrderVO> myOrder2 = order_blservice.getUnfinishedOrders(inputString);//用户的未执行订单

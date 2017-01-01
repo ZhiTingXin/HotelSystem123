@@ -42,6 +42,7 @@ import presentation.controller.orderController.HotelStaffManagementOrderControll
 import presentation.controller.orderController.HotelStaffOrderViewController;
 import presentation.controller.orderController.SystemStaffOrderManagementController;
 import presentation.controller.orderController.SystemStaffOrderViewController;
+import presentation.controller.orderController.SystemStaffViewUnExecutedOrderScene;
 import presentation.controller.registerController.RegisterController;
 import presentation.controller.systemstrategyController.AddSystemHolidayStrategyController;
 import presentation.controller.systemstrategyController.AddSystemMemberStrategyController;
@@ -763,10 +764,9 @@ public class Main extends Application {
 			rootLayout.setCenter(SystemStaffMainScene);
 
 			// get Controller
-			SystemStaffMainController SystemStaffMainController = loader.getController();
-			SystemStaffMainController.initialize(this, systemStaffVO);
+			SystemStaffViewUnExecutedOrderScene scene = loader.getController();
+			scene.initialize(this, systemStaffVO);
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}
 	}
