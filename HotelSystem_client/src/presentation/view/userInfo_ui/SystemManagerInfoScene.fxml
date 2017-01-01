@@ -62,8 +62,8 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="nowPic" fitHeight="150.0" fitWidth="200.0" layoutX="89.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="173.0" layoutY="252.0" text="头像">
+                  <ImageView fx:id="nowPic" fitHeight="200.0" fitWidth="200.0" layoutX="90.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="158.0" layoutY="279.0" text="我的头像">
                      <font>
                         <Font size="16.0" />
                      </font>
