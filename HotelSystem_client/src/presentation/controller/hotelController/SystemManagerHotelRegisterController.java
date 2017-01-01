@@ -61,7 +61,7 @@ public class SystemManagerHotelRegisterController {
 	private HotelStaffVO hotelStaffVO = new HotelStaffVO();
 	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
 	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
-	private HotelInfoVO newHotel = new HotelInfoVO();
+
 	public SystemManagerHotelRegisterController() {
 		hotel_blservice = new Hotel_bl();
 	}
@@ -100,7 +100,7 @@ public class SystemManagerHotelRegisterController {
 		String hotelStaffname = hotelStaffName.getText();
 		if ((!name.equals("")) && (!hotelStaffname.equals("")) && (city.getValue() != null)
 				&& (district.getValue() != null)) {
-      
+
 			newHotel.setHotelName(name);
 			newHotel.setHotelDistrict(districtName);
 			newHotel.setHotelStaffId(hotelStaffVO.getId());
@@ -158,25 +158,25 @@ public class SystemManagerHotelRegisterController {
 		}
 	}
 
-	
 	@FXML
-	private void handleAddPic(){
-		if (newHotel.getImage()==null||newHotel.getImage()=="") {
+	private void handleAddPic() {
+		if (newHotel.getImage() == null || newHotel.getImage() == "") {
 			String pic1 = ImageUtil.setImagePath(img1);
 			newHotel.setImage(pic1);
-		}else if (newHotel.getImage().split(";").length==1) {
+		} else if (newHotel.getImage().split(";").length == 1) {
 			String pic2 = ImageUtil.setImagePath(img2);
-			newHotel.setImage(newHotel.getImage()+";"+pic2);
-		}else if (newHotel.getImage().split(";").length==2) {
+			newHotel.setImage(newHotel.getImage() + ";" + pic2);
+		} else if (newHotel.getImage().split(";").length == 2) {
 			String pic3 = ImageUtil.setImagePath(img3);
-			newHotel.setImage(newHotel.getImage()+";"+pic3);
-		}else if(newHotel.getImage().split(";").length==3){
+			newHotel.setImage(newHotel.getImage() + ";" + pic3);
+		} else if (newHotel.getImage().split(";").length == 3) {
 			String pic4 = ImageUtil.setImagePath(img4);
-			newHotel.setImage(newHotel.getImage()+";"+pic4+";");
-		}else {
+			newHotel.setImage(newHotel.getImage() + ";" + pic4 + ";");
+		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("提醒");
 			alert.setContentText("酒店最多有四张图片描述");
 			alert.showAndWait();
 		}
+	}
 }
