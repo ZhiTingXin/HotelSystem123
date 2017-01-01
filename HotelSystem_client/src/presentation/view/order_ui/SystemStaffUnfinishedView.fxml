@@ -20,8 +20,8 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
-                  <Button fx:id="viewOrderInfo" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleViewOrderInfo" prefHeight="39.0" prefWidth="200.0" text="订单详细信息" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="549.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
+                  <Button fx:id="reset" layoutX="10.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleReset" prefHeight="39.0" prefWidth="200.0" text="撤销搜索" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -32,7 +32,7 @@
                      </font>
                   </Label>
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <TableView fx:id="orderTable" layoutX="36.0" layoutY="143.0" prefHeight="404.0" prefWidth="454.0">
+                  <TableView fx:id="orderTable" layoutX="36.0" layoutY="107.0" prefHeight="440.0" prefWidth="454.0">
                      <columns>
                         <TableColumn fx:id="orderId" prefWidth="75.0" text="订单ID" />
                         <TableColumn fx:id="hotelName" prefWidth="87.0" text="酒店名称" />
@@ -41,13 +41,8 @@
                         <TableColumn fx:id="orderDuration" prefWidth="99.0" text="订单时长" />
                      </columns>
                   </TableView>
-                  <TextField fx:id="searchInput" layoutX="36.0" layoutY="63.0" prefHeight="27.0" prefWidth="377.0" promptText="输入订单编号" />
+                  <TextField fx:id="searchInput" layoutX="36.0" layoutY="63.0" prefHeight="27.0" prefWidth="377.0" promptText="输入订单ID/酒店ID/客户ID" />
                   <Button fx:id="searchButton" layoutX="419.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="27.0" prefWidth="70.0" text="搜索" />
-                  <ChoiceBox fx:id="chooseCity" layoutX="71.0" layoutY="103.0" prefHeight="27.0" prefWidth="106.0" />
-                  <ChoiceBox fx:id="chooseDistrict" layoutX="234.0" layoutY="103.0" prefHeight="27.0" prefWidth="106.0" />
-                  <Label layoutX="36.0" layoutY="108.0" text="城市" />
-                  <Label layoutX="201.0" layoutY="108.0" text="商圈" />
-                  <Button fx:id="reset" layoutX="419.0" layoutY="103.0" mnemonicParsing="false" text="重置条件" />
                </children>
             </AnchorPane>
          </items>
