@@ -37,9 +37,11 @@ public class HotelInfoController {
 	@FXML
 	private Button back;
 	@FXML
-	private ImageView hotelPicture1;
+	private ImageView hotelPicture;
 	@FXML
-	private ImageView hotelPicture2;
+	private Button picLeftButton;
+	@FXML
+	private Button picRightButon;
 	@FXML
 	private Label hotelName;
 	@FXML
@@ -72,6 +74,9 @@ public class HotelInfoController {
 	private Label_blService labelService;
 	private HotelStrategy_blservice hotelStrategyService;
 	private ObservableList<HotelRoomInfoVO> roomData = FXCollections.observableArrayList();
+	private String ImagePath;
+	private String[] pathSplit;
+	private int picShown;
 
 	public HotelInfoController() {
 	}
@@ -86,7 +91,10 @@ public class HotelInfoController {
 		this.customer = customer;
 		this.hotel = hotel;
 		this.hotelRoomInfo = roomService.getAllRoom(this.hotel.getHotelID());
-
+		
+		this.ImagePath = this.hotel.getImage();
+		this.pathSplit = this.ImagePath.split(";");
+		this.picShown = 0;
 		this.refreshTable();
 
 		this.HotelInfoShow();
@@ -109,8 +117,8 @@ public class HotelInfoController {
 		this.grade.setText(this.service.getHotelGrade(this.hotel.getHotelID()));
 		// this.tag.setText(this.getTagString());
 
-		// 图片方法
-		// this.hotelPicture2
+		// 图片显示方法
+		this.showPic();
 	}
 
 	public void handleReserveRoom() {
@@ -159,5 +167,26 @@ public class HotelInfoController {
 		this.roomRemain.setCellValueFactory(cellData -> cellData.getValue().getRoomRemainProperty());
 		this.roomPrice.setCellValueFactory(cellData -> cellData.getValue().getRoomPriceProperty());
 		this.roomInfoTabel.setItems(roomData);
+	}
+
+	@FXML
+	private void handlePicLeft() {
+		if (picShown > 0) {
+			this.picShown -= 1;
+			this.showPic();
+		}
+	}
+
+	@FXML
+	private void handlePicRight() {
+		if (picShown < this.pathSplit.length - 1) {
+			this.picShown += 1;
+			this.showPic();
+		}
+	}
+
+	private void showPic() {
+		// TODO Auto-generated method stub
+		this.hotelPicture.setImage(ImageUtil.setImage(this.pathSplit[this.picShown]));
 	}
 }

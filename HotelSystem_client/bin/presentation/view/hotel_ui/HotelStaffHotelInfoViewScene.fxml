@@ -141,8 +141,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <ImageView fx:id="hotelPicture1" fitHeight="150.0" fitWidth="200.0" layoutX="63.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="hotelPicture2" fitHeight="150.0" fitWidth="200.0" layoutX="259.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="hotelPicture" fitHeight="150.0" fitWidth="150.0" layoutX="186.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="picLeftButton" layoutX="141.0" layoutY="118.0" mnemonicParsing="false" onAction="#handlePicLeft" prefHeight="52.0" prefWidth="36.0" text="&lt;" />
+                  <Button fx:id="picRightButon" layoutX="348.0" layoutY="118.0" mnemonicParsing="false" onAction="#handlePicRight" prefHeight="52.0" prefWidth="36.0" text="&gt;" />
                </children>
             </AnchorPane>
          </items>

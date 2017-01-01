@@ -32,11 +32,11 @@ public class SystemManagerHotelRegisterController {
 	@FXML
 	private Label leftNameLabel;
 	@FXML
-	private Button save;// ±£´æ²¢·ÖÅä¾Æµê¹¤×÷ÈËÔ±
+	private Button save;// ä¿å­˜å¹¶åˆ†é…é…’åº—å·¥ä½œäººå‘˜
 	@FXML
 	private Button back;
 	@FXML
-	private TextField hotelName;// ¿Í·¿
+	private TextField hotelName;// å®¢æˆ¿
 	@FXML
 	private ChoiceBox<String> district;
 	@FXML
@@ -57,8 +57,10 @@ public class SystemManagerHotelRegisterController {
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
 	private Hotel_blservice hotel_blservice;
-	ObservableList<String> cityList = FXCollections.observableArrayList();// ³ÇÊĞÁĞ±í
-	ObservableList<String> districtList = FXCollections.observableArrayList();// ÉÌÈ¦ÁĞ±í
+	private HotelInfoVO newHotel = new HotelInfoVO();
+	private HotelStaffVO hotelStaffVO = new HotelStaffVO();
+	ObservableList<String> cityList = FXCollections.observableArrayList();// åŸå¸‚åˆ—è¡¨
+	ObservableList<String> districtList = FXCollections.observableArrayList();// å•†åœˆåˆ—è¡¨
 	private HotelInfoVO newHotel = new HotelInfoVO();
 	public SystemManagerHotelRegisterController() {
 		hotel_blservice = new Hotel_bl();
@@ -70,9 +72,9 @@ public class SystemManagerHotelRegisterController {
 		leftIdLabel.setText(systemManagerVO.getId());
 		leftNameLabel.setText(systemManagerVO.getUserName());
 		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
-		// ³õÊ¼»¯ÉÌÈ¦
-		city.setTooltip(new Tooltip("ÇëÑ¡Ôñ³ÇÊĞ£¡"));
-		district.setTooltip(new Tooltip("ÇëÑ¡ÔñÉÌÈ¦£¡"));
+		// åˆå§‹åŒ–å•†åœˆ
+		city.setTooltip(new Tooltip("è¯·é€‰æ‹©åŸå¸‚ï¼"));
+		district.setTooltip(new Tooltip("è¯·é€‰æ‹©å•†åœˆï¼"));
 		for (String city : MyDistricts.cities) {
 			cityList.add(city);
 		}
@@ -98,8 +100,7 @@ public class SystemManagerHotelRegisterController {
 		String hotelStaffname = hotelStaffName.getText();
 		if ((!name.equals("")) && (!hotelStaffname.equals("")) && (city.getValue() != null)
 				&& (district.getValue() != null)) {
-			HotelStaffVO hotelStaffVO = new HotelStaffVO();
-
+      
 			newHotel.setHotelName(name);
 			newHotel.setHotelDistrict(districtName);
 			newHotel.setHotelStaffId(hotelStaffVO.getId());
@@ -115,9 +116,9 @@ public class SystemManagerHotelRegisterController {
 			hotelStaffVO.setImage("src/Img/default.PNG");
 			if (isModify) {
 				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("¹§Ï²");
-				alert.setHeaderText("ĞÂÔö³É¹¦");
-				alert.setContentText("ÄúÒÑ³É¹¦ĞÂÔöÒ»Ìõ¾ÆµêĞÅÏ¢");
+				alert.setTitle("æ­å–œ");
+				alert.setHeaderText("æ–°å¢æˆåŠŸ");
+				alert.setContentText("æ‚¨å·²æˆåŠŸæ–°å¢ä¸€æ¡é…’åº—ä¿¡æ¯");
 
 				Optional<ButtonType> result = alert.showAndWait();
 				if (result.get() == ButtonType.OK) {
@@ -125,15 +126,15 @@ public class SystemManagerHotelRegisterController {
 				}
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("±§Ç¸");
-				alert.setHeaderText("ĞŞ¸ÄÊ§°Ü");
-				alert.setContentText("²»ºÃÒâË¼£¬ÄúÎ´ÄÜ³É¹¦ĞÂÔö¾ÆµêĞÅÏ¢£¡");
+				alert.setTitle("æŠ±æ­‰");
+				alert.setHeaderText("ä¿®æ”¹å¤±è´¥");
+				alert.setContentText("ä¸å¥½æ„æ€ï¼Œæ‚¨æœªèƒ½æˆåŠŸæ–°å¢é…’åº—ä¿¡æ¯ï¼");
 				alert.showAndWait();
 			}
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("ÌáĞÑ");
-			alert.setContentText("ÇëÄúÏÈÍêÉÆ¾ÆµêĞÅÏ¢ºóÔÙ±£´æ");
+			alert.setTitle("æé†’");
+			alert.setContentText("è¯·æ‚¨å…ˆå®Œå–„é…’åº—ä¿¡æ¯åå†ä¿å­˜");
 			alert.showAndWait();
 		}
 
@@ -143,10 +144,10 @@ public class SystemManagerHotelRegisterController {
 	private void handleBack() {
 		if (!hotelName.getText().equals("")) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("ÌáÊ¾");
-			alert.setContentText("ÍË³ö½«²»»á±£´æÄú×ö³öµÄĞŞ¸Ä£¬ÊÇ·ñÍË³ö£¿");
-			ButtonType yes = new ButtonType("ÊÇ");
-			ButtonType no = new ButtonType("·ñ");
+			alert.setTitle("æç¤º");
+			alert.setContentText("é€€å‡ºå°†ä¸ä¼šä¿å­˜æ‚¨åšå‡ºçš„ä¿®æ”¹ï¼Œæ˜¯å¦é€€å‡ºï¼Ÿ");
+			ButtonType yes = new ButtonType("æ˜¯");
+			ButtonType no = new ButtonType("å¦");
 			alert.getButtonTypes().setAll(yes, no);
 			Optional<ButtonType> btn = alert.showAndWait();
 			if (btn.get() == yes) {
@@ -156,6 +157,7 @@ public class SystemManagerHotelRegisterController {
 			mainScene.showSystemManagerMainScene(systemManagerVO);
 		}
 	}
+
 	
 	@FXML
 	private void handleAddPic(){
@@ -173,10 +175,8 @@ public class SystemManagerHotelRegisterController {
 			newHotel.setImage(newHotel.getImage()+";"+pic4+";");
 		}else {
 			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("ÌáĞÑ");
-			alert.setContentText("¾Æµê×î¶àÓĞËÄÕÅÍ¼Æ¬ÃèÊö");
+			alert.setTitle("æé†’");
+			alert.setContentText("é…’åº—æœ€å¤šæœ‰å››å¼ å›¾ç‰‡æè¿°");
 			alert.showAndWait();
 		}
-		
-	}
 }
