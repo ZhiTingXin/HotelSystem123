@@ -1,8 +1,6 @@
 package presentation.controller.hotelController;
 
 import java.util.ArrayList;
-import java.util.Observable;
-
 import VO.CustomerVO;
 import VO.HotelInfoVO;
 import blservice.Hotel_blservice;
