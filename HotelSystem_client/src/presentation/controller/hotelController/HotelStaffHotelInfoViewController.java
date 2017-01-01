@@ -151,11 +151,13 @@ public class HotelStaffHotelInfoViewController {
 		this.HotelStaffHotelInfoViewShow();
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showHotelStaffMainScene(hotelStaff);
 	}
 
-	public void handleModify() {
+	@FXML
+	private void handleModify() {
 		this.mainScene.showHotelStaffHotelInfoModifyScene(hotelStaff, hotel);
 	}
 

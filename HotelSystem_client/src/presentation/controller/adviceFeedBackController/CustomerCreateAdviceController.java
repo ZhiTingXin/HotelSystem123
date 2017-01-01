@@ -40,7 +40,6 @@ public class CustomerCreateAdviceController {
 	private AdviceFeedBack_blservice service;
 
 	public void initialize(Main main, CustomerVO customer2) {
-
 		this.mainScene = main;
 		this.customer = customer2;
 		isSave = false;
@@ -66,8 +65,8 @@ public class CustomerCreateAdviceController {
 			this.advice.setState(AdviceFeedBackState.UNPROCESSED);
 			this.service.addAdviceFeedBack(advice);
 			this.mainScene.showCustomerAdviceViewScene(customer);
-		}else{
-			Alert alert = new  Alert(AlertType.ERROR);
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("提醒");
 			alert.setContentText("请先填写反馈信息后在发送");
 			alert.showAndWait();
@@ -76,18 +75,18 @@ public class CustomerCreateAdviceController {
 
 	@FXML
 	private void handleBack() {
-		if(!isSave &&(!sendInfo.getText().equals(""))){
+		if (!isSave && (!sendInfo.getText().equals(""))) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("提醒");
 			alert.setContentText("确定要退出吗，退出将不对您的反馈进行保存");
 			ButtonType yes = new ButtonType("是");
 			ButtonType no = new ButtonType("否");
-			alert.getButtonTypes().setAll(yes,no);
+			alert.getButtonTypes().setAll(yes, no);
 			Optional<ButtonType> btn = alert.showAndWait();
-			if (btn.get()==yes) {
+			if (btn.get() == yes) {
 				this.mainScene.showCustomerAdviceViewScene(customer);
 			}
-		}else {
+		} else {
 			this.mainScene.showCustomerAdviceViewScene(customer);
 		}
 	}
