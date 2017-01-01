@@ -1036,7 +1036,8 @@ public class Main extends Application {
 	 * @param systemStaffVO
 	 * 
 	 */
-	public void showViewSystemVIPStrategyScene(SystemStaffVO systemStaffVO,String city,String district, SystemStrategyVO systemStrategyVO) {
+	public void showViewSystemVIPStrategyScene(SystemStaffVO systemStaffVO, String city, String district,
+			SystemStrategyVO systemStrategyVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1047,7 +1048,7 @@ public class Main extends Application {
 
 			// get Controller
 			ViewSystemVIPStrategyController viewSystemVIPStrategyController = loader.getController();
-			viewSystemVIPStrategyController.initilize(this,city,district,systemStaffVO, systemStrategyVO);
+			viewSystemVIPStrategyController.initilize(this, city, district, systemStaffVO, systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1082,7 +1083,8 @@ public class Main extends Application {
 	 * @param systemStaffVO,systemStrategyVO
 	 * 
 	 */
-	public void showSystemVIPStrategyModifyScene(SystemStaffVO systemStaffVO,String city,String district,SystemStrategyVO systemStrategyVO) {
+	public void showSystemVIPStrategyModifyScene(SystemStaffVO systemStaffVO, String city, String district,
+			SystemStrategyVO systemStrategyVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1093,7 +1095,7 @@ public class Main extends Application {
 
 			// get Controller
 			SystemVIPStrategyModifyController SystemVIPStrategyModifyController = loader.getController();
-			SystemVIPStrategyModifyController.initilize(this,city,district, systemStaffVO, systemStrategyVO);
+			SystemVIPStrategyModifyController.initilize(this, city, district, systemStaffVO, systemStrategyVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -1639,9 +1641,10 @@ public class Main extends Application {
 
 	/**
 	 * 传入具体的信用记录信息和用户信息
+	 * 
 	 * @param customerVO
 	 * @param logofUserVO
-	 * 查看具体的信用值信息
+	 *            查看具体的信用值信息
 	 */
 	public void showCustomerCreditViewSpecScene(CustomerVO customerVO, LogofUserVO logofUserVO) {
 		try {
@@ -1652,17 +1655,19 @@ public class Main extends Application {
 			AnchorPane customerViewCreditScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(customerViewCreditScene);
 
-		     CustomerViewCreditSpecController viewCreditSpecController = loader.getController();
-		     viewCreditSpecController.initialize(this, customerVO, logofUserVO);
+			CustomerViewCreditSpecController viewCreditSpecController = loader.getController();
+			viewCreditSpecController.initialize(this, customerVO, logofUserVO);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 	/**
 	 * 传入用户的vo显示用户信用记录
+	 * 
 	 * @param customerVO
 	 */
-	public void showCustomerCreditView(CustomerVO customerVO){
+	public void showCustomerCreditView(CustomerVO customerVO) {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
@@ -1670,12 +1675,13 @@ public class Main extends Application {
 					Main.class.getResource("/presentation/view/userManagement_ui/CustomerCreditViewScene.fxml"));
 			AnchorPane customerViewCreditScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(customerViewCreditScene);
-            CustomerCreditViewController customerCreditViewController = loader.getController();
-            customerCreditViewController.innitialize(customerVO, this);
+			CustomerCreditViewController customerCreditViewController = loader.getController();
+			customerCreditViewController.innitialize(customerVO, this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+
 	private void initRootLayout() {
 		try {
 
