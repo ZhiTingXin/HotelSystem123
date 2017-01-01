@@ -10,7 +10,6 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
-import VO.CustomerVO;
 import VO.HotelRoomInfoVO;
 import VO.LogofUserVO;
 import VO.OrderVO;
@@ -27,7 +26,6 @@ import data.service.OrderDataService;
 import other.OrderState;
 import other.RoomType;
 import other.StrategyState;
-import other.SystemStrategyType;
 
 public class Order_bl implements Order_blservice {
 
