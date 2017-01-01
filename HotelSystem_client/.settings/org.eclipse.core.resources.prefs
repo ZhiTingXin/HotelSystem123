@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/VO/SystemStrategyVO.java=UTF-8
 encoding//src/VO/VipStrategyVO.java=GBK
 encoding//src/main/Main.java=UTF-8
+encoding//src/presentation/controller/hotelController/SystemManagerHotelRegisterController.java=UTF-8
 encoding//src/presentation/controller/userManagementController/SystemManagerAddSystemStaffController.java=UTF-8

@@ -62,7 +62,7 @@ public class SystemManagerMainController {
 		// ◊Û¿∏
 		leftIdLabel.setText(systemManagerVO.getId());
 		leftNameLabel.setText(systemManagerVO.getUserName());
-		myPicture.setImage(ImageUtil.setImage(systemManagerVO.getImage()));;
+		myPicture.setImage(ImageUtil.setImage(systemManagerVO.getImage()));
 		// ”“¿∏
 		LocalDate nowDate = LocalDate.now();
 		dateTime.setText(util.DateUtil.format(nowDate));
