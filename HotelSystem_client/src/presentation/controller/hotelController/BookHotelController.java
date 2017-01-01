@@ -140,7 +140,7 @@ public class BookHotelController {
 		this.days = 1;
 		this.duration.setText(String.valueOf(days) + "天");
 
-		this.holidayDeals.setText(this.strategyService.showholidayDeals(this.customer));
+		this.holidayDeals.setText(this.strategyService.showholidayDeals(this.customer, this.dateOfCheckIn.getValue()));
 		this.memberDeals.setText(this.strategyService.showMemberDeals(this.customer));
 
 	}
@@ -284,7 +284,7 @@ public class BookHotelController {
 	private void handleDatePicker() {
 		// 获取时间
 		this.order.setEntryTime(dateOfCheckIn.getValue());
-
+		this.holidayDeals.setText(this.strategyService.showholidayDeals(customer, this.dateOfCheckIn.getValue()));
 		this.refreshActualPayment();
 		this.refreshOrderTotal();
 	}
