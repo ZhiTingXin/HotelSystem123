@@ -63,7 +63,8 @@ public class SystemStaffPasswordModifyController {
 		this.SystemStaffPasswordModifyShow();
 	}
 
-	public void SystemStaffPasswordModifyShow() {
+	@FXML
+	private void SystemStaffPasswordModifyShow() {
 		this.idLabel.setText(this.systemStaff.getId());
 		this.nameLabel.setText(this.systemStaff.getUsername());
 		this.myPicture.setImage(ImageUtil.setImage(this.systemStaff.getImage()));
@@ -75,18 +76,19 @@ public class SystemStaffPasswordModifyController {
 
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		String passwordInField = this.passWord.getText();
 		String newPasswordInField = this.newPassword.getText();
 		String comfirmPasswordInField = this.confirmPassword.getText();
 		if (passwordInField.equals("")) {
-			Alert alert = new  Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("提示");
 			alert.setContentText("请先输入原密码");
 			alert.showAndWait();
-		}else {
+		} else {
 			boolean isPasswordOK = login_blservice.comfirm(systemStaff.getId(), passwordInField);
-			if(!newPasswordInField.equals("")){
+			if (!newPasswordInField.equals("")) {
 				boolean isNewPasswordOK = (newPasswordInField.equals(comfirmPasswordInField));
 				if (isPasswordOK && isNewPasswordOK) {
 					this.systemStaff.setPassword(newPasswordInField);
@@ -105,30 +107,31 @@ public class SystemStaffPasswordModifyController {
 					this.confirmPasswordRightLabel.setVisible(true);
 					this.confirmPasswordRightLabel.setText("两次输入的密码不一致！");
 				}
-			}else{
+			} else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("抱歉");
 				alert.setContentText("请先输入新密码");
 				alert.showAndWait();
 			}
 		}
-		
-	
+
 	}
 
-	public void handleBack() {
-		if (!newPassword.getText().equals("")||!passWord.getText().equals("")||!confirmPassword.getText().equals("")) {
+	@FXML
+	private void handleBack() {
+		if (!newPassword.getText().equals("") || !passWord.getText().equals("")
+				|| !confirmPassword.getText().equals("")) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("提示");
 			alert.setContentText("退出将不会保存您做出的修改，是否退出？");
 			ButtonType yes = new ButtonType("是");
-			ButtonType  no = new ButtonType("否");
-			alert.getButtonTypes().setAll(yes,no);
+			ButtonType no = new ButtonType("否");
+			alert.getButtonTypes().setAll(yes, no);
 			Optional<ButtonType> btn = alert.showAndWait();
 			if (btn.get() == yes) {
 				this.mainScene.showSystemStaffInfoScene(systemStaff);
 			}
-		}else {
+		} else {
 			this.mainScene.showSystemStaffInfoScene(systemStaff);
 		}
 	}

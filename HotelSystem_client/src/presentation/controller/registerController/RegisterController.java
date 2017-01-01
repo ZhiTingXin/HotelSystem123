@@ -50,7 +50,8 @@ public class RegisterController {
 		this.errorLabel.setVisible(false);
 	}
 
-	public void handleComfirm() {
+	@FXML
+	private void handleComfirm() {
 		String userNameInField = this.name.getText();
 		String userPasswordInField = this.password.getText();
 		String userPasswordConfirmInField = this.confirmPassword.getText();
@@ -109,7 +110,8 @@ public class RegisterController {
 		}
 	}
 
-	public void handleCancel() {
+	@FXML
+	private void handleCancel() {
 		this.mainScene.showLoginScene();
 	}
 

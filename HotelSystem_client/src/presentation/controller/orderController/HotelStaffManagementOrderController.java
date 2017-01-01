@@ -90,7 +90,8 @@ public class HotelStaffManagementOrderController {
 	}
 
 	// 设置为异常订单按钮监听方法
-	public void handleSetToException() {
+	@FXML
+	private void handleSetToException() {
 		this.order.setOrderState(OrderState.ABNOMAL);
 		this.orderServcie.changeState(order);
 
@@ -109,7 +110,8 @@ public class HotelStaffManagementOrderController {
 	}
 
 	// 设置为已完成订单监听方法
-	public void handleSetToDone() {
+	@FXML
+	private void handleSetToDone() {
 		if (this.order.getEntryTime().equals(LocalDate.now())) {
 			this.order.setOrderState(OrderState.FINISHED);
 			this.orderServcie.changeState(order);

@@ -65,7 +65,8 @@ public class CustomerInfoController {
 		this.CustomerinfoShow(this.mainsence);
 	}
 
-	public void CustomerinfoShow(Main mainScene) {
+	@FXML
+	private void CustomerinfoShow(Main mainScene) {
 		this.idLabel.setText(Customer.getId());
 		this.image.setImage(ImageUtil.setImage(Customer.getImage()));
 		if (!this.Customer.getUsername().equals("")) {
@@ -99,15 +100,18 @@ public class CustomerInfoController {
 		this.phoneLabel.setText(this.Customer.getPhone());
 	}
 
-	public void handleCustomerInfoModify() {
+	@FXML
+	private void handleCustomerInfoModify() {
 		this.mainsence.showCustomerModifyScene(this.Customer);
 	}
 
-	public void handleCustomerPasswordModify() {
+	@FXML
+	private void handleCustomerPasswordModify() {
 		this.mainsence.showCustomerPasswordModifyScene(this.Customer);
 	}
 
-	public void handleCustomerMemberModify() {
+	@FXML
+	private void handleCustomerMemberModify() {
 		this.mainsence.showCustomerMemberModifyScene(this.Customer);
 	}
 
@@ -115,10 +119,12 @@ public class CustomerInfoController {
 	 * 查看用户的信用记录
 	 */
 	@FXML
-	private void handleCreditView(){
+	private void handleCreditView() {
 		this.mainsence.showCustomerCreditView(Customer);
 	}
-	public void handleBack() {
+
+	@FXML
+	private void handleBack() {
 		this.mainsence.showCustomerMainScene(Customer);
 	}
 }

@@ -66,7 +66,8 @@ public class HotelStrategyNewController {
 		this.HotelStrategyNewShow();
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		if (!InputStrategyInfo.getText().equals("") && !InputStrategyName.getText().equals("")) {
 			this.hotelStrategy.setStrategyInfo(this.InputStrategyInfo.getText());
 			this.hotelStrategy.setStrategyName(this.InputStrategyName.getText());
@@ -78,7 +79,8 @@ public class HotelStrategyNewController {
 		}
 	}
 
-	public void handleback() {
+	@FXML
+	private void handleback() {
 		this.mainscene.showHotelStrategyViewScene(this.hotelStaff, hotel);
 	}
 }

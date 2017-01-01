@@ -54,7 +54,8 @@ public class SystemManagerInfoModifyController {
 		this.SystemManagerInfoModifyShow();
 	}
 
-	public void SystemManagerInfoModifyShow() {
+	@FXML
+	private void SystemManagerInfoModifyShow() {
 		leftIdLabel.setText(systemManager.getId());
 		leftNameLabel.setText(systemManager.getUserName());
 		myPicture.setImage(ImageUtil.setImage(this.systemManager.getImage()));
@@ -64,22 +65,23 @@ public class SystemManagerInfoModifyController {
 		phoneTextField.setText(systemManager.getPhone());
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 
 		this.systemManager.setUsername(this.nameLabel.getText());
 
-		if ((!this.nameLabel.getText().equals(""))&&(!this.phoneTextField.getText().equals(""))) {
+		if ((!this.nameLabel.getText().equals("")) && (!this.phoneTextField.getText().equals(""))) {
 			// bl层方法
 			systemManager.setUsername(nameLabel.getText());
 			systemManager.setPhone(phoneTextField.getText());
 			this.blservice.modifySystemManager(systemManager);
 			this.mainScene.showSystemManagerInfoScene(systemManager);
-		} else if(nameLabel.getText().equals("")){
+		} else if (nameLabel.getText().equals("")) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("警告");
 			alert.setContentText("用户名为空，请输入您的用户名！");
 			alert.showAndWait();
-		}else{
+		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("警告");
 			alert.setContentText("您的联系方式为空，请输入您的联系方式");
@@ -88,23 +90,25 @@ public class SystemManagerInfoModifyController {
 	}
 
 	@FXML
-	private void handleChange(){
+	private void handleChange() {
 		this.systemManager.setImage(ImageUtil.setImagePath(nowPic));
 	}
-	public void handleBack() {
-		if(!nameLabel.getText().equals(systemManager.getUserName())||
-				(!phoneTextField.getText().equals(systemManager.getPhone()))){
+
+	@FXML
+	private void handleBack() {
+		if (!nameLabel.getText().equals(systemManager.getUserName())
+				|| (!phoneTextField.getText().equals(systemManager.getPhone()))) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("提示");
 			alert.setContentText("退出将不会保存您做出的修改，是否退出？");
 			ButtonType yes = new ButtonType("是");
-			ButtonType  no = new ButtonType("否");
-			alert.getButtonTypes().setAll(yes,no);
+			ButtonType no = new ButtonType("否");
+			alert.getButtonTypes().setAll(yes, no);
 			Optional<ButtonType> btn = alert.showAndWait();
-			if(btn.get()== yes ){
+			if (btn.get() == yes) {
 				this.mainScene.showSystemManagerInfoScene(systemManager);
 			}
-		}else{
+		} else {
 			this.mainScene.showSystemManagerInfoScene(systemManager);
 		}
 	}

@@ -53,15 +53,18 @@ public class SystemStaffInfoController {
 		this.SystemStaffInfoShow();
 	}
 
-	public void handleInfoModify() {
+	@FXML
+	private void handleInfoModify() {
 		this.mainScene.showSystemStaffInfoModifyScene(systemStaff);
 	}
 
-	public void handelPasswordModify() {
+	@FXML
+	private void handelPasswordModify() {
 		this.mainScene.showSystemStaffPasswordModifyScene(systemStaff);
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showSystemStaffMainScene(systemStaff);
 	}
 }

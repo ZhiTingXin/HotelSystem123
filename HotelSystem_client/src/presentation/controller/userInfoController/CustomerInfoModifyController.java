@@ -61,16 +61,16 @@ public class CustomerInfoModifyController {
 
 	}
 
-	public void CustomerinfoShow(Main mainScene) {
-		
+	@FXML
+	private void CustomerinfoShow(Main mainScene) {
+
 		/**
 		 * ×óÀ¸³õÊ¼»¯
 		 */
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
 		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
-		
-		
+
 		this.idLabel.setText(this.customer.getId());
 		this.creditLabel.setText(String.valueOf(this.customer.getCredit()));
 		this.image.setImage(ImageUtil.setImage(customer.getImage()));
@@ -90,11 +90,13 @@ public class CustomerInfoModifyController {
 		this.phoneTextField.setText(this.customer.getPhone());
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showCustomerInfoScene(customer);
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		if (this.nameTextField.getText() != "") {
 			this.customer.setUsername(this.nameTextField.getText());
 		}
@@ -109,9 +111,9 @@ public class CustomerInfoModifyController {
 		this.blservice.modifyCustomer(this.customer);
 		this.mainScene.showCustomerInfoScene(customer);
 	}
-	
+
 	@FXML
-	private void handleChangeImg(){
+	private void handleChangeImg() {
 		customer.setImage(ImageUtil.setImagePath(image));
 	}
 }
