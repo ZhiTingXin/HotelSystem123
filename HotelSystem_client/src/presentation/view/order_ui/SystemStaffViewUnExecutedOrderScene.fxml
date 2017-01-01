@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.orderController.SystemStaffViewUnExecutedOrderScene">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.orderController.SystemStaffOrderManagementController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="600.0" prefWidth="750.0">
          <items>
@@ -21,33 +21,28 @@
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
                   <Button fx:id="viewOrderInfo" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleViewOrderInfo" prefHeight="39.0" prefWidth="200.0" text="订单详细信息" />
-                  <Button fx:id="back" layoutX="11.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
+                  <Button fx:id="back" layoutX="11.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="headLabel" layoutX="154.0" layoutY="24.0" text="今日未执行订单列表">
+                  <Label fx:id="headLabel" layoutX="154.0" layoutY="27.0" text="今日未执行订单列表">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <TableView fx:id="orderTable" layoutX="36.0" layoutY="143.0" prefHeight="404.0" prefWidth="454.0">
+                  <TableView fx:id="orderTable" layoutX="36.0" layoutY="96.0" prefHeight="451.0" prefWidth="454.0">
                      <columns>
                         <TableColumn fx:id="orderId" prefWidth="75.0" text="订单ID" />
-                        <TableColumn fx:id="hotelName" prefWidth="87.0" text="酒店名称" />
-                        <TableColumn fx:id="customerId" text="客户名称" />
+                        <TableColumn fx:id="hotelId" prefWidth="87.0" text="酒店ID" />
+                        <TableColumn fx:id="customerId" text="客户ID" />
                         <TableColumn fx:id="arriveTime" prefWidth="112.0" text="到达时间" />
                         <TableColumn fx:id="orderDuration" prefWidth="99.0" text="订单时长" />
                      </columns>
                   </TableView>
-                  <TextField fx:id="searchInput" layoutX="36.0" layoutY="63.0" prefHeight="27.0" prefWidth="377.0" promptText="输入订单编号" />
-                  <Button fx:id="searchButton" layoutX="419.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="27.0" prefWidth="70.0" text="搜索" />
-                  <ChoiceBox fx:id="chooseCity" layoutX="71.0" layoutY="103.0" prefHeight="27.0" prefWidth="106.0" />
-                  <ChoiceBox fx:id="chooseDistrict" layoutX="234.0" layoutY="103.0" prefHeight="27.0" prefWidth="106.0" />
-                  <Label layoutX="36.0" layoutY="108.0" text="城市" />
-                  <Label layoutX="201.0" layoutY="108.0" text="商圈" />
-                  <Button fx:id="reset" layoutX="419.0" layoutY="103.0" mnemonicParsing="false" text="重置条件" />
+                  <TextField fx:id="searchInput" layoutX="36.0" layoutY="63.0" prefHeight="23.0" prefWidth="395.0" promptText="输入订单编号" />
+                  <Button fx:id="searchButton" layoutX="450.0" layoutY="63.0" mnemonicParsing="false" onAction="#handleSearch" text="搜索" />
                </children>
             </AnchorPane>
          </items>
