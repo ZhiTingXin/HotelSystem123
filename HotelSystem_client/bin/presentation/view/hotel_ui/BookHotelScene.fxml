@@ -181,7 +181,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="其他优惠" GridPane.rowIndex="2">
+                        <Label text="其他优惠" visible="false" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -196,7 +196,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="otherDeals" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="otherDeals" text="Label" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font size="14.0" />
                            </font>

@@ -24,6 +24,7 @@
                   <Button fx:id="Undo" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleUndo" prefHeight="39.0" prefWidth="200.0" text="待执行订单" />
                   <Button fx:id="back" layoutX="11.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
                   <Button fx:id="Exception" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleException" prefHeight="39.0" prefWidth="200.0" text="异常订单" />
+                  <Button fx:id="Revocation" layoutX="10.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleRevocation" prefHeight="39.0" prefWidth="200.0" text="已撤销订单" />
                   <Button fx:id="Done" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleDone" prefHeight="39.0" prefWidth="200.0" text="已执行订单" />
                </children>
             </AnchorPane>
