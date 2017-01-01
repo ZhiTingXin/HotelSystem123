@@ -575,4 +575,22 @@ public class Order_bl implements Order_blservice {
 		}
 		return true;
 	}
+
+	@Override
+	public ArrayList<OrderVO> getRevocationOrder(String hotelId) {
+		// TODO Auto-generated method stub
+		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
+		try {
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) this.getAllOrders();
+			for (OrderPO po : orderPOs) {
+				if (po.getStatus() != null && po.getStatus().equals(OrderState.REVACATION)) {
+					if (po.getHotelId().equals(hotelId))
+						orderVOs.add(new OrderVO(po));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return orderVOs;
+	}
 }

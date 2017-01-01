@@ -38,6 +38,8 @@ public class HotelStaffOrderViewController {
 	@FXML
 	private Button back;
 	@FXML
+	private Button Revocation;
+	@FXML
 	private Label orderType;
 	@FXML
 	private Label hotelName;
@@ -87,12 +89,14 @@ public class HotelStaffOrderViewController {
 	}
 
 	// 返回按钮监听方法
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showHotelStaffMainScene(hotelStaff);
 	}
 
 	// 订单详细信息按钮监听方法
-	public void handleViewOrderInfo() {
+	@FXML
+	private void handleViewOrderInfo() {
 
 		OrderVO focus = this.orderTable.getSelectionModel().getSelectedItem();
 		if (focus != null)
@@ -103,14 +107,16 @@ public class HotelStaffOrderViewController {
 	}
 
 	// 未完成订单列表按钮监听方法
-	public void handleUndo() {
+	@FXML
+	private void handleUndo() {
 		this.orderList = this.orderService.getHotelUndoOrderList(this.hotelStaff.getHotelId());
 		this.refreshTable();
 		this.orderType.setText("未执行订单列表");
 	}
 
 	// 已完成订单列表按钮监听方法
-	public void handleDone() {
+	@FXML
+	private void handleDone() {
 		this.orderList = this.orderService.getHotelFinishedOrderList(this.hotelStaff.getHotelId());
 		this.refreshTable();
 
@@ -118,10 +124,18 @@ public class HotelStaffOrderViewController {
 	}
 
 	// 异常订单列表按钮监听方法
-	public void handleException() {
+	@FXML
+	private void handleException() {
 		this.orderList = this.orderService.getHotelAbnormalOrderList(this.hotelStaff.getHotelId());
 		this.refreshTable();
 		this.orderType.setText("异常订单列表");
+	}
+
+	@FXML
+	private void handleRevocation() {
+		this.orderList = this.orderService.getRevocationOrder(this.hotelStaff.getHotelId());
+		this.refreshTable();
+		this.orderType.setText("已撤销订单列表");
 	}
 
 	// 刷新表格方法
