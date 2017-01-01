@@ -749,6 +749,29 @@ public class Main extends Application {
 	}
 
 	/**
+	 * show 网站营销人员查看未执行订单
+	 * 
+	 * @param systemStaffVO
+	 * 
+	 */
+	public void showSystemStaffViewUnExecutedOrderScene(SystemStaffVO systemStaffVO) {
+		try {
+			this.initRootLayout();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("/presentation/view/order_ui/SystemStaffViewUnExecutedOrderScene.fxml"));
+			AnchorPane SystemStaffMainScene = (AnchorPane) loader.load();
+			rootLayout.setCenter(SystemStaffMainScene);
+
+			// get Controller
+			SystemStaffMainController SystemStaffMainController = loader.getController();
+			SystemStaffMainController.initialize(this, systemStaffVO);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * show 网站营销人员管理异常订单界面
 	 * 
 	 * @param systemStaffVO
@@ -838,7 +861,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * <<<<<<< HEAD ======= show 网站营销人员 查看系统促销策略界面
+	 *show 网站营销人员 查看系统促销策略界面
 	 * 
 	 * @param systemStaffVO
 	 * 

@@ -20,17 +20,18 @@
                   <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
                   <Label layoutX="33.0" layoutY="240.0" text="身份" />
                   <Label layoutX="95.0" layoutY="240.0" text="网站营销人员" />
-                  <Button fx:id="ExceptionOrderManagement" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleSystemStaffOrderManagement" prefHeight="39.0" prefWidth="200.0" text="异常订单处理" />
-                  <Button fx:id="creditManagement" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleSystemStaffCreditManagement" prefHeight="39.0" prefWidth="200.0" text="信用值管理" />
+                  <Button fx:id="ExceptionOrderManagement" layoutX="10.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleSystemStaffOrderManagement" prefHeight="39.0" prefWidth="200.0" text="异常订单处理" />
+                  <Button fx:id="creditManagement" layoutX="10.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleSystemStaffCreditManagement" prefHeight="39.0" prefWidth="200.0" text="信用值管理" />
                   <Button fx:id="exit" layoutX="11.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleSystemStaffExit" prefHeight="39.0" prefWidth="200.0" text="注销" />
-                  <Button fx:id="makeSystemStrategy" layoutX="10.0" layoutY="390.0" mnemonicParsing="false" onAction="#handleSystemStaffMakeStrategy" prefHeight="39.0" prefWidth="200.0" text="制定网站促销策略" />
-                  <Button fx:id="adcviceManagement" layoutX="10.0" layoutY="440.0" mnemonicParsing="false" onAction="#handleSystemStaffAdviceFeedBack" prefHeight="39.0" prefWidth="200.0" text="评价和反馈处理" />
-                  <Button fx:id="maintainPersonalInfo" layoutX="10.0" layoutY="490.0" mnemonicParsing="false" onAction="#handleSystemStaffInfo" prefHeight="39.0" prefWidth="200.0" text="维护个人信息" />
+                  <Button fx:id="makeSystemStrategy" layoutX="10.0" layoutY="401.0" mnemonicParsing="false" onAction="#handleSystemStaffMakeStrategy" prefHeight="39.0" prefWidth="200.0" text="制定网站促销策略" />
+                  <Button fx:id="adcviceManagement" layoutX="10.0" layoutY="447.0" mnemonicParsing="false" onAction="#handleSystemStaffAdviceFeedBack" prefHeight="39.0" prefWidth="200.0" text="评价和反馈处理" />
+                  <Button fx:id="maintainPersonalInfo" layoutX="10.0" layoutY="493.0" mnemonicParsing="false" onAction="#handleSystemStaffInfo" prefHeight="39.0" prefWidth="200.0" text="维护个人信息" />
+                  <Button fx:id="ViewUnExecutedOrder" layoutX="10.0" layoutY="265.0" mnemonicParsing="false" onAction="#handleViewUnExecutedOrder" prefHeight="39.0" prefWidth="200.0" text="查看未执行订单" />
                </children>
             </AnchorPane>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label layoutX="75.0" layoutY="33.0" text="欢迎来到网上酒店客房预定系统">
+                  <Label layoutX="87.0" layoutY="37.0" text="欢迎来到网上酒店客房预定系统">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -41,7 +42,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="orderTable" layoutX="44.0" layoutY="146.0" prefHeight="412.0" prefWidth="443.0">
+                  <TableView fx:id="orderTable" layoutX="44.0" layoutY="135.0" prefHeight="412.0" prefWidth="443.0">
                      <columns>
                         <TableColumn fx:id="customerId" prefWidth="75.0" text="客户ID" />
                         <TableColumn fx:id="hotelId" prefWidth="87.0" text="酒店ID" />
