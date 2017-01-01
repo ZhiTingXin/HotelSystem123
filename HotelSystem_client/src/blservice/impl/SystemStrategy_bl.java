@@ -102,19 +102,21 @@ public class SystemStrategy_bl implements SystemStrategy_blservice {
 	}
 
 	@Override
-	public String showholidayDeals(CustomerVO customer) {
+	public String showholidayDeals(CustomerVO customer, LocalDate date) {
 		// TODO Auto-generated method stub
 		String strategyDiscription = "";
 		ArrayList<SystemStrategyVO> strategyVOs = this.getAllSystemStrategys();
 		for (SystemStrategyVO vo : strategyVOs) {
 			if (vo.getStrategyState() != null && vo.getStrategyState().equals(StrategyState.open)) {
-				LocalDate now = LocalDate.now();
-				if (vo.getBegin_date() != null
-						&& (vo.getBegin_date().isBefore(now) || vo.getBegin_date().isEqual(now))) {
-					if (vo.getEnd_date() != null
-							&& (vo.getEnd_date().isAfter(LocalDate.now()) || vo.getEnd_date().isEqual(now))) {
-						strategyDiscription += vo.getSystemStrategyName() + ":" + String.valueOf(vo.getDiscount())
-								+ "елЃЛ";
+				LocalDate then = date;
+				if (date != null) {
+					if (vo.getBegin_date() != null
+							&& (vo.getBegin_date().isBefore(then) || vo.getBegin_date().isEqual(then))) {
+						if (vo.getEnd_date() != null
+								&& (vo.getEnd_date().isAfter(then) || vo.getEnd_date().isEqual(then))) {
+							strategyDiscription += vo.getSystemStrategyName() + ":" + String.valueOf(vo.getDiscount())
+									+ "елЃЛ";
+						}
 					}
 				}
 			}
