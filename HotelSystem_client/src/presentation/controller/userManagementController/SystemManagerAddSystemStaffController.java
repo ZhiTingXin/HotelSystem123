@@ -72,19 +72,8 @@ public class SystemManagerAddSystemStaffController {
 			systemStaffVO.setImage(path);
 			systemStaffVO.setPassword(systemStaffVO.getId());// 密码
 			systemStaffVO.setPhone(phoneNum.getText());
-<<<<<<< HEAD
-<<<<<<< HEAD
-			systemStaffVO.setImage("default.png");
-=======
-			systemStaffVO.setImage("src/Img/default.png");
->>>>>>> refs/remotes/origin/master
 			boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
-=======
 
-      systemStaffVO.setImage("default.png");
-			
-      boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
->>>>>>> origin/zhiting-xin
 
 			if (isAdd) {
 
