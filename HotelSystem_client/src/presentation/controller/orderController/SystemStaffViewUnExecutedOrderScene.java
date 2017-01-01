@@ -53,7 +53,6 @@ public class SystemStaffViewUnExecutedOrderScene {
 	private SystemStaffVO systemStaffVO;
 	private Order_blservice order_blservice;
 
-	private ArrayList<OrderVO> unExecutedOrderList;
 	private ObservableList<OrderVO> orderData = FXCollections.observableArrayList();// 声明
 
 	public SystemStaffViewUnExecutedOrderScene() {
@@ -66,7 +65,8 @@ public class SystemStaffViewUnExecutedOrderScene {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 
-		unExecutedOrderList = order_blservice.getTodayUnfinishedOrders();// 获取未执行订单
+		orderData.clear();
+		ArrayList<OrderVO> unExecutedOrderList = order_blservice.getTodayUnfinishedOrders();// 获取未执行订单
 		for (OrderVO UnFinishedOrderVO : unExecutedOrderList) {// 把所有的未执行订单加到orderData
 			orderData.add(UnFinishedOrderVO);
 		}
@@ -82,20 +82,6 @@ public class SystemStaffViewUnExecutedOrderScene {
 		myPicture.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
 	}
 
-	// 查看订单处理
-	@FXML
-	private void handleViewOrderInfo() {
-		OrderVO orderVO = this.orderTable.getSelectionModel().getSelectedItem();
-		if (orderVO == null) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("提醒");
-			alert.setContentText("请先选择订单后再进行操作");
-			alert.showAndWait();
-		} else {
-			mainScene.showSystemStaffOrderViewScene(systemStaffVO, orderVO);
-		}
-	}
-
 	@FXML
 	// 搜索功能
 	private void handleSearch() {
@@ -107,14 +93,17 @@ public class SystemStaffViewUnExecutedOrderScene {
 			ArrayList<OrderVO> myOrder3= order_blservice.getHotelUndoOrderList(inputString);//酒店的未执行订单
 			
 			if (myOrder1!=null) {
+				orderData.clear();
 				orderData.add(myOrder1);
 				setTable();
 			}else if (myOrder2.size()!=0) {
+				orderData.clear();
 				for (OrderVO orderVO2 : myOrder2) {
 					orderData.add(orderVO2);
 				}
 				setTable();
 			}else if (myOrder3.size()!=0) {
+				orderData.clear();
 				for (OrderVO orderVO3 : myOrder3) {
 					orderData.add(orderVO3);
 				}
@@ -145,7 +134,8 @@ public class SystemStaffViewUnExecutedOrderScene {
 	@FXML
 	private void handleReset() {
 
-		unExecutedOrderList = order_blservice.getTodayUnfinishedOrders();// 获取未执行订单
+		orderData.clear();
+		ArrayList<OrderVO> unExecutedOrderList = order_blservice.getTodayUnfinishedOrders();// 获取未执行订单
 		for (OrderVO UnFinishedOrderVO : unExecutedOrderList) {// 把所有的未执行订单加到orderData
 			orderData.add(UnFinishedOrderVO);
 		}
