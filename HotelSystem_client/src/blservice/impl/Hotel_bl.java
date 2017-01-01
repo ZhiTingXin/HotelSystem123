@@ -299,7 +299,7 @@ public class Hotel_bl implements Hotel_blservice {
 		Assessment_blService assessmentService = new Assessment_bl();
 		ArrayList<AssementVO> assList = assessmentService.getAllHotelAss(hotelID);
 		if (assList == null || assList.size() == 0) {
-			return "ÔÝÎÞÆÀ·Ö";
+			return "ÔÝÎÞ";
 		} else {
 			double rank = 0;
 			int sum = 0;
