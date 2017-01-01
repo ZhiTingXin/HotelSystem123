@@ -10,19 +10,24 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
+import VO.CustomerVO;
 import VO.HotelRoomInfoVO;
 import VO.LogofUserVO;
 import VO.OrderVO;
+import VO.SystemStrategyVO;
 import VO.VipVO;
 import blservice.LogOfUser_blServce;
 import blservice.Order_blservice;
 import blservice.Room_blService;
+import blservice.SystemStrategy_blservice;
 import blservice.VipStrategy_blService;
 import data.service.CustomerDataService;
 import data.service.HotelDataService;
 import data.service.OrderDataService;
 import other.OrderState;
 import other.RoomType;
+import other.StrategyState;
+import other.SystemStrategyType;
 
 public class Order_bl implements Order_blservice {
 
@@ -31,6 +36,7 @@ public class Order_bl implements Order_blservice {
 	CustomerDataService customerDataService = RemoteHelper.getInstance().getCustomerDataService();
 	VipStrategy_blService vipService = new VipStrategy_blServiceImpl();
 	LogOfUser_blServce logOfUser_blServce = new LogOfUser_blServceImpl();
+	SystemStrategy_blservice systemStrategyService = new SystemStrategy_bl();
 
 	/**
 	 * @param 订单的id
@@ -425,16 +431,33 @@ public class Order_bl implements Order_blservice {
 					oprice = po.getPrice() * order.getRoomNum() * order.getLastime();
 				}
 			}
-
+			ArrayList<SystemStrategyVO> systemStrategyVOs = this.systemStrategyService.getAllSystemStrategys();
 			ArrayList<VipVO> vipVOs = vipService.getVipStrategy().getVipStrategyVOList();
 			int credit = customerDataService.findCustomer(order.getUserID()).getCredit();
-			double discount_vip = 1;
-			for (VipVO vipvo : vipVOs) {
-				if (credit <= vipvo.getMaxcredit() && credit > vipvo.getMincredit()) {
-					discount_vip = vipvo.getDiscount();
+			double discount_vip = 10;
+
+			// 节日优惠和其他优惠参与计算
+			for (SystemStrategyVO strategyVO : systemStrategyVOs) {
+				LocalDate today = LocalDate.now();
+				if (strategyVO.getBegin_date() != null && strategyVO.getStrategyState() != null
+						&& strategyVO.getEnd_date() != null) {
+					if ((strategyVO.getBegin_date().isEqual(today) || strategyVO.getBegin_date().isBefore(today))
+							&& (strategyVO.getEnd_date().isEqual(today) || strategyVO.getEnd_date().isAfter(today))
+							&& strategyVO.getStrategyState().equals(StrategyState.open)) {
+						if (strategyVO.getDiscount() < discount_vip) {
+							discount_vip = strategyVO.getDiscount();
+						}
+					}
 				}
 			}
-			oprice = oprice * discount_vip;
+			// 会员优惠参与计算
+			for (VipVO vipvo : vipVOs) {
+				if (credit <= vipvo.getMaxcredit() && credit > vipvo.getMincredit()) {
+					if (vipvo.getDiscount() < discount_vip)
+						discount_vip = vipvo.getDiscount();
+				}
+			}
+			oprice = oprice * discount_vip / 10;
 			price = String.valueOf(oprice);
 		} catch (RemoteException e) {
 			e.printStackTrace();
