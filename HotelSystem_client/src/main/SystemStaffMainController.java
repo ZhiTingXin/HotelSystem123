@@ -25,6 +25,8 @@ public class SystemStaffMainController {
 	@FXML
 	private Label leftNameLabel;
 	@FXML
+	private Button ViewUnExecutedOrder;
+	@FXML
 	private Button ExceptionOrderManagement;
 	@FXML
 	private Button creditManagement;
@@ -90,7 +92,11 @@ public class SystemStaffMainController {
 		orderTable.setItems(orderData);//显示table
 	}
 
-	//用private和@FXML保持私有性和信息安全
+	//查看未执行订单
+	@FXML
+	private void handleViewUnExecutedOrder(){
+		mainScene.showSystemStaffViewUnExecutedOrderScene(systemStaffVO);
+	}
 	// 异常订单处理
 	@FXML
 	private void handleSystemStaffOrderManagement() {
