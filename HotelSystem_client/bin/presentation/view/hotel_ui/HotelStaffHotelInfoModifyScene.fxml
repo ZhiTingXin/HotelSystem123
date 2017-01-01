@@ -32,10 +32,8 @@
                      </font>
                   </Label>
                   <Label layoutX="10.0" layoutY="563.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <ImageView fx:id="hotelPicture1" fitHeight="150.0" fitWidth="200.0" layoutX="42.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="hotelPicture2" fitHeight="150.0" fitWidth="200.0" layoutX="263.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="changePicture1" layoutX="115.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleChangePicture1" text="修改图片1" />
-                  <Button fx:id="Button" layoutX="327.0" layoutY="233.0" mnemonicParsing="false" onAction="#handleChangePicture2" text="修改图片2" />
+                  <ImageView fx:id="hotelPicture" fitHeight="150.0" fitWidth="150.0" layoutX="184.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="changePicture" layoutX="223.0" layoutY="232.0" mnemonicParsing="false" onAction="#handleChangePicture" text="修改图片1" />
                   <Label layoutX="42.0" layoutY="290.0" text="酒店名称">
                      <font>
                         <Font size="14.0" />
@@ -90,6 +88,8 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <Button fx:id="picLeftButton" layoutX="136.0" layoutY="123.0" mnemonicParsing="false" onAction="#handlePicLeft" prefHeight="49.0" prefWidth="40.0" text="&lt;" />
+                  <Button fx:id="picRightButon" layoutX="343.0" layoutY="123.0" mnemonicParsing="false" onAction="#handlePicRight" prefHeight="49.0" prefWidth="40.0" text="&gt;" />
                </children>
             </AnchorPane>
          </items>

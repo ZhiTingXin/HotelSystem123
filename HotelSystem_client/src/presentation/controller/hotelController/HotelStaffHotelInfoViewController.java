@@ -34,10 +34,14 @@ public class HotelStaffHotelInfoViewController {
 	private Button modifyHotelInfo;// 修改酒店信息
 	@FXML
 	private Button back;
+
 	@FXML
-	private ImageView hotelPicture1;
+	private ImageView hotelPicture;
 	@FXML
-	private ImageView hotelPicture2;
+	private Button picLeftButton;
+	@FXML
+	private Button picRightButon;
+
 	@FXML
 	private Label hotelName;
 	@FXML
@@ -68,15 +72,17 @@ public class HotelStaffHotelInfoViewController {
 	private HotelStrategy_blservice hotelStrategyService;
 	private ArrayList<HotelRoomInfoVO> roomInfo;
 
-	
+	private String ImagePath;
+	private String[] pathSplit;
+	private int picShown;
+
 	public void HotelStaffHotelInfoViewShow() {
-		
+
 		this.leftIdLabel.setText(this.hotelStaff.getId());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
 		this.hotelName.setText(this.hotel.getHotelName());
 
-		
 		if (this.hotel.getHotelAddress() != null && !this.hotel.getHotelAddress().equals("")) {
 			this.address.setText(this.hotel.getHotelAddress());
 		} else {
@@ -102,6 +108,9 @@ public class HotelStaffHotelInfoViewController {
 		this.restRoomNumber.setText(this.getRoomRemain());
 		this.RoomNumber.setText(this.getRoomNumber());
 
+		// 图片显示方法
+		this.showPic();
+
 	}
 
 	public void initialize(Main main, HotelStaffVO hotelStaff, HotelInfoVO hotel) {
@@ -113,6 +122,11 @@ public class HotelStaffHotelInfoViewController {
 		// this.labelService = new Label_blServiceImpl();
 		this.hotelStrategyService = new HotelStrategy_bl();
 		this.hotelService = new Hotel_bl();
+
+		this.ImagePath = this.hotel.getImage();
+		this.pathSplit = this.ImagePath.split(";");
+		this.picShown = 0;
+
 		this.roomInfo = roomService.getAllRoom(this.hotel.getHotelID());
 		if (roomInfo.size() == 0 || roomInfo == null) {
 			this.roomInfo = new ArrayList<HotelRoomInfoVO>();
@@ -197,5 +211,26 @@ public class HotelStaffHotelInfoViewController {
 		String singleRoomInfo = "单人间：" + String.valueOf(this.roomInfo.get(2).getRoomRemain());
 		String multiRoomInfo = "多人间：" + String.valueOf(this.roomInfo.get(3).getRoomRemain());
 		return doubleRoomInfo + ";" + bigRoomInfo + ";" + singleRoomInfo + ";" + multiRoomInfo;
+	}
+
+	@FXML
+	private void handlePicLeft() {
+		if (picShown > 0) {
+			this.picShown -= 1;
+			this.showPic();
+		}
+	}
+
+	@FXML
+	private void handlePicRight() {
+		if (picShown < this.pathSplit.length - 1) {
+			this.picShown += 1;
+			this.showPic();
+		}
+	}
+
+	private void showPic() {
+		// TODO Auto-generated method stub
+		this.hotelPicture.setImage(ImageUtil.setImage(this.pathSplit[this.picShown]));
 	}
 }

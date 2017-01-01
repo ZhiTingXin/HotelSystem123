@@ -7,85 +7,119 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.hotelController.HotelViewController">
-   <children>
-      <SplitPane dividerPositions="0.29411764705882354" layoutX="50.0" layoutY="25.0" prefHeight="600.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
-               <children>
-                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="33.0" layoutY="180.0" text="ID" />
-                  <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
-                  <Label layoutX="33.0" layoutY="210.0" text="姓名" />
-                  <Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0" text="Label" />
-                  <Label layoutX="33.0" layoutY="240.0" text="身份" />
-                  <Label layoutX="95.0" layoutY="240.0" text="客户" />
-                  <Button fx:id="viewHotelInfo" layoutX="10.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleViewHotelInfo" prefHeight="39.0" prefWidth="200.0" text="查看详细信息" />
-                  <Button fx:id="guess" layoutX="10.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleGuess" prefHeight="39.0" prefWidth="200.0" text="猜你喜欢" />
-                  <Button fx:id="back" layoutX="7.0" layoutY="545.0" mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0" prefWidth="200.0" text="返回" />
-               </children>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <Label layoutX="213.0" layoutY="26.0" text="浏览酒店">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="StateField" layoutX="10.0" layoutY="556.0" prefHeight="28.0" prefWidth="506.0" text="状态栏" />
-                  <TableView fx:id="hotelTable" layoutX="36.0" layoutY="176.0" prefHeight="381.0" prefWidth="471.0">
-                     <columns>
-                        <TableColumn fx:id="hotelName" prefWidth="86.0" text="酒店名称" />
-                        <TableColumn fx:id="address" prefWidth="75.0" text="地址" />
-                        <TableColumn fx:id="description" prefWidth="173.0" text="简介" />
-                        <TableColumn fx:id="price" prefWidth="91.0" text="价格" />
-                        <TableColumn fx:id="rank" prefWidth="45.0" text="评分" />
-                     </columns>
-                  </TableView>
-                  <TextField fx:id="searchInput" layoutX="34.0" layoutY="68.0" prefHeight="23.0" prefWidth="378.0" promptText="酒店名称或商圈" />
-                  <Button fx:id="searchButton" layoutX="430.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="23.0" prefWidth="70.0" text="搜索" />
-                  <Label layoutX="34.0" layoutY="141.0" text="价格区间：">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="minPrice" layoutX="104.0" layoutY="139.0" prefHeight="23.0" prefWidth="61.0" promptText="最低价格" />
-                  <TextField fx:id="maxPrice" layoutX="194.0" layoutY="139.0" prefHeight="23.0" prefWidth="61.0" promptText="最高价格" />
-                  <Label layoutX="173.0" layoutY="141.0" text="至">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="262.0" layoutY="142.0" text="酒店评分：">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <MenuButton fx:id="rankButton" layoutX="331.0" layoutY="140.0" mnemonicParsing="false" text="选择评分">
-                    <items>
-                      <MenuItem fx:id="oneStar" mnemonicParsing="false" onAction="#handleOne" text="★" />
-                      <MenuItem fx:id="twoStar" mnemonicParsing="false" onAction="#handleTwo" text="★★" />
-                        <MenuItem fx:id="threeStar" mnemonicParsing="false" onAction="#handleThree" text="★★★" />
-                        <MenuItem fx:id="fourStar" mnemonicParsing="false" onAction="#handleFour" text="★★★★" />
-                        <MenuItem fx:id="fiveStar" mnemonicParsing="false" onAction="#handleFive" text="★★★★★" />
-                    </items>
-                  </MenuButton>
-                  <Button fx:id="clearButton" layoutX="430.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleClear" prefHeight="23.0" prefWidth="70.0" text="重置条件" />
-                  <Label layoutX="36.0" layoutY="111.0" text="选择城市 : ">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="263.0" layoutY="111.0" text="选择商圈 : ">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <ChoiceBox fx:id="chooseCity" layoutX="104.0" layoutY="106.0" prefHeight="27.0" prefWidth="104.0" />
-                  <ChoiceBox fx:id="chooseDistrict" layoutX="332.0" layoutY="107.0" prefHeight="27.0" prefWidth="104.0" />
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
-   </children>
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="presentation.controller.hotelController.HotelViewController">
+	<children>
+		<SplitPane dividerPositions="0.29411764705882354" layoutX="50.0"
+			layoutY="25.0" prefHeight="600.0" prefWidth="750.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<items>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0"
+					prefWidth="143.0">
+					<children>
+						<ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0"
+							layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+						<Label layoutX="33.0" layoutY="180.0" text="ID" />
+						<Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0"
+							text="Label" />
+						<Label layoutX="33.0" layoutY="210.0" text="姓名" />
+						<Label fx:id="leftNameLabel" layoutX="95.0" layoutY="210.0"
+							text="Label" />
+						<Label layoutX="33.0" layoutY="240.0" text="身份" />
+						<Label layoutX="95.0" layoutY="240.0" text="客户" />
+						<Button fx:id="viewHotelInfo" layoutX="10.0" layoutY="290.0"
+							mnemonicParsing="false" onAction="#handleViewHotelInfo"
+							prefHeight="39.0" prefWidth="200.0" text="查看详细信息" />
+						<Button fx:id="guess" layoutX="10.0" layoutY="340.0"
+							mnemonicParsing="false" onAction="#handleGuess" prefHeight="39.0"
+							prefWidth="200.0" text="猜你喜欢" />
+						<Button fx:id="back" layoutX="7.0" layoutY="545.0"
+							mnemonicParsing="false" onAction="#handleBack" prefHeight="39.0"
+							prefWidth="200.0" text="返回" />
+					</children>
+				</AnchorPane>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0"
+					prefWidth="100.0">
+					<children>
+						<Label layoutX="213.0" layoutY="26.0" text="浏览酒店">
+							<font>
+								<Font size="24.0" />
+							</font>
+						</Label>
+						<Label fx:id="StateField" layoutX="10.0" layoutY="556.0"
+							prefHeight="28.0" prefWidth="506.0" text="状态栏" />
+						<TableView fx:id="hotelTable" layoutX="36.0" layoutY="176.0"
+							prefHeight="381.0" prefWidth="471.0">
+							<columns>
+								<TableColumn fx:id="hotelName" prefWidth="86.0"
+									text="酒店名称" />
+								<TableColumn fx:id="address" prefWidth="75.0" text="地址" />
+								<TableColumn fx:id="description" prefWidth="173.0"
+									text="简介" />
+								<TableColumn fx:id="price" prefWidth="91.0" text="价格" />
+								<TableColumn fx:id="rank" prefWidth="45.0" text="评分" />
+							</columns>
+						</TableView>
+						<TextField fx:id="searchInput" layoutX="34.0" layoutY="68.0"
+							prefHeight="23.0" prefWidth="378.0" promptText="酒店名称" />
+						<Button fx:id="searchButton" layoutX="430.0" layoutY="68.0"
+							mnemonicParsing="false" onAction="#handleSearch" prefHeight="23.0"
+							prefWidth="70.0" text="搜索" />
+						<Label layoutX="34.0" layoutY="141.0" text="价格区间：">
+							<font>
+								<Font size="14.0" />
+							</font>
+						</Label>
+						<TextField fx:id="minPrice" layoutX="104.0" layoutY="139.0"
+							prefHeight="23.0" prefWidth="61.0" promptText="最低价格" />
+						<TextField fx:id="maxPrice" layoutX="194.0" layoutY="139.0"
+							prefHeight="23.0" prefWidth="61.0" promptText="最高价格" />
+						<Label layoutX="173.0" layoutY="141.0" text="至">
+							<font>
+								<Font size="14.0" />
+							</font>
+						</Label>
+						<Label layoutX="262.0" layoutY="142.0" text="酒店评分：">
+							<font>
+								<Font size="14.0" />
+							</font>
+						</Label>
+						<MenuButton fx:id="rankButton" layoutX="331.0" layoutY="140.0"
+							mnemonicParsing="false" text="选择评分">
+							<items>
+								<MenuItem fx:id="oneStar" mnemonicParsing="false"
+									onAction="#handleOne" text="★" />
+								<MenuItem fx:id="twoStar" mnemonicParsing="false"
+									onAction="#handleTwo" text="★★" />
+								<MenuItem fx:id="threeStar" mnemonicParsing="false"
+									onAction="#handleThree" text="★★★" />
+								<MenuItem fx:id="fourStar" mnemonicParsing="false"
+									onAction="#handleFour" text="★★★★" />
+								<MenuItem fx:id="fiveStar" mnemonicParsing="false"
+									onAction="#handleFive" text="★★★★★" />
+							</items>
+						</MenuButton>
+						<Button fx:id="clearButton" layoutX="430.0" layoutY="139.0"
+							mnemonicParsing="false" onAction="#handleClear" prefHeight="23.0"
+							prefWidth="70.0" text="重置条件" />
+						<Label layoutX="36.0" layoutY="111.0" text="选择城市 : ">
+							<font>
+								<Font size="14.0" />
+							</font>
+						</Label>
+						<Label layoutX="263.0" layoutY="111.0" text="选择商圈 : ">
+							<font>
+								<Font size="14.0" />
+							</font>
+						</Label>
+						<ChoiceBox fx:id="chooseCity" layoutX="104.0" layoutY="106.0"
+							prefHeight="27.0" prefWidth="104.0"  />
+						<ChoiceBox fx:id="chooseDistrict" layoutX="332.0"
+							layoutY="107.0" prefHeight="27.0" prefWidth="104.0"  />
+					</children>
+				</AnchorPane>
+			</items>
+		</SplitPane>
+	</children>
 </AnchorPane>
