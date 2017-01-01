@@ -57,6 +57,8 @@ public class SystemManagerHotelRegisterController {
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
 	private Hotel_blservice hotel_blservice;
+	private HotelInfoVO newHotel = new HotelInfoVO();
+	private HotelStaffVO hotelStaffVO = new HotelStaffVO();
 	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
 	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
 
@@ -98,8 +100,6 @@ public class SystemManagerHotelRegisterController {
 		String hotelStaffname = hotelStaffName.getText();
 		if ((!name.equals("")) && (!hotelStaffname.equals("")) && (city.getValue() != null)
 				&& (district.getValue() != null)) {
-			HotelInfoVO newHotel = new HotelInfoVO();
-			HotelStaffVO hotelStaffVO = new HotelStaffVO();
 
 			newHotel.setHotelName(name);
 			newHotel.setHotelDistrict(districtName);
@@ -156,5 +156,10 @@ public class SystemManagerHotelRegisterController {
 		} else {
 			mainScene.showSystemManagerMainScene(systemManagerVO);
 		}
+	}
+
+	@FXML
+	private void handleAddPic() {
+		//待实现的方法
 	}
 }

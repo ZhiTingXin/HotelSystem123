@@ -37,9 +37,12 @@ public class HotelStaffHotelInfoModifyController {
 	@FXML
 	private Button back;
 	@FXML
-	private ImageView hotelPicture1;
+	private ImageView hotelPicture;
 	@FXML
-	private ImageView hotelPicture2;
+	private Button picLeftButton;
+	@FXML
+	private Button picRightButon;
+
 	@FXML
 	private Button changePicture1;
 	@FXML
@@ -79,6 +82,9 @@ public class HotelStaffHotelInfoModifyController {
 	private Hotel_blservice service;
 	private Room_blService roomService;
 	private RoomType roomType;
+	private String ImagePath;
+	private String[] pathSplit;
+	private int picShown;
 
 	public HotelStaffHotelInfoModifyController() {
 
@@ -95,6 +101,8 @@ public class HotelStaffHotelInfoModifyController {
 		this.roomTypeButton.setText("双人间");
 		this.roomNum.setText(String.valueOf(this.roomInfo.get(0).getRoomNum()));
 		this.roomPriceField.setText(String.valueOf(this.roomInfo.get(0).getRoomPrice()));
+		// 图片显示方法
+		this.showPic();
 
 	}
 
@@ -105,6 +113,10 @@ public class HotelStaffHotelInfoModifyController {
 		this.hotelStaff = hotelStaff;
 		this.service = new Hotel_bl();
 		this.roomService = new Room_blServiceImpl();
+
+		this.ImagePath = this.hotel.getImage();
+		this.pathSplit = this.ImagePath.split(";");
+		this.picShown = 0;
 
 		this.roomInfo = this.roomService.getAllRoom(this.hotel.getHotelID());
 		if (roomInfo.size() == 0 || roomInfo == null) {
@@ -133,7 +145,8 @@ public class HotelStaffHotelInfoModifyController {
 		this.HotelStaffHotelInfoModifyShow();
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomPrice(Integer.parseInt(this.roomPriceField.getText()));
 		}
@@ -158,19 +171,23 @@ public class HotelStaffHotelInfoModifyController {
 		this.mainScene.showHotelStaffHotelInfoViewScene(hotelStaff, hotel);
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showHotelStaffHotelInfoViewScene(hotelStaff, hotel);
 	}
 
-	public void handleChangePicture1() {
+	@FXML
+	private void handleChangePicture1() {
 
 	}
 
-	public void handleChangePicture2() {
+	@FXML
+	private void handleChangePicture2() {
 
 	}
 
-	public void handleMenuDoubleRoom() {
+	@FXML
+	private void handleMenuDoubleRoom() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomPrice(Integer.parseInt(this.roomPriceField.getText()));
 
@@ -191,7 +208,8 @@ public class HotelStaffHotelInfoModifyController {
 
 	}
 
-	public void handleMenuSingleRoom() {
+	@FXML
+	private void handleMenuSingleRoom() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomPrice(Integer.parseInt(this.roomPriceField.getText()));
 
@@ -211,7 +229,8 @@ public class HotelStaffHotelInfoModifyController {
 		this.roomPriceField.setText(String.valueOf(this.roomInfo.get(2).getRoomPrice()));
 	}
 
-	public void handleMenuBigRoom() {
+	@FXML
+	private void handleMenuBigRoom() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomPrice(Integer.parseInt(this.roomPriceField.getText()));
 
@@ -231,7 +250,8 @@ public class HotelStaffHotelInfoModifyController {
 		this.roomPriceField.setText(String.valueOf(this.roomInfo.get(1).getRoomPrice()));
 	}
 
-	public void handleMenuMultiRoom() {
+	@FXML
+	private void handleMenuMultiRoom() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomPrice(Integer.parseInt(this.roomPriceField.getText()));
 
@@ -251,7 +271,8 @@ public class HotelStaffHotelInfoModifyController {
 		this.roomPriceField.setText(String.valueOf(this.roomInfo.get(3).getRoomPrice()));
 	}
 
-	public void handlePlus() {
+	@FXML
+	private void handlePlus() {
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomNum(this.roomInfo.get(0).getRoomNum() + 1);
 			this.roomInfo.get(0).setRoomRemain(this.roomInfo.get(0).getRoomRemain() + 1);
@@ -274,7 +295,8 @@ public class HotelStaffHotelInfoModifyController {
 		}
 	}
 
-	public void handleMinus() {
+	@FXML
+	private void handleMinus() {
 
 		if (this.roomType.equals(RoomType.doublePersonRoom)) {
 			this.roomInfo.get(0).setRoomNum(this.roomInfo.get(0).getRoomNum() - 1);
@@ -297,5 +319,36 @@ public class HotelStaffHotelInfoModifyController {
 			this.roomNum.setText(String.valueOf(this.roomInfo.get(3).getRoomNum()));
 		}
 
+	}
+
+	@FXML
+	private void handlePicLeft() {
+		if (picShown > 0) {
+			this.picShown -= 1;
+			this.showPic();
+		}
+	}
+
+	@FXML
+	private void handlePicRight() {
+		if (picShown < this.pathSplit.length - 1) {
+			this.picShown += 1;
+			this.showPic();
+		}
+	}
+
+	private void showPic() {
+		// TODO Auto-generated method stub
+		this.hotelPicture.setImage(ImageUtil.setImage(this.pathSplit[this.picShown]));
+	}
+
+	@FXML
+	private void handleChangePicture() {
+		this.pathSplit[this.picShown] = ImageUtil.setImagePath(hotelPicture);
+		this.ImagePath = "";
+		for (String splitpath : pathSplit) {
+			ImagePath += splitpath + ";";
+		}
+		this.hotel.setImage(ImagePath);
 	}
 }

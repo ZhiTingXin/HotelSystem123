@@ -1,13 +1,8 @@
 package Test;
 
-import java.util.ArrayList;
-
 import VO.HotelInfoVO;
-import VO.HotelRoomInfoVO;
 import blservice.Hotel_blservice;
-import blservice.Room_blService;
 import blservice.impl.Hotel_bl;
-import blservice.impl.Room_blServiceImpl;
 import main.ClientRunner;
 
 public class tester {
@@ -27,10 +22,14 @@ public class tester {
 		// logService.addLogOfUser(logofUserVO);
 		Hotel_blservice hotelService = new Hotel_bl();
 		HotelInfoVO hotel = hotelService.getHotelInfo("446");
-		
-		Room_blService roomService = new Room_blServiceImpl();
-		ArrayList<HotelRoomInfoVO> roomInfo = roomService.getAllRoom(hotel.getHotelID());
-		roomInfo.get(1).setRoomRemain(roomInfo.get(1).getRoomRemain() - 2);
-		roomService.modify(roomInfo.get(1));
+		//
+		// Room_blService roomService = new Room_blServiceImpl();
+		// ArrayList<HotelRoomInfoVO> roomInfo =
+		// roomService.getAllRoom(hotel.getHotelID());
+		// roomInfo.get(1).setRoomRemain(roomInfo.get(1).getRoomRemain() - 2);
+		// roomService.modify(roomInfo.get(1));
+		hotel.setImage("src/Img/(DY1IDA7`$XISIJ1{ULJWN7.JPG;" + "src/Img/1.JPG;");
+		hotelService.modifyHotelInfo(hotel);
+
 	}
 }
