@@ -184,6 +184,32 @@ public class Hotel_bl implements Hotel_blservice {
 	}
 
 	/**
+	 * 根据酒店城市和商圈信息搜索酒店
+	 */
+	@Override
+	public ArrayList<HotelInfoVO> getHotelFromCity(ArrayList<HotelInfoVO> hotelList, String city, String district) {
+		// TODO Auto-generated method stub
+		if (city == null && district == null) {
+			return hotelList;
+		} else {
+			ArrayList<HotelInfoVO> hotelInfoVOs = new ArrayList<HotelInfoVO>();
+			for (HotelInfoVO vo : hotelList) {
+				if (district == null) {
+					if (vo.getCity() != null && vo.getCity().equals(city)) {
+						hotelInfoVOs.add(vo);
+					}
+				} else if (district != null) {
+					if (vo.getCity() != null && vo.getHotelDistrict() != null && vo.getCity().equals(city)
+							&& vo.getHotelDistrict().equals(district)) {
+						hotelInfoVOs.add(vo);
+					}
+				}
+			}
+			return hotelInfoVOs;
+		}
+	}
+
+	/**
 	 * 
 	 * @param 酒店的星级
 	 * @return 所有符合条件的酒店
@@ -286,4 +312,5 @@ public class Hotel_bl implements Hotel_blservice {
 			return String.valueOf(rank);
 		}
 	}
+
 }

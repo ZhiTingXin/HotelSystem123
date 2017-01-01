@@ -337,7 +337,7 @@ public class Order_bl implements Order_blservice {
 		} else if (order.getStatus() == OrderState.FINISHED) {
 			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
 		} else if (order.getStatus() == OrderState.REVACATION) {
-			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
+			credit = customer.getCredit() - (int) (order.getPrice() * 0.5);
 		} else {
 			credit = customer.getCredit();
 		}
@@ -506,5 +506,50 @@ public class Order_bl implements Order_blservice {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean changeStateBySystemStaff(OrderVO order_info) {
+		// TODO Auto-generated method stub
+		try {
+			boolean b = dataService.update(new OrderPO(order_info));
+			this.changeCreditBySystemStaff(order_info.getUserID(), order_info.getOrderID());
+			this.changeRoomRemain(order_info.getOrderID());
+			return b;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean changeCreditBySystemStaff(String userID, String orderID) {
+		// TODO Auto-generated method stub
+		CustomerPO customer = null;
+		OrderPO order = null;
+		try {
+			customer = customerDataService.findCustomer(userID);
+			order = dataService.findorder(orderID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		int credit = 0;
+		if (order.getStatus() == OrderState.ABNOMAL) {
+			credit = customer.getCredit() - (int) (order.getPrice() / 2);
+		} else if (order.getStatus() == OrderState.FINISHED) {
+			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
+		} else if (order.getStatus() == OrderState.REVACATION) {
+			credit = customer.getCredit() + (int) (order.getPrice() * 0.5);
+		} else {
+			credit = customer.getCredit();
+		}
+		customer.setCredit(credit);
+		try {
+			customerDataService.updateCustomer(customer);
+
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return true;
 	}
 }

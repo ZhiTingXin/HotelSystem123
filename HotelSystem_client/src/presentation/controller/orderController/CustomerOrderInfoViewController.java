@@ -1,12 +1,17 @@
 package presentation.controller.orderController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import VO.CustomerVO;
+import VO.LogofUserVO;
 import VO.OrderVO;
 import blservice.Hotel_blservice;
+import blservice.LogOfUser_blServce;
 import blservice.Order_blservice;
 import blservice.impl.Hotel_bl;
+import blservice.impl.LogOfUser_blServceImpl;
 import blservice.impl.Order_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -58,6 +63,7 @@ public class CustomerOrderInfoViewController {
 
 	private Order_blservice OrderService;
 	private Hotel_blservice hotelService;
+	private LogOfUser_blServce logService;
 
 	public CustomerOrderInfoViewController() {
 
@@ -70,6 +76,7 @@ public class CustomerOrderInfoViewController {
 		this.order = orderVO;
 		this.OrderService = new Order_bl();
 		this.hotelService = new Hotel_bl();
+		this.logService = new LogOfUser_blServceImpl();
 		this.CustomerOrderInfoViewShow();
 	}
 
@@ -98,7 +105,8 @@ public class CustomerOrderInfoViewController {
 	}
 
 	// 返回方法
-	public void handleback() {
+	@FXML
+	private void handleback() {
 		this.mainScene.showCustomerOrderViewScene(customer);
 	}
 
@@ -127,7 +135,8 @@ public class CustomerOrderInfoViewController {
 	}
 
 	// 评价或撤销按钮的监听方法
-	public void handleRecallOrAssessment() {
+	@FXML
+	private void handleRecallOrAssessment() {
 
 		if (this.order.getOrderState().equals(OrderState.FINISHED)) {
 			this.stateOfOrder.setText("已执行");
@@ -140,6 +149,15 @@ public class CustomerOrderInfoViewController {
 				this.stateOfOrder.setText("已撤销");
 				this.recallOrAssessment.setDisable(true);
 				this.StateLabel.setText("已完成当前订单的撤销，信用值已扣除！");
+
+				// 添加信用记录
+				LogofUserVO logofUserVO = new LogofUserVO();
+				logofUserVO.setChange((int) (-order.getPrice() * 0.5));
+				logofUserVO.setContent("撤销订单" + this.order.getOrderID());
+				logofUserVO.setDateTime(LocalDateTime.now());
+				logofUserVO.setUserid(customer.getId());
+				this.logService.addLogOfUser(logofUserVO);
+
 				// bl层方法
 				this.OrderService.changeState(this.order);
 			} else {
@@ -152,7 +170,8 @@ public class CustomerOrderInfoViewController {
 	}
 
 	// 显示酒店的方法
-	public void handleViewHotel() {
+	@FXML
+	private void handleViewHotel() {
 		this.mainScene.showCustomerHotelInfoScene(customer, this.hotelService.getHotelInfo(this.order.getHotelID()));
 	}
 }
