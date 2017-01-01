@@ -10,16 +10,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
-import other.MyDistricts;
 import util.ImageUtil;
 
 public class SystemStaffViewUnExecutedOrderScene {
@@ -39,12 +37,6 @@ public class SystemStaffViewUnExecutedOrderScene {
 	@FXML
 	private Button searchButton;
 	@FXML
-	private ChoiceBox<String> chooseCity;
-	@FXML
-	private ChoiceBox<String> chooseDistrict;
-	@FXML
-	private Button reset;
-	@FXML
 	private TableView<OrderVO> orderTable;
 	@FXML
 	private TableColumn<OrderVO, String> orderId;
@@ -63,8 +55,6 @@ public class SystemStaffViewUnExecutedOrderScene {
 
 	private ArrayList<OrderVO> unExecutedOrderList;
 	private ObservableList<OrderVO> orderData = FXCollections.observableArrayList();// 声明
-	private ObservableList<String> cities = FXCollections.observableArrayList();
-	private ObservableList<String> districts = FXCollections.observableArrayList();
 
 	public SystemStaffViewUnExecutedOrderScene() {
 		order_blservice = new Order_bl();
@@ -76,37 +66,13 @@ public class SystemStaffViewUnExecutedOrderScene {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 
-		unExecutedOrderList = order_blservice.get;// 调用bl层getAbnoemalOrders方法获取异常订单
-		for (OrderVO abnormalOrderVO : unExecutedOrderList) {// 把所有的异常订单加到orderData
-			orderData.add(abnormalOrderVO);
+		unExecutedOrderList = order_blservice.getTodayUnfinishedOrders();// 获取未执行订单
+		for (OrderVO UnFinishedOrderVO : unExecutedOrderList) {// 把所有的未执行订单加到orderData
+			orderData.add(UnFinishedOrderVO);
 		}
-		// 显示所有的异常订单
-		customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIdProperty());// 添加所有的tableColumn
-		hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
-		orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
-		arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
-		orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
+		// 显示所有的未执行订单
+		setTable();
 		SystemStaffViewUnExecutedOrderShow(mainScene);// 调用show
-		
-		// 初始化城市和商圈
-				for (String city : MyDistricts.cities) {
-					cities.add(city);
-				}
-				chooseCity.setItems(cities);
-				// 根据城市选择商圈
-				chooseCity.getSelectionModel().selectedItemProperty()
-						.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
-	}
-	
-	private void setDistrictChoiceBox(String city) {
-		districts.clear();
-		if (city != null) {
-			String[] allDistrict = MyDistricts.getDistricts(city);
-			for (String dist : allDistrict) {
-				districts.add(dist);
-			}
-		}
-		chooseDistrict.setItems(districts);
 	}
 
 	// 显示
@@ -114,7 +80,6 @@ public class SystemStaffViewUnExecutedOrderScene {
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
 		myPicture.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
-		orderTable.setItems(orderData);
 	}
 
 	// 查看订单处理
@@ -122,7 +87,7 @@ public class SystemStaffViewUnExecutedOrderScene {
 	private void handleViewOrderInfo() {
 		OrderVO orderVO = this.orderTable.getSelectionModel().getSelectedItem();
 		if (orderVO == null) {
-			Alert alert = new Alert(AlertType.INFORMATION);
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("提醒");
 			alert.setContentText("请先选择订单后再进行操作");
 			alert.showAndWait();
@@ -134,45 +99,68 @@ public class SystemStaffViewUnExecutedOrderScene {
 	@FXML
 	// 搜索功能
 	private void handleSearch() {
-		String orderId = searchInput.getText();
-		if (orderId != null && !orderId.equals("")) {
+		String inputString = searchInput.getText();
+		if (!orderId.equals("")) {
 			// 该订单确实存在
-			if (order_blservice.getOrder(orderId) != null) {
-
-				OrderVO myOrder = order_blservice.getOrder(orderId);
-				orderData.add(myOrder);
-				this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIdProperty());// 添加所有的tableColumn
-				this.hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelIDProperty());
-				this.orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
-				this.arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
-				this.orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
-				orderTable.setItems(orderData);
+			OrderVO myOrder1 = order_blservice.getOrder(inputString);//订单id搜索
+			ArrayList<OrderVO> myOrder2 = order_blservice.getUnfinishedOrders(inputString);//用户的未执行订单
+			ArrayList<OrderVO> myOrder3= order_blservice.getHotelUndoOrderList(inputString);//酒店的未执行订单
+			
+			if (myOrder1!=null) {
+				orderData.add(myOrder1);
+				setTable();
+			}else if (myOrder2.size()!=0) {
+				for (OrderVO orderVO2 : myOrder2) {
+					orderData.add(orderVO2);
+				}
+				setTable();
+			}else if (myOrder3.size()!=0) {
+				for (OrderVO orderVO3 : myOrder3) {
+					orderData.add(orderVO3);
+				}
+				setTable();
 			}
 			// 该订单不存在
 			else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("抱歉");
 				alert.setHeaderText("查找失败");
-				alert.setContentText("非常遗憾，未能查询该订单信息！");
+				alert.setContentText("非常遗憾，未能查询到该订单信息！");
 				alert.showAndWait();
 			}
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("抱歉");
 			alert.setHeaderText("查找失败");
-			alert.setContentText("请输入订单ID！");
+			alert.setContentText("请输入查找条件！");
 			alert.showAndWait();
 		}
-
 	}
 
 	@FXML
 	private void handleBack() {
 		mainScene.showSystemStaffMainScene(systemStaffVO);
 	}
-	
+
 	@FXML
-	private void handleReset(){
-		
+	private void handleReset() {
+
+		unExecutedOrderList = order_blservice.getTodayUnfinishedOrders();// 获取未执行订单
+		for (OrderVO UnFinishedOrderVO : unExecutedOrderList) {// 把所有的未执行订单加到orderData
+			orderData.add(UnFinishedOrderVO);
+		}
+		// 显示所有的未执行订单
+		setTable();
+	}
+	
+	
+	//显示表格
+	private void setTable(){
+		customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIdProperty());// 添加所有的tableColumn
+		hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
+		orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());
+		arriveTime.setCellValueFactory(cellData -> cellData.getValue().getEntryTimeProperty());
+		orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
+		orderTable.setItems(orderData);
 	}
 }
