@@ -91,6 +91,8 @@ public class HotelViewController {
 	private int lowPrice = 0;
 	private int highPrice = Integer.MAX_VALUE;
 	private int hotelRank = 0;
+	private String city;
+	private String district;
 
 	public void initialize(Main main, CustomerVO customer) {
 		this.service = new Hotel_bl();
@@ -99,20 +101,24 @@ public class HotelViewController {
 		this.hotelList = this.service.getAllHotel();
 		this.refreshTabel();
 		this.HotelViewShow();
-		//初始化城市和商圈
+
+		// 初始化城市和商圈
 		for (String city : MyDistricts.cities) {
 			cities.add(city);
 		}
 		chooseCity.setItems(cities);
-		//根据城市选择商圈
-		chooseCity.getSelectionModel().selectedItemProperty().addListener((Observable,oldValue,newValue)->setDistrictChoiceBox((String) newValue));
+		// 根据城市选择商圈
+		chooseCity.getSelectionModel().selectedItemProperty()
+				.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
 	}
 
 	private void setDistrictChoiceBox(String city) {
 		districts.clear();
-		String[] allDistrict = MyDistricts.getDistricts(city);
-		for (String dist : allDistrict) {
-			districts.add(dist);
+		if (city != null) {
+			String[] allDistrict = MyDistricts.getDistricts(city);
+			for (String dist : allDistrict) {
+				districts.add(dist);
+			}
 		}
 		chooseDistrict.setItems(districts);
 	}
@@ -152,23 +158,32 @@ public class HotelViewController {
 
 	@FXML
 	private void handleSearch() {
+		// 搜索方法初始化
+		this.city = null;
+		this.district = null;
 		this.lowPrice = 0;
 		this.highPrice = Integer.MAX_VALUE;
+
+		// 确定最大最小价格
 		if (!this.minPrice.getText().equals("")) {
 			this.lowPrice = Integer.parseInt(this.minPrice.getText());
 		} else {
 			this.lowPrice = 0;
 		}
-
 		if (!this.maxPrice.getText().equals("")) {
 			this.highPrice = Integer.parseInt(this.maxPrice.getText());
 		} else {
 			this.highPrice = Integer.MAX_VALUE;
 		}
-		// 三次筛选
+		// 确定城市和商圈
+		this.city = this.chooseCity.getSelectionModel().getSelectedItem();
+		this.district = this.chooseDistrict.getSelectionModel().getSelectedItem();
+
+		// 四次筛选
 		if (this.lowPrice != 0 || !this.searchInput.getText().equals("") || this.highPrice != Integer.MAX_VALUE
-				|| this.hotelRank != 0) {
+				|| this.hotelRank != 0 || this.city != null) {
 			this.hotelList = this.service.getHotelFromName(this.searchInput.getText());
+			this.hotelList = this.service.getHotelFromCity(hotelList, this.city, this.district);
 			this.hotelList = this.service.getHotelFromPrice(hotelList, lowPrice, highPrice);
 			this.hotelList = this.service.getHotelFromGrade(hotelList, hotelRank);
 
@@ -245,5 +260,17 @@ public class HotelViewController {
 		this.searchInput.clear();
 		this.minPrice.clear();
 		this.maxPrice.clear();
+		this.city = null;
+		this.district = null;
+		cities.clear();
+		// 初始化城市和商圈
+		for (String city : MyDistricts.cities) {
+			cities.add(city);
+		}
+		chooseCity.setItems(cities);
+		// 根据城市选择商圈
+		chooseCity.getSelectionModel().selectedItemProperty()
+				.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
+
 	}
 }

@@ -16,13 +16,19 @@ import VO.HotelInfoVO;
 import VO.HotelStaffVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
+import VO.SystemStrategyVO;
+import VO.VipVO;
+import blservice.SystemStrategy_blservice;
 import blservice.UserManagement_blservice;
+import blservice.VipStrategy_blService;
 import data.service.CustomerDataService;
 import data.service.HotelStaffDataService;
 import data.service.LoginDataService;
 import data.service.OrderDataService;
 import data.service.SystemStaffDataService;
 import other.PassWordMd5;
+import other.StrategyState;
+import other.SystemStrategyType;
 import other.UserType;
 
 public class UserManagement_bl implements UserManagement_blservice {
@@ -34,8 +40,25 @@ public class UserManagement_bl implements UserManagement_blservice {
 	 */
 	public CustomerVO getCustomer(String customerId) {
 		try {
+			SystemStrategy_blservice strategy_blservice = new SystemStrategy_bl();
+			VipStrategy_blService vipStrategy_blService = new VipStrategy_blServiceImpl();
 			CustomerPO customerPO = RemoteHelper.getInstance().getCustomerDataService().findCustomer(customerId);
 			CustomerVO customerVO = new CustomerVO(customerPO);
+			if (strategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER) != null
+					&& strategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER).size() > 0) {
+				SystemStrategyVO strategyVO = strategy_blservice.getSystemStrategys(SystemStrategyType.MEMBER).get(0);
+
+				if (strategyVO.getStrategyState() == StrategyState.open) {
+					ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipStrategy().getVipStrategyVOList();
+					for (VipVO vo : vipVOs) {
+						if (customerVO.getCredit() >= vo.getMincredit() && customerVO.getCredit() < vo.getMaxcredit()) {
+							customerVO.setMemberGrade(vo.getVipgrade());
+							break;
+						}
+					}
+					modifyCustomer(customerVO);
+				}
+			}
 			return customerVO;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,14 +74,15 @@ public class UserManagement_bl implements UserManagement_blservice {
 	public HotelStaffVO getHotelStaff(String hotelStaffId) {
 		HotelStaffVO hotelStaffVO = null;
 		try {
-			HotelStaffPO hotelStaffPO = RemoteHelper.getInstance().getHotelStaffDataService().findHotelStaff(hotelStaffId);
+			HotelStaffPO hotelStaffPO = RemoteHelper.getInstance().getHotelStaffDataService()
+					.findHotelStaff(hotelStaffId);
 			hotelStaffVO = new HotelStaffVO(hotelStaffPO);
 			return hotelStaffVO;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return hotelStaffVO;
 		}
-		
+
 	}
 
 	/**
@@ -99,12 +123,11 @@ public class UserManagement_bl implements UserManagement_blservice {
 	/**
 	 * @param 修改后的客户信息
 	 * 
-	 * @return 
-	 * 更新客户信息
+	 * @return 更新客户信息
 	 */
 	public boolean modifyCustomer(CustomerVO customerVO) {
 		try {
-			CustomerPO customerPO = new  CustomerPO(customerVO);
+			CustomerPO customerPO = new CustomerPO(customerVO);
 			return RemoteHelper.getInstance().getCustomerDataService().updateCustomer(customerPO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,8 +138,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 	/**
 	 * @param 修改后的酒店工作人员信息
 	 * 
-	 * @return 
-	 * 更新酒店工作人员信息
+	 * @return 更新酒店工作人员信息
 	 */
 	public boolean modifyHotelStaff(HotelStaffVO hotelStaffVO) {
 		try {
@@ -150,12 +172,13 @@ public class UserManagement_bl implements UserManagement_blservice {
 	 */
 	public boolean addSystemStaff(SystemStaffVO staffVO) {
 		try {
-		     SystemStaffPO staffPO = new SystemStaffPO(staffVO);
-		     boolean a = RemoteHelper.getInstance().getSystemStaffDataService().addStaff(staffPO);
-		     LoginPO login = new LoginPO(staffVO.getId(), PassWordMd5.
-		    		 EncryptionStr16(staffVO.getPassword(),PassWordMd5.MD5,PassWordMd5.UTF8), UserType.SYSTEMSTAFF);
-		     boolean b = RemoteHelper.getInstance().getLoginDataService().add(login);
-		     return a&&b;
+			SystemStaffPO staffPO = new SystemStaffPO(staffVO);
+			boolean a = RemoteHelper.getInstance().getSystemStaffDataService().addStaff(staffPO);
+			LoginPO login = new LoginPO(staffVO.getId(),
+					PassWordMd5.EncryptionStr16(staffVO.getPassword(), PassWordMd5.MD5, PassWordMd5.UTF8),
+					UserType.SYSTEMSTAFF);
+			boolean b = RemoteHelper.getInstance().getLoginDataService().add(login);
+			return a && b;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -165,7 +188,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 	/**
 	 * @param 酒店基本信息
 	 * 
-	 * @return 添加酒店 
+	 * @return 添加酒店
 	 */
 	public boolean addHotel(HotelInfoVO hotelInfoVO) {
 		try {
@@ -185,10 +208,12 @@ public class UserManagement_bl implements UserManagement_blservice {
 	public boolean addHotelStaff(HotelStaffVO hotelStaffVO) {
 		try {
 			HotelStaffPO hotelStaffPO = new HotelStaffPO(hotelStaffVO);
-			LoginPO loginPO = new LoginPO(hotelStaffVO.getId(),PassWordMd5.EncryptionStr16(hotelStaffVO.getPassword(),PassWordMd5.MD5,PassWordMd5.UTF8),UserType.HOTELSTAFF);
+			LoginPO loginPO = new LoginPO(hotelStaffVO.getId(),
+					PassWordMd5.EncryptionStr16(hotelStaffVO.getPassword(), PassWordMd5.MD5, PassWordMd5.UTF8),
+					UserType.HOTELSTAFF);
 			boolean a = RemoteHelper.getInstance().getHotelStaffDataService().addStaff(hotelStaffPO);
 			boolean b = RemoteHelper.getInstance().getLoginDataService().add(loginPO);
-			return a&&b;
+			return a && b;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -196,16 +221,15 @@ public class UserManagement_bl implements UserManagement_blservice {
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 得到所有的客户信息
+	 * @return 得到所有的客户信息
 	 */
 	public ArrayList<CustomerVO> getAllCustomer() {
 		ArrayList<CustomerVO> arrayList = new ArrayList<CustomerVO>();
 		try {
 			ArrayList<CustomerPO> list = RemoteHelper.getInstance().getCustomerDataService().getAllCustomers();
-			for(int i=0;i<list.size();i++){
+			for (int i = 0; i < list.size(); i++) {
 				CustomerVO customerVO = new CustomerVO(list.get(i));
 				arrayList.add(customerVO);
 			}
@@ -216,17 +240,16 @@ public class UserManagement_bl implements UserManagement_blservice {
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 返回所有的酒店工作人员信息
+	 * @return 返回所有的酒店工作人员信息
 	 */
 	public ArrayList<HotelStaffVO> getAllHotelStaff() {
 		HotelStaffDataService hotelStaffDataService = RemoteHelper.getInstance().getHotelStaffDataService();
-		ArrayList<HotelStaffVO> hotelStaffVOs = new  ArrayList<HotelStaffVO>();
+		ArrayList<HotelStaffVO> hotelStaffVOs = new ArrayList<HotelStaffVO>();
 		try {
 			ArrayList<HotelStaffPO> hotelStaffPOs = hotelStaffDataService.getAllHotelStaffs();
-			for(HotelStaffPO po:hotelStaffPOs){
+			for (HotelStaffPO po : hotelStaffPOs) {
 				hotelStaffVOs.add(new HotelStaffVO(po));
 			}
 			return hotelStaffVOs;
@@ -237,17 +260,16 @@ public class UserManagement_bl implements UserManagement_blservice {
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 返回所有的网站营销人员信息
+	 * @return 返回所有的网站营销人员信息
 	 */
 	public ArrayList<SystemStaffVO> getAllSystemStaff() {
 		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
 		ArrayList<SystemStaffVO> staffVOs = new ArrayList<SystemStaffVO>();
 		try {
 			ArrayList<SystemStaffPO> staffPOs = service.getAllSystemStaffs();
-			for(SystemStaffPO po:staffPOs){
+			for (SystemStaffPO po : staffPOs) {
 				staffVOs.add(new SystemStaffVO(po));
 			}
 			return staffVOs;
@@ -258,82 +280,77 @@ public class UserManagement_bl implements UserManagement_blservice {
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 网站注册客户的数量
+	 * @return 网站注册客户的数量
 	 */
 	public int getCustomerNum() {
-		
-			ArrayList<CustomerVO> customerVOs = getAllCustomer();
-			return customerVOs.size();
-		
+
+		ArrayList<CustomerVO> customerVOs = getAllCustomer();
+		return customerVOs.size();
+
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 网站注册酒店的数量
+	 * @return 网站注册酒店的数量
 	 */
 	public int getHotelStaffNum() {
-			ArrayList<HotelStaffVO> hotelStaffVOs = getAllHotelStaff();
-			return hotelStaffVOs.size();
+		ArrayList<HotelStaffVO> hotelStaffVOs = getAllHotelStaff();
+		return hotelStaffVOs.size();
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 网站营销人员的数量
+	 * @return 网站营销人员的数量
 	 */
 	public int getSystemStaffNum() {
-			ArrayList<SystemStaffVO> staffPOs = getAllSystemStaff();
-			return staffPOs.size();
+		ArrayList<SystemStaffVO> staffPOs = getAllSystemStaff();
+		return staffPOs.size();
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 返回今日订单数量
+	 * @return 返回今日订单数量
 	 */
 	public int getTodayOrderNumberNum() {
-		LocalDate localDate  = LocalDate.now();
+		LocalDate localDate = LocalDate.now();
 		int num = 0;
-		try{
-	    ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)RemoteHelper.getInstance()
-	    		.getOrderDataService().getAllOrders();
-	    for(OrderPO po:orderPOs){
-	    	if(localDate.equals(po.getGretime())){
-	    		num ++;
-	    	}
-	    }
-	    return num;
-		}catch (Exception e) {
+		try {
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) RemoteHelper.getInstance().getOrderDataService()
+					.getAllOrders();
+			for (OrderPO po : orderPOs) {
+				if (localDate.equals(po.getGretime())) {
+					num++;
+				}
+			}
+			return num;
+		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
 	}
 
 	/**
-	 * @param 
+	 * @param
 	 * 
-	 * @return 
-	 * 返回所有订单的数量
+	 * @return 返回所有订单的数量
 	 */
 	public int getOrderNumber() {
 		OrderDataService orderDataService = RemoteHelper.getInstance().getOrderDataService();
 		try {
-			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>)orderDataService.getAllOrders();
+			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) orderDataService.getAllOrders();
 			return orderPOs.size();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
 		}
 	}
-	
-	public boolean deleSystemStaff(SystemStaffVO vo){
+
+	public boolean deleSystemStaff(SystemStaffVO vo) {
 		SystemStaffDataService service = RemoteHelper.getInstance().getSystemStaffDataService();
 		LoginDataService loginDataService = RemoteHelper.getInstance().getLoginDataService();
 		try {
@@ -353,7 +370,7 @@ public class UserManagement_bl implements UserManagement_blservice {
 	 * 删除用户
 	 */
 	public boolean deleCustomer(CustomerVO vo) {
-	    CustomerDataService service = RemoteHelper.getInstance().getCustomerDataService();
+		CustomerDataService service = RemoteHelper.getInstance().getCustomerDataService();
 		LoginDataService loginDataService = RemoteHelper.getInstance().getLoginDataService();
 		try {
 			CustomerPO customerPO = new CustomerPO(vo);
@@ -367,5 +384,5 @@ public class UserManagement_bl implements UserManagement_blservice {
 			return false;
 		}
 	}
-	
+
 }

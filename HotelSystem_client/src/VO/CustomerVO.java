@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
 import other.memberState;
-import util.ImageUtil;
 
 public class CustomerVO {
 

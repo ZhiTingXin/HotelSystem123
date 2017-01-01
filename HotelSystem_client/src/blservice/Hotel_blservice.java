@@ -25,4 +25,6 @@ public interface Hotel_blservice {
 	public ArrayList<HotelInfoVO> getHotelFromPrice(ArrayList<HotelInfoVO> list, int minPrice, int maxPrice);
 
 	public boolean HotelInfoCompletedComfirm(HotelInfoVO hotel);
+
+	public ArrayList<HotelInfoVO> getHotelFromCity(ArrayList<HotelInfoVO> hotelList, String city, String district);
 }

@@ -140,9 +140,8 @@ public class BookHotelController {
 		this.days = 1;
 		this.duration.setText(String.valueOf(days) + "Ìì");
 
-		this.holidayDeals.setText(null);
-		this.memberDeals.setText(null);
-		this.otherDeals.setText(null);
+		this.holidayDeals.setText(this.strategyService.showholidayDeals(this.customer));
+		this.memberDeals.setText(this.strategyService.showMemberDeals(this.customer));
 
 	}
 
