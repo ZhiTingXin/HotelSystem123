@@ -47,7 +47,8 @@ public class CustomerMemberModifyController {
 		this.CustomerinfoShow();
 	}
 
-	public void CustomerinfoShow() {
+	@FXML
+	private void CustomerinfoShow() {
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
 		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
@@ -63,11 +64,13 @@ public class CustomerMemberModifyController {
 		}
 	}
 
-	public void handleback() {
+	@FXML
+	private void handleback() {
 		this.mainScene.showCustomerInfoScene(customer);
 	}
 
-	public void handleNormalMemberModify() {
+	@FXML
+	private void handleNormalMemberModify() {
 		this.customer.setMemberState(memberState.NORMAL_MEMBER);
 		// bl层方法
 		this.blservice.modifyCustomer(customer);
@@ -75,7 +78,8 @@ public class CustomerMemberModifyController {
 		this.mainScene.showCustomerInfoScene(customer);
 	}
 
-	public void handleCompanyMemberModify() {
+	@FXML
+	private void handleCompanyMemberModify() {
 		this.customer.setMemberState(memberState.BUSINESS_MEMBER);
 
 		// bl层方法

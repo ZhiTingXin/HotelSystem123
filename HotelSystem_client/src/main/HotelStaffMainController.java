@@ -93,25 +93,30 @@ public class HotelStaffMainController {
 		this.orderTable.setItems(orderData);
 	}
 
-	public void handleViewOrder() {
+	@FXML
+	private void handleViewOrder() {
 		this.mainScene.showHotelStaffOrderViewScene(hotelStaff);
 	}
 
-	public void handleMaintainHotelInfo() {
+	@FXML
+	private void handleMaintainHotelInfo() {
 		this.mainScene.showHotelStaffHotelInfoViewScene(hotelStaff,
 				this.hotelService.getHotelInfo(this.hotelStaff.getHotelId()));
 	}
 
-	public void handleMakeStrategy() {
+	@FXML
+	private void handleMakeStrategy() {
 		this.mainScene.showHotelStrategyViewScene(hotelStaff,
 				this.hotelService.getHotelInfo(this.hotelStaff.getHotelId()));
 	}
 
-	public void handleMaintainPersonalInfo() {
+	@FXML
+	private void handleMaintainPersonalInfo() {
 		this.mainScene.showHotelStaffInfoScene(hotelStaff);
 	}
 
-	public void handleExit() {
+	@FXML
+	private void handleExit() {
 		this.mainScene.showLoginScene();
 	}
 }

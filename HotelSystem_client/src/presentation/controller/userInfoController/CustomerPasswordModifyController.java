@@ -58,7 +58,8 @@ public class CustomerPasswordModifyController {
 		this.CustomerPasswordModifyShow();
 	}
 
-	public void CustomerPasswordModifyShow() {
+	@FXML
+	private void CustomerPasswordModifyShow() {
 
 		leftIdLabel.setText(customer.getId());
 		leftNameLabel.setText(customer.getUsername());
@@ -68,7 +69,8 @@ public class CustomerPasswordModifyController {
 
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		if (!newPassword.getText().equals("") || !passWord.getText().equals("")
 				|| !confirmPassword.getText().equals("")) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -86,7 +88,8 @@ public class CustomerPasswordModifyController {
 		}
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		String passwordInField = this.passWord.getText();// 输入原密码
 		String newPasswordInField = this.newPassword.getText();// 输入新密码
 		String comfirmPasswordInField = this.confirmPassword.getText();// 确认新密码
