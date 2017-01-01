@@ -58,7 +58,7 @@
                         <ImageView fx:id="img2" fitHeight="124.0" fitWidth="158.0" pickOnBounds="true" smooth="false" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
-                  <Button fx:id="addPic" layoutX="200.0" layoutY="520.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="105.0" text="添加酒店图片" />
+                  <Button fx:id="addPic" layoutX="200.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleAddPic" prefHeight="23.0" prefWidth="105.0" text="添加酒店图片" />
                   <Label layoutX="57.0" layoutY="128.0" text="酒店工作人员姓名">
                      <font>
                         <Font size="14.0" />
