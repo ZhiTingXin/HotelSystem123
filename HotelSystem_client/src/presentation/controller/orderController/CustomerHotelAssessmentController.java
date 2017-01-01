@@ -101,7 +101,7 @@ public class CustomerHotelAssessmentController {
 		this.CustomerHotelAssessmentShow();
 	}
 
-	public void CustomerHotelAssessmentShow() {
+	private void CustomerHotelAssessmentShow() {
 		this.leftIdLabel.setText(customer.getId());
 		this.leftNameLabel.setText(customer.getUsername());
 		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
@@ -121,12 +121,14 @@ public class CustomerHotelAssessmentController {
 		}
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showCustomerOrderInfoViewScene(customer, order);
 
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 
 		boolean isRankReady = this.starRank != 0;
 		boolean isContentReady = !this.assessmentTextArea.getText().equals("");
@@ -148,27 +150,32 @@ public class CustomerHotelAssessmentController {
 		}
 	}
 
-	public void handleOneStar() {
+	@FXML
+	private void handleOneStar() {
 		this.starRateReviews.setText("¡ï");
 		this.starRank = 1;
 	}
 
-	public void handleTwoStar() {
+	@FXML
+	private void handleTwoStar() {
 		this.starRateReviews.setText("¡ï¡ï");
 		this.starRank = 2;
 	}
 
-	public void handleThreeStar() {
+	@FXML
+	private void handleThreeStar() {
 		this.starRateReviews.setText("¡ï¡ï¡ï");
 		this.starRank = 3;
 	}
 
-	public void handleFourStar() {
+	@FXML
+	private void handleFourStar() {
 		this.starRateReviews.setText("¡ï¡ï¡ï¡ï");
 		this.starRank = 4;
 	}
 
-	public void handleFiveStar() {
+	@FXML
+	private void handleFiveStar() {
 		this.starRateReviews.setText("¡ï¡ï¡ï¡ï¡ï");
 		this.starRank = 5;
 	}

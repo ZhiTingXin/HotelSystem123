@@ -438,14 +438,16 @@ public class Order_bl implements Order_blservice {
 
 			// 节日优惠和其他优惠参与计算
 			for (SystemStrategyVO strategyVO : systemStrategyVOs) {
-				LocalDate today = LocalDate.now();
-				if (strategyVO.getBegin_date() != null && strategyVO.getStrategyState() != null
-						&& strategyVO.getEnd_date() != null) {
-					if ((strategyVO.getBegin_date().isEqual(today) || strategyVO.getBegin_date().isBefore(today))
-							&& (strategyVO.getEnd_date().isEqual(today) || strategyVO.getEnd_date().isAfter(today))
-							&& strategyVO.getStrategyState().equals(StrategyState.open)) {
-						if (strategyVO.getDiscount() < discount_vip) {
-							discount_vip = strategyVO.getDiscount();
+				LocalDate today = order.getEntryTime();
+				if (today != null) {
+					if (strategyVO.getBegin_date() != null && strategyVO.getStrategyState() != null
+							&& strategyVO.getEnd_date() != null) {
+						if ((strategyVO.getBegin_date().isEqual(today) || strategyVO.getBegin_date().isBefore(today))
+								&& (strategyVO.getEnd_date().isEqual(today) || strategyVO.getEnd_date().isAfter(today))
+								&& strategyVO.getStrategyState().equals(StrategyState.open)) {
+							if (strategyVO.getDiscount() < discount_vip) {
+								discount_vip = strategyVO.getDiscount();
+							}
 						}
 					}
 				}

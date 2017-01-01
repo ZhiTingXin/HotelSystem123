@@ -13,7 +13,7 @@
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="143.0">
                <children>
-                  <ImageView fx:id="myPicture" fitHeight="150.0" fitWidth="200.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="myPicture" fitHeight="160.0" fitWidth="160.0" layoutX="28.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="33.0" layoutY="180.0" text="ID" />
                   <Label fx:id="leftIdLabel" layoutX="95.0" layoutY="180.0" text="Label" />
                   <Label layoutX="33.0" layoutY="210.0" text="姓名" />
@@ -62,8 +62,8 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="nowPic" fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="143.0" layoutY="506.0" text="当前头像">
+                  <ImageView fx:id="nowPic" fitHeight="200.0" fitWidth="200.0" layoutX="91.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="157.0" layoutY="489.0" text="当前头像">
                      <font>
                         <Font size="16.0" />
                      </font>

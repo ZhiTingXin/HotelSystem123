@@ -1,5 +1,6 @@
 package blservice;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import VO.CustomerVO;
@@ -18,7 +19,7 @@ public interface SystemStrategy_blservice {
 
 	public boolean deleteSystemStrategy(SystemStrategyVO systemStrategyVO);
 
-	public String showholidayDeals(CustomerVO customer);
+	public String showholidayDeals(CustomerVO customer, LocalDate date);
 
 	public String showMemberDeals(CustomerVO customer);
 

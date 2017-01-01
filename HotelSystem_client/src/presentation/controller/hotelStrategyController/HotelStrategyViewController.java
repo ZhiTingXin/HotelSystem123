@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import main.Main;
 import util.ImageUtil;
@@ -77,7 +76,8 @@ public class HotelStrategyViewController {
 		this.HotelStrategyViewShow();
 	}
 
-	public void handleModify() {
+	@FXML
+	private void handleModify() {
 		HotelStrategyVO foucusON = this.strategyTable.getSelectionModel().getSelectedItem();
 		if (foucusON != null)
 			this.mainscene.showHotelStrategyModifyScene(hotelStaff, foucusON, hotel);

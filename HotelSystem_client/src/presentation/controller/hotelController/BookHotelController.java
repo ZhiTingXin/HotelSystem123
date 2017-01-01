@@ -140,12 +140,13 @@ public class BookHotelController {
 		this.days = 1;
 		this.duration.setText(String.valueOf(days) + "天");
 
-		this.holidayDeals.setText(this.strategyService.showholidayDeals(this.customer));
+		this.holidayDeals.setText(this.strategyService.showholidayDeals(this.customer, this.dateOfCheckIn.getValue()));
 		this.memberDeals.setText(this.strategyService.showMemberDeals(this.customer));
 
 	}
 
-	public void handleIncrease() {
+	@FXML
+	private void handleIncrease() {
 		if (this.days < 30) {
 			this.days++;
 			this.order.setLastime(days);
@@ -155,7 +156,8 @@ public class BookHotelController {
 		this.duration.setText(String.valueOf(days) + "天");
 	}
 
-	public void handleDecrease() {
+	@FXML
+	private void handleDecrease() {
 		if (this.days > 1) {
 			this.days--;
 			this.order.setLastime(days);
@@ -165,7 +167,8 @@ public class BookHotelController {
 		this.duration.setText(String.valueOf(days) + "天");
 	}
 
-	public void handleSinglePersonRoom() {
+	@FXML
+	private void handleSinglePersonRoom() {
 		this.roomtype = RoomType.singlePersonRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("单人间");
@@ -173,7 +176,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleMultiPersonRoom() {
+	@FXML
+	private void handleMultiPersonRoom() {
 		this.roomtype = RoomType.multiPersonRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("多人间");
@@ -181,7 +185,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleDoublePersonRoom() {
+	@FXML
+	private void handleDoublePersonRoom() {
 		this.roomtype = RoomType.doublePersonRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("双人间");
@@ -189,7 +194,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleBigBedRoom() {
+	@FXML
+	private void handleBigBedRoom() {
 		this.roomtype = RoomType.bigBedRoom;
 		this.order.setRoomType(roomtype);
 		this.typeOfRoom.setText("大床房");
@@ -197,7 +203,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleOneRoom() {
+	@FXML
+	private void handleOneRoom() {
 		this.roomNum = 1;
 		this.order.setRoomNum(1);
 		this.numberOfRoom.setText("1间");
@@ -205,7 +212,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleTwoRoom() {
+	@FXML
+	private void handleTwoRoom() {
 		this.roomNum = 2;
 		this.order.setRoomNum(2);
 		this.numberOfRoom.setText("2间");
@@ -213,7 +221,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleThreeRoom() {
+	@FXML
+	private void handleThreeRoom() {
 		this.roomNum = 3;
 		this.order.setRoomNum(3);
 		this.numberOfRoom.setText("3间");
@@ -221,7 +230,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleFourRoom() {
+	@FXML
+	private void handleFourRoom() {
 		this.roomNum = 4;
 		this.order.setRoomNum(4);
 		this.numberOfRoom.setText("4间");
@@ -229,7 +239,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleFiveRoom() {
+	@FXML
+	private void handleFiveRoom() {
 		this.roomNum = 5;
 		this.order.setRoomNum(5);
 		this.numberOfRoom.setText("5间");
@@ -237,7 +248,8 @@ public class BookHotelController {
 		this.refreshOrderTotal();
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		boolean isRoomTypeOK = !this.typeOfRoom.getText().equals("请选择房间类型");
 		boolean isRoomNumOK = !this.numberOfRoom.getText().equals("请选择房间数量");
 		// 待完成的日期确认
@@ -263,14 +275,16 @@ public class BookHotelController {
 		}
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showCustomerHotelInfoScene(customer, hotel);
 	}
 
-	public void handleDatePicker() {
+	@FXML
+	private void handleDatePicker() {
 		// 获取时间
 		this.order.setEntryTime(dateOfCheckIn.getValue());
-
+		this.holidayDeals.setText(this.strategyService.showholidayDeals(customer, this.dateOfCheckIn.getValue()));
 		this.refreshActualPayment();
 		this.refreshOrderTotal();
 	}

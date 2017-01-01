@@ -87,36 +87,39 @@ public class CustomerMainController {
 		this.hotelTable.setItems(this.hotelData);
 	}
 
-	public void handleViewHotel() {
+	@FXML
+	private void handleViewHotel() {
 		this.mainScene.showCustomerHotelViewScene(customer);
 	}
 
-	public void handleViewOrder() {
+	@FXML
+	private void handleViewOrder() {
 		this.mainScene.showCustomerOrderViewScene(customer);
 	}
 
-	public void handlePersonal() {
-		/**
-		 * 解决维护个人信息时的没有 刷新问题
-		 */
+	@FXML
+	private void handlePersonal() {
 		this.mainScene.showCustomerInfoScene(userservice.getCustomer(customer.getId()));
 	}
 
-	public void handleAdviceFeedback() {
+	@FXML
+	private void handleAdviceFeedback() {
 		this.mainScene.showCustomerAdviceViewScene(customer);
 	}
 
-	public void handleExit() {
+	@FXML
+	private void handleExit() {
 		try {
-			//this.customer.changeLoginState(false);
-			//this.userservice.modifyCustomer(customer);
+			// this.customer.changeLoginState(false);
+			// this.userservice.modifyCustomer(customer);
 			this.mainScene.showLoginScene();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void handleTableClick() {
+	@FXML
+	private void handleTableClick() {
 
 	}
 }
