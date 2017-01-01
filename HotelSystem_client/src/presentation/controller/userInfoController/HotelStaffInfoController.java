@@ -44,7 +44,8 @@ public class HotelStaffInfoController {
 		this.HotelStaffInfoShow();
 	}
 
-	public void HotelStaffInfoShow() {
+	@FXML
+	private void HotelStaffInfoShow() {
 		this.nameLabel.setText(this.hotelStaff.getUsername());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
@@ -56,15 +57,18 @@ public class HotelStaffInfoController {
 		this.phone.setText(this.hotelStaff.getPhone());
 	}
 
-	public void handleInfoModify() {
+	@FXML
+	private void handleInfoModify() {
 		this.mainScene.showHotelStaffInfoModifyScene(hotelStaff);
 	}
 
-	public void handlePasswordModify() {
+	@FXML
+	private void handlePasswordModify() {
 		this.mainScene.showHotelStaffPasswordModifyScene(hotelStaff);
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showHotelStaffMainScene(hotelStaff);
 	}
 }

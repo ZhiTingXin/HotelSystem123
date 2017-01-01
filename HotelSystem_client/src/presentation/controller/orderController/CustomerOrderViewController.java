@@ -81,7 +81,8 @@ public class CustomerOrderViewController {
 	}
 
 	// ¶©µ¥ÏêÏ¸ÐÅÏ¢°´Å¥¼àÌý·½·¨
-	public void handleOrderInfo() {
+	@FXML
+	private void handleOrderInfo() {
 		OrderVO focusOn = this.orderTable.getSelectionModel().getSelectedItem();
 		if (focusOn != null)
 			this.mainScene.showCustomerOrderInfoViewScene(customer, focusOn);
@@ -90,12 +91,14 @@ public class CustomerOrderViewController {
 	}
 
 	// ·µ»Ø°´Å¥¼àÌý·½·¨
-	public void handleback() {
+	@FXML
+	private void handleback() {
 		this.mainScene.showCustomerMainScene(customer);
 	}
 
 	// ËÑË÷°´Å¥¼àÌý·½·¨
-	public void handleSearch() {
+	@FXML
+	private void handleSearch() {
 		ArrayList<OrderVO> searchOrderList = this.service.getOrderFromInput(this.searchInput.getText());
 		if (searchOrderList != null && searchOrderList.size() > 0) {
 			this.refreshTable();

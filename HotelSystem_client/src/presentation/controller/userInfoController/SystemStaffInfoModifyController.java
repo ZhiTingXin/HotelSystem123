@@ -54,7 +54,7 @@ public class SystemStaffInfoModifyController {
 		this.changedPicture.setImage(ImageUtil.setImage(this.systemStaff.getImage()));
 		this.leftIdLabel.setText(this.systemStaff.getId());
 		this.leftNameLabel.setText(this.systemStaff.getUsername());
-	    this.phoneTextField.setText(this.systemStaff.getPhone());
+		this.phoneTextField.setText(this.systemStaff.getPhone());
 
 	}
 
@@ -64,38 +64,40 @@ public class SystemStaffInfoModifyController {
 		this.SystemStaffInfoModifyShow();
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		if (!this.nameField.getText().equals("")) {
 			this.systemStaff.setUsername(this.nameField.getText());
 		}
 		if (!this.phoneTextField.getText().equals("")) {
-			 this.systemStaff.setPhone(this.phoneTextField.getText());
+			this.systemStaff.setPhone(this.phoneTextField.getText());
 		}
 		this.blservice.modifySystemStaff(systemStaff);
 		this.mainScene.showSystemStaffInfoScene(systemStaff);
 	}
 
-	public void handleBack() {
-		if(!this.phoneTextField.getText().equals(systemStaff.getPhone())||
-				!this.nameField.getText().equals(systemStaff.getUsername())){
+	@FXML
+	private void handleBack() {
+		if (!this.phoneTextField.getText().equals(systemStaff.getPhone())
+				|| !this.nameField.getText().equals(systemStaff.getUsername())) {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("提醒");
 			alert.setHeaderText("退出我们将不会对你做出的修改进行保存");
 			alert.setContentText("是否退出");
 			ButtonType yes = new ButtonType("是");
 			ButtonType no = new ButtonType("否");
-			alert.getButtonTypes().setAll(yes,no);
+			alert.getButtonTypes().setAll(yes, no);
 			Optional<ButtonType> btn = alert.showAndWait();
-			if(btn.get()==yes){
+			if (btn.get() == yes) {
 				this.mainScene.showSystemStaffInfoScene(systemStaff);
 			}
-		}else{
+		} else {
 			this.mainScene.showSystemStaffInfoScene(systemStaff);
 		}
 	}
-	
+
 	@FXML
-	private void handleChange(){
+	private void handleChange() {
 		this.systemStaff.setImage(ImageUtil.setImagePath(changedPicture));
 	}
 }

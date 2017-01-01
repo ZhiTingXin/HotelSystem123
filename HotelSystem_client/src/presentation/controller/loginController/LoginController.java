@@ -42,13 +42,15 @@ public class LoginController {
 		this.LoginShow();
 	}
 
-	public void LoginShow() {
+	@FXML
+	private void LoginShow() {
 		this.userId.setPromptText("请输入您的ID");
 		this.userPassword.setPromptText("请输入您的密码");
 
 	}
 
-	public void handleLogin() {
+	@FXML
+	private void handleLogin() {
 		this.errorLabel.setVisible(false);
 		this.errorLabel1.setVisible(false);
 		String userIdInField = this.userId.getText();
@@ -58,13 +60,13 @@ public class LoginController {
 			// 待修改方法
 			UserType loginType = this.loginService.assertUserType(userIdInField);
 			if (loginType == UserType.CUSTOMER) {
-//				if (true//this.loginService.isOnlineConfirm(userIdInField)) {
-//					this.mainScene.showCustomerMainScene(this.usermanagementService.getCustomer(userIdInField));
-//					//this.loginService.login(userIdInField);
-//				} else {
-//					this.errorLabel.setVisible(true);
-//					this.errorLabel.setText("无法重复登录！");
-//				}
+				// if (true//this.loginService.isOnlineConfirm(userIdInField)) {
+				// this.mainScene.showCustomerMainScene(this.usermanagementService.getCustomer(userIdInField));
+				// //this.loginService.login(userIdInField);
+				// } else {
+				// this.errorLabel.setVisible(true);
+				// this.errorLabel.setText("无法重复登录！");
+				// }
 				this.mainScene.showCustomerMainScene(this.usermanagementService.getCustomer(userIdInField));
 			}
 			if (loginType == UserType.HOTELSTAFF) {
@@ -87,7 +89,8 @@ public class LoginController {
 
 	}
 
-	public void handleRegister() {
+	@FXML
+	private void handleRegister() {
 		this.mainScene.showRegisterScene();
 	}
 

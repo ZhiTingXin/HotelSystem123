@@ -91,7 +91,7 @@ public class HotelInfoController {
 		this.customer = customer;
 		this.hotel = hotel;
 		this.hotelRoomInfo = roomService.getAllRoom(this.hotel.getHotelID());
-		
+
 		this.ImagePath = this.hotel.getImage();
 		this.pathSplit = this.ImagePath.split(";");
 		this.picShown = 0;
@@ -101,7 +101,8 @@ public class HotelInfoController {
 
 	}
 
-	public void HotelInfoShow() {
+	@FXML
+	private void HotelInfoShow() {
 		this.leftIdLabel.setText(this.customer.getId());
 		this.leftNameLabel.setText(this.customer.getUsername());
 		this.myPicture.setImage(ImageUtil.setImage(customer.getImage()));
@@ -121,11 +122,13 @@ public class HotelInfoController {
 		this.showPic();
 	}
 
-	public void handleReserveRoom() {
+	@FXML
+	private void handleReserveRoom() {
 		this.mainScene.showCustomerBookHotelScene(customer, hotel);
 	}
 
-	public void handleBack() {
+	@FXML
+	private void handleBack() {
 		this.mainScene.showCustomerHotelViewScene(customer);
 	}
 

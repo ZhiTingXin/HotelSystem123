@@ -52,7 +52,8 @@ public class HotelStaffInfoModifyController {
 		this.HotelStaffInfoModifyShow();
 	}
 
-	public void HotelStaffInfoModifyShow() {
+	@FXML
+	private void HotelStaffInfoModifyShow() {
 		this.name.setText(this.hotelStaff.getUsername());
 		this.leftNameLabel.setText(this.hotelStaff.getUsername());
 		this.myPicture.setImage(ImageUtil.setImage(this.hotelStaff.getImage()));
@@ -65,7 +66,8 @@ public class HotelStaffInfoModifyController {
 
 	}
 
-	public void handleSave() {
+	@FXML
+	private void handleSave() {
 		if (!this.name.getText().equals("")) {
 			this.hotelStaff.setUsername(this.name.getText());
 
@@ -77,12 +79,13 @@ public class HotelStaffInfoModifyController {
 		this.mainScene.showHotelStaffInfoScene(this.hotelStaff);
 	}
 
-	public void handleBacK() {
+	@FXML
+	private void handleBacK() {
 		this.mainScene.showHotelStaffInfoScene(this.hotelStaff);
 	}
-	
+
 	@FXML
-	private void handleChange(){
+	private void handleChange() {
 		this.hotelStaff.setImage(ImageUtil.setImagePath(changedPicture));
 	}
 }
