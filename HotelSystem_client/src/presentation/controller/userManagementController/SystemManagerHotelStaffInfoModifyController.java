@@ -80,13 +80,13 @@ public class SystemManagerHotelStaffInfoModifyController {
 		String nameString = name.getText();
 		String hotelID = hotelId.getText();
 		String hotelNameString = hotelName.getText();
-		//构造新的hotel staff VO
-        hotelStaffVO.setHotelId(hotelID);
-        hotelStaffVO.setId(idString);
-        hotelStaffVO.setHotelName(hotelNameString);
-        hotelStaffVO.setUsername(nameString);
+		// 构造新的hotel staff VO
+		hotelStaffVO.setHotelId(hotelID);
+		hotelStaffVO.setId(idString);
+		hotelStaffVO.setHotelName(hotelNameString);
+		hotelStaffVO.setUsername(nameString);
 		boolean isModify = blservice.modifyHotelStaff(hotelStaffVO);
-		//判断
+		// 判断
 		if (isModify) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
@@ -106,12 +106,14 @@ public class SystemManagerHotelStaffInfoModifyController {
 			alert.showAndWait();
 		}
 	}
+
 	@FXML
-	private void handleChange(){
+	private void handleChange() {
 		this.hotelStaffVO.setImage(ImageUtil.setImagePath(changedPic));
 	}
-	@FXML//返回
-	private void handleBack(){
+
+	@FXML // 返回
+	private void handleBack() {
 		mainScene.showSystemManagerHotelStaffInfoViewScene(systemManagerVO, hotelStaffVO);
 	}
 }

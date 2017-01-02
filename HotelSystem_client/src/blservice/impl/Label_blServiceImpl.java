@@ -8,14 +8,13 @@ import VO.LabelVO;
 import blservice.Label_blService;
 import data.service.LabelDataService;
 
-public class Label_blServiceImpl implements Label_blService{
+public class Label_blServiceImpl implements Label_blService {
 
 	LabelDataService labe = RemoteHelper.getInstance().getLabelDataService();
 
 	/**
 	 * @param 标签信息
-	 * @return
-	 * 添加标签是否成功
+	 * @return 添加标签是否成功
 	 */
 	public boolean addLabel(LabelVO labelVO) {
 		try {
@@ -28,8 +27,7 @@ public class Label_blServiceImpl implements Label_blService{
 
 	/**
 	 * @param 标签信息
-	 * @return
-	 * 删除标签是否成功
+	 * @return 删除标签是否成功
 	 */
 	public boolean delLabel(LabelVO labelVO) {
 		try {
@@ -46,12 +44,12 @@ public class Label_blServiceImpl implements Label_blService{
 	 */
 	public ArrayList<LabelVO> getHotelLabels(String hotelid) {
 		ArrayList<LabelVO> labelVOs = new ArrayList<LabelVO>();
-		try{
+		try {
 			ArrayList<Label> labels = labe.getLabels(hotelid);
-			for(Label po:labels){
+			for (Label po : labels) {
 				labelVOs.add(new LabelVO(po));
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return labelVOs;

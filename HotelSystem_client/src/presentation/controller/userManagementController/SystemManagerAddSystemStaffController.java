@@ -74,7 +74,6 @@ public class SystemManagerAddSystemStaffController {
 			systemStaffVO.setPhone(phoneNum.getText());
 			boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
 
-
 			if (isAdd) {
 
 				Alert alert = new Alert(AlertType.INFORMATION);

@@ -16,6 +16,7 @@ public class VipPO implements Serializable {
 
 	public VipPO() {
 	}
+
 	public VipPO(VipVO vipVO) {
 		super();
 		this.maxcredit = vipVO.getMaxcredit();

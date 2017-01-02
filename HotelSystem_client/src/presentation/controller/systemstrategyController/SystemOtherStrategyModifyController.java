@@ -69,7 +69,7 @@ public class SystemOtherStrategyModifyController {
 		nameOfStrategy.setText(systemStrategyVO.getSystemStrategyName());
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
 		discountForCustomer.setText(String.valueOf(systemStrategyVO.getDiscount()));
-		if (systemStrategyVO.getStrategyState()==StrategyState.open) {
+		if (systemStrategyVO.getStrategyState() == StrategyState.open) {
 			open.setSelected(true);
 			close.setSelected(false);
 		} else {
@@ -77,11 +77,11 @@ public class SystemOtherStrategyModifyController {
 			close.setSelected(true);
 		}
 	}
-	
-	@FXML//保存修改
-	private void handleSave(){
-		systemStrategyVO.setSystemStrategyName( nameOfStrategy.getText());
-		systemStrategyVO.setSystemStrategyDescription( descriptionOfStrategy.getText());
+
+	@FXML // 保存修改
+	private void handleSave() {
+		systemStrategyVO.setSystemStrategyName(nameOfStrategy.getText());
+		systemStrategyVO.setSystemStrategyDescription(descriptionOfStrategy.getText());
 		systemStrategyVO.setDiscount(Double.parseDouble(discountForCustomer.getText()));
 		StrategyState strategyState;
 		if (open.isSelected()) {

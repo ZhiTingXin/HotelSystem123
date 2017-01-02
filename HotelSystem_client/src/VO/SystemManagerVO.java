@@ -4,13 +4,13 @@ import PO.SystemManagerPO;
 import other.IdGernerateServiceImpl;
 
 public class SystemManagerVO {
-	
+
 	private String password;
 	private String systemmanager_Name;
 	private String systemmanager_Id;
 	private String phone;
 	private String image;
-	
+
 	public SystemManagerVO() {
 		super();
 		this.systemmanager_Id = IdGernerateServiceImpl.gernerateId();
@@ -23,7 +23,7 @@ public class SystemManagerVO {
 		this.image = systemManagerPO.getImage();
 		this.phone = systemManagerPO.getPhone();
 	}
-	
+
 	public String getImage() {
 		return image;
 	}
@@ -60,5 +60,4 @@ public class SystemManagerVO {
 		this.password = newPasswordInField;
 	}
 
-	
 }

@@ -25,33 +25,24 @@ public class SystemStaffAdviceViewSpecController {
 
 	@FXML
 	private Label idLabel;
-	
 	@FXML
-	private Label nameLabel;
-	
+	private Label nameLabel;	
 	@FXML
-	private Button yes;
-	
+	private Button yes;	
 	@FXML
 	private ImageView myPicture;
 	@FXML
 	private Button back;
-	
 	@FXML
 	private Label sendTime;
-	
 	@FXML
-	private Label customerId;
-	
+	private Label customerId;	
 	@FXML
 	private TextField adviceInfo;
-	
 	@FXML
 	private Label replyTime;
-	
 	@FXML
 	private TextArea reply;
-	
 	@FXML
 	private Label state;
  

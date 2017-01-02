@@ -75,14 +75,13 @@ public class AddSystemHolidayStrategyController {
 		SystemHolidayStrategyModifyShow(mainScene);
 	}
 
-	
 	public void SystemHolidayStrategyModifyShow(Main mainScene) {
 
 		// 时间选择器属性设置
 		startDate.setConverter(util.DateUtil.converter);
 		endDate.setConverter(util.DateUtil.converter);
 		// 设置初始值
-		LocalDate nowDate =LocalDate.now();
+		LocalDate nowDate = LocalDate.now();
 		startDate.setValue(nowDate);
 		// 设置结束时间在开始时间之前
 		final Callback<DatePicker, DateCell> dayCellFactory = new Callback<DatePicker, DateCell>() {
@@ -97,7 +96,7 @@ public class AddSystemHolidayStrategyController {
 							setStyle("-fx-background-color: #ffc0cb;");
 						}
 						long p = ChronoUnit.DAYS.between(endDate.getValue(), item);
-						setTooltip(new Tooltip("优惠策略将持续 " + (p+1) + " 天！"));
+						setTooltip(new Tooltip("优惠策略将持续 " + (p + 1) + " 天！"));
 					}
 				};
 			}
@@ -125,7 +124,7 @@ public class AddSystemHolidayStrategyController {
 
 	@FXML // 修改按钮 TODO 判断输入合法+提示框
 	private void handleSave() {
-		
+
 		String systemStaffId = systemStaffVO.getId();
 		String strategyName = nameOfStrategy.getText();
 		String strategyDescription = descriptionOfStrategy.getText();
@@ -149,15 +148,15 @@ public class AddSystemHolidayStrategyController {
 		newSystemStrategyVO.setSystemStrategyName(strategyName);
 		newSystemStrategyVO.setStrategyState(strategyState);
 		boolean isSuc = systemStrategy_blservice.makeSystemStrategy(newSystemStrategyVO);
-		if(isSuc){
+		if (isSuc) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setContentText("您已成功新增了一个节日优惠策略");
 			Optional<ButtonType> ok = alert.showAndWait();
-			if(ok.get()==ButtonType.OK){
+			if (ok.get() == ButtonType.OK) {
 				mainScene.showSystemStrategyViewScene(systemStaffVO);
 			}
-		}else {
+		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");
 			alert.setContentText("对不起，新增失败");

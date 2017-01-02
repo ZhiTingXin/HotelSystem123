@@ -67,7 +67,6 @@ public class SystemManagerCustomerInfoModifyController {
 		SystemManagerCustomerInfoModifyShow(mainScene);
 	}
 
-
 	public void SystemManagerCustomerInfoModifyShow(Main m) {
 		idLabel.setText(this.customerVO.getId());
 		nameTextField.setText(this.customerVO.getUsername());
@@ -80,12 +79,12 @@ public class SystemManagerCustomerInfoModifyController {
 
 	@FXML
 	private void handleSave() {
-		 customerVO.setId(idLabel.getText());
-		 customerVO.setUsername(nameTextField.getText());
-		 customerVO.setMemberGrade(Integer.parseInt(memberLabel.getText()));
-		 customerVO.setBirthday(datePicker.getValue());
-		 customerVO.setCompanyName(companyTextField.getText());
-		 customerVO.setCredit(Integer.parseInt(creditLabel.getText()));
+		customerVO.setId(idLabel.getText());
+		customerVO.setUsername(nameTextField.getText());
+		customerVO.setMemberGrade(Integer.parseInt(memberLabel.getText()));
+		customerVO.setBirthday(datePicker.getValue());
+		customerVO.setCompanyName(companyTextField.getText());
+		customerVO.setCredit(Integer.parseInt(creditLabel.getText()));
 
 		boolean isModify = userInfo_blservice.modifyCustomer(customerVO);
 
@@ -94,12 +93,12 @@ public class SystemManagerCustomerInfoModifyController {
 			alert.setTitle("恭喜");
 			alert.setHeaderText("修改成功");
 			alert.setContentText("您已成功修改一条客户信息");
-			
+
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
 				mainScene.showSystemManagerCustomerInfoViewScene(systemManagerVO, customerVO);
 			}
-			
+
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");
@@ -108,12 +107,14 @@ public class SystemManagerCustomerInfoModifyController {
 			alert.showAndWait();
 		}
 	}
+
 	@FXML
 	private void handleChange() {
 		this.customerVO.setImage(ImageUtil.setImagePath(changedPic));
 	}
+
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainScene.showSystemManagerCustomerInfoViewScene(systemManagerVO, customerVO);
 	}
 }

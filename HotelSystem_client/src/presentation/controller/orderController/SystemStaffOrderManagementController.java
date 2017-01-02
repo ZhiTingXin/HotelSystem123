@@ -64,7 +64,7 @@ public class SystemStaffOrderManagementController {
 
 	// 初始化界面
 	public void initialize(Main mainScene, SystemStaffVO systemStaffVO) {
-		
+
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 
@@ -94,25 +94,26 @@ public class SystemStaffOrderManagementController {
 	// 用private和@FXML保持私有性和安全
 	// 查看订单处理
 	@FXML
-	private void handleViewOrderInfo(){
+	private void handleViewOrderInfo() {
 		OrderVO orderVO = this.orderTable.getSelectionModel().getSelectedItem();
-		if(orderVO==null){
+		if (orderVO == null) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("提醒");
 			alert.setContentText("请先选择订单后再进行操作");
 			alert.showAndWait();
-		}else{
-			mainScene.showSystemStaffOrderViewScene(systemStaffVO,orderVO);
+		} else {
+			mainScene.showSystemStaffOrderViewScene(systemStaffVO, orderVO);
 		}
 	}
+
 	@FXML
-	//搜索功能
-	private void handleSearch(){
+	// 搜索功能
+	private void handleSearch() {
 		String orderId = searchInput.getText();
-		if (orderId!=null&&!orderId.equals("")) {
-			//该订单确实存在
-			if (order_blservice.getOrder(orderId)!=null) {
-								
+		if (orderId != null && !orderId.equals("")) {
+			// 该订单确实存在
+			if (order_blservice.getOrder(orderId) != null) {
+
 				OrderVO myOrder = order_blservice.getOrder(orderId);
 				orderData.add(myOrder);
 				this.customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIdProperty());// 添加所有的tableColumn
@@ -122,7 +123,7 @@ public class SystemStaffOrderManagementController {
 				this.orderDuration.setCellValueFactory(cellData -> cellData.getValue().getLastTimeProperty());
 				orderTable.setItems(orderData);
 			}
-			//该订单不存在
+			// 该订单不存在
 			else {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("抱歉");
@@ -137,10 +138,11 @@ public class SystemStaffOrderManagementController {
 			alert.setContentText("请输入订单ID！");
 			alert.showAndWait();
 		}
-		
+
 	}
+
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainScene.showSystemStaffMainScene(systemStaffVO);
 	}
 }

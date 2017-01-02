@@ -12,8 +12,6 @@ public class SystemStaffVO {
 	private String password;
 	private String phone;
 	private String image;
-	
-
 
 	public SystemStaffVO() {
 		super();
@@ -28,7 +26,7 @@ public class SystemStaffVO {
 		this.phone = userPO.getPhone();
 		this.image = userPO.getImage();
 	}
-	
+
 	public String getImage() {
 		return image;
 	}
@@ -60,27 +58,32 @@ public class SystemStaffVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getPhone(){
+
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(String phone){
+
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
 	/**
-	 * UI 
+	 * UI
 	 */
 	public StringProperty getSystemStaffIDProperty() {
 		return new SimpleStringProperty(this.id);
 	}
+
 	public StringProperty getSystemSatffNameProperty() {
 		return new SimpleStringProperty(this.username);
 	}
+
 	public StringProperty getSystemStaffIdentity() {
 		return new SimpleStringProperty("网站营销人员");
 	}
-	public StringProperty getSystemStaffPhone(){
+
+	public StringProperty getSystemStaffPhone() {
 		return new SimpleStringProperty(phone);
 	}
-	
+
 }

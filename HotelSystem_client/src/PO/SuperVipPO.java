@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import VO.VipVO;
 
-public class SuperVipPO implements Serializable{
+public class SuperVipPO implements Serializable {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class SuperVipPO implements Serializable{
 	private String city;
 	private String district;// …Ã»¶
 
-	public SuperVipPO(VipVO vipVO){
+	public SuperVipPO(VipVO vipVO) {
 		super();
 		this.id = vipVO.getId();
 		this.city = vipVO.getCity();
@@ -24,6 +24,7 @@ public class SuperVipPO implements Serializable{
 		this.discount = vipVO.getDiscount();
 		this.district = vipVO.getDistrict();
 	}
+
 	public int getVipgrade() {
 		return Vipgrade;
 	}
@@ -47,15 +48,19 @@ public class SuperVipPO implements Serializable{
 	public void setDistrict(String district) {
 		this.district = district;
 	}
+
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}

@@ -78,7 +78,8 @@ public class SystemVIPStrategyModifyController {
 		vipStrategy_blService = new VipStrategy_blServiceImpl();
 	}
 
-	public void initilize(Main mainScene,String city,String district,SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+	public void initilize(Main mainScene, String city, String district, SystemStaffVO systemStaffVO,
+			SystemStrategyVO systemStrategyVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 		this.systemStrategyVO = systemStrategyVO;
@@ -90,7 +91,8 @@ public class SystemVIPStrategyModifyController {
 		this.city.setText(city);
 		this.district.setText(district);
 		vipVOData.clear();
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(this.city.getText(),this.district.getText()).getVipStrategyVOList();
+		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(this.city.getText(), this.district.getText())
+				.getVipStrategyVOList();
 		for (VipVO vipVO : vipVOs) {
 			vipVOData.add(vipVO);
 		}
@@ -105,8 +107,8 @@ public class SystemVIPStrategyModifyController {
 			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 					.setDiscount(Double.parseDouble(t.getNewValue()));
 		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);	
-		
+		systemStrategyTable.setItems(vipVOData);
+
 	}
 
 	public void SystemVIPStrategyModifyShow(Main mainScene) {
@@ -126,25 +128,25 @@ public class SystemVIPStrategyModifyController {
 
 		vipVOData.clear();
 	}
-	
+
 	@FXML
 	private void handleSaveTable() {
 
 		ObservableList<VipVO> getVipVO = systemStrategyTable.getItems();
-			
+
 		ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
 		for (VipVO vipVO : getVipVO) {
 			newVipVO.add(vipVO);
 		}
-			
+
 		vipStrategyVO = new VipStrategyVO();
 		vipStrategyVO.setVipStrategyVOList(newVipVO);
-			
+
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("恭喜");
 		alert.setContentText("保存成功");
 		alert.showAndWait();
-		
+
 	}
 
 	@FXML // save the strategy.
@@ -159,23 +161,23 @@ public class SystemVIPStrategyModifyController {
 		} else {
 			strategyState = StrategyState.close;
 		}
-		
+
 		systemStrategyVO.setSystemStrategyName(strategyName);
 		systemStrategyVO.setSystemStrategyDescription(strategyDescription);
 		systemStrategyVO.setStrategyState(strategyState);
 		boolean isOK = systemStrategy_blservice.modifySystemStrategy(systemStrategyVO);
 		boolean isModifyTable = vipStrategy_blService.modifuSuperVipStrategy(vipStrategyVO);
-		
-		if (isOK&&isModifyTable) {
+
+		if (isOK && isModifyTable) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setHeaderText("保存成功");
 			alert.setContentText("您已成功修改一条优惠信息！");
-			
+
 			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == ButtonType.OK){
+			if (result.get() == ButtonType.OK) {
 				mainScene.showSystemStrategyViewScene(systemStaffVO);
-			} 			
+			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");

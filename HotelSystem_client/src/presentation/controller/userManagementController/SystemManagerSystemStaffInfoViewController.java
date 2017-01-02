@@ -29,40 +29,40 @@ public class SystemManagerSystemStaffInfoViewController {
 	private ImageView image;
 	@FXML
 	private ImageView myPicture;
-	
+
 	private Main mainScene;
 	private SystemManagerVO systemManagerVO;
 	private SystemStaffVO systemStaffVO;
-	
-	public SystemManagerSystemStaffInfoViewController(){
+
+	public SystemManagerSystemStaffInfoViewController() {
 	}
-	
-	public void initialize(Main mainScene,SystemManagerVO systemManagerVO,SystemStaffVO systemStaffVO) {
+
+	public void initialize(Main mainScene, SystemManagerVO systemManagerVO, SystemStaffVO systemStaffVO) {
 		this.mainScene = mainScene;
 		this.systemManagerVO = systemManagerVO;
 		this.systemStaffVO = systemStaffVO;
-		//left
+		// left
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
 		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
 		image.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
 		SystemManagerSystemStaffInfoViewShow(mainScene);
 	}
-	
+
 	public void SystemManagerSystemStaffInfoViewShow(Main mainScene) {
-		
+
 		idLabel.setText(systemStaffVO.getId());
 		nameLabel.setText(systemStaffVO.getUsername());
 		phoneNum.setText(systemStaffVO.getPhone());
 	}
-	
-	@FXML//modify
-	private void handleModify(){
+
+	@FXML // modify
+	private void handleModify() {
 		mainScene.showSystemManagerSystemStaffInfoModfyScene(systemManagerVO, systemStaffVO);
 	}
-	
+
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainScene.showSystemStaffManagementScene(systemManagerVO);
 	}
 }

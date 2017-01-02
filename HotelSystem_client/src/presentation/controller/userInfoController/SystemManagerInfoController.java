@@ -58,9 +58,9 @@ public class SystemManagerInfoController {
 	public void handleModifyPassword() {
 		this.mainScene.showSystemManagerPasswordModifyScene(systemManager);
 	}
-	
+
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainScene.showSystemManagerMainScene(systemManager);
 	}
 }

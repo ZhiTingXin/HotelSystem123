@@ -62,7 +62,8 @@ public class HotelStrategyModifyController {
 		this.HotelStrategyModifyShow();
 	}
 
-	@FXML private void handleSave() {
+	@FXML
+	private void handleSave() {
 		this.hotelStrategy.setStrategyInfo(this.InputStrategyInfo.getText());
 		this.hotelStrategy.setStrategyName(this.InputStrategyName.getText());
 		// bl²ã·½·¨

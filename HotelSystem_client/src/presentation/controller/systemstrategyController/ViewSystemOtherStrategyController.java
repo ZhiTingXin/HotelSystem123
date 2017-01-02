@@ -32,7 +32,7 @@ public class ViewSystemOtherStrategyController {
 	private Label discount;
 	@FXML
 	private Label state;
-	
+
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategyVO systemStrategyVO;
@@ -57,15 +57,15 @@ public class ViewSystemOtherStrategyController {
 		nameOfStrategy.setText(systemStrategyVO.getSystemStrategyName());
 		descriptionOfStrategy.setText(systemStrategyVO.getSystemStrategyDescription());
 		discount.setText(String.valueOf(systemStrategyVO.getDiscount()));
-		if (systemStrategyVO.getStrategyState()==StrategyState.open) {
+		if (systemStrategyVO.getStrategyState() == StrategyState.open) {
 			state.setText("启用");
 		} else {
 			state.setText("关闭");
 		}
 	}
-	
-	@FXML//保存修改
-	private void handleModify(){
+
+	@FXML // 保存修改
+	private void handleModify() {
 		mainScene.showSystemOtherStrategyModifyScene(systemStaffVO, systemStrategyVO);
 	}
 

@@ -16,12 +16,11 @@ public class LogofUserVO {
 	private int change;
 	private String userid;
 
-
-	public LogofUserVO(){
+	public LogofUserVO() {
 		this.id = IdGernerateServiceImpl.gernerateId();
 	}
-	
-	public LogofUserVO(LogofUserPO po){
+
+	public LogofUserVO(LogofUserPO po) {
 		super();
 		this.id = po.getId();
 		this.change = po.getChang();
@@ -53,6 +52,7 @@ public class LogofUserVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public String getUserid() {
 		return userid;
 	}
@@ -68,22 +68,23 @@ public class LogofUserVO {
 	public void setChange(int change) {
 		this.change = change;
 	}
-	
-	public StringProperty gettimeProperty(){
+
+	public StringProperty gettimeProperty() {
 		return new SimpleStringProperty(DateUtil.format(dateTime));
 	}
-	
-	public StringProperty getDiscProperty(){
+
+	public StringProperty getDiscProperty() {
 		return new SimpleStringProperty(content);
 	}
-	public StringProperty getChangeProperty(){
+
+	public StringProperty getChangeProperty() {
 		String chan = new String();
-		if (change>0) {
+		if (change > 0) {
 			chan = "Ôö¼Ó";
-		}else{
+		} else {
 			chan = "¿Û³ý";
 		}
-		return new SimpleStringProperty(chan+(int)(Math.abs(change)));
+		return new SimpleStringProperty(chan + (int) (Math.abs(change)));
 	}
-	
+
 }

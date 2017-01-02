@@ -14,7 +14,7 @@ public class SystemManagerCustomerInfoViewController {
 	@FXML
 	private Button modifyInfo;
 	@FXML
-	private Button modifyState;//更改用户状态（冻结/解冻）
+	private Button modifyState;// 更改用户状态（冻结/解冻）
 	@FXML
 	private ImageView leftMenuImage;
 	@FXML
@@ -39,25 +39,24 @@ public class SystemManagerCustomerInfoViewController {
 	private Label leftIdLabel;
 	@FXML
 	private ImageView image;
-	
+
 	private Main mainsence;
 	private CustomerVO customerVO;
 	private SystemManagerVO systemManagerVO;
 
-
-	public void initialize(Main mainScene,SystemManagerVO systemManagerVO,CustomerVO customerVO) {
+	public void initialize(Main mainScene, SystemManagerVO systemManagerVO, CustomerVO customerVO) {
 		this.mainsence = mainScene;
 		this.systemManagerVO = systemManagerVO;
-		this.customerVO =customerVO;
-		//left
+		this.customerVO = customerVO;
+		// left
 		leftIdLabel.setText(this.systemManagerVO.getId());
 		leftNameLabel.setText(this.systemManagerVO.getUserName());
 		leftMenuImage.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
-		
+
 		SystemManagerCustomerInfoViewShow(this.mainsence);
 	}
-	
-	public void SystemManagerCustomerInfoViewShow(Main mainScene){
+
+	public void SystemManagerCustomerInfoViewShow(Main mainScene) {
 		idLabel.setText(customerVO.getId());
 		nameLabel.setText(customerVO.getUsername());
 		memberLabel.setText(String.valueOf(customerVO.getMemberGrade()));
@@ -66,14 +65,14 @@ public class SystemManagerCustomerInfoViewController {
 		creditLabel.setText(String.valueOf(customerVO.getCredit()));
 		image.setImage(ImageUtil.setImage(this.customerVO.getImage()));
 	}
-	
-	@FXML//
-	private void handleModify(){
+
+	@FXML //
+	private void handleModify() {
 		mainsence.showSystemManagerCustomerInfoModifyScene(systemManagerVO, customerVO);
 	}
-	
+
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainsence.showCustomerManagementScene(systemManagerVO);
 	}
 }
