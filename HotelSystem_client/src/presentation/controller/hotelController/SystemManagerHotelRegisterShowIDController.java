@@ -8,6 +8,7 @@ import blservice.impl.UserManagement_bl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import main.Main;
 
 public class SystemManagerHotelRegisterShowIDController {
@@ -22,31 +23,47 @@ public class SystemManagerHotelRegisterShowIDController {
 	private Label HotelStaffID;
 	@FXML
 	private Button back;
-	
+
 	private Main mainScene;
+	private Stage dialogStage;
 	private SystemManagerVO systemManagerVO;
 	private UserManagement_blservice userManagement_blservice;
-	
-	public SystemManagerHotelRegisterShowIDController(){	
+
+	public SystemManagerHotelRegisterShowIDController() {
 		userManagement_blservice = new UserManagement_bl();
 	}
-	
-	public void SystemManagerHotelRegisterShowIDShow(Main mainScene,SystemManagerVO systemManagerVO,HotelInfoVO hotelInfoVO,HotelStaffVO hotelStaffVO) {
+
+	public void SystemManagerHotelRegisterShowIDShow(Main mainScene, SystemManagerVO systemManagerVO,
+			HotelInfoVO hotelInfoVO, HotelStaffVO hotelStaffVO) {
 		this.mainScene = mainScene;
 		this.systemManagerVO = systemManagerVO;
-		
+
 		String hotelID = hotelInfoVO.getHotelID();
-		hotelId.setText(hotelID);//hotel id
-		hotelName.setText(hotelInfoVO.getHotelName());//hotel name
-		district.setText(hotelInfoVO.getHotelDistrict());//hotel district
+		hotelId.setText(hotelID);// hotel id
+		hotelName.setText(hotelInfoVO.getHotelName());// hotel name
+		district.setText(hotelInfoVO.getCity() + " " + hotelInfoVO.getHotelDistrict());// hotel
+																						// district
 		String hotelStaffID = hotelStaffVO.getId();
-		HotelStaffID.setText(hotelStaffID);//hotel staff id
-		
-		userManagement_blservice.addHotelStaff(hotelStaffVO);//´æ´¢hotel Staff
-		
+		HotelStaffID.setText(hotelStaffID);// hotel staff id
+
+		userManagement_blservice.addHotelStaff(hotelStaffVO);// ´æ´¢hotel Staff
+
 	}
+
 	@FXML
-	public void handleOK(){
+	public void handleOK() {
+
 		mainScene.showSystemManagerMainScene(systemManagerVO);
+		dialogStage.close();
 	}
+
+	/**
+	 * Sets the stage of this dialog.
+	 * 
+	 * @param dialogStage
+	 */
+	public void setDialogStage(Stage dialogStage) {
+		this.dialogStage = dialogStage;
+	}
+
 }
