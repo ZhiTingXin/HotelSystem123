@@ -106,6 +106,7 @@ public class HotelStaffManagementOrderController {
 		logOfUser_blServce.addLogOfUser(logofUserVO);
 
 		this.stateOfOrder.setText(this.order.getOrderState().toString());
+		this.setToException.setDisable(false);
 		this.stateLabel.setText("ÒÑ¸ü¸Ä£¡");
 	}
 

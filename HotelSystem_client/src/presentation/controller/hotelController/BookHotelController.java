@@ -256,8 +256,9 @@ public class BookHotelController {
 		boolean isDateOK = this.dateOfCheckIn.getValue() != null
 				&& this.dateOfCheckIn.getValue().isAfter(LocalDate.now());
 		boolean isRoomRemainOK = this.roomRemainPermitComfirm() == -1;
+		boolean isCreditOK = this.customer.getCredit() > 0;
 
-		if (isRoomTypeOK && isRoomNumOK && isDateOK && isRoomRemainOK) {
+		if (isRoomTypeOK && isRoomNumOK && isDateOK && isRoomRemainOK && isCreditOK) {
 
 			this.order.setOriginalPrice(Double.parseDouble(this.orderTotal.getText()));
 			this.order.setPrice(Double.parseDouble(this.actualPayment.getText()));
@@ -272,6 +273,8 @@ public class BookHotelController {
 			this.stateField.setText("请选择房间数量");
 		} else if (!isDateOK) {
 			this.stateField.setText("请修改出行日期");
+		}else if(!isCreditOK){
+			this.stateField.setText("信用值小于零，请充值后再试！");
 		}
 	}
 
