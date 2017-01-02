@@ -1,6 +1,5 @@
 package presentation.controller.userManagementController;
 
-import VO.HotelInfoVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.impl.UserManagement_bl;

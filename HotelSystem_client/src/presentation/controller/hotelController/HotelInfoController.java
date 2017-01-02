@@ -189,7 +189,6 @@ public class HotelInfoController {
 	}
 
 	private void showPic() {
-		// TODO Auto-generated method stub
 		this.hotelPicture.setImage(ImageUtil.setImage(this.pathSplit[this.picShown]));
 	}
 }

@@ -7,7 +7,6 @@ import VO.HotelRoomInfoVO;
 import VO.HotelStaffVO;
 import blservice.HotelStrategy_blservice;
 import blservice.Hotel_blservice;
-import blservice.Label_blService;
 import blservice.Room_blService;
 import blservice.impl.HotelStrategy_bl;
 import blservice.impl.Hotel_bl;
@@ -68,7 +67,6 @@ public class HotelStaffHotelInfoViewController {
 	private HotelStaffVO hotelStaff;
 	private Hotel_blservice hotelService;
 	private Room_blService roomService;
-	private Label_blService labelService;
 	private HotelStrategy_blservice hotelStrategyService;
 	private ArrayList<HotelRoomInfoVO> roomInfo;
 
@@ -232,7 +230,6 @@ public class HotelStaffHotelInfoViewController {
 	}
 
 	private void showPic() {
-		// TODO Auto-generated method stub
 		this.hotelPicture.setImage(ImageUtil.setImage(this.pathSplit[this.picShown]));
 	}
 }

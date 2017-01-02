@@ -73,7 +73,6 @@ public class AddSystemVIPStrategyController {
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategy_blservice systemStrategy_blservice;
-	private VipStrategyVO vipStrategyVO;
 	private VipStrategy_blService vipStrategy_blService;
 	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();
 	

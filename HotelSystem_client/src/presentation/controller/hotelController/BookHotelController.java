@@ -1,7 +1,6 @@
 package presentation.controller.hotelController;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import VO.CustomerVO;
 import VO.HotelInfoVO;
@@ -99,7 +98,6 @@ public class BookHotelController {
 	private int days;
 	private RoomType roomtype;
 	private int roomNum;
-	private Date checkInDate;
 
 	public BookHotelController() {
 
