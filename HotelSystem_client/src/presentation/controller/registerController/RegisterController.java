@@ -3,7 +3,6 @@ package presentation.controller.registerController;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import VO.CustomerVO;
-import VO.HotelInfoVO;
 import VO.LogofUserVO;
 import blservice.LogOfUser_blServce;
 import blservice.Register_blservice;
