@@ -131,7 +131,7 @@ public class SystemHolidayStrategyModifyController {
 			strategyState = StrategyState.close;
 		}
 		systemStrategyVO.setStrategyState(strategyState);
-		//对于已经传上来的systemStrategy的修改
+		// 对于已经传上来的systemStrategy的修改
 		boolean isModify = systemStrategy_blservice.modifySystemStrategy(systemStrategyVO);
 
 		if (isModify) {
@@ -150,9 +150,9 @@ public class SystemHolidayStrategyModifyController {
 			alert.showAndWait();
 		}
 	}
-	
-	@FXML//取消修改并返回
-	private void handleCancel(){
+
+	@FXML // 取消修改并返回
+	private void handleCancel() {
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
 	}
 }

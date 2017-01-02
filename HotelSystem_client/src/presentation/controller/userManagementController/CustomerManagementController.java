@@ -81,11 +81,11 @@ public class CustomerManagementController {
 		for (CustomerVO customerVO : customerList) {
 			customerData.add(customerVO);
 		}
-		
-		 idColumn.setCellValueFactory(cellData->cellData.getValue().getIDstringProperty());
-		 nameColumn.setCellValueFactory(cellData->cellData.getValue().getUserNamePriperty());
-		 identityColumn.setCellValueFactory(cellData->cellData.getValue().getUserTypePriperty());
-		 stateColumn.setCellValueFactory(cellData->cellData.getValue().getCreditProperty());
+
+		idColumn.setCellValueFactory(cellData -> cellData.getValue().getIDstringProperty());
+		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getUserNamePriperty());
+		identityColumn.setCellValueFactory(cellData -> cellData.getValue().getUserTypePriperty());
+		stateColumn.setCellValueFactory(cellData -> cellData.getValue().getCreditProperty());
 
 		userTable.setItems(customerData);
 	}
@@ -120,31 +120,32 @@ public class CustomerManagementController {
 	}
 
 	@FXML
-	private void handleSearch(){
-		if(!inputSearchText.getText().equals("")){
+	private void handleSearch() {
+		if (!inputSearchText.getText().equals("")) {
 			CustomerVO customerVO = userManagement_blservice.getCustomer(inputSearchText.getText());
-			if(customerVO==null){
+			if (customerVO == null) {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("抱歉");
 				alert.setContentText("未查询到对应的客户");
 				alert.showAndWait();
-			}else{
+			} else {
 				customerData.clear();
 				customerData.add(customerVO);
-				idColumn.setCellValueFactory(cellData->cellData.getValue().getIDstringProperty());
-				nameColumn.setCellValueFactory(cellData->cellData.getValue().getUserNamePriperty());
-				identityColumn.setCellValueFactory(cellData->cellData.getValue().getUserTypePriperty());
-				stateColumn.setCellValueFactory(cellData->cellData.getValue().getCreditProperty());
+				idColumn.setCellValueFactory(cellData -> cellData.getValue().getIDstringProperty());
+				nameColumn.setCellValueFactory(cellData -> cellData.getValue().getUserNamePriperty());
+				identityColumn.setCellValueFactory(cellData -> cellData.getValue().getUserTypePriperty());
+				stateColumn.setCellValueFactory(cellData -> cellData.getValue().getCreditProperty());
 
 				userTable.setItems(customerData);
 			}
-		}else {
+		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("提醒");
 			alert.setContentText("请先输入客户id后再进行搜索");
 			alert.showAndWait();
 		}
 	}
+
 	@FXML
 	private void handleBack() {
 		mainScene.showSystemManagerMainScene(systemManagerVO);

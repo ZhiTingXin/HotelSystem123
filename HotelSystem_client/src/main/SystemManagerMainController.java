@@ -86,10 +86,10 @@ public class SystemManagerMainController {
 	}
 
 	@FXML
-	private void handleRegisterNewSystemStaff(){
+	private void handleRegisterNewSystemStaff() {
 		mainScene.showSystemManagerAddSystemStaffScene(systemManagerVO);
 	}
-	
+
 	@FXML
 	private void handleMaintainMyInfo() {
 		mainScene.showSystemManagerInfoScene(systemManagerVO);

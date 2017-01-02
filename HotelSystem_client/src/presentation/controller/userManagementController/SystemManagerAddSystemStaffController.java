@@ -1,5 +1,6 @@
 package presentation.controller.userManagementController;
 
+import VO.HotelInfoVO;
 import VO.SystemManagerVO;
 import VO.SystemStaffVO;
 import blservice.impl.UserManagement_bl;
@@ -71,7 +72,6 @@ public class SystemManagerAddSystemStaffController {
 			systemStaffVO.setImage(path);
 			systemStaffVO.setPassword(systemStaffVO.getId());// 密码
 			systemStaffVO.setPhone(phoneNum.getText());
-			systemStaffVO.setImage("src/Img/default.PNG");
 			boolean isAdd = userManagement_bl.addSystemStaff(systemStaffVO);
 
 			if (isAdd) {

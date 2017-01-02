@@ -8,6 +8,7 @@ import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
+import VO.HotelInfoVO;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,22 +20,25 @@ public class ImageUtil {
 	private static Stage stage;
 	private static FileChooser fileChooser = new FileChooser();
 	private static String path = "";
-	
+
 	public static String setImagePath(ImageView image) {
 		configureFileChooser(fileChooser);
 		File file = fileChooser.showOpenDialog(stage);
-		String imgName = "src/Img/"+file.getName();
+		String imgName = HotelInfoVO.class.getResource("/Img/").getFile() + file.getName();
 		path = file.getAbsolutePath();
-	
+
 		Image newImage = new Image("file:" + path, 200, 200, false, false);
 		try {
 			File file1 = new File(imgName);
+			if (!file1.exists()) {
+				file1.createNewFile();
+			}
 			ImageIO.write(SwingFXUtils.fromFXImage(newImage, null), "jpg", file1);
 		} catch (IOException ex) {
 			System.out.println(ex.getMessage());
 		}
 		image.setImage(newImage);
-		return imgName;
+		return file.getName();
 	}
 
 	public static void configureFileChooser(final FileChooser fileChooser) {
@@ -45,8 +49,9 @@ public class ImageUtil {
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
 	}
+
 	public static Image setImage(String path) {
-		File file = new File(path);
+		File file = new File(HotelInfoVO.class.getResource("/Img/").getFile() + path);
 		Image image = null;
 		try {
 			InputStream stream = new FileInputStream(file);

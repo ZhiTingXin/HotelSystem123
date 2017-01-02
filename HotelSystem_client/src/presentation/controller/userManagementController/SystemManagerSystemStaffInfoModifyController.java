@@ -39,35 +39,37 @@ public class SystemManagerSystemStaffInfoModifyController {
 	private ImageView myPicture;
 	@FXML
 	private ImageView changedPic;
-	
+
 	private Main mainScene;
 	private UserInfo_blservice blservice;
 	private SystemStaffVO systemStaffVO;
 	private SystemManagerVO systemManagerVO;
-	
+
 	public SystemManagerSystemStaffInfoModifyController() {
 		blservice = new UserInfo_bl();
 	}
-	public void initialize(Main mainScene,SystemManagerVO systemManagerVO,SystemStaffVO systemStaffVO) {
+
+	public void initialize(Main mainScene, SystemManagerVO systemManagerVO, SystemStaffVO systemStaffVO) {
 		this.mainScene = mainScene;
-		this.systemManagerVO =systemManagerVO;
+		this.systemManagerVO = systemManagerVO;
 		this.systemStaffVO = systemStaffVO;
-		//left
+		// left
 		leftIdLabel.setText(systemManagerVO.getId());
 		leftNameLabel.setText(systemManagerVO.getUserName());
 		myPicture.setImage(ImageUtil.setImage(this.systemManagerVO.getImage()));
 		changedPic.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
 		SystemManagerSystemStaffInfoModifyShow(mainScene);
 	}
-	
+
 	public void SystemManagerSystemStaffInfoModifyShow(Main mainScene) {
 		idLabel.setText(systemStaffVO.getId());
 		nameField.setText(systemStaffVO.getUsername());
 		phoneNum.setText(systemStaffVO.getPhone());
-		
+
 	}
+
 	@FXML
-	private void handleSave(){
+	private void handleSave() {
 		String idString = idLabel.getText();
 		String name = nameField.getText();
 		String phone = phoneNum.getText();
@@ -76,19 +78,18 @@ public class SystemManagerSystemStaffInfoModifyController {
 		systemStaffVO.setPhone(phone);
 		systemStaffVO.setUsername(name);
 		boolean isModify = blservice.modifySystemStaff(systemStaffVO);
-		
 
 		if (isModify) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setHeaderText("修改成功");
 			alert.setContentText("您已成功修改一条网站营销人员信息");
-			
+
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
 				mainScene.showSystemManagerSystemStaffInfoViewScene(systemManagerVO, systemStaffVO);
 			}
-			
+
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");
@@ -97,12 +98,14 @@ public class SystemManagerSystemStaffInfoModifyController {
 			alert.showAndWait();
 		}
 	}
+
 	@FXML
-	private void handleChange(){
+	private void handleChange() {
 		this.systemStaffVO.setImage(ImageUtil.setImagePath(changedPic));
 	}
+
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainScene.showSystemManagerSystemStaffInfoViewScene(systemManagerVO, systemStaffVO);
 	}
 }

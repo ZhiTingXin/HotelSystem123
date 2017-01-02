@@ -8,9 +8,8 @@ import VO.OrderVO;
 import other.OrderState;
 import other.RoomType;
 
-public class OrderPO implements Serializable{
+public class OrderPO implements Serializable {
 
-	
 	/**
 	 * 
 	 */
@@ -23,7 +22,7 @@ public class OrderPO implements Serializable{
 	private int lastTime;
 	private double price;
 	private RoomType roomType;
-    private LocalDate gretime;
+	private LocalDate gretime;
 	private int num_Room;
 	private double originalPrice;
 	private String userName;
@@ -76,9 +75,11 @@ public class OrderPO implements Serializable{
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public double getPrice(){
+
+	public double getPrice() {
 		return price;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -98,18 +99,19 @@ public class OrderPO implements Serializable{
 	public RoomType getRoomType() {
 		return roomType;
 	}
-	
+
 	public void setRoomType(RoomType roomType) {
 		this.roomType = roomType;
 	}
-	
+
 	public int getNum_Room() {
 		return num_Room;
 	}
-	
+
 	public void setNum_Room(int num_Room) {
 		this.num_Room = num_Room;
 	}
+
 	public String getUserId() {
 		return userId;
 	}

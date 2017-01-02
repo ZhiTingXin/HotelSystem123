@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import VO.OrderVO;
 import other.OrderState;
-import other.UserType;
 
 public interface Order_blservice {
 	public OrderState getState(String orderID);
@@ -46,5 +45,7 @@ public interface Order_blservice {
 	public boolean changeCreditBySystemStaff(String userID, String orderID);
 
 	public ArrayList<OrderVO> getRevocationOrder(String hotelId);
+	//获得今日未执行订单
+	public ArrayList<OrderVO> getTodayUnfinishedOrders();
 
 }

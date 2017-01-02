@@ -8,15 +8,15 @@ import other.IdGernerateServiceImpl;
 
 public class VipVO {
 
-    private String id;
+	private String id;
 	private int minCredit;
 	private int maxCredit;
 	private int Vipgrade;//
 	private double discount;
 	private String city;
-	private String district;//商圈
-	
-	//会员
+	private String district;// 商圈
+
+	// 会员
 	public VipVO(int min, int max, int gr, double disc) {
 		super();
 		this.minCredit = min;
@@ -24,20 +24,21 @@ public class VipVO {
 		this.Vipgrade = gr;
 		this.discount = disc;
 	}
-	public VipVO(){
+
+	public VipVO() {
 		this.id = IdGernerateServiceImpl.gernerateId();
 	}
-	
-	//VIP 会员
+
+	// VIP 会员
 	public VipVO(SuperVipPO superVipPO) {
 		super();
 		this.city = superVipPO.getCity();
 		this.district = superVipPO.getDistrict();
 		this.Vipgrade = superVipPO.getVipgrade();
-		this.discount =superVipPO.getDiscount();
+		this.discount = superVipPO.getDiscount();
 		this.id = superVipPO.getId();
 	}
-	
+
 	public VipVO(VipPO vipPO) {
 		this.maxCredit = vipPO.getMaxcredit();
 		this.minCredit = vipPO.getMincredit();
@@ -76,13 +77,14 @@ public class VipVO {
 	public void setDiscount(double discount) {
 		this.discount = discount;
 	}
-	
+
 	// ui属性-------------------分割线---------------------
 	// 折扣力度(一位小数表示)
 	public StringProperty getDiscountProperty() {
 		return new SimpleStringProperty(String.valueOf(discount));
 	}
-	//会员等级
+
+	// 会员等级
 	public StringProperty getMemberGradeProperty() {
 		return new SimpleStringProperty(String.valueOf(Vipgrade));
 	}
@@ -90,17 +92,19 @@ public class VipVO {
 	public StringProperty getMaxCreditProperty() {
 		return new SimpleStringProperty(String.valueOf(maxCredit));
 	}
-	
-	public StringProperty getMinCreditProperty(){
+
+	public StringProperty getMinCreditProperty() {
 		return new SimpleStringProperty(String.valueOf(minCredit));
 	}
 
 	public String getCity() {
 		return city;
 	}
+
 	public void setCity(String city) {
 		this.city = city;
 	}
+
 	public String getDistrict() {
 		return district;
 	}
@@ -108,7 +112,7 @@ public class VipVO {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-	
+
 	public StringProperty getDistrictProperty() {
 		return new SimpleStringProperty(district);
 	}

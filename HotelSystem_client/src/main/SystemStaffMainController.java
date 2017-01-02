@@ -25,6 +25,8 @@ public class SystemStaffMainController {
 	@FXML
 	private Label leftNameLabel;
 	@FXML
+	private Button ViewUnExecutedOrder;
+	@FXML
 	private Button ExceptionOrderManagement;
 	@FXML
 	private Button creditManagement;
@@ -55,7 +57,8 @@ public class SystemStaffMainController {
 
 	private ArrayList<OrderVO> abnormalOrderList;
 	private ObservableList<OrderVO> orderData = FXCollections.observableArrayList();
-	//在这些集合中, 我们需要的是ObservableList. 创建一个新的ObservableList. 
+
+	// 在这些集合中, 我们需要的是ObservableList. 创建一个新的ObservableList.
 	public SystemStaffMainController() {
 		order_blservice = new Order_bl();
 	}
@@ -64,7 +67,7 @@ public class SystemStaffMainController {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaff;
 		// 初始化异常订单列表
-		//*************未完成的是显示的异常订单是（*天）之内的（新增）的处理的****************//
+		// *************未完成的是显示的异常订单是（*天）之内的（新增）的处理的****************//
 		abnormalOrderList = order_blservice.getAllAbnormalOrders();// bl层调用getAbnoemalOrders方法
 		for (OrderVO abnormalOrderVO : abnormalOrderList) {
 			orderData.add(abnormalOrderVO);
@@ -81,16 +84,21 @@ public class SystemStaffMainController {
 	}
 
 	public void SystemStaffMainShow(Main m) {
-		
+
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
 		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
-		
+
 		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
-		orderTable.setItems(orderData);//显示table
+		orderTable.setItems(orderData);// 显示table
 	}
 
-	//用private和@FXML保持私有性和信息安全
+	// 查看未执行订单
+	@FXML
+	private void handleViewUnExecutedOrder() {
+		mainScene.showSystemStaffViewUnExecutedOrderScene(systemStaffVO);
+	}
+
 	// 异常订单处理
 	@FXML
 	private void handleSystemStaffOrderManagement() {
@@ -112,7 +120,7 @@ public class SystemStaffMainController {
 	// 意见反馈
 	@FXML
 	private void handleSystemStaffAdviceFeedBack() {
-        mainScene.showSystemStaffAdviceViewScene(systemStaffVO);
+		mainScene.showSystemStaffAdviceViewScene(systemStaffVO);
 	}
 
 	// 维护个人信息

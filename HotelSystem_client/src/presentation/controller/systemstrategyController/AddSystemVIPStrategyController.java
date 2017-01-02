@@ -34,7 +34,7 @@ import other.SystemStrategyType;
 import util.ImageUtil;
 
 public class AddSystemVIPStrategyController {
-	
+
 	@FXML
 	private ImageView myPicture;
 	@FXML
@@ -67,7 +67,7 @@ public class AddSystemVIPStrategyController {
 	private ChoiceBox<String> city;
 	@FXML
 	private ChoiceBox<String> district;
-	
+
 	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
 	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
 	private Main mainScene;
@@ -76,26 +76,26 @@ public class AddSystemVIPStrategyController {
 	private VipStrategyVO vipStrategyVO;
 	private VipStrategy_blService vipStrategy_blService;
 	private ObservableList<VipVO> vipVOData = FXCollections.observableArrayList();
-	
-	public AddSystemVIPStrategyController(){
+
+	public AddSystemVIPStrategyController() {
 		systemStrategy_blservice = new SystemStrategy_bl();
 		vipStrategy_blService = new VipStrategy_blServiceImpl();
 	}
-	
-	//初始化个人信息
-	public void initilize(Main mainScene, SystemStaffVO systemStaffVO){
+
+	// 初始化个人信息
+	public void initilize(Main mainScene, SystemStaffVO systemStaffVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
-		//左栏
+		// 左栏
 		leftIdLabel.setText(this.systemStaffVO.getId());
 		leftNameLabel.setText(this.systemStaffVO.getUsername());
 		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 		initializeChoiceBox();
-        
+
 		freshTable();
-		
+
 	}
-	
+
 	private void initializeChoiceBox() {
 		for (String city : MyDistricts.cities) {
 			cityList.add(city);
@@ -104,7 +104,7 @@ public class AddSystemVIPStrategyController {
 		city.getSelectionModel().selectedItemProperty()
 				.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
 	}
-	
+
 	private void setDistrictChoiceBox(String city) {
 		districtList.clear();
 		String[] districts = MyDistricts.getDistricts(city);
@@ -113,12 +113,12 @@ public class AddSystemVIPStrategyController {
 		}
 		district.setItems(districtList);
 	}
-	
+
 	@FXML
 	private void handleSaveTable() {
 
 		VipStrategyVO vipStrategyVO = vipStrategy_blService.getVipstrategy(city.getValue(), district.getValue());
-		if (vipStrategyVO.getVipStrategyVOList().size()!=0) {
+		if (vipStrategyVO.getVipStrategyVOList().size() != 0) {
 			vipVOData.clear();
 			ArrayList<VipVO> vipVOs = vipStrategyVO.getVipStrategyVOList();
 			for (VipVO vipVO : vipVOs) {
@@ -135,7 +135,7 @@ public class AddSystemVIPStrategyController {
 			if (btn.get() == ButtonType.OK) {
 				freshTable();
 			}
-		}else{
+		} else {
 			ObservableList<VipVO> getVipVO = systemStrategyTable.getItems();
 			ArrayList<VipVO> newVipVO = new ArrayList<VipVO>();
 			for (VipVO vipVO : getVipVO) {
@@ -146,13 +146,13 @@ public class AddSystemVIPStrategyController {
 			vipStrategyVO = new VipStrategyVO();
 			vipStrategyVO.setVipStrategyVOList(newVipVO);
 			vipStrategy_blService.makeSuperVipStrategy(vipStrategyVO);
-			
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setContentText("保存成功！");
 			alert.showAndWait();
 		}
-		
+
 	}
 
 	@FXML // save the strategy.
@@ -167,25 +167,25 @@ public class AddSystemVIPStrategyController {
 		} else {
 			strategyState = StrategyState.close;
 		}
-		
+
 		SystemStrategyVO newSystemStrategy = new SystemStrategyVO();
 		newSystemStrategy.setSystemStrategyName(strategyName);
 		newSystemStrategy.setSystemStrategyDescription(strategyDescription);
 		newSystemStrategy.setStrategyState(strategyState);
 		newSystemStrategy.setSystemStaffID(systemStaffVO.getId());
 		newSystemStrategy.setSystemStrategyType(SystemStrategyType.VIPMEMBER);
-		
+
 		boolean isOK = systemStrategy_blservice.makeSystemStrategy(newSystemStrategy);
 		if (isOK) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("恭喜");
 			alert.setHeaderText("保存成功");
 			alert.setContentText("您已成功新增一条VIP会员优惠信息！");
-			
+
 			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == ButtonType.OK){
+			if (result.get() == ButtonType.OK) {
 				mainScene.showSystemStrategyViewScene(systemStaffVO);
-			} 			
+			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("抱歉");
@@ -199,19 +199,20 @@ public class AddSystemVIPStrategyController {
 	private void handleCancel() {
 		mainScene.showSystemStrategyViewScene(systemStaffVO);
 	}
-	private void freshTable(){
+
+	private void freshTable() {
 		vipVOData.clear();
-		
+
 		VipVO vipVO1 = new VipVO();
 		vipVO1.setDiscount(0);
 		vipVO1.setVipgrade(4);
 		VipVO vipVO = new VipVO();
 		vipVO.setDiscount(0);
 		vipVO.setVipgrade(5);
-		
+
 		vipVOData.add(vipVO1);
 		vipVOData.add(vipVO);
-		
+
 		systemStrategyTable.setEditable(true);// 可编辑
 
 		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
@@ -223,6 +224,6 @@ public class AddSystemVIPStrategyController {
 					.setDiscount(Double.parseDouble(t.getNewValue()));
 		});// setNewValue
 		systemStrategyTable.setItems(vipVOData);
-		
+
 	}
 }

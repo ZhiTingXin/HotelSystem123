@@ -12,26 +12,26 @@ import blservice.VipStrategy_blService;
 import data.service.SuperVipDataService;
 import data.service.VipDataService;
 
-public class VipStrategy_blServiceImpl implements VipStrategy_blService{
+public class VipStrategy_blServiceImpl implements VipStrategy_blService {
 
 	VipDataService vipDataService = RemoteHelper.getInstance().getVipDataService();
 	SuperVipDataService service = RemoteHelper.getInstance().getSuperVipDataServce();
-	
+
 	/**
 	 * 制定网站会员优惠策略
 	 */
 	public boolean makeVipStrategy(VipStrategyVO vipstrategy) {
 		try {
 			ArrayList<VipVO> vipVOs = vipstrategy.getVipStrategyVOList();
-			for(int i=0;i<vipVOs.size();i++){
+			for (int i = 0; i < vipVOs.size(); i++) {
 				VipPO vipPO = new VipPO(vipVOs.get(i));
-				if(!vipDataService.makeVip(vipPO)){
+				if (!vipDataService.makeVip(vipPO)) {
 					return false;
 				}
 			}
 			return true;
 		} catch (Exception e) {
-		    return false;
+			return false;
 		}
 	}
 
@@ -41,9 +41,9 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	public boolean modifyVipStrategy(VipStrategyVO vipstrategy) {
 		try {
 			ArrayList<VipVO> vipVOs = vipstrategy.getVipStrategyVOList();
-			for(int i=0;i<vipVOs.size();i++){
+			for (int i = 0; i < vipVOs.size(); i++) {
 				VipPO vipPO = new VipPO(vipVOs.get(i));
-				if(!vipDataService.updateVip(vipPO)){
+				if (!vipDataService.updateVip(vipPO)) {
 					return false;
 				}
 			}
@@ -63,7 +63,7 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 		try {
 			ArrayList<VipVO> vipVOs = new ArrayList<VipVO>();
 			ArrayList<VipPO> vips = vipDataService.getAllVips();
-			for(int i=0;i<vips.size();i++){
+			for (int i = 0; i < vips.size(); i++) {
 				VipVO vipVO = new VipVO(vips.get(i));
 				vipVOs.add(vipVO);
 			}
@@ -79,13 +79,13 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * @param 商圈
 	 * 
 	 */
-	//返回商圈会员优惠信息
-	public VipStrategyVO getVipstrategy(String city,String district) {
+	// 返回商圈会员优惠信息
+	public VipStrategyVO getVipstrategy(String city, String district) {
 		VipStrategyVO vipStrategyVO = new VipStrategyVO();
 		try {
-			ArrayList<SuperVipPO> superVipPOs = service.getStrict(city,district);
+			ArrayList<SuperVipPO> superVipPOs = service.getStrict(city, district);
 			ArrayList<VipVO> vipVOs = new ArrayList<VipVO>();
-			for(SuperVipPO po : superVipPOs){
+			for (SuperVipPO po : superVipPOs) {
 				vipVOs.add(new VipVO(po));
 			}
 			vipStrategyVO.setVipStrategyVOList(vipVOs);
@@ -99,11 +99,11 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * @param 商圈会员优惠策略
 	 * 
 	 */
-	//制定商圈会员优惠策略
+	// 制定商圈会员优惠策略
 	public boolean makeSuperVipStrategy(VipStrategyVO vipStrategyVO) {
 		ArrayList<VipVO> list = vipStrategyVO.getVipStrategyVOList();
 		try {
-			for(VipVO vo:list){
+			for (VipVO vo : list) {
 				service.addSupVip(new SuperVipPO(vo));
 			}
 			return true;
@@ -116,11 +116,11 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 	 * @param 商圈会员优惠策略
 	 * 
 	 */
-	//修改商圈会员策略
+	// 修改商圈会员策略
 	public boolean modifuSuperVipStrategy(VipStrategyVO vipStrategyVO) {
 		ArrayList<VipVO> list = vipStrategyVO.getVipStrategyVOList();
 		try {
-			for(VipVO vo:list){
+			for (VipVO vo : list) {
 				service.modifySupVip(new SuperVipPO(vo));
 			}
 			return true;
@@ -131,21 +131,20 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 
 	/**
 	 * @param 通过商圈来删除对对应商圈会员信息
-	 * @return 
-	 * 返回是否删除成功
+	 * @return 返回是否删除成功
 	 */
-	//删除商圈会员优惠策略
-	public boolean deleteSuperVipStrategy(String city,String district) {
-		VipStrategyVO vipStrategyVO = getVipstrategy(city,district);
+	// 删除商圈会员优惠策略
+	public boolean deleteSuperVipStrategy(String city, String district) {
+		VipStrategyVO vipStrategyVO = getVipstrategy(city, district);
 		ArrayList<VipVO> vipVOs = vipStrategyVO.getVipStrategyVOList();
 		try {
-			for(VipVO vo:vipVOs){
+			for (VipVO vo : vipVOs) {
 				service.deleteSupVip(new SuperVipPO(vo));
 			}
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;               
+			return false;
 		}
 	}
 
@@ -158,5 +157,5 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService{
 			return 0;
 		}
 	}
-  
+
 }

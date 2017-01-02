@@ -23,36 +23,26 @@ public class SystemStaffAdviceViewController {
 
 	@FXML
 	private Label idLabel;
-
 	@FXML
 	private Label adviceType;
-
 	@FXML
 	private ImageView myPicture;
 	@FXML
 	private Label nameLabel;
-
 	@FXML
 	private Button back;
-
 	@FXML
 	private Button Unprocessed;
-
 	@FXML
 	private Button processed;
-
 	@FXML
 	private TableView<AdviceFeedBackVO> adviceTable;
-
 	@FXML
 	private TableColumn<AdviceFeedBackVO, String> sendtime;
-
 	@FXML
 	private TableColumn<AdviceFeedBackVO, String> customerID;
-
 	@FXML
 	private TableColumn<AdviceFeedBackVO, String> content;// ·´À¡ÄÚÈÝ
-
 	@FXML
 	private TableColumn<AdviceFeedBackVO, String> Astate;// ·´À¡×´Ì¬
 

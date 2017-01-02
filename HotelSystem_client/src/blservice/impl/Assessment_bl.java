@@ -13,8 +13,7 @@ public class Assessment_bl implements Assessment_blService {
 
 	/**
 	 * @param assementVO
-	 * @return
-	 * 添加评价信息 
+	 * @return 添加评价信息
 	 */
 	public boolean addAssessment(AssementVO assementVO) {
 		try {
@@ -28,15 +27,14 @@ public class Assessment_bl implements Assessment_blService {
 	}
 
 	/**
-	 * @param  酒店id
-	 * @return 
-	 * 返回对于酒店的所有评价
+	 * @param 酒店id
+	 * @return 返回对于酒店的所有评价
 	 */
 	public ArrayList<AssementVO> getAllHotelAss(String hotelid) {
 		ArrayList<AssementVO> assementVOs = new ArrayList<AssementVO>();
 		try {
 			ArrayList<AssessmentPO> arrayList = dataService.getAllAssement(hotelid);
-			for(AssessmentPO po:arrayList){
+			for (AssessmentPO po : arrayList) {
 				assementVOs.add(new AssementVO(po));
 			}
 		} catch (Exception e) {
@@ -46,27 +44,25 @@ public class Assessment_bl implements Assessment_blService {
 	}
 
 	/**
-	 * @param  客户id
-	 * @return 
-	 * 返回客户的所有评价
+	 * @param 客户id
+	 * @return 返回客户的所有评价
 	 */
 	public ArrayList<AssementVO> getUserAss(String userId) {
 		ArrayList<AssementVO> arrayList = new ArrayList<AssementVO>();
-		try{
+		try {
 			ArrayList<AssessmentPO> assessmentPOs = dataService.getUserASS(userId);
-			for(AssessmentPO assessmentPO:assessmentPOs){
+			for (AssessmentPO assessmentPO : assessmentPOs) {
 				arrayList.add(new AssementVO(assessmentPO));
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return arrayList;
 	}
 
 	/**
-	 * @param  
-	 * @return 
-	 * 删除评价
+	 * @param
+	 * @return 删除评价
 	 */
 	public boolean delAss(AssementVO assementVO) {
 		try {
@@ -80,16 +76,15 @@ public class Assessment_bl implements Assessment_blService {
 	}
 
 	/**
-	 * @param  订单号
-	 * @return 
-	 * 获得订单对应的评价
+	 * @param 订单号
+	 * @return 获得订单对应的评价
 	 */
 	public AssementVO getAss(String orderid) {
-		try{
+		try {
 			AssessmentPO assessmentPO = dataService.getAssessment(orderid);
 			AssementVO assementVO = new AssementVO(assessmentPO);
 			return assementVO;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return new AssementVO();
 		}

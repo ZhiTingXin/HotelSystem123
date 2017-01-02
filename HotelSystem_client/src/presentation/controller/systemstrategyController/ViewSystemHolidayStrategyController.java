@@ -42,10 +42,10 @@ public class ViewSystemHolidayStrategyController {
 	private SystemStrategyVO systemStrategyVO;
 
 	public ViewSystemHolidayStrategyController() {
-		
+
 	}
 
-	public void initilize(Main mainScene, SystemStaffVO systemStaffVO,SystemStrategyVO systemStrategyVO) {
+	public void initilize(Main mainScene, SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
 
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
@@ -63,14 +63,14 @@ public class ViewSystemHolidayStrategyController {
 		startDate.setText(util.DateUtil.format(systemStrategyVO.getBegin_date()));
 		endDate.setText(util.DateUtil.format(systemStrategyVO.getEnd_date()));
 		discountForCustomer.setText(String.valueOf(systemStrategyVO.getDiscount()));
-		if (systemStrategyVO.getStrategyState()==StrategyState.open) {
+		if (systemStrategyVO.getStrategyState() == StrategyState.open) {
 			state.setText("∆Ù”√");
 		} else {
 			state.setText("πÿ±’");
 		}
 	}
 
-	@FXML 
+	@FXML
 	private void handleModify() {
 		mainScene.showSystemHolidayStrategyModifyScene(systemStaffVO, systemStrategyVO);
 	}

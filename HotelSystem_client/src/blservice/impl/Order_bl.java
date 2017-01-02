@@ -10,7 +10,6 @@ import PO.HotelPO;
 import PO.OrderPO;
 import PO.RoomPO;
 import RMI.RemoteHelper;
-import VO.CustomerVO;
 import VO.HotelRoomInfoVO;
 import VO.LogofUserVO;
 import VO.OrderVO;
@@ -27,7 +26,6 @@ import data.service.OrderDataService;
 import other.OrderState;
 import other.RoomType;
 import other.StrategyState;
-import other.SystemStrategyType;
 
 public class Order_bl implements Order_blservice {
 
@@ -414,7 +412,6 @@ public class Order_bl implements Order_blservice {
 		return price;
 	}
 
-	// TODO
 	/**
 	 * @param ∂©µ•–≈œ¢
 	 * 
@@ -497,7 +494,6 @@ public class Order_bl implements Order_blservice {
 			list = dataService.getAllOrders();
 			this.orderManagementHook();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return list;
@@ -528,14 +524,12 @@ public class Order_bl implements Order_blservice {
 				}
 			}
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public boolean changeStateBySystemStaff(OrderVO order_info) {
-		// TODO Auto-generated method stub
 		try {
 			boolean b = dataService.update(new OrderPO(order_info));
 			this.changeCreditBySystemStaff(order_info.getUserID(), order_info.getOrderID());
@@ -549,7 +543,6 @@ public class Order_bl implements Order_blservice {
 
 	@Override
 	public boolean changeCreditBySystemStaff(String userID, String orderID) {
-		// TODO Auto-generated method stub
 		CustomerPO customer = null;
 		OrderPO order = null;
 		try {
@@ -580,7 +573,6 @@ public class Order_bl implements Order_blservice {
 
 	@Override
 	public ArrayList<OrderVO> getRevocationOrder(String hotelId) {
-		// TODO Auto-generated method stub
 		ArrayList<OrderVO> orderVOs = new ArrayList<OrderVO>();
 		try {
 			ArrayList<OrderPO> orderPOs = (ArrayList<OrderPO>) this.getAllOrders();
@@ -594,5 +586,21 @@ public class Order_bl implements Order_blservice {
 			e.printStackTrace();
 		}
 		return orderVOs;
+	}
+
+	@Override
+	public ArrayList<OrderVO> getTodayUnfinishedOrders() {
+		ArrayList<OrderVO> todayOrders = new ArrayList<OrderVO>();
+		try {
+			ArrayList<OrderPO> orderPOs = dataService.getAllOrders();
+			for (OrderPO po : orderPOs) {
+				if (po.getGretime().equals(LocalDate.now()) && po.getStatus() == OrderState.UNFINISHED) {
+					todayOrders.add(new OrderVO(po));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return todayOrders;
 	}
 }

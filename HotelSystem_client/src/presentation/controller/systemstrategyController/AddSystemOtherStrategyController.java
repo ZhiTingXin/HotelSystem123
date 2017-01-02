@@ -22,7 +22,7 @@ import other.SystemStrategyType;
 import util.ImageUtil;
 
 public class AddSystemOtherStrategyController {
-	
+
 	@FXML
 	private ImageView myPicture;
 	@FXML
@@ -47,11 +47,11 @@ public class AddSystemOtherStrategyController {
 	private RadioButton open;
 	@FXML
 	private RadioButton close;
-	
+
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private SystemStrategy_blservice systemStrategy_blservice;
-	
+
 	public AddSystemOtherStrategyController() {
 		systemStrategy_blservice = new SystemStrategy_bl();
 	}
@@ -64,12 +64,12 @@ public class AddSystemOtherStrategyController {
 
 	public void SystemHolidayStrategyModifyShow(Main mainScene) {
 		leftIdLabel.setText(systemStaffVO.getId());
-		leftNameLabel.setText(systemStaffVO.getUsername());//初始化
+		leftNameLabel.setText(systemStaffVO.getUsername());// 初始化
 		myPicture.setImage(ImageUtil.setImage(systemStaffVO.getImage()));
 	}
-	
-	@FXML//保存修改
-	private void handleSave(){
+
+	@FXML // 保存修改
+	private void handleSave() {
 		String strategyName = nameOfStrategy.getText();
 		String strategyDescription = descriptionOfStrategy.getText();
 		double discount = Double.parseDouble(discountForCustomer.getText());
@@ -96,7 +96,7 @@ public class AddSystemOtherStrategyController {
 			alert.setHeaderText("新增成功");
 			alert.setContentText("您已成功新增一条优惠信息！");
 			Optional<ButtonType> aOptional = alert.showAndWait();
-			if(aOptional.get()==ButtonType.OK){
+			if (aOptional.get() == ButtonType.OK) {
 				mainScene.showSystemStrategyViewScene(systemStaffVO);
 			}
 		} else {

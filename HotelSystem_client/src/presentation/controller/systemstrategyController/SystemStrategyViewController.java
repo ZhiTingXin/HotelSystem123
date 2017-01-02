@@ -83,8 +83,8 @@ public class SystemStrategyViewController {
 	ObservableList<String> cityList = FXCollections.observableArrayList();// 城市列表
 	ObservableList<String> districtList = FXCollections.observableArrayList();// 商圈列表
 	private ChoiceBox<String> districtBox = new ChoiceBox<>();
-	private	ChoiceBox<String> cityBox = new ChoiceBox<>();
-	
+	private ChoiceBox<String> cityBox = new ChoiceBox<>();
+
 	public SystemStrategyViewController() {
 		systemStrategy_blservice = new SystemStrategy_bl();
 		vipStrategy_blService = new VipStrategy_blServiceImpl();
@@ -211,23 +211,23 @@ public class SystemStrategyViewController {
 				mainScene.showViewSystemMemberStrategyScene(systemStaffVO, selected);
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
-				
-				//需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
+
+				// 需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("提示");
 				dialog.setHeaderText("请选择城市和商圈！");
-				//添加图片
+				// 添加图片
 				dialog.setGraphic(new ImageView(this.getClass().getResource("district.png").toString()));
-				
-				ButtonType ok = new ButtonType("确认",ButtonData.OK_DONE);
-				ButtonType cancel = new ButtonType("取消",ButtonData.CANCEL_CLOSE);
-				dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
-				//建立choice box
+
+				ButtonType ok = new ButtonType("确认", ButtonData.OK_DONE);
+				ButtonType cancel = new ButtonType("取消", ButtonData.CANCEL_CLOSE);
+				dialog.getDialogPane().getButtonTypes().addAll(ok, cancel);
+				// 建立choice box
 				GridPane gridPane = new GridPane();
 				gridPane.setHgap(10);
 				gridPane.setVgap(10);
-				gridPane.setPadding(new Insets(20,150,10,10));
-				
+				gridPane.setPadding(new Insets(20, 150, 10, 10));
+
 				cityBox.setMaxWidth(85);
 				cityBox.setMinWidth(85);
 				districtBox.setMaxWidth(85);
@@ -238,35 +238,37 @@ public class SystemStrategyViewController {
 				cityBox.setItems(cityList);
 				cityBox.getSelectionModel().selectedItemProperty()
 						.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
-				
+
 				gridPane.add(new Label("选择城市："), 0, 0);
 				gridPane.add(cityBox, 1, 0);
 				gridPane.add(new Label("选择商圈："), 0, 1);
 				gridPane.add(districtBox, 1, 1);
-				// Enable/Disable login button depending on whether a city was choosed.
+				// Enable/Disable login button depending on whether a city was
+				// choosed.
 				Node okButton = dialog.getDialogPane().lookupButton(ok);
 				okButton.setDisable(false);
 
 				cityBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-				    okButton.setDisable(newValue.trim().isEmpty());
+					okButton.setDisable(newValue.trim().isEmpty());
 				});
-				
+
 				dialog.getDialogPane().setContent(gridPane);
-				
+
 				// Request focus on the cityBox by default.
 				Platform.runLater(() -> cityBox.requestFocus());
 
 				dialog.setResultConverter(dialogButton -> {
-				    if (dialogButton == ok) {
-				        return new Pair<>(cityBox.getValue(), districtBox.getValue());
-				    }
-				    return null;
+					if (dialogButton == ok) {
+						return new Pair<>(cityBox.getValue(), districtBox.getValue());
+					}
+					return null;
 				});
 
 				Optional<Pair<String, String>> result = dialog.showAndWait();
 
 				result.ifPresent(CityDistict -> {
-					mainScene.showViewSystemVIPStrategyScene(systemStaffVO, CityDistict.getKey(), CityDistict.getValue(), selected);
+					mainScene.showViewSystemVIPStrategyScene(systemStaffVO, CityDistict.getKey(),
+							CityDistict.getValue(), selected);
 				});
 
 			} else if (strategyType == SystemStrategyType.OTHER) {
@@ -283,8 +285,8 @@ public class SystemStrategyViewController {
 			alert.showAndWait();
 		}
 	}
-	
-	//商圈choice box的响应
+
+	// 商圈choice box的响应
 	private void setDistrictChoiceBox(String city) {
 		districtList.clear();
 		String[] districts = MyDistricts.getDistricts(city);
@@ -361,22 +363,22 @@ public class SystemStrategyViewController {
 
 			} else if (strategyType == SystemStrategyType.VIPMEMBER) {
 
-				//需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
+				// 需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
 				Dialog<Pair<String, String>> dialog = new Dialog<>();
 				dialog.setTitle("提示");
 				dialog.setHeaderText("请选择城市和商圈！");
-				//添加图片
+				// 添加图片
 				dialog.setGraphic(new ImageView(this.getClass().getResource("district.png").toString()));
-				
-				ButtonType ok = new ButtonType("确认",ButtonData.OK_DONE);
-				ButtonType cancel = new ButtonType("取消",ButtonData.CANCEL_CLOSE);
-				dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
-				//建立choice box
+
+				ButtonType ok = new ButtonType("确认", ButtonData.OK_DONE);
+				ButtonType cancel = new ButtonType("取消", ButtonData.CANCEL_CLOSE);
+				dialog.getDialogPane().getButtonTypes().addAll(ok, cancel);
+				// 建立choice box
 				GridPane gridPane = new GridPane();
 				gridPane.setHgap(10);
 				gridPane.setVgap(10);
-				gridPane.setPadding(new Insets(20,150,10,10));
-				
+				gridPane.setPadding(new Insets(20, 150, 10, 10));
+
 				cityBox.setMaxWidth(85);
 				cityBox.setMinWidth(85);
 				districtBox.setMaxWidth(85);
@@ -387,37 +389,39 @@ public class SystemStrategyViewController {
 				cityBox.setItems(cityList);
 				cityBox.getSelectionModel().selectedItemProperty()
 						.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
-				
+
 				gridPane.add(new Label("选择城市："), 0, 0);
 				gridPane.add(cityBox, 1, 0);
 				gridPane.add(new Label("选择商圈："), 0, 1);
 				gridPane.add(districtBox, 1, 1);
-				// Enable/Disable login button depending on whether a city was choosed.
+				// Enable/Disable login button depending on whether a city was
+				// choosed.
 				Node okButton = dialog.getDialogPane().lookupButton(ok);
 				okButton.setDisable(false);
 
 				cityBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-				    okButton.setDisable(newValue.trim().isEmpty());
+					okButton.setDisable(newValue.trim().isEmpty());
 				});
-				
+
 				dialog.getDialogPane().setContent(gridPane);
-				
+
 				// Request focus on the cityBox by default.
 				Platform.runLater(() -> cityBox.requestFocus());
 
 				dialog.setResultConverter(dialogButton -> {
-				    if (dialogButton == ok) {
-				        return new Pair<>(cityBox.getValue(), districtBox.getValue());
-				    }
-				    return null;
+					if (dialogButton == ok) {
+						return new Pair<>(cityBox.getValue(), districtBox.getValue());
+					}
+					return null;
 				});
 
 				Optional<Pair<String, String>> result = dialog.showAndWait();
 
 				result.ifPresent(CityDistict -> {
-				    mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, CityDistict.getKey(), CityDistict.getValue(), selected);
+					mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, CityDistict.getKey(),
+							CityDistict.getValue(), selected);
 				});
-				
+
 			} else if (strategyType == SystemStrategyType.OTHER) {
 
 				mainScene.showSystemOtherStrategyModifyScene(systemStaffVO, selected);
@@ -453,25 +457,25 @@ public class SystemStrategyViewController {
 				} else if (selected.getSystemStrategyType() == SystemStrategyType.OTHER) {
 					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
 				} else if (selected.getSystemStrategyType() == SystemStrategyType.VIPMEMBER) {
-					if (vipStrategy_blService.getSuperVipNum()==0) {
+					if (vipStrategy_blService.getSuperVipNum() == 0) {
 						isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
 					}
-					//需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
+					// 需要弹出选择城市和商圈的选择框，然后返回的是城市和商圈的信息
 					Dialog<Pair<String, String>> dialog = new Dialog<>();
 					dialog.setTitle("提示");
 					dialog.setHeaderText("请选择城市和商圈！");
-					//添加图片
+					// 添加图片
 					dialog.setGraphic(new ImageView(this.getClass().getResource("district.png").toString()));
-					
-					ButtonType ok = new ButtonType("确认",ButtonData.OK_DONE);
-					ButtonType cancel = new ButtonType("取消",ButtonData.CANCEL_CLOSE);
-					dialog.getDialogPane().getButtonTypes().addAll(ok,cancel);
-					//建立choice box
+
+					ButtonType ok = new ButtonType("确认", ButtonData.OK_DONE);
+					ButtonType cancel = new ButtonType("取消", ButtonData.CANCEL_CLOSE);
+					dialog.getDialogPane().getButtonTypes().addAll(ok, cancel);
+					// 建立choice box
 					GridPane gridPane = new GridPane();
 					gridPane.setHgap(10);
 					gridPane.setVgap(10);
-					gridPane.setPadding(new Insets(20,150,10,10));
-					
+					gridPane.setPadding(new Insets(20, 150, 10, 10));
+
 					cityBox.setMaxWidth(85);
 					cityBox.setMinWidth(85);
 					districtBox.setMaxWidth(85);
@@ -482,37 +486,39 @@ public class SystemStrategyViewController {
 					cityBox.setItems(cityList);
 					cityBox.getSelectionModel().selectedItemProperty()
 							.addListener((Observable, oldValue, newValue) -> setDistrictChoiceBox((String) newValue));
-					
+
 					gridPane.add(new Label("选择城市："), 0, 0);
 					gridPane.add(cityBox, 1, 0);
 					gridPane.add(new Label("选择商圈："), 0, 1);
 					gridPane.add(districtBox, 1, 1);
-					// Enable/Disable login button depending on whether a city was choosed.
+					// Enable/Disable login button depending on whether a city
+					// was choosed.
 					Node okButton = dialog.getDialogPane().lookupButton(ok);
 					okButton.setDisable(false);
 
 					cityBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-					    okButton.setDisable(newValue.trim().isEmpty());
+						okButton.setDisable(newValue.trim().isEmpty());
 					});
-					
+
 					dialog.getDialogPane().setContent(gridPane);
-					
+
 					// Request focus on the cityBox by default.
 					Platform.runLater(() -> cityBox.requestFocus());
 
 					dialog.setResultConverter(dialogButton -> {
-					    if (dialogButton == ok) {
-					        return new Pair<>(cityBox.getValue(), districtBox.getValue());
-					    }
-					    return null;
+						if (dialogButton == ok) {
+							return new Pair<>(cityBox.getValue(), districtBox.getValue());
+						}
+						return null;
 					});
 
 					Optional<Pair<String, String>> result = dialog.showAndWait();
 					result.ifPresent(CityDistict -> {
-						VipStrategyVO vipStrategyVO = vipStrategy_blService.getVipstrategy(CityDistict.getKey(), CityDistict.getValue());
-						if (vipStrategyVO.getVipStrategyVOList().size()!=0) {
-							vipStrategy_blService.deleteSuperVipStrategy(CityDistict.getKey(),CityDistict.getValue());
-						}else {
+						VipStrategyVO vipStrategyVO = vipStrategy_blService.getVipstrategy(CityDistict.getKey(),
+								CityDistict.getValue());
+						if (vipStrategyVO.getVipStrategyVOList().size() != 0) {
+							vipStrategy_blService.deleteSuperVipStrategy(CityDistict.getKey(), CityDistict.getValue());
+						} else {
 							Alert alert1 = new Alert(AlertType.INFORMATION);
 							alert1.setTitle("提醒");
 							alert1.setContentText("该商圈的VIP会员策略不存在");
@@ -521,20 +527,20 @@ public class SystemStrategyViewController {
 					});
 				} else {
 					isDelete = systemStrategy_blservice.deleteSystemStrategy(selected);
-					 VipVO vip1 = new VipVO(0, 0, 1, 10);
-					 VipVO vip2 = new VipVO(0, 0, 2, 10);
-			         VipVO vip3 = new VipVO(0, 0, 3, 10);
-				     VipVO vip4 = new VipVO(0, 0, 4, 10);
-				     VipVO vip5 = new VipVO(0, 0, 5, 10);
-				     ArrayList<VipVO> vipVOData = new ArrayList<VipVO>();
-				     vipVOData.add(vip1);
-				     vipVOData.add(vip2);
-				     vipVOData.add(vip3);
-				     vipVOData.add(vip4);
-				     vipVOData.add(vip5);
-				     VipStrategyVO vipStrategyVO = new VipStrategyVO();
-				     vipStrategyVO.setVipStrategyVOList(vipVOData);
-				     vipStrategy_blService.modifyVipStrategy(vipStrategyVO);
+					VipVO vip1 = new VipVO(0, 0, 1, 10);
+					VipVO vip2 = new VipVO(0, 0, 2, 10);
+					VipVO vip3 = new VipVO(0, 0, 3, 10);
+					VipVO vip4 = new VipVO(0, 0, 4, 10);
+					VipVO vip5 = new VipVO(0, 0, 5, 10);
+					ArrayList<VipVO> vipVOData = new ArrayList<VipVO>();
+					vipVOData.add(vip1);
+					vipVOData.add(vip2);
+					vipVOData.add(vip3);
+					vipVOData.add(vip4);
+					vipVOData.add(vip5);
+					VipStrategyVO vipStrategyVO = new VipStrategyVO();
+					vipStrategyVO.setVipStrategyVOList(vipVOData);
+					vipStrategy_blService.modifyVipStrategy(vipStrategyVO);
 				}
 				if (isDelete) {
 					Alert alert1 = new Alert(AlertType.INFORMATION);

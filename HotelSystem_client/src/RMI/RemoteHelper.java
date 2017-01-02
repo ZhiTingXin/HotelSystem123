@@ -20,75 +20,87 @@ import data.service.SystemStaffDataService;
 import data.service.SystemStrategyDataService;
 import data.service.VipDataService;
 
-
 public class RemoteHelper {
 	private Remote remote;
 	private static RemoteHelper remoteHelper = new RemoteHelper();
-	public static RemoteHelper getInstance(){
+
+	public static RemoteHelper getInstance() {
 		return remoteHelper;
 	}
-	
+
 	private RemoteHelper() {
 	}
-	
-	public void setRemote(Remote remote){
+
+	public void setRemote(Remote remote) {
 		this.remote = remote;
 	}
-	
-	//连接server的接口
-	public HotelDataService getHotelDataService(){
-		return (HotelDataService)remote;
+
+	// 连接server的接口
+	public HotelDataService getHotelDataService() {
+		return (HotelDataService) remote;
 	}
-	public AdviceFeedBackDataService getAdviceFeedBackDataService(){
-		return (AdviceFeedBackDataService)remote;
+
+	public AdviceFeedBackDataService getAdviceFeedBackDataService() {
+		return (AdviceFeedBackDataService) remote;
 	}
-	public CustomerDataService getCustomerDataService(){
-		return (CustomerDataService)remote;
+
+	public CustomerDataService getCustomerDataService() {
+		return (CustomerDataService) remote;
 	}
-	public HotelStaffDataService getHotelStaffDataService(){
-		return (HotelStaffDataService)remote;
+
+	public HotelStaffDataService getHotelStaffDataService() {
+		return (HotelStaffDataService) remote;
 	}
-	public SystemManagerDataService getSystemManagerDataService(){
-		return (SystemManagerDataService)remote;
+
+	public SystemManagerDataService getSystemManagerDataService() {
+		return (SystemManagerDataService) remote;
 	}
-	public SystemStaffDataService getSystemStaffDataService(){
-		return (SystemStaffDataService)remote;
+
+	public SystemStaffDataService getSystemStaffDataService() {
+		return (SystemStaffDataService) remote;
 	}
-	public HotelStrategyDataService getHotelStrategyDataService(){
-		return (HotelStrategyDataService)remote;
+
+	public HotelStrategyDataService getHotelStrategyDataService() {
+		return (HotelStrategyDataService) remote;
 	}
-	
-	public OrderDataService getOrderDataService(){
-		return (OrderDataService)remote;
+
+	public OrderDataService getOrderDataService() {
+		return (OrderDataService) remote;
 	}
-	public SystemStrategyDataService getSystemStrategyDataService(){
-		return (SystemStrategyDataService)remote;
+
+	public SystemStrategyDataService getSystemStrategyDataService() {
+		return (SystemStrategyDataService) remote;
 	}
-	public LoginDataService getLoginDataService(){
-		return (LoginDataService)remote;
+
+	public LoginDataService getLoginDataService() {
+		return (LoginDataService) remote;
 	}
-    public VipDataService getVipDataService(){
-    	return (VipDataService)remote;
-    }
-    public IdGernerateService getIdGernerateService(){
-    	return (IdGernerateService)remote;
-    }
-    public RoomDataService getRoomDataService(){
-    	return (RoomDataService) remote;
-    }
-    public AssessmentDataService getAssessmentDataService(){
-    	return (AssessmentDataService)remote;
-    }
-    
-    public LabelDataService getLabelDataService(){
-    	return (LabelDataService)remote;
-    }
-    
-    public SuperVipDataService getSuperVipDataServce(){
-    	return (SuperVipDataService)remote;
-    }
-    
-    public LogOfUserDataService getLogOfUserDataService(){
-    	return (LogOfUserDataService)remote;
-    }
+
+	public VipDataService getVipDataService() {
+		return (VipDataService) remote;
+	}
+
+	public IdGernerateService getIdGernerateService() {
+		return (IdGernerateService) remote;
+	}
+
+	public RoomDataService getRoomDataService() {
+		return (RoomDataService) remote;
+	}
+
+	public AssessmentDataService getAssessmentDataService() {
+		return (AssessmentDataService) remote;
+	}
+
+	public LabelDataService getLabelDataService() {
+		return (LabelDataService) remote;
+	}
+
+	public SuperVipDataService getSuperVipDataServce() {
+		return (SuperVipDataService) remote;
+	}
+
+	public LogOfUserDataService getLogOfUserDataService() {
+		return (LogOfUserDataService) remote;
+	}
 }
