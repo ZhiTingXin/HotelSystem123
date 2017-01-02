@@ -6,22 +6,20 @@ import javafx.beans.property.StringProperty;
 import other.IdGernerateServiceImpl;
 
 public class HotelStaffVO {
-	
+
 	private String id;
 	private String username;
 	private String hotelId;
 	private String hotelName;
-    private String phone;
+	private String phone;
 	private String password;
 	private String image;
 
-
-
 	public HotelStaffVO() {
-	   id = IdGernerateServiceImpl.gernerateId();
-	   this.image = "src/Img/default.png";
+		id = IdGernerateServiceImpl.gernerateId();
+		this.image = "src/Img/default.png";
 	}
-    
+
 	public HotelStaffVO(HotelStaffPO userPO) {
 		super();
 		this.id = userPO.getId();
@@ -31,23 +29,23 @@ public class HotelStaffVO {
 		this.hotelName = userPO.getHotelName();
 		this.image = userPO.getImage();
 	}
-	
-	
+
 	public String getImage() {
 		return image;
 	}
-	   
 
 	public void setImage(String image) {
 		this.image = image;
 	}
 
-	public String getPhone(){
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(String phone){
+
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
 	public String getId() {
 		return id;
 	}
@@ -87,20 +85,20 @@ public class HotelStaffVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public StringProperty getHotelStaffIdProperty() {
 		return new SimpleStringProperty(id);
 	}
-	
-	public StringProperty getHotelStaffNameProperty(){
+
+	public StringProperty getHotelStaffNameProperty() {
 		return new SimpleStringProperty(username);
 	}
-	
-	public StringProperty getHotelStaffTypeProperty(){
+
+	public StringProperty getHotelStaffTypeProperty() {
 		return new SimpleStringProperty("酒店工作人员");
 	}
-	
-	public StringProperty getHotelNameProperty(){
+
+	public StringProperty getHotelNameProperty() {
 		return new SimpleStringProperty(hotelName);
 	}
 }

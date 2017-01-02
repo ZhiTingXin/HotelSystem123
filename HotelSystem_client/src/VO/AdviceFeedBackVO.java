@@ -17,11 +17,13 @@ public class AdviceFeedBackVO {
 	private LocalDate sendTime;
 	private LocalDate replyTime;
 	private String replyContent;
-    private String userID;
+	private String userID;
+
 	public AdviceFeedBackVO() {
 		super();
 		this.AdviceId = IdGernerateServiceImpl.gernerateId();
 	}
+
 	public AdviceFeedBackVO(AdviceFeedBackPO advicefeedbackpo) {
 		super();
 		this.sendTime = advicefeedbackpo.getSenddate();
@@ -36,6 +38,7 @@ public class AdviceFeedBackVO {
 	public AdviceFeedBackState getState() {
 		return state;
 	}
+
 	public void setState(AdviceFeedBackState state) {
 		this.state = state;
 	}
@@ -75,18 +78,20 @@ public class AdviceFeedBackVO {
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
 	}
+
 	public String getUserID() {
 		return userID;
 	}
+
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	
-	public StringProperty getAstateProperty(){
+
+	public StringProperty getAstateProperty() {
 		return new SimpleStringProperty(this.state.toString());
 	}
-	
-	public StringProperty getUserIdProperty(){
+
+	public StringProperty getUserIdProperty() {
 		return new SimpleStringProperty(this.userID);
 	}
 
@@ -95,7 +100,7 @@ public class AdviceFeedBackVO {
 	}
 
 	public StringProperty getReplyTimeProperty() {
-		if (this.replyTime==null) {
+		if (this.replyTime == null) {
 			return new SimpleStringProperty("Î´»Ø¸´");
 		}
 		return new SimpleStringProperty(DateUtil.format(this.replyTime));
@@ -108,6 +113,5 @@ public class AdviceFeedBackVO {
 	public StringProperty getReplyContentProperty() {
 		return new SimpleStringProperty(this.replyContent);
 	}
-	
 
 }

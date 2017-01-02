@@ -18,5 +18,5 @@ public class VipStrategyVO {
 	public void setVipStrategyVOList(ArrayList<VipVO> vipStrategyVOList) {
 		this.vipStrategyVOList = vipStrategyVOList;
 	}
-	
+
 }

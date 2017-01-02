@@ -17,7 +17,7 @@ public class SystemStaffPO implements Serializable {
 	private String phone;
 
 	private String image;
-	
+
 	public SystemStaffPO() {
 	}
 

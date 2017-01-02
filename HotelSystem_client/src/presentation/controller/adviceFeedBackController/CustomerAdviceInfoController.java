@@ -47,12 +47,12 @@ public class CustomerAdviceInfoController {
 		this.leftNameLabel.setText(this.customer.getUsername());
 		this.leftMenuImage.setImage(ImageUtil.setImage(customer.getImage()));
 		this.sendTime.setText(DateUtil.format(this.advice.getSendTime()));
-		if (this.advice.getReplyTime()!=null) {
+		if (this.advice.getReplyTime() != null) {
 			this.rerlyTime.setText(DateUtil.format(this.advice.getReplyTime()));
-		}else {
+		} else {
 			this.rerlyTime.setText("Î´»Ø¸´");
 		}
-		
+
 		this.sendInfo.setText(this.advice.getAdviceFeedBack_content());
 		this.replyInfo.setText(this.advice.getReplyContent());
 	}

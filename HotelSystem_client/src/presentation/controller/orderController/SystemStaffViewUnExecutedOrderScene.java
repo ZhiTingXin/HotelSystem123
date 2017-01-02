@@ -88,21 +88,21 @@ public class SystemStaffViewUnExecutedOrderScene {
 		String inputString = searchInput.getText();
 		if (!inputString.equals("")) {
 			// 该订单确实存在
-			OrderVO myOrder1 = order_blservice.getOrder(inputString);//订单id搜索
-			ArrayList<OrderVO> myOrder2 = order_blservice.getUnfinishedOrders(inputString);//用户的未执行订单
-			ArrayList<OrderVO> myOrder3= order_blservice.getHotelUndoOrderList(inputString);//酒店的未执行订单
-			
-			if (myOrder1!=null) {
+			OrderVO myOrder1 = order_blservice.getOrder(inputString);// 订单id搜索
+			ArrayList<OrderVO> myOrder2 = order_blservice.getUnfinishedOrders(inputString);// 用户的未执行订单
+			ArrayList<OrderVO> myOrder3 = order_blservice.getHotelUndoOrderList(inputString);// 酒店的未执行订单
+
+			if (myOrder1 != null) {
 				orderData.clear();
 				orderData.add(myOrder1);
 				setTable();
-			}else if (myOrder2.size()!=0) {
+			} else if (myOrder2.size() != 0) {
 				orderData.clear();
 				for (OrderVO orderVO2 : myOrder2) {
 					orderData.add(orderVO2);
 				}
 				setTable();
-			}else if (myOrder3.size()!=0) {
+			} else if (myOrder3.size() != 0) {
 				orderData.clear();
 				for (OrderVO orderVO3 : myOrder3) {
 					orderData.add(orderVO3);
@@ -117,7 +117,7 @@ public class SystemStaffViewUnExecutedOrderScene {
 				alert.setContentText("非常遗憾，未能查询到该订单信息！");
 				alert.showAndWait();
 			}
-		}else {
+		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("抱歉");
 			alert.setHeaderText("查找失败");
@@ -142,10 +142,9 @@ public class SystemStaffViewUnExecutedOrderScene {
 		// 显示所有的未执行订单
 		setTable();
 	}
-	
-	
-	//显示表格
-	private void setTable(){
+
+	// 显示表格
+	private void setTable() {
 		customerId.setCellValueFactory(cellData -> cellData.getValue().getCustomerIdProperty());// 添加所有的tableColumn
 		hotelName.setCellValueFactory(cellData -> cellData.getValue().getHotelNameProperty());
 		orderId.setCellValueFactory(cellData -> cellData.getValue().getOrderIDProperty());

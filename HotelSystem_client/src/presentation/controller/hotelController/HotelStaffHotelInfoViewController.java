@@ -20,8 +20,6 @@ import main.Main;
 import other.RoomType;
 import util.ImageUtil;
 
-//scene界面需要改 没连scene
-//***************************
 public class HotelStaffHotelInfoViewController {
 
 	@FXML

@@ -105,22 +105,22 @@ public class SystemMemberStrategyModifyController {
 		minCredit.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
 			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 					.setMincredit(Integer.parseInt(t.getNewValue()));
-		});//setNewValue
+		});// setNewValue
 		maxCredit.setCellValueFactory(cellData -> cellData.getValue().getMaxCreditProperty());
 		maxCredit.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
 		maxCredit.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
 			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 					.setMaxcredit(Integer.parseInt(t.getNewValue()));
-		});//setNewValue
+		});// setNewValue
 		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-		
+
 		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
 		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
 		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
 			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 					.setDiscount(Double.parseDouble(t.getNewValue()));
-		});//setNewValue
-		
+		});// setNewValue
+
 		memberStrategyTable.setItems(vipVOData);
 		// 优惠状态
 		StrategyState strategyState = systemStrategyVO.getStrategyState();
@@ -145,8 +145,7 @@ public class SystemMemberStrategyModifyController {
 			strategyState = StrategyState.close;
 		}
 		systemStrategyVO.setStrategyState(strategyState);
-		
-		
+
 		boolean isModify1 = systemStrategy_blservice.modifySystemStrategy(systemStrategyVO);
 
 		ObservableList<VipVO> getVipVO = memberStrategyTable.getItems();
@@ -185,7 +184,7 @@ public class SystemMemberStrategyModifyController {
 		VipVO selected = memberStrategyTable.getSelectionModel().getSelectedItem();
 		if (selected != null) {
 			mainScene.showMemberEditDialog(selected);
-			if(MemberEditDialogController.isOkClicked()){
+			if (MemberEditDialogController.isOkClicked()) {
 				memberStrategyTable.setEditable(true);// 可编辑
 
 				minCredit.setCellValueFactory(cellData -> cellData.getValue().getMinCreditProperty());
@@ -193,22 +192,22 @@ public class SystemMemberStrategyModifyController {
 				minCredit.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
 					((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 							.setMincredit(Integer.parseInt(t.getNewValue()));
-				});//setNewValue
+				});// setNewValue
 				maxCredit.setCellValueFactory(cellData -> cellData.getValue().getMaxCreditProperty());
 				maxCredit.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
 				maxCredit.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
 					((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 							.setMaxcredit(Integer.parseInt(t.getNewValue()));
-				});//setNewValue
+				});// setNewValue
 				memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-				
+
 				discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
 				discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
 				discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
 					((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
 							.setDiscount(Double.parseDouble(t.getNewValue()));
-				});//setNewValue
-				
+				});// setNewValue
+
 				memberStrategyTable.setItems(vipVOData);
 			}
 		} else {

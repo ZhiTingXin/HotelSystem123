@@ -20,13 +20,13 @@ public class ImageUtil {
 	private static Stage stage;
 	private static FileChooser fileChooser = new FileChooser();
 	private static String path = "";
-	
+
 	public static String setImagePath(ImageView image) {
 		configureFileChooser(fileChooser);
 		File file = fileChooser.showOpenDialog(stage);
-		String imgName = HotelInfoVO.class.getResource("/Img/").getFile()+file.getName();
+		String imgName = HotelInfoVO.class.getResource("/Img/").getFile() + file.getName();
 		path = file.getAbsolutePath();
-	
+
 		Image newImage = new Image("file:" + path, 200, 200, false, false);
 		try {
 			File file1 = new File(imgName);
@@ -49,8 +49,9 @@ public class ImageUtil {
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
 	}
+
 	public static Image setImage(String path) {
-		File file = new File(HotelInfoVO.class.getResource("/Img/").getFile()+path);
+		File file = new File(HotelInfoVO.class.getResource("/Img/").getFile() + path);
 		Image image = null;
 		try {
 			InputStream stream = new FileInputStream(file);

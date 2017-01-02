@@ -18,8 +18,7 @@ public class LogofUserPO implements Serializable {
 	private String content;
 	private String userid;
 
-
-	public LogofUserPO(LogofUserVO vo){
+	public LogofUserPO(LogofUserVO vo) {
 		super();
 		this.id = vo.getId();
 		this.content = vo.getContent();
@@ -51,6 +50,7 @@ public class LogofUserPO implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public String getUserid() {
 		return userid;
 	}
@@ -67,6 +67,4 @@ public class LogofUserPO implements Serializable {
 		this.chang = chang;
 	}
 
-	
-	
 }

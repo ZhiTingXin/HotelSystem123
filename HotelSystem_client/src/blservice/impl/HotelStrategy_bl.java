@@ -10,13 +10,12 @@ import blservice.HotelStrategy_blservice;
 import data.service.HotelStrategyDataService;
 
 public class HotelStrategy_bl implements HotelStrategy_blservice {
-	
+
 	HotelStrategyDataService dataService = RemoteHelper.getInstance().getHotelStrategyDataService();
-	
+
 	/**
 	 * @param 酒店促销策略的信息
-	 * @return
-	 * 是否成功添加促销策略
+	 * @return 是否成功添加促销策略
 	 */
 	public boolean makeHotelStrategy(HotelStrategyVO hotelstrategy) {
 		try {
@@ -29,8 +28,7 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 
 	/**
 	 * @param 修改后的促销策略信息
-	 * @return
-	 * 返回是否修改成功
+	 * @return 返回是否修改成功
 	 */
 	public boolean modifyHotelStrategy(HotelStrategyVO hotelstrategy) {
 		try {
@@ -43,8 +41,7 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 
 	/**
 	 * @param id
-	 * @return
-	 * 返回是否删除促销策略信息成功
+	 * @return 返回是否删除促销策略信息成功
 	 */
 	public boolean deleteHotelStrategy(String hotelStrategyId) {
 		try {
@@ -58,8 +55,7 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 
 	/**
 	 * @param id
-	 * @return
-	 * 返回酒店促销策略的信息
+	 * @return 返回酒店促销策略的信息
 	 */
 	public HotelStrategyVO getHotelStrategy(String hotelStrategyId) {
 		try {
@@ -74,14 +70,13 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 
 	/**
 	 * @param 酒店id
-	 * @return
-	 * 所有的酒店的促销策略
+	 * @return 所有的酒店的促销策略
 	 */
 	public ArrayList<HotelStrategyVO> getListOfHotelStrategys(String hotel_id) {
 		ArrayList<HotelStrategyVO> voList = new ArrayList<>();
 		try {
 			ArrayList<HotelStrategyPO> poList = dataService.getAll(hotel_id);
-			for(HotelStrategyPO po : poList){
+			for (HotelStrategyPO po : poList) {
 				voList.add(new HotelStrategyVO(po));
 			}
 		} catch (RemoteException e) {
@@ -89,6 +84,5 @@ public class HotelStrategy_bl implements HotelStrategy_blservice {
 		}
 		return voList;
 	}
-	
 
 }

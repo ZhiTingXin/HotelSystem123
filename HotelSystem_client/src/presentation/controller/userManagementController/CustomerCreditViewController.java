@@ -41,69 +41,70 @@ public class CustomerCreditViewController {
 	private TableColumn<LogofUserVO, String> disc;
 	@FXML
 	private TableColumn<LogofUserVO, String> change;
-	
+
 	private LogOfUser_blServce logOfUser_blServce;
 	private UserManagement_blservice management_blservice;
 	private CustomerVO customerVO;
 	private ObservableList<LogofUserVO> logsData = FXCollections.observableArrayList();
 	private Main mainScene;
-	
-	public void innitialize(CustomerVO customerVO,Main mainScene){
+
+	public void innitialize(CustomerVO customerVO, Main mainScene) {
 		logOfUser_blServce = new LogOfUser_blServceImpl();
 		management_blservice = new UserManagement_bl();
 		this.customerVO = customerVO;
-		this.mainScene =mainScene;
+		this.mainScene = mainScene;
 		leftbegin();
 		rightbegin();
 	}
+
 	/**
-	 *初始化左邊的基本信息
+	 * 初始化左邊的基本信息
 	 */
-	private void leftbegin(){
+	private void leftbegin() {
 		leftIdLabel.setText(customerVO.getId());
 		leftNameLabel.setText(customerVO.getUsername());
 		myPicture.setImage(ImageUtil.setImage(customerVO.getImage()));
 	}
+
 	/**
 	 * 初始化右邊的基本信息
 	 */
-    private void rightbegin(){
+	private void rightbegin() {
 		ArrayList<LogofUserVO> logofUserVOs = logOfUser_blServce.getAllLogsOfUser(customerVO.getId());
-		for(LogofUserVO vo:logofUserVOs){
+		for (LogofUserVO vo : logofUserVOs) {
 			logsData.add(vo);
 		}
-		
-		time.setCellValueFactory(cellData->cellData.getValue().gettimeProperty());
-	    disc.setCellValueFactory(cellData->cellData.getValue().getDiscProperty());
-		change.setCellValueFactory(cellData->cellData.getValue().getChangeProperty());
-		
+
+		time.setCellValueFactory(cellData -> cellData.getValue().gettimeProperty());
+		disc.setCellValueFactory(cellData -> cellData.getValue().getDiscProperty());
+		change.setCellValueFactory(cellData -> cellData.getValue().getChangeProperty());
+
 		logs.setItems(logsData);
 	}
-    
-    /**
-     * 响应查看详细信息
-     */
-    @FXML
-    private void handleViewSpec(){
-    	LogofUserVO selected = logs.getSelectionModel().getSelectedItem();
-		if (selected!=null) {
+
+	/**
+	 * 响应查看详细信息
+	 */
+	@FXML
+	private void handleViewSpec() {
+		LogofUserVO selected = logs.getSelectionModel().getSelectedItem();
+		if (selected != null) {
 			mainScene.showCustomerCreditViewSpecScene(customerVO, selected);
-		}else {
+		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("提醒");
 			alert.setContentText("请先选中后在查看具体信息");
 			alert.showAndWait();
 		}
-    }
-    
-    /**
-     * 响应返回
-     */
-    @FXML
-    private void handleExit(){
-    	//需要对VO进行刷新，因为对于信息做出了修改
-    	mainScene.showCustomerInfoScene(management_blservice.getCustomer(customerVO.getId()));
-    }
-    
-    
+	}
+
+	/**
+	 * 响应返回
+	 */
+	@FXML
+	private void handleExit() {
+		// 需要对VO进行刷新，因为对于信息做出了修改
+		mainScene.showCustomerInfoScene(management_blservice.getCustomer(customerVO.getId()));
+	}
+
 }

@@ -60,7 +60,8 @@ public class ViewSystemVIPStrategyController {
 	public ViewSystemVIPStrategyController() {
 	}
 
-	public void initilize(Main mainScene,String city,String district,SystemStaffVO systemStaffVO, SystemStrategyVO systemStrategyVO) {
+	public void initilize(Main mainScene, String city, String district, SystemStaffVO systemStaffVO,
+			SystemStrategyVO systemStrategyVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 		this.systemStrategyVO = systemStrategyVO;
@@ -78,7 +79,7 @@ public class ViewSystemVIPStrategyController {
 		 * 初始化表格
 		 */
 		vipVOData.clear();
-		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(city,district).getVipStrategyVOList();
+		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(city, district).getVipStrategyVOList();
 		for (VipVO vipVO : vipVOs) {
 			vipVOData.add(vipVO);
 		}
@@ -95,10 +96,9 @@ public class ViewSystemVIPStrategyController {
 		vipVOData.clear();
 	}
 
-
 	@FXML
 	private void handleModify() {
-		mainScene.showSystemVIPStrategyModifyScene(systemStaffVO,cs,sq, systemStrategyVO);
+		mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, cs, sq, systemStrategyVO);
 	}
 
 	@FXML // cancel and back to the former view.

@@ -51,43 +51,46 @@ public class SystemStaffCreditManagementController {
 	private TableColumn<CustomerVO, String> customerName;
 	@FXML
 	private TableColumn<CustomerVO, String> customerCredit;
-	
+
 	private Main mainScene;
 	private SystemStaffVO systemStaffVO;
 	private CustomerVO customerVO;
 	private UserManagement_blservice userManagement_blservice;
 	private LogOfUser_blServce logOfUser_blServce;
 	private ObservableList<CustomerVO> customerData = FXCollections.observableArrayList();// 声明
-	
-	public SystemStaffCreditManagementController(){
-		userManagement_blservice = new UserManagement_bl();//充值信用值
+
+	public SystemStaffCreditManagementController() {
+		userManagement_blservice = new UserManagement_bl();// 充值信用值
 		logOfUser_blServce = new LogOfUser_blServceImpl();
 	}
-	public void initialize(Main mainScene,SystemStaffVO systemStaffVO) {
+
+	public void initialize(Main mainScene, SystemStaffVO systemStaffVO) {
 		this.mainScene = mainScene;
 		this.systemStaffVO = systemStaffVO;
 		SystemStaffCreditManagementShow(mainScene);
 	}
+
 	public void SystemStaffCreditManagementShow(Main mainScene) {
 		leftIdLabel.setText(systemStaffVO.getId());
 		leftNameLabel.setText(systemStaffVO.getUsername());
 		myPicture.setImage(ImageUtil.setImage(this.systemStaffVO.getImage()));
 	}
-	//搜索客户
+
+	// 搜索客户
 	@FXML
-	private void handleSearch(){
+	private void handleSearch() {
 		String myCustomerID = inputIdText.getText();
 		if (!myCustomerID.equals("")) {
-			if (userManagement_blservice.getCustomer(myCustomerID)!=null) {//该用户存在
+			if (userManagement_blservice.getCustomer(myCustomerID) != null) {// 该用户存在
 				this.customerVO = userManagement_blservice.getCustomer(myCustomerID);
 				customerData.clear();
-				customerData.add(customerVO);//添加该用户
-				customerId.setCellValueFactory(cellData->cellData.getValue().getIDstringProperty());
-				customerName.setCellValueFactory(cellData->cellData.getValue().getUserNamePriperty());
-				customerCredit.setCellValueFactory(cellData->cellData.getValue().getCreditProperty());
+				customerData.add(customerVO);// 添加该用户
+				customerId.setCellValueFactory(cellData -> cellData.getValue().getIDstringProperty());
+				customerName.setCellValueFactory(cellData -> cellData.getValue().getUserNamePriperty());
+				customerCredit.setCellValueFactory(cellData -> cellData.getValue().getCreditProperty());
 				customerTable.setItems(customerData);
 			} else {
-				
+
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setHeaderText("查找失败");
 				alert.setContentText("抱歉，您所查找的用户不存在！");
@@ -102,20 +105,21 @@ public class SystemStaffCreditManagementController {
 			alert.showAndWait();
 		}
 	}
-	//充值
+
+	// 充值
 	@FXML
-	private void handleSave(){
+	private void handleSave() {
 		String crditNum = reditTextField.getText();
-		if (crditNum!=null) {
+		if (crditNum != null) {
 			CustomerVO customer = customerTable.getSelectionModel().getSelectedItem();
-			if(customer==null){
+			if (customer == null) {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setHeaderText("未选中任何用户");
 				alert.setContentText("请您先选中用户确认充值！");
 				alert.setTitle("警示");
 				alert.showAndWait();
-			}else{
-				int nowCridet = customer.getCredit()+Integer.valueOf(crditNum);
+			} else {
+				int nowCridet = customer.getCredit() + Integer.valueOf(crditNum);
 				customer.setCredit(nowCridet);
 				boolean isOK = userManagement_blservice.modifyCustomer(customer);
 				LogofUserVO logofUserVO = new LogofUserVO();
@@ -124,18 +128,18 @@ public class SystemStaffCreditManagementController {
 				logofUserVO.setContent("充值");
 				logofUserVO.setUserid(customer.getId());
 				boolean iscre = logOfUser_blServce.addLogOfUser(logofUserVO);
-				if (isOK&&iscre) {
+				if (isOK && iscre) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setHeaderText("充值成功");
-					alert.setContentText("您成功为用户"+"\""+customer.getUsername()+"\""+"充值信用值："+crditNum+"点");
+					alert.setContentText("您成功为用户" + "\"" + customer.getUsername() + "\"" + "充值信用值：" + crditNum + "点");
 					alert.setTitle("恭喜");
 					Optional<ButtonType> button = alert.showAndWait();
-					if (button.get()==ButtonType.OK) {
+					if (button.get() == ButtonType.OK) {
 						customerData.clear();
 						customerData.add(customer);
-						customerId.setCellValueFactory(cellData->cellData.getValue().getIDstringProperty());
-						customerName.setCellValueFactory(cellData->cellData.getValue().getUserNamePriperty());
-						customerCredit.setCellValueFactory(cellData->cellData.getValue().getCreditProperty());
+						customerId.setCellValueFactory(cellData -> cellData.getValue().getIDstringProperty());
+						customerName.setCellValueFactory(cellData -> cellData.getValue().getUserNamePriperty());
+						customerCredit.setCellValueFactory(cellData -> cellData.getValue().getCreditProperty());
 						customerTable.setItems(customerData);
 					}
 				}
@@ -148,9 +152,10 @@ public class SystemStaffCreditManagementController {
 			alert.showAndWait();
 		}
 	}
-	//返回
+
+	// 返回
 	@FXML
-	private void handleBack(){
+	private void handleBack() {
 		mainScene.showSystemStaffMainScene(systemStaffVO);
 	}
 }
