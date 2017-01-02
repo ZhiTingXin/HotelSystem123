@@ -759,7 +759,8 @@ public class Main extends Application {
 		try {
 			this.initRootLayout();
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("/presentation/view/order_ui/SystemStaffViewUnExecutedOrderScene.fxml"));
+			loader.setLocation(
+					Main.class.getResource("/presentation/view/order_ui/SystemStaffViewUnExecutedOrderScene.fxml"));
 			AnchorPane SystemStaffMainScene = (AnchorPane) loader.load();
 			rootLayout.setCenter(SystemStaffMainScene);
 
@@ -861,7 +862,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 *show 网站营销人员 查看系统促销策略界面
+	 * show 网站营销人员 查看系统促销策略界面
 	 * 
 	 * @param systemStaffVO
 	 * 
@@ -1535,18 +1536,25 @@ public class Main extends Application {
 	public void showSystemManagerHotelRegisterShowIDScene(SystemManagerVO systemManagerVO, HotelInfoVO hotelInfoVO,
 			HotelStaffVO hotelStaffVO) {
 		try {
-
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(
 					Main.class.getResource("/presentation/view/hotel_ui/SystemManagerHotelRegisterShowIDScene.fxml"));
-			AnchorPane SystemManagerHotelRegisterShowIDScene = (AnchorPane) loader.load();
-			rootLayout.setCenter(SystemManagerHotelRegisterShowIDScene);
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("编辑会员信息");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
 
 			// get Controller
 			SystemManagerHotelRegisterShowIDController SystemManagerHotelRegisterShowIDController = loader
 					.getController();
 			SystemManagerHotelRegisterShowIDController.SystemManagerHotelRegisterShowIDShow(this, systemManagerVO,
 					hotelInfoVO, hotelStaffVO);
+			SystemManagerHotelRegisterShowIDController.setDialogStage(dialogStage);
+			
+			dialogStage.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
