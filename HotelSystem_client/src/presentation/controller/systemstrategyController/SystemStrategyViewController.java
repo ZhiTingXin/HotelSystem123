@@ -267,8 +267,17 @@ public class SystemStrategyViewController {
 				Optional<Pair<String, String>> result = dialog.showAndWait();
 
 				result.ifPresent(CityDistict -> {
-					mainScene.showViewSystemVIPStrategyScene(systemStaffVO, CityDistict.getKey(),
-							CityDistict.getValue(), selected);
+					VipStrategyVO vipStrategyVO = vipStrategy_blService.getVipstrategy(CityDistict.getKey(),
+							CityDistict.getValue());
+					if (vipStrategyVO.getVipStrategyVOList().size() != 0) {
+						mainScene.showViewSystemVIPStrategyScene(systemStaffVO, CityDistict.getKey(),
+								CityDistict.getValue(), selected);
+					} else {
+						Alert alert1 = new Alert(AlertType.INFORMATION);
+						alert1.setTitle("提醒");
+						alert1.setContentText("该商圈的VIP会员策略不存在");
+						alert1.showAndWait();
+					}
 				});
 
 			} else if (strategyType == SystemStrategyType.OTHER) {
@@ -418,8 +427,15 @@ public class SystemStrategyViewController {
 				Optional<Pair<String, String>> result = dialog.showAndWait();
 
 				result.ifPresent(CityDistict -> {
-					mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, CityDistict.getKey(),
-							CityDistict.getValue(), selected);
+					VipStrategyVO vipStrategyVO = vipStrategy_blService.getVipstrategy(CityDistict.getKey(),
+							CityDistict.getValue());
+					if (vipStrategyVO.getVipStrategyVOList().size() != 0) {
+						mainScene.showSystemVIPStrategyModifyScene(systemStaffVO, CityDistict.getKey(),
+								CityDistict.getValue(), selected);
+					} else {
+						mainScene.showSystemVIPStrategyModifyScene(systemStaffVO,  CityDistict.getKey(),
+								CityDistict.getValue(), selected);
+					}
 				});
 
 			} else if (strategyType == SystemStrategyType.OTHER) {
