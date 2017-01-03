@@ -108,6 +108,7 @@ public class CustomerHotelAssessmentController {
 
 		if (this.order.getOrderState().equals(OrderState.ASSESSED)) {
 			this.assement = this.service.getAss(this.order.getOrderID());
+			this.nameOfHotel.setText(this.hotel.getHotelName());
 			this.save.setDisable(true);
 			this.assessmentTextArea.setEditable(false);
 			this.assessmentTextArea.setText(this.assement.getContent());

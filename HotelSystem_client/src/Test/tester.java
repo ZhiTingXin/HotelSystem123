@@ -40,7 +40,7 @@ public class tester {
 		SystemManagerPO systemManagerPO = new SystemManagerPO();
 		systemManagerPO.setManagerId("12345");
 		systemManagerPO.setManagerName("chen");
-		systemManagerPO.setImage("src/Img/default.png");
+		systemManagerPO.setImage("default.png");
 		systemManagerPO.setPhone("1237514785");
 		LoginPO loginPO = new LoginPO();
 		loginPO.setId("12345");

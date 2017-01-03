@@ -93,21 +93,48 @@ public class SystemVIPStrategyModifyController {
 		vipVOData.clear();
 		ArrayList<VipVO> vipVOs = vipStrategy_blService.getVipstrategy(this.city.getText(), this.district.getText())
 				.getVipStrategyVOList();
-		for (VipVO vipVO : vipVOs) {
-			vipVOData.add(vipVO);
+		if (vipVOs.size()!=0) {
+			for (VipVO vipVO : vipVOs) {
+				vipVOData.add(vipVO);
+			}
+
+			systemStrategyTable.setEditable(true);// 可编辑
+
+			memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+
+			discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+			discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
+			discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
+				((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+						.setDiscount(Double.parseDouble(t.getNewValue()));
+			});// setNewValue
+			systemStrategyTable.setItems(vipVOData);
+		}else{
+			VipVO vipVO1 = new VipVO();
+			vipVO1.setCity(city);
+			vipVO1.setDiscount(10);
+			vipVO1.setDistrict(district);
+			vipVO1.setVipgrade(4);
+			VipVO vipVO2 = new VipVO();
+			vipVO2.setCity(city);
+			vipVO2.setDiscount(10);
+			vipVO2.setDistrict(district);
+			vipVO2.setVipgrade(5);
+			vipVOData.add(vipVO1);
+			vipVOData.add(vipVO2);
+			systemStrategyTable.setEditable(true);// 可编辑
+
+			memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
+
+			discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
+			discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
+			discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
+				((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
+						.setDiscount(Double.parseDouble(t.getNewValue()));
+			});// setNewValue
+			systemStrategyTable.setItems(vipVOData);
 		}
-
-		systemStrategyTable.setEditable(true);// 可编辑
-
-		memberGrade.setCellValueFactory(cellData -> cellData.getValue().getMemberGradeProperty());
-
-		discount.setCellValueFactory(cellData -> cellData.getValue().getDiscountProperty());
-		discount.setCellFactory(TextFieldTableCell.<VipVO> forTableColumn());// textField可编辑化
-		discount.setOnEditCommit((CellEditEvent<VipVO, String> t) -> {
-			((VipVO) t.getTableView().getItems().get(t.getTablePosition().getRow()))
-					.setDiscount(Double.parseDouble(t.getNewValue()));
-		});// setNewValue
-		systemStrategyTable.setItems(vipVOData);
+		
 
 	}
 

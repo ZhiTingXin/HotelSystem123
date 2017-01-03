@@ -9,15 +9,19 @@ import VO.OrderVO;
 import blservice.Order_blservice;
 import blservice.Room_blService;
 import blservice.SystemStrategy_blservice;
+import blservice.UserManagement_blservice;
 import blservice.impl.Order_bl;
 import blservice.impl.Room_blServiceImpl;
 import blservice.impl.SystemStrategy_bl;
+import blservice.impl.UserManagement_bl;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import main.Main;
 import other.OrderState;
@@ -250,28 +254,37 @@ public class BookHotelController {
 
 	@FXML
 	private void handleSave() {
-		boolean isRoomTypeOK = !this.typeOfRoom.getText().equals("请选择房间类型");
-		boolean isRoomNumOK = !this.numberOfRoom.getText().equals("请选择房间数量");
-		// 待完成的日期确认
-		boolean isDateOK = this.dateOfCheckIn.getValue() != null
-				&& this.dateOfCheckIn.getValue().isAfter(LocalDate.now());
-		boolean isRoomRemainOK = this.roomRemainPermitComfirm() == -1;
+		UserManagement_blservice blservice = new UserManagement_bl();
+		CustomerVO customerVO = blservice.getCustomer(customer.getId());
+		if (customerVO.getCredit() < 50) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("抱歉");
+			alert.setContentText("您的信用值过低不能生成订单");
+			alert.showAndWait();
+		} else {
+			boolean isRoomTypeOK = !this.typeOfRoom.getText().equals("请选择房间类型");
+			boolean isRoomNumOK = !this.numberOfRoom.getText().equals("请选择房间数量");
+			// 待完成的日期确认
+			boolean isDateOK = this.dateOfCheckIn.getValue() != null
+					&& !this.dateOfCheckIn.getValue().isBefore(LocalDate.now());
+			boolean isRoomRemainOK = this.roomRemainPermitComfirm() == -1;
 
-		if (isRoomTypeOK && isRoomNumOK && isDateOK && isRoomRemainOK) {
+			if (isRoomTypeOK && isRoomNumOK && isDateOK && isRoomRemainOK) {
 
-			this.order.setOriginalPrice(Double.parseDouble(this.orderTotal.getText()));
-			this.order.setPrice(Double.parseDouble(this.actualPayment.getText()));
+				this.order.setOriginalPrice(Double.parseDouble(this.orderTotal.getText()));
+				this.order.setPrice(Double.parseDouble(this.actualPayment.getText()));
 
-			this.orderService.generateOrder(this.order);
-			this.mainScene.showCustomerHotelInfoScene(customer, hotel);
-		} else if (!isRoomRemainOK) {
-			this.stateField.setText("该类型房间剩余数量为" + this.roomRemainPermitComfirm() + "，请修改预定房间数量！");
-		} else if (!isRoomTypeOK) {
-			this.stateField.setText("请选择房间类型");
-		} else if (!isRoomNumOK) {
-			this.stateField.setText("请选择房间数量");
-		} else if (!isDateOK) {
-			this.stateField.setText("请修改出行日期");
+				this.orderService.generateOrder(this.order);
+				this.mainScene.showCustomerHotelInfoScene(customer, hotel);
+			} else if (!isRoomRemainOK) {
+				this.stateField.setText("该类型房间剩余数量为" + this.roomRemainPermitComfirm() + "，请修改预定房间数量！");
+			} else if (!isRoomTypeOK) {
+				this.stateField.setText("请选择房间类型");
+			} else if (!isRoomNumOK) {
+				this.stateField.setText("请选择房间数量");
+			} else if (!isDateOK) {
+				this.stateField.setText("请修改出行日期");
+			}
 		}
 	}
 

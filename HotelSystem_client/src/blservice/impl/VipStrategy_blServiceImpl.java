@@ -121,7 +121,11 @@ public class VipStrategy_blServiceImpl implements VipStrategy_blService {
 		ArrayList<VipVO> list = vipStrategyVO.getVipStrategyVOList();
 		try {
 			for (VipVO vo : list) {
-				service.modifySupVip(new SuperVipPO(vo));
+				if (vipDataService.getVip(vo.getVipgrade())==null) {
+					service.addSupVip(new SuperVipPO(vo));
+				}else{
+					service.modifySupVip(new SuperVipPO(vo));
+				}
 			}
 			return true;
 		} catch (Exception e) {
